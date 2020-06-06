@@ -1,6 +1,5 @@
 const ap = new APlayer({
     container: document.getElementById('aplayer'),
-    autoplay: true,
     audio: [{
             name: 'Waterwheel',
             artist: 'ZuJian',
