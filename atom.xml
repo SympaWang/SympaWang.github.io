@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>避风港</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2020-06-06T02:31:41.686Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>Sympa</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>堆维护的贪心</title>
+    <link href="http://yoursite.com/2020/06/06/111/"/>
+    <id>http://yoursite.com/2020/06/06/111/</id>
+    <published>2020-06-05T18:59:58.000Z</published>
+    <updated>2020-06-06T02:31:41.686Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="P2949-USACO09OPEN-Work-Scheduling-G"><a href="#P2949-USACO09OPEN-Work-Scheduling-G" class="headerlink" title="P2949 [USACO09OPEN]Work Scheduling G"></a>P2949 [USACO09OPEN]Work Scheduling G</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>Farmer John has so very many jobs to do! In order to run the farm efficiently, he must make money on the jobs he does, each one of which takes just one time unit.</p><p>His work day starts at time 0 and has 1,000,000,000 time units (!). He currently can choose from any of N (1 &lt;= N &lt;= 100,000) jobs</p><p>conveniently numbered 1..N for work to do. It is possible but</p><p>extremely unlikely that he has time for all N jobs since he can only work on one job during any time unit and the deadlines tend to fall so that he can not perform all the tasks.</p><p>Job i has deadline D_i (1 &lt;= D_i &lt;= 1,000,000,000). If he finishes job i by then, he makes a profit of P_i (1 &lt;= P_i &lt;= 1,000,000,000).</p><p>What is the maximum total profit that FJ can earn from a given list of jobs and deadlines? The answer might not fit into a 32-bit integer.</p><h5 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h5><p>Line 1: A single integer: N</p><p>Lines 2..N+1: Line i+1 contains two space-separated integers: D_i and P_i</p><h5 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h5><p>输入 #1</p><p> 3 </p><p>2   10</p><p>1    5</p><p>1    7</p><p>输出 #1</p><p>17 </p><h5 id="预备知识："><a href="#预备知识：" class="headerlink" title="预备知识："></a>预备知识：</h5><p>1.贪心算法</p><p>2.用STL优先队列实现堆</p><p>3.关系运算符重载</p><h5 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h5><p>先了解题目大意，每个单位时间可以完成一项工作，但每项工作都有各自的过期时间，过期的工作不能选择，求最大利润。</p><p>很明显，这题用到了贪心的思想，要在所给的工作内，选择利润尽可能大的工作来完成。</p><p>来确定贪的方向：因为每项工作的耗时都是一个单位时间，所以想获得尽可能多的利润，要选择尽可能多的工作。</p><p>但是，如果在选择m分钟过期的工作时，自己的1-m的时间都已经被工作填满了，该怎么办？</p><p>很容易想到暴力的算法：从自己已经选择的期限为1-m的工作中，找到一个工作利润最低的和当前备选工作比较，如果备选工作的利润高，就将两者替换。</p><p>这么做的复杂度为O(n^2),那么，有没有更优的解法？使用堆来维护贪心的选择，可以使复杂度达到O(nlogn)。</p><h5 id="做法："><a href="#做法：" class="headerlink" title="做法："></a>做法：</h5><p>首先用优先队列建立堆，重载&lt;运算符，使得两工作之间按利润进行排序。读入工作后，让它们按过期时间从低到高排序，可以想想为什么。</p><p>遍历工作数组，堆大小小于当前工作的过期时间，工作入堆，否则与堆顶比较，如果当前工作利润高，两者交换。</p><h5 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits&#x2F;stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int n;</span><br><span class="line">struct node &#123;</span><br><span class="line">    int d, p;</span><br><span class="line">    bool operator &lt; (const node&amp; x) const &#123; return p &gt; x.p; &#125;</span><br><span class="line">&#125;;</span><br><span class="line">bool cmp(node d1, node d2) &#123;</span><br><span class="line">    if (d1.d &#x3D;&#x3D; d2.d)return d1.p &gt; d2.p;</span><br><span class="line">    else return d1.d &lt; d2.d;</span><br><span class="line">&#125;</span><br><span class="line">node a[100010];</span><br><span class="line">int main() &#123;</span><br><span class="line">    std::ios::sync_with_stdio(false);</span><br><span class="line">    priority_queue&lt; node &gt;q;</span><br><span class="line">    long long sum &#x3D; 0;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    for (int i &#x3D; 1; i &lt;&#x3D; n; i++) &#123;</span><br><span class="line">        cin &gt;&gt; a[i].d &gt;&gt; a[i].p;</span><br><span class="line">    &#125;</span><br><span class="line">    sort(a + 1, a + 1 + n, cmp);</span><br><span class="line">    for (int i &#x3D; 1; i &lt;&#x3D; n; i++) &#123;</span><br><span class="line">        if (a[i].d &lt;&#x3D; q.size()) &#123;</span><br><span class="line">            if (a[i].p &gt; q.top().p) &#123;</span><br><span class="line">                sum -&#x3D; q.top().p;</span><br><span class="line">                q.pop();</span><br><span class="line">                sum +&#x3D; a[i].p;</span><br><span class="line">                q.push(a[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            sum +&#x3D; a[i].p;</span><br><span class="line">            q.push(a[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; sum &lt;&lt; endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="数据结构(easy)" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-easy/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://yoursite.com/2020/06/05/hello-world/"/>
+    <id>http://yoursite.com/2020/06/05/hello-world/</id>
+    <published>2020-06-05T11:25:01.304Z</published>
+    <updated>2020-06-05T18:22:31.023Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="入门" scheme="http://yoursite.com/categories/%E5%85%A5%E9%97%A8/"/>
+    
+    
+  </entry>
+  
+</feed>
