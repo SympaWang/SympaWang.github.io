@@ -24,30 +24,32 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Get busy living,or get busy dying.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="避风港">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="P2880 [USACO07JAN]Balanced Lineup G题目背景每天,农夫 John 的N(1 &lt;&#x3D; N &lt;&#x3D; 50,000)头牛总是按同一序列排队. 有一天, John 决定让一些牛们玩一场飞盘比赛. 他准备找一群在对列中为置连续的牛来进行比赛. 但是为了避免水平悬殊,牛的身高不应该相差太大. John 准备了Q (1 &lt;&#x3D; Q &lt;&#x3D; 180,000) 个可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ST表例题与原理">
+<meta property="og:url" content="http://yoursite.com/2020/06/07/P2880/index.html">
 <meta property="og:site_name" content="避风港">
-<meta property="og:description" content="Get busy living,or get busy dying.">
+<meta property="og:description" content="P2880 [USACO07JAN]Balanced Lineup G题目背景每天,农夫 John 的N(1 &lt;&#x3D; N &lt;&#x3D; 50,000)头牛总是按同一序列排队. 有一天, John 决定让一些牛们玩一场飞盘比赛. 他准备找一群在对列中为置连续的牛来进行比赛. 但是为了避免水平悬殊,牛的身高不应该相差太大. John 准备了Q (1 &lt;&#x3D; Q &lt;&#x3D; 180,000) 个可">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-06-06T16:11:14.000Z">
+<meta property="article:modified_time" content="2020-06-06T16:21:58.531Z">
 <meta property="article:author" content="Sympa">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/">
+<link rel="canonical" href="http://yoursite.com/2020/06/07/P2880/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>避风港</title>
+  <title>ST表例题与原理 | 避风港</title>
   
 
 
@@ -173,9 +175,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -191,10 +194,9 @@
       <meta itemprop="name" content="避风港">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/07/P2880/" class="post-title-link" itemprop="url">ST表例题与原理</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          ST表例题与原理
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -217,6 +219,13 @@
             </span>
 
           
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
   
   <span class="post-meta-item">
     
@@ -241,7 +250,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="P2880-USACO07JAN-Balanced-Lineup-G"><a href="#P2880-USACO07JAN-Balanced-Lineup-G" class="headerlink" title="P2880 [USACO07JAN]Balanced Lineup G"></a><a href="https://www.luogu.com.cn/problem/P2880" target="_blank" rel="noopener">P2880 [USACO07JAN]Balanced Lineup G</a></h1><h2 id="题目背景"><a href="#题目背景" class="headerlink" title="题目背景"></a>题目背景</h2><p>每天,农夫 John 的N(1 &lt;= N &lt;= 50,000)头牛总是按同一序列排队. 有一天, John 决定让一些牛们玩一场飞盘比赛. 他准备找一群在对列中为置连续的牛来进行比赛. 但是为了避免水平悬殊,牛的身高不应该相差太大. John 准备了Q (1 &lt;= Q &lt;= 180,000) 个可能的牛的选择和所有牛的身高 (1 &lt;= 身高 &lt;= 1,000,000). 他想知道每一组里面最高和最低的牛的身高差别.</p>
+        <h1 id="P2880-USACO07JAN-Balanced-Lineup-G"><a href="#P2880-USACO07JAN-Balanced-Lineup-G" class="headerlink" title="P2880 [USACO07JAN]Balanced Lineup G"></a><a href="https://www.luogu.com.cn/problem/P2880" target="_blank" rel="noopener">P2880 [USACO07JAN]Balanced Lineup G</a></h1><h2 id="题目背景"><a href="#题目背景" class="headerlink" title="题目背景"></a>题目背景</h2><p>每天,农夫 John 的N(1 &lt;= N &lt;= 50,000)头牛总是按同一序列排队. 有一天, John 决定让一些牛们玩一场飞盘比赛. 他准备找一群在对列中为置连续的牛来进行比赛. 但是为了避免水平悬殊,牛的身高不应该相差太大. John 准备了Q (1 &lt;= Q &lt;= 180,000) 个可能的牛的选择和所有牛的身高 (1 &lt;= 身高 &lt;= 1,000,000). 他想知道每一组里面最高和最低的牛的身高差别.</p>
 <p><strong>输入：</strong></p>
 <p>第1行：N,Q</p>
 <p>第2到N+1行：每头牛的身高</p>
@@ -288,239 +297,62 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> maxx[<span class="number">50011</span>][<span class="number">51</span>];</span><br><span class="line"><span class="keyword">int</span> minn[<span class="number">50011</span>][<span class="number">51</span>];</span><br><span class="line"><span class="keyword">int</span> a[<span class="number">50011</span>];</span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> l, r;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; a[i];</span><br><span class="line">        maxx[i][<span class="number">0</span>] = a[i];</span><br><span class="line">        minn[i][<span class="number">0</span>] = a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; <span class="number">1</span>&lt;&lt;i&lt;=n; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j + (<span class="number">1</span> &lt;&lt; i) - <span class="number">1</span> &lt;= n; j++) &#123;</span><br><span class="line">            maxx[j][i] = <span class="built_in">max</span>(maxx[j][i - <span class="number">1</span>], maxx[j + (<span class="number">1</span> &lt;&lt; (i - <span class="number">1</span>))][i - <span class="number">1</span>]);</span><br><span class="line">            minn[j][i] = <span class="built_in">min</span>(minn[j][i - <span class="number">1</span>], minn[j + (<span class="number">1</span> &lt;&lt; (i - <span class="number">1</span>))][i - <span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++) &#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; l &gt;&gt; r;</span><br><span class="line">        <span class="keyword">int</span> logg = log2(r-l+<span class="number">1</span>);</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">max</span>(maxx[l][logg], maxx[r - (<span class="number">1</span> &lt;&lt; logg) + <span class="number">1</span>][logg]) - (<span class="built_in">min</span>(minn[l][logg], minn[r - (<span class="number">1</span> &lt;&lt; logg) + <span class="number">1</span>][logg])) &lt;&lt; <span class="built_in">endl</span>;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-      
     </div>
     
     
     
 
  
+      <div>
+          
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        ------ THE<i class="fa fa-paw"></i>END ------</div>
+    
+      </div>
+    
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/06/111/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/06/111/" class="post-title-link" itemprop="url">堆维护的贪心</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-06-06 02:59:58 / 修改时间：10:31:41" itemprop="dateCreated datePublished" datetime="2020-06-06T02:59:58+08:00">2020-06-06</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-easy/" itemprop="url" rel="index"><span itemprop="name">数据结构(easy)</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/06/06/111/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/06/111/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="P2949-USACO09OPEN-Work-Scheduling-G"><a href="#P2949-USACO09OPEN-Work-Scheduling-G" class="headerlink" title="P2949 [USACO09OPEN]Work Scheduling G"></a>P2949 [USACO09OPEN]Work Scheduling G</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>Farmer John has so very many jobs to do! In order to run the farm efficiently, he must make money on the jobs he does, each one of which takes just one time unit.</p>
-<p>His work day starts at time 0 and has 1,000,000,000 time units (!). He currently can choose from any of N (1 &lt;= N &lt;= 100,000) jobs</p>
-<p>conveniently numbered 1..N for work to do. It is possible but</p>
-<p>extremely unlikely that he has time for all N jobs since he can only work on one job during any time unit and the deadlines tend to fall so that he can not perform all the tasks.</p>
-<p>Job i has deadline D_i (1 &lt;= D_i &lt;= 1,000,000,000). If he finishes job i by then, he makes a profit of P_i (1 &lt;= P_i &lt;= 1,000,000,000).</p>
-<p>What is the maximum total profit that FJ can earn from a given list of jobs and deadlines? The answer might not fit into a 32-bit integer.</p>
-<h5 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h5><p>Line 1: A single integer: N</p>
-<p>Lines 2..N+1: Line i+1 contains two space-separated integers: D_i and P_i</p>
-<h5 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h5><p>输入 #1</p>
-<p> 3 </p>
-<p>2   10</p>
-<p>1    5</p>
-<p>1    7</p>
-<p>输出 #1</p>
-<p>17 </p>
-<h5 id="预备知识："><a href="#预备知识：" class="headerlink" title="预备知识："></a>预备知识：</h5><p>1.贪心算法</p>
-<p>2.用STL优先队列实现堆</p>
-<p>3.关系运算符重载</p>
-<h5 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h5><p>先了解题目大意，每个单位时间可以完成一项工作，但每项工作都有各自的过期时间，过期的工作不能选择，求最大利润。</p>
-<p>很明显，这题用到了贪心的思想，要在所给的工作内，选择利润尽可能大的工作来完成。</p>
-<p>来确定贪的方向：因为每项工作的耗时都是一个单位时间，所以想获得尽可能多的利润，要选择尽可能多的工作。</p>
-<p>但是，如果在选择m分钟过期的工作时，自己的1-m的时间都已经被工作填满了，该怎么办？</p>
-<p>很容易想到暴力的算法：从自己已经选择的期限为1-m的工作中，找到一个工作利润最低的和当前备选工作比较，如果备选工作的利润高，就将两者替换。</p>
-<p>这么做的复杂度为O(n^2),那么，有没有更优的解法？使用堆来维护贪心的选择，可以使复杂度达到O(nlogn)。</p>
-<h5 id="做法："><a href="#做法：" class="headerlink" title="做法："></a>做法：</h5><p>首先用优先队列建立堆，重载&lt;运算符，使得两工作之间按利润进行排序。读入工作后，让它们按过期时间从低到高排序，可以想想为什么。</p>
-<p>遍历工作数组，堆大小小于当前工作的过期时间，工作入堆，否则与堆顶比较，如果当前工作利润高，两者交换。</p>
-<h5 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits&#x2F;stdc++.h&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int n;</span><br><span class="line">struct node &#123;</span><br><span class="line">    int d, p;</span><br><span class="line">    bool operator &lt; (const node&amp; x) const &#123; return p &gt; x.p; &#125;</span><br><span class="line">&#125;;</span><br><span class="line">bool cmp(node d1, node d2) &#123;</span><br><span class="line">    if (d1.d &#x3D;&#x3D; d2.d)return d1.p &gt; d2.p;</span><br><span class="line">    else return d1.d &lt; d2.d;</span><br><span class="line">&#125;</span><br><span class="line">node a[100010];</span><br><span class="line">int main() &#123;</span><br><span class="line">    std::ios::sync_with_stdio(false);</span><br><span class="line">    priority_queue&lt; node &gt;q;</span><br><span class="line">    long long sum &#x3D; 0;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    for (int i &#x3D; 1; i &lt;&#x3D; n; i++) &#123;</span><br><span class="line">        cin &gt;&gt; a[i].d &gt;&gt; a[i].p;</span><br><span class="line">    &#125;</span><br><span class="line">    sort(a + 1, a + 1 + n, cmp);</span><br><span class="line">    for (int i &#x3D; 1; i &lt;&#x3D; n; i++) &#123;</span><br><span class="line">        if (a[i].d &lt;&#x3D; q.size()) &#123;</span><br><span class="line">            if (a[i].p &gt; q.top().p) &#123;</span><br><span class="line">                sum -&#x3D; q.top().p;</span><br><span class="line">                q.pop();</span><br><span class="line">                sum +&#x3D; a[i].p;</span><br><span class="line">                q.push(a[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            sum +&#x3D; a[i].p;</span><br><span class="line">            q.push(a[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; sum &lt;&lt; endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
 
 
-      
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/06/06/111/" rel="prev" title="堆维护的贪心">
+      <i class="fa fa-chevron-left"></i> 堆维护的贪心
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/05/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/05/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-05 19:25:01" itemprop="dateCreated datePublished" datetime="2020-06-05T19:25:01+08:00">2020-06-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-06 02:22:31" itemprop="dateModified" datetime="2020-06-06T02:22:31+08:00">2020-06-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%85%A5%E9%97%A8/" itemprop="url" rel="index"><span itemprop="name">入门</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/06/05/hello-world/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/05/hello-world/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
   
 
 
 
           </div>
           
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-livere">livere</a></li>
+            <li class="tab"><a href="#comment-valine">valine</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane livere" id="comment-livere">
+              
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81MDM4Mi8yNjg3Mg=="></div>
+  </div>
+  
+            </div>
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
+            </div>
+        </div>
+      </div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -567,6 +399,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#P2880-USACO07JAN-Balanced-Lineup-G"><span class="nav-number">1.</span> <span class="nav-text">P2880 [USACO07JAN]Balanced Lineup G</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目背景"><span class="nav-number">1.1.</span> <span class="nav-text">题目背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入输出样例"><span class="nav-number">1.2.</span> <span class="nav-text">输入输出样例</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -750,6 +583,21 @@ $(document).ready(function() {
 
   
 
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
 
 
 <script>
