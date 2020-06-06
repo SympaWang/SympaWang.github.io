@@ -24,15 +24,15 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="2020年6月6日，博客搭建基本完成啦~ 接下来， 就把这里当作家与学校之外的第三个家吧！***一个真正属于我自己的避风港~***">
+  <meta name="description" content="2020年6月6日，博客搭建基本完成啦~ 接下来， 就把这里当作家与学校之外的第三个家吧！一个真正属于我自己的避风港~">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hello,my haven!">
 <meta property="og:url" content="http://yoursite.com/2020/06/05/hello-world/index.html">
 <meta property="og:site_name" content="避风港">
-<meta property="og:description" content="2020年6月6日，博客搭建基本完成啦~ 接下来， 就把这里当作家与学校之外的第三个家吧！***一个真正属于我自己的避风港~***">
+<meta property="og:description" content="2020年6月6日，博客搭建基本完成啦~ 接下来， 就把这里当作家与学校之外的第三个家吧！一个真正属于我自己的避风港~">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-06-05T11:25:01.304Z">
-<meta property="article:modified_time" content="2020-06-06T16:49:54.918Z">
+<meta property="article:modified_time" content="2020-06-06T16:53:14.148Z">
 <meta property="article:author" content="Sympa">
 <meta name="twitter:card" content="summary">
 
@@ -218,7 +218,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-07 00:49:54" itemprop="dateModified" datetime="2020-06-07T00:49:54+08:00">2020-06-07</time>
+                <time title="修改时间：2020-06-07 00:53:14" itemprop="dateModified" datetime="2020-06-07T00:53:14+08:00">2020-06-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -264,8 +264,7 @@
       
         <p><strong><em>2020年6月6日，博客搭建基本完成啦~</em></strong></p>
 <p><strong><em>接下来，</em></strong></p>
-<p><strong><em>就把这里当作家与学校之外的第三个家吧！***</em></strong>一个真正属于我自己的避风港~***</p>
-
+<h5 id="就把这里当作家与学校之外的第三个家吧！一个真正属于我自己的避风港"><a href="#就把这里当作家与学校之外的第三个家吧！一个真正属于我自己的避风港" class="headerlink" title="就把这里当作家与学校之外的第三个家吧！一个真正属于我自己的避风港~"></a><strong><em>就把这里当作家与学校之外的第三个家吧！一个真正属于我自己的避风港~</em></strong></h5>
     </div>
     
     
@@ -306,19 +305,19 @@
           
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
-            <li class="tab"><a href="#comment-livere">livere</a></li>
             <li class="tab"><a href="#comment-valine">valine</a></li>
+            <li class="tab"><a href="#comment-livere">livere</a></li>
         </ul>
         <div class="tab-content">
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
+            </div>
             <div class="tab-pane livere" id="comment-livere">
               
   <div class="comments">
     <div id="lv-container" data-id="city" data-uid="MTAyMC81MDM4Mi8yNjg3Mg=="></div>
   </div>
   
-            </div>
-            <div class="tab-pane valine" id="comment-valine">
-              <div class="comments" id="valine-comments"></div>
             </div>
         </div>
       </div>
@@ -368,6 +367,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#就把这里当作家与学校之外的第三个家吧！一个真正属于我自己的避风港"><span class="nav-number">1.</span> <span class="nav-text">就把这里当作家与学校之外的第三个家吧！一个真正属于我自己的避风港~</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -551,22 +551,6 @@ $(document).ready(function() {
 
   
 
-<script>
-NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
-  window.livereOptions = {
-    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
-  };
-  (function(d, s) {
-    var j, e = d.getElementsByTagName(s)[0];
-    if (typeof LivereTower === 'function') { return; }
-    j = d.createElement(s);
-    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-    j.async = true;
-    e.parentNode.insertBefore(j, e);
-  })(document, 'script');
-});
-</script>
-
 
 <script>
 NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
@@ -593,6 +577,22 @@ NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
       serverURLs : ''
     });
   }, window.Valine);
+});
+</script>
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
 });
 </script>
 
