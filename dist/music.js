@@ -7,9 +7,9 @@ const ap = new APlayer({
     listMaxHeight: 60,
     audio: [
         {
-            name: 'name1',
-            artist: 'artist1',
-            url: 'url1.mp3',
+            name: 'Euterpe',
+            artist: 'EGOIST',
+            url: '722932',
             cover: 'cover1.jpg',
         },
         {
