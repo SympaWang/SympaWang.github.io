@@ -1,22 +1,9 @@
 const ap = new APlayer({
     container: document.getElementById('aplayer'),
-    autoplay: false,
-    loop: 'all',
-    volume: 0.7,
-    listFolded: true,
-    listMaxHeight: 60,
-    audio: [
-        {
-            name: 'Euterpe',
-            artist: 'EGOIST',
-            url: '<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=722932&auto=1&height=66"></iframe>',
-            cover: 'cover1.jpg',
-        },
-        {
-            name: 'name2',
-            artist: 'artist2',
-            url: 'url2.mp3',
-            cover: 'cover2.jpg',
-        }
-    ]
+    audio: [{
+        name: 'ˮ܇���{��',
+        artist: '������c',
+        url: 'http://music.163.com/song/media/outer/url?id=28409319.mp3',
+        cover: 'https://p2.music.126.net/4IxuKCkzOj3uW6to5sl29A==/109951164021533111.jpg'
+    }]
 });
