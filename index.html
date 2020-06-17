@@ -386,10 +386,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-06-17 16:10:43 / 修改时间：22:50:43" itemprop="dateCreated datePublished" datetime="2020-06-17T16:10:43+08:00">2020-06-17</time>
+              <time title="创建时间：2020-06-17 16:10:43" itemprop="dateCreated datePublished" datetime="2020-06-17T16:10:43+08:00">2020-06-17</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-18 00:01:47" itemprop="dateModified" datetime="2020-06-18T00:01:47+08:00">2020-06-18</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -433,7 +439,7 @@
 
 <h4 id="字符输出流"><a href="#字符输出流" class="headerlink" title="字符输出流"></a>字符输出流</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writeToFile</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">    <span class="comment">//建立字符输出流</span></span><br><span class="line">    FileWriter fw = <span class="keyword">new</span> FileWriter(<span class="string">"X:\\xxx.xxx"</span>);</span><br><span class="line">    <span class="comment">//fw.write("kkkooo");//默认从开头覆盖</span></span><br><span class="line">    fw.write(<span class="string">"oookkk"</span>,<span class="keyword">true</span>);<span class="comment">//true从文件末尾，false从文件开头</span></span><br><span class="line">    fw.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="缓冲输出字符流"><a href="#缓冲输出字符流" class="headerlink" title="缓冲输出字符流"></a>缓冲输出字符流</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">piblic <span class="keyword">void</span> <span class="title">writeToFileFast</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">    FileWriter fw = <span class="keyword">new</span> FileWriter(<span class="string">"X:\\xxx.xxx"</span>);</span><br><span class="line">    BufferedFileWriter bfw = <span class="keyword">new</span> BufferedFileWriter(fw);</span><br><span class="line">    bfw.write(<span class="string">"kkkooo"</span>);</span><br><span class="line">    bfw.newLine();<span class="comment">//各操作系统通用换行方法</span></span><br><span class="line">    bfw.close();</span><br><span class="line">    fw.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="缓冲输出字符流"><a href="#缓冲输出字符流" class="headerlink" title="缓冲输出字符流"></a>缓冲输出字符流</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">piblic <span class="keyword">void</span> <span class="title">writeToFileFast</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">    FileWriter fw = <span class="keyword">new</span> FileWriter(<span class="string">"X:\\xxx.xxx"</span>);</span><br><span class="line">    BufferedWriter bw = <span class="keyword">new</span> BufferedWriter(fw);</span><br><span class="line">    bw.write(<span class="string">"kkkooo"</span>);</span><br><span class="line">    bw.newLine();<span class="comment">//各操作系统通用换行方法</span></span><br><span class="line">    bw.close();</span><br><span class="line">    fw.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
       
