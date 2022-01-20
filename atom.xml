@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>避风港</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2021-12-15T14:32:46.099Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>Sympa</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SQL_Insert语句</title>
+    <link href="http://yoursite.com/2021/12/15/SQL%E5%9F%BA%E7%A1%80/SQL_Insert%E8%AF%AD%E5%8F%A5/"/>
+    <id>http://yoursite.com/2021/12/15/SQL%E5%9F%BA%E7%A1%80/SQL_Insert%E8%AF%AD%E5%8F%A5/</id>
+    <published>2021-12-15T14:05:30.000Z</published>
+    <updated>2021-12-15T14:32:46.099Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 插入语句</span></span><br><span class="line"><span class="comment">-- insert into 表名 (字段名1， 字段名2， ...) values(值1.1,值1.2,...)， (数据2)， ...</span></span><br><span class="line"><span class="comment">-- 主键自增可以忽略</span></span><br><span class="line"><span class="comment">-- 不写表字段就会一一匹配</span></span><br><span class="line"><span class="comment">-- 一般写插入语句， 一定要数据和字段一一对应</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="MySQL" scheme="http://yoursite.com/categories/MySQL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>SQL数据库级别外键</title>
+    <link href="http://yoursite.com/2021/12/15/SQL%E5%9F%BA%E7%A1%80/SQL%E5%A4%96%E9%94%AE/"/>
+    <id>http://yoursite.com/2021/12/15/SQL%E5%9F%BA%E7%A1%80/SQL%E5%A4%96%E9%94%AE/</id>
+    <published>2021-12-15T11:52:00.000Z</published>
+    <updated>2021-12-15T13:25:09.160Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 学生表(从表)的gradeid字段 要去引用年级表(主表)的gradeid</span></span><br><span class="line"><span class="comment">-- 定义外键key</span></span><br><span class="line"><span class="comment">-- 给这个外键添加约束 （执行引用） references</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建表时</span></span><br><span class="line">KEY `FK_gradeid` (`gradeid`),</span><br><span class="line">CONSTRAINT `FK_gradeid` FOREIGN KEY (`gradeid`) REFERENCES `grade` (`gradeid`)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 修改表</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`student`</span></span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> <span class="string">`FK_gradeid`</span> <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span>(<span class="string">`gradeid`</span>) <span class="keyword">REFERENCES</span> <span class="string">`grade`</span> (<span class="string">`gradeid`</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 以上操作都是物理外键， 数据库级别外键， 不建议使用， 避免数据库过多造成困扰</span></span><br><span class="line"><span class="comment">-- 最佳实践：</span></span><br><span class="line"><span class="comment">-- 数据库就是单纯的表，只用来存数据，只有行和列</span></span><br><span class="line"><span class="comment">-- 我们想使用多张表的数据，想使用外键，用程序实现</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="MySQL" scheme="http://yoursite.com/categories/MySQL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL常用命令/数据表类型</title>
+    <link href="http://yoursite.com/2021/12/14/SQL%E5%9F%BA%E7%A1%80/MySQL%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+    <id>http://yoursite.com/2021/12/14/SQL%E5%9F%BA%E7%A1%80/MySQL%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</id>
+    <published>2021-12-14T11:10:00.000Z</published>
+    <updated>2021-12-15T11:13:28.339Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> school <span class="comment">-- 查看创建数据库语句</span></span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> student <span class="comment">-- 查看student数据表的定义语句</span></span><br><span class="line"><span class="keyword">DESC</span> student <span class="comment">-- 显示表结构</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="MySQL" scheme="http://yoursite.com/categories/MySQL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>SQL修改删除表</title>
+    <link href="http://yoursite.com/2021/09/15/SQL%E5%9F%BA%E7%A1%80/SQL%E4%BF%AE%E6%94%B9%E5%88%A0%E9%99%A4%E8%A1%A8/"/>
+    <id>http://yoursite.com/2021/09/15/SQL%E5%9F%BA%E7%A1%80/SQL%E4%BF%AE%E6%94%B9%E5%88%A0%E9%99%A4%E8%A1%A8/</id>
+    <published>2021-09-14T16:05:30.000Z</published>
+    <updated>2021-09-14T16:51:02.802Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="1、修改"><a href="#1、修改" class="headerlink" title="1、修改"></a>1、修改</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`XXX`</span> <span class="keyword">RENAME</span> <span class="keyword">AS</span> <span class="string">`YYY`</span>(修改表名)</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`XXX`</span> <span class="keyword">ADD</span> <span class="string">`YYY`</span> <span class="built_in">INT</span>(<span class="number">10</span>)(增加字段)</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`XXX`</span> <span class="keyword">MODIFY</span> <span class="string">'YYY'</span> <span class="built_in">VARCHAR</span>(<span class="number">10</span>)(修改约束)</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`XXX`</span> <span class="keyword">CHANGE</span> <span class="string">`YYY`</span> <span class="string">`ZZZ`</span> <span class="built_in">INT</span>(<span class="number">10</span>)(字段重命名)</span><br><span class="line"><span class="comment">--MODIFY 和 CHANGE 的区别？</span></span><br></pre></td></tr></table></figure><h3 id="2、删除"><a href="#2、删除" class="headerlink" title="2、删除"></a>2、删除</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`XXX`</span> <span class="keyword">DROP</span> <span class="string">`YYY`</span>(删除表字段)</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> [<span class="keyword">IF</span> <span class="keyword">EXISTS</span>] <span class="string">`XXX`</span>(删除表)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="MySQL" scheme="http://yoursite.com/categories/MySQL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>数据表类型(MYISAM与INNODB)</title>
+    <link href="http://yoursite.com/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%B1%BB%E5%9E%8B/"/>
+    <id>http://yoursite.com/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%B1%BB%E5%9E%8B/</id>
+    <published>2021-09-14T15:24:00.000Z</published>
+    <updated>2021-09-14T16:02:36.121Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><table><thead><tr><th></th><th>MYISAM</th><th>INNODB</th></tr></thead><tbody><tr><td>事务支持</td><td>不支持</td><td>支持</td></tr><tr><td>数据行锁定</td><td>不支持</td><td>支持</td></tr><tr><td>外键约束</td><td>不支持</td><td>支持</td></tr><tr><td>全文索引</td><td>支持</td><td>不支持</td></tr><tr><td>表空间大小</td><td>较小</td><td>较大，约为MYISAM两倍</td></tr></tbody></table><p>常规使用操作：</p><ul><li>MYISAM节约空间，速度较快</li><li>INNODB安全性高，支持事务处理，多表多用户操作</li></ul><h3 id="物理空间位置"><a href="#物理空间位置" class="headerlink" title="物理空间位置"></a>物理空间位置</h3><p>所有数据库文件都存在data目录，一个文件夹一个数据库</p><p>本质是文件存储</p><h4 id="MySQL引擎在物理文件区别"><a href="#MySQL引擎在物理文件区别" class="headerlink" title="MySQL引擎在物理文件区别"></a>MySQL引擎在物理文件区别</h4><ul><li><p>INNODB在数据库表中只有一个*.frm文件，以及上级目录下的ibdata1文件</p></li><li><p>MYISAM对应文件</p><ul><li>*.frm 表结构定义文件</li><li>*.MYD 数据文件(Data)</li><li>*.MYI  索引文件(Index)</li></ul></li></ul><h3 id="设置数据库表的字符集编码"><a href="#设置数据库表的字符集编码" class="headerlink" title="设置数据库表的字符集编码"></a>设置数据库表的字符集编码</h3><p><strong>CHARSET=UTF8</strong></p><p>不设置会是mysql默认字符集编码，不支持中文</p><h4 id="在my-ini中配置默认编码"><a href="#在my-ini中配置默认编码" class="headerlink" title="在my.ini中配置默认编码"></a>在my.ini中配置默认编码</h4><p><strong>character-set-server=utf8</strong></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="MySQL" scheme="http://yoursite.com/categories/MySQL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>SQL创建表</title>
+    <link href="http://yoursite.com/2021/09/14/SQL%E5%9F%BA%E7%A1%80/SQL%E5%88%9B%E5%BB%BA%E8%A1%A8/"/>
+    <id>http://yoursite.com/2021/09/14/SQL%E5%9F%BA%E7%A1%80/SQL%E5%88%9B%E5%BB%BA%E8%A1%A8/</id>
+    <published>2021-09-14T08:48:08.000Z</published>
+    <updated>2021-09-14T15:23:23.385Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`XXX`</span>  <span class="comment">--查看某张表的创建语句</span></span><br><span class="line"><span class="comment">--尽量表名字段使用``</span></span><br><span class="line"><span class="comment">--字符串使用''</span></span><br><span class="line"><span class="comment">--所有语句后加, 最后一个不用加</span></span><br><span class="line"><span class="comment">--主键最好加最后，一般一个表唯一</span></span><br><span class="line"><span class="comment">--注意顺序 [属性][索引][注释]</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> [<span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>] <span class="string">`XXX`</span> (</span><br><span class="line"><span class="string">`列名`</span> <span class="built_in">INT</span>(<span class="number">4</span>)(类型) [<span class="keyword">NOT</span> <span class="literal">NULL</span>(非空) AUTO_INCREMENT(自增) <span class="keyword">COMMENT</span>(注释) <span class="string">'注释'</span>],</span><br><span class="line">    <span class="string">`列名`</span> <span class="built_in">VARCHAR</span>(<span class="number">30</span>) [<span class="keyword">DEFAULT</span> <span class="literal">NULL</span>(默认为空) <span class="keyword">COMMENT</span> <span class="string">''</span>],</span><br><span class="line">     …………,</span><br><span class="line">    PRIMARY <span class="keyword">KEY</span> (<span class="string">`列名`</span>)</span><br><span class="line">)[<span class="keyword">ENGINE</span> = <span class="keyword">INNODB</span>(引擎/类型) <span class="keyword">DEFAULT</span> = UFT8(编码)]</span><br><span class="line"></span><br><span class="line"><span class="keyword">DESC</span> <span class="string">`XXX`</span> <span class="comment">--查看表结构</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="MySQL" scheme="http://yoursite.com/categories/MySQL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>数据库字段属性</title>
+    <link href="http://yoursite.com/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%97%E6%AE%B5%E5%B1%9E%E6%80%A7/"/>
+    <id>http://yoursite.com/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%97%E6%AE%B5%E5%B1%9E%E6%80%A7/</id>
+    <published>2021-09-14T08:03:06.000Z</published>
+    <updated>2021-09-14T08:21:48.122Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="1、Unsigned"><a href="#1、Unsigned" class="headerlink" title="1、Unsigned"></a>1、Unsigned</h3><ol><li>表示无符号整数</li><li>当前列无法被声明为负数</li></ol><h3 id="2、zerofill"><a href="#2、zerofill" class="headerlink" title="2、zerofill"></a>2、zerofill</h3><ol><li>0填充</li><li>不足的位数，使用0填充</li><li>5 –&gt; 005</li></ol><h3 id="3、自增"><a href="#3、自增" class="headerlink" title="3、自增"></a>3、自增</h3><ol><li>自动在上一条记录的基础+1</li><li>通常用来设计唯一主键，必须是整数类型</li><li>可以自定义增量</li></ol><h3 id="4、非空-null-OR-not-null"><a href="#4、非空-null-OR-not-null" class="headerlink" title="4、非空(null OR not null)"></a>4、非空(null OR not null)</h3><ol><li>如为非空，必须赋值</li><li>否则若不赋值，默认是null(字符串除外)</li><li><strong>空字符串不是null</strong></li></ol><h3 id="5、默认-default"><a href="#5、默认-default" class="headerlink" title="5、默认(default)"></a>5、默认(default)</h3><p>如果不指定该列值，则值变为默认值</p><h2 id="以下5个字段每个表必须存在，表示一个记录存在的意义-项目用"><a href="#以下5个字段每个表必须存在，表示一个记录存在的意义-项目用" class="headerlink" title="以下5个字段每个表必须存在，表示一个记录存在的意义(项目用)"></a>以下5个字段每个表必须存在，表示一个记录存在的意义(项目用)</h2><h3 id="6、version（版本-乐观锁）"><a href="#6、version（版本-乐观锁）" class="headerlink" title="6、version（版本 乐观锁）"></a>6、version（版本 乐观锁）</h3><h3 id="7、is-delete-伪删除-存在但不可查询"><a href="#7、is-delete-伪删除-存在但不可查询" class="headerlink" title="7、is_delete (伪删除 存在但不可查询)"></a>7、is_delete (伪删除 存在但不可查询)</h3><h3 id="8、gmt-create-创建时间"><a href="#8、gmt-create-创建时间" class="headerlink" title="8、gmt_create (创建时间)"></a>8、gmt_create (创建时间)</h3><h3 id="9、gmt-update-修改时间"><a href="#9、gmt-update-修改时间" class="headerlink" title="9、gmt_update (修改时间)"></a>9、gmt_update (修改时间)</h3><h3 id="10、id-主键"><a href="#10、id-主键" class="headerlink" title="10、id (主键)"></a>10、id (主键)</h3>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="MySQL" scheme="http://yoursite.com/categories/MySQL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>数据库列类型</title>
+    <link href="http://yoursite.com/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%97%E7%B1%BB%E5%9E%8B/"/>
+    <id>http://yoursite.com/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%97%E7%B1%BB%E5%9E%8B/</id>
+    <published>2021-09-14T07:47:08.000Z</published>
+    <updated>2021-09-14T08:02:22.134Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="1、数值类型"><a href="#1、数值类型" class="headerlink" title="1、数值类型"></a>1、数值类型</h3><table><thead><tr><th>数据类型</th><th>范围</th></tr></thead><tbody><tr><td>tinyint</td><td>1个字节的整数</td></tr><tr><td>smallint</td><td>2个字节的整数</td></tr><tr><td>mediumuint</td><td>3个字节的整数</td></tr><tr><td><strong>int</strong></td><td><strong>4个字节的整数</strong></td></tr><tr><td>bigint</td><td>8个字节的整数</td></tr><tr><td>float</td><td>4个字节的浮点数</td></tr><tr><td><strong>double</strong></td><td><strong>8个字节的浮点数</strong></td></tr><tr><td>decimal</td><td>字符串浮点数(金融计算)</td></tr></tbody></table><h3 id="2、字符串类型"><a href="#2、字符串类型" class="headerlink" title="2、字符串类型"></a>2、字符串类型</h3><table><thead><tr><th>数据类型</th><th>范围</th></tr></thead><tbody><tr><td>char</td><td>固定长度字符串(0 ~ 255)</td></tr><tr><td><strong>varchar</strong></td><td><strong>可变长字符串(0 ~ 65535)</strong></td></tr><tr><td>tinytext</td><td>微型文本 (0 ~ 2^8 - 1)</td></tr><tr><td>text</td><td>大文本(0 ~ 2^16 - 1)</td></tr></tbody></table><h3 id="3、时间日期类型"><a href="#3、时间日期类型" class="headerlink" title="3、时间日期类型"></a>3、时间日期类型</h3><table><thead><tr><th>数据类型</th><th>范围</th></tr></thead><tbody><tr><td>date</td><td>YYYY - MM - DD 日期</td></tr><tr><td>time</td><td>hh : mm : ss 时间</td></tr><tr><td><strong>datetime</strong></td><td><strong>YYYY - MM - DD hh : mm : ss 日期+时间</strong></td></tr><tr><td><strong>timestamp</strong></td><td><strong>时间戳 1970.1.1到现在的毫秒数</strong></td></tr><tr><td>year</td><td>年份</td></tr></tbody></table><h3 id="4、null类型"><a href="#4、null类型" class="headerlink" title="4、null类型"></a>4、null类型</h3><p>表示未知数据</p><p>使用null运算，结果为null</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="MySQL" scheme="http://yoursite.com/categories/MySQL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>SQL操作数据库</title>
+    <link href="http://yoursite.com/2021/09/14/SQL%E5%9F%BA%E7%A1%80/SQL%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    <id>http://yoursite.com/2021/09/14/SQL%E5%9F%BA%E7%A1%80/SQL%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93/</id>
+    <published>2021-09-14T07:32:33.000Z</published>
+    <updated>2021-09-14T07:46:40.498Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="1、创建数据库"><a href="#1、创建数据库" class="headerlink" title="1、创建数据库"></a>1、创建数据库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> [<span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>] XXX</span><br></pre></td></tr></table></figure><h3 id="2、删除数据库"><a href="#2、删除数据库" class="headerlink" title="2、删除数据库"></a>2、删除数据库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">DATABASE</span> [<span class="keyword">IF</span> <span class="keyword">EXISTS</span>] XXX</span><br></pre></td></tr></table></figure><h3 id="3、切换数据库"><a href="#3、切换数据库" class="headerlink" title="3、切换数据库"></a>3、切换数据库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">USE</span> XXX</span><br><span class="line"><span class="comment">--如果字段名是特殊字符，需要用`XXX`</span></span><br></pre></td></tr></table></figure><h3 id="4、查看所有数据库"><a href="#4、查看所有数据库" class="headerlink" title="4、查看所有数据库"></a>4、查看所有数据库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">DATABASE</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="MySQL" scheme="http://yoursite.com/categories/MySQL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL基本操作和概念</title>
+    <link href="http://yoursite.com/2021/09/12/SQL%E5%9F%BA%E7%A1%80/MySQL%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/"/>
+    <id>http://yoursite.com/2021/09/12/SQL%E5%9F%BA%E7%A1%80/MySQL%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</id>
+    <published>2021-09-11T16:43:14.000Z</published>
+    <updated>2021-09-11T17:17:11.606Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="一、创建数据库"><a href="#一、创建数据库" class="headerlink" title="一、创建数据库"></a>一、创建数据库</h2><img src="/images/创建数据库.PNG"><p><em>*CREATE DATABASE *xxx</em> CHARACTER SET utf8 COLLATE utf8_general_ci; **</p><h2 id="二、创建表"><a href="#二、创建表" class="headerlink" title="二、创建表"></a>二、创建表</h2><img src="/images/新建表.PNG"><h2 id="三、命令行操作"><a href="#三、命令行操作" class="headerlink" title="三、命令行操作"></a>三、命令行操作</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p  <span class="comment">--连接数据库</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">databases</span>; <span class="comment">--查看所有数据库</span></span><br><span class="line"><span class="keyword">use</span> xxx <span class="comment">--切换数据库</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">tables</span>； <span class="comment">--查看所有表</span></span><br><span class="line"><span class="keyword">describe</span> xxx; <span class="comment">--显示表中所有信息</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> xxx; <span class="comment">--创建数据库</span></span><br><span class="line">exit; <span class="comment">--连接退出</span></span><br><span class="line"><span class="comment">--单行注释</span></span><br><span class="line"><span class="comment">/* 多行注释 */</span></span><br></pre></td></tr></table></figure><h2 id="四、语言概念"><a href="#四、语言概念" class="headerlink" title="四、语言概念"></a>四、语言概念</h2><p><strong>DDL 数据库定义语言</strong></p><p><strong>DML 数据库操作语言</strong></p><p><strong>DQL 数据库查询语言</strong></p><p><strong>DCL 数据库控制语言</strong></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="MySQL" scheme="http://yoursite.com/categories/MySQL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>一般图最大匹配(带花树)模板</title>
+    <link href="http://yoursite.com/2021/09/09/ACM/%E4%B8%80%E8%88%AC%E5%9B%BE%E5%8C%B9%E9%85%8D(%E5%B8%A6%E8%8A%B1%E6%A0%91)%E6%A8%A1%E6%9D%BF/"/>
+    <id>http://yoursite.com/2021/09/09/ACM/%E4%B8%80%E8%88%AC%E5%9B%BE%E5%8C%B9%E9%85%8D(%E5%B8%A6%E8%8A%B1%E6%A0%91)%E6%A8%A1%E6%9D%BF/</id>
+    <published>2021-09-09T14:16:19.000Z</published>
+    <updated>2021-09-09T14:16:30.825Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="一般图最大匹配-带花树-模板"><a href="#一般图最大匹配-带花树-模板" class="headerlink" title="一般图最大匹配(带花树)模板"></a>一般图最大匹配(带花树)模板</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1005</span>;</span><br><span class="line"><span class="keyword">int</span> T,n,m,e,cnt,tot,ans,hd[N],p[N],match[N],pre[N],vst[N],dfn[N];</span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;q;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span>&#123;</span><span class="keyword">int</span> t,nxt;&#125;es[N*N];</span><br><span class="line"><span class="keyword">char</span> ss[<span class="number">1</span>&lt;&lt;<span class="number">17</span>],*A=ss,*B=ss;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">char</span> <span class="title">gc</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> A==B&amp;&amp;(B=(A=ss)+fread(ss,<span class="number">1</span>,<span class="number">1</span>&lt;&lt;<span class="number">17</span>,<span class="built_in">stdin</span>),A==B)?<span class="number">-1</span>:*A++;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(<span class="keyword">register</span> <span class="keyword">int</span>&amp;x)</span></span>&#123;</span><br><span class="line">    x=<span class="number">0</span>;<span class="keyword">int</span> s=gc();</span><br><span class="line">    <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(s))s=gc();</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">isdigit</span>(s))x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+s-<span class="string">'0'</span>,s=gc();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">register</span> <span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x&gt;<span class="number">9</span>)<span class="built_in">print</span>(x/<span class="number">10</span>);</span><br><span class="line">    <span class="built_in">putchar</span>(x%<span class="number">10</span>+<span class="string">'0'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Add</span><span class="params">(<span class="keyword">register</span> <span class="keyword">int</span> u,<span class="keyword">register</span> <span class="keyword">int</span> v)</span></span>&#123;es[++tot]=(edge)&#123;v,hd[u]&#125;;hd[u]=tot;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">register</span> <span class="keyword">int</span> u,<span class="keyword">register</span> <span class="keyword">int</span> v)</span></span>&#123;Add(u,v),Add(v,u);&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">register</span> <span class="keyword">int</span> x)</span></span>&#123;<span class="keyword">return</span> x==p[x]?x:p[x]=<span class="built_in">find</span>(p[x]);&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">lca</span><span class="params">(<span class="keyword">register</span> <span class="keyword">int</span> u,<span class="keyword">register</span> <span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line"><span class="keyword">for</span>(++cnt,u=<span class="built_in">find</span>(u),v=<span class="built_in">find</span>(v);dfn[u]!=cnt;)&#123;</span><br><span class="line">dfn[u]=cnt;</span><br><span class="line">u=<span class="built_in">find</span>(pre[match[u]]);</span><br><span class="line"><span class="keyword">if</span>(v)swap(u,v);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> u;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">blossom</span><span class="params">(<span class="keyword">register</span> <span class="keyword">int</span> x,<span class="keyword">register</span> <span class="keyword">int</span> y,<span class="keyword">register</span> <span class="keyword">int</span> w)</span></span>&#123;</span><br><span class="line"><span class="keyword">while</span>(<span class="built_in">find</span>(x)!=w)&#123;</span><br><span class="line">pre[x]=y,y=match[x];</span><br><span class="line"><span class="keyword">if</span>(vst[y]==<span class="number">2</span>)vst[y]=<span class="number">1</span>,q.push(y);</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">find</span>(x)==x)p[x]=w;</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">find</span>(y)==y)p[y]=w;</span><br><span class="line">x=pre[y];</span><br><span class="line">&#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">aug</span><span class="params">(<span class="keyword">register</span> <span class="keyword">int</span> s)</span></span>&#123;</span><br><span class="line"><span class="keyword">if</span>((ans+<span class="number">1</span>)*<span class="number">2</span>&gt;n)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)p[i]=i,vst[i]=pre[i]=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span>(!q.empty())q.pop();</span><br><span class="line"><span class="keyword">for</span>(q.push(s),vst[s]=<span class="number">1</span>;!q.empty();q.pop()) </span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> u(q.front()),i(hd[u]),v,w;i;i=es[i].nxt)&#123;</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">find</span>(u)==<span class="built_in">find</span>(v=es[i].t)||vst[v]==<span class="number">2</span>)<span class="keyword">continue</span>;</span><br><span class="line"><span class="keyword">if</span>(!vst[v])&#123;</span><br><span class="line">vst[v]=<span class="number">2</span>;pre[v]=u;</span><br><span class="line"><span class="keyword">if</span>(!match[v])&#123;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> x=v,lst;x;x=lst)lst=match[pre[x]],match[x]=pre[x],match[pre[x]]=x;</span><br><span class="line"><span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line">vst[match[v]]=<span class="number">1</span>,q.push(match[v]);</span><br><span class="line">&#125;<span class="keyword">else</span> blossom(u,v,w=lca(u,v)),blossom(v,u,w);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="built_in">read</span>(n),<span class="built_in">read</span>(m);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>,u,v;i&lt;=m;i++)<span class="built_in">read</span>(u),<span class="built_in">read</span>(v),add(u,v),add(v,u);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=n;i;--i)<span class="keyword">if</span>(!match[i])ans+=aug(i);</span><br><span class="line"><span class="built_in">print</span>(ans),<span class="built_in">putchar</span>(<span class="string">'\n'</span>);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">print</span>(match[i]),<span class="built_in">putchar</span>(<span class="string">' '</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>复杂度同匈牙利算法，常数略大。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="图论" scheme="http://yoursite.com/categories/%E5%9B%BE%E8%AE%BA/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>DAG图上的灭绝树</title>
+    <link href="http://yoursite.com/2021/09/09/ACM/DAG%E5%9B%BE%E4%B8%8A%E7%9A%84%E7%81%AD%E7%BB%9D%E6%A0%91/"/>
+    <id>http://yoursite.com/2021/09/09/ACM/DAG%E5%9B%BE%E4%B8%8A%E7%9A%84%E7%81%AD%E7%BB%9D%E6%A0%91/</id>
+    <published>2021-09-09T14:16:19.000Z</published>
+    <updated>2021-09-09T14:16:42.432Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="DAG图上的灭绝树"><a href="#DAG图上的灭绝树" class="headerlink" title="DAG图上的灭绝树"></a>DAG图上的灭绝树</h2><p>例题P2597</p><h4 id="难点：DAG图上求LCA"><a href="#难点：DAG图上求LCA" class="headerlink" title="难点：DAG图上求LCA"></a>难点：DAG图上求LCA</h4><p><strong>其思路是：给每个数多维护一个值dad,用来表示如果此时它要被连入灭绝树中，它应该是哪个点的儿子。一开始将dad清为-1，将开始入度为0的点 pi的dad设为0（太阳）。在拓扑排序取出一个点i的时候连接边 dad[i]-&gt;i(此时i的父亲（根节点的父亲前面已经确定）都已经被处理过了，所以dad[i]已经确定（怎么确定的马上会说））。然后更新点i相对应的深度和倍增数组（因为i的祖先们已经在i之前被确定，所以此时的深度和其倍增数组可以唯一确定），接着遍历i的儿子们，如果它的儿子p的父亲dad[p]为0，说明它的父亲还没有被更新过，此时把dad[p]更新为i。否则就将dad[p]更新为LCA（dad[p],i）。这样，在遍历到p的时候它的父节点就被确定下来了。</strong></p><h4 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> in[<span class="number">100010</span>];</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;v1[<span class="number">100010</span>];</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;v2[<span class="number">100010</span>];</span><br><span class="line"><span class="keyword">int</span> f[<span class="number">100010</span>][<span class="number">30</span>], d[<span class="number">100010</span>];</span><br><span class="line"><span class="keyword">int</span> sz[<span class="number">100010</span>];</span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;q;</span><br><span class="line"><span class="keyword">int</span> t;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lca</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (d[x] &gt; d[y])swap(x, y);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = t; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line"><span class="keyword">if</span> (f[y][i] == <span class="number">-1</span>)<span class="keyword">continue</span>;</span><br><span class="line"><span class="keyword">if</span> (d[f[y][i]] &gt;= d[x])y = f[y][i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (x == y)<span class="keyword">return</span> x;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = t; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line"><span class="keyword">if</span> (f[x][i] == <span class="number">-1</span> || f[y][i] == <span class="number">-1</span>)<span class="keyword">continue</span>;</span><br><span class="line"><span class="keyword">if</span> (f[x][i] != f[y][i])x = f[x][i], y = f[y][i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> f[x][<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bfs</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">while</span> (!q.empty()) &#123;</span><br><span class="line"><span class="keyword">int</span> x = q.front(); q.pop();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; v1[x].<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line"><span class="keyword">int</span> k = v1[x][i];</span><br><span class="line">in[k]--;</span><br><span class="line"><span class="keyword">if</span> (f[k][<span class="number">0</span>] == <span class="number">-1</span>)f[k][<span class="number">0</span>] = x;</span><br><span class="line"><span class="keyword">else</span> f[k][<span class="number">0</span>] = lca(f[k][<span class="number">0</span>], x);</span><br><span class="line">d[k] = d[f[k][<span class="number">0</span>]] + <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= t; j++)f[k][j] = f[f[k][j - <span class="number">1</span>]][j - <span class="number">1</span>];</span><br><span class="line"><span class="keyword">if</span> (!in[k]) &#123;</span><br><span class="line">q.push(k);</span><br><span class="line">v2[f[k][<span class="number">0</span>]].push_back(k);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">sz[x] = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; v2[x].<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">dfs(v2[x][i]);</span><br><span class="line">sz[x] += sz[v2[x][i]];</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line"><span class="built_in">memset</span>(f, <span class="number">-1</span>, <span class="keyword">sizeof</span>(f));</span><br><span class="line"><span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">t = <span class="built_in">log</span>(n + <span class="number">1</span>) / <span class="built_in">log</span>(<span class="number">2</span>) + <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line"><span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line"><span class="keyword">int</span> k;</span><br><span class="line"><span class="built_in">cin</span> &gt;&gt; k;</span><br><span class="line"><span class="keyword">if</span> (!k)<span class="keyword">break</span>;</span><br><span class="line">v1[k].push_back(i);</span><br><span class="line">in[i]++;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line"><span class="keyword">if</span> (!in[i]) &#123;</span><br><span class="line">d[i] = <span class="number">1</span>;</span><br><span class="line">f[i][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">q.push(i);</span><br><span class="line">v2[<span class="number">0</span>].push_back(i);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">bfs();</span><br><span class="line">dfs(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; sz[i] - <span class="number">1</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="图论" scheme="http://yoursite.com/categories/%E5%9B%BE%E8%AE%BA/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>虚树</title>
+    <link href="http://yoursite.com/2021/09/09/ACM/%E8%99%9A%E6%A0%91/"/>
+    <id>http://yoursite.com/2021/09/09/ACM/%E8%99%9A%E6%A0%91/</id>
+    <published>2021-09-09T14:15:19.000Z</published>
+    <updated>2021-09-09T14:28:06.543Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="虚树"><a href="#虚树" class="headerlink" title="虚树"></a>虚树</h2><h3 id="什么是虚树"><a href="#什么是虚树" class="headerlink" title="什么是虚树"></a>什么是虚树</h3><p><strong>虚树常常被使用在树形dp中，就比如这题。当一次询问仅仅涉及到整颗树中少量结点时，为每次询问都对整棵树进行dp在时间上是不可接受的。此时，我们建立一颗仅仅包含部分关键结点的虚树，将非关键点构成的链简化成边或是剪去，在虚树上进行dp。</strong></p><p><strong>虚树包含所有的询问点及它们之间的LCA。显然虚树的叶子节点必然是询问点，因此对于某次含有k个点的询问，虚树最多有K个叶子结点，从而整颗虚树最多只有2k-1个结点（这会在虚树变成二叉树形态时达到）。</strong></p><h3 id="建立虚树之前"><a href="#建立虚树之前" class="headerlink" title="建立虚树之前"></a>建立虚树之前</h3><p><strong>我们需要：</strong></p><p><strong>预处理出原树的dfs序以及dp可能用到的一些其他东西。</strong></p><p><strong>高效的在线LCA算法，单次询问O(logn)的倍增和树剖，O(1)的RMQ−ST皆可。</strong></p><p><strong>将询问点按dfs序排序。</strong></p><h3 id="如何建立虚树"><a href="#如何建立虚树" class="headerlink" title="如何建立虚树"></a>如何建立虚树</h3><p><strong>最右链是虚树构建的一条分界线，表明其左侧部分的虚树已经完成构建。我们使用栈stak来维护所谓的最右链，top为栈顶位置。值得注意的是，最右链上的边并没有被加入虚树，这是因为在接下来的过程中随时会有某个lca插到最右链中。</strong></p><p><strong>初始无条件将第一个询问点加入栈stak中。</strong></p><p><strong>将接下来的所有询问点顺次加入，假设该询问点为now，lc为该点和栈顶点的最近公共祖先即lc=lca(stak[top],now)。</strong></p><p><strong>由于lc是stak[top]的祖先，lc必然在我们维护的最右链上。</strong></p><p><strong>考虑lc和stak[top]及栈中第二个元素stak[top-1]的关系。</strong></p><h4 id="情况一"><a href="#情况一" class="headerlink" title="情况一"></a>情况一</h4><p><strong>lc = stak[top]，也就是说，now在stak[top]的子树中</strong></p><img src="/images/虚树1.PNG"><p><strong>这时候，我们只需把now入栈，即把它加到最右链的末端即可。</strong></p><h3 id="情况二"><a href="#情况二" class="headerlink" title="情况二"></a>情况二</h3><p><strong>lc在stak[top]和stak[top-1]之间。</strong></p><img src="/images/虚树2.PNG"><p><strong>显然，此时最右链的末端从stak[top-1]-&gt;stak[top]变成了stak[top-1]-&gt;lc-&gt;stak[top]，我们需要做的，首先是把边lc-stak[top]加入虚树，然后，把stak[top]出栈，把lc和now入栈。</strong></p><h3 id="情况三"><a href="#情况三" class="headerlink" title="情况三"></a>情况三</h3><p><strong>lc=stak[top−1]。</strong></p><img src="/images/虚树3.PNG"><p><strong>这种情况和第二种情况大同小异，唯一的区别就是lc不用入栈了。</strong></p><h3 id="情况四"><a href="#情况四" class="headerlink" title="情况四"></a>情况四</h3><p><strong>此时有dep[lc]&lt;dep[stak[top-1]]。lc已经不在stak[top-1]的子树中了，甚至也未必在stak[top-2],stak[top-3]……的子树中。</strong></p><img src="/images/虚树4.PNG"><p><strong>以图中为例，最右链从stak[top-3]-&gt;stak[top-2]-&gt;stak[top-1]-&gt;stak[top]变成了stak[top-3]-&gt;lc-&gt;now。我们需要循环依次将最右链的末端剪下，将被剪下的边加入虚树，直到不再是情况四。</strong></p><p><strong>就上图而言，循环会持续两轮，将stak[top],stak[top-1]依次出栈，并且把边stak[top-1]-stak[top],stak[top-2]-stak[top-1]加入虚树中。随后通过情况二完成构建。</strong></p><p>当最后一个询问点加入之后，再将最右链加入虚树，即可完成构建。</p><h3 id="另一种虚树构建方法：欧拉序"><a href="#另一种虚树构建方法：欧拉序" class="headerlink" title="另一种虚树构建方法：欧拉序"></a>另一种虚树构建方法：欧拉序</h3><h4 id="什么是欧拉序"><a href="#什么是欧拉序" class="headerlink" title="什么是欧拉序"></a>什么是欧拉序</h4><p><strong>正常的dfs序仅在入栈的时候计算一次，而欧拉序，不仅在入栈的时候计算一次，还在出栈的时候计算一次，也就是说一个点有两次出现机会压栈为+，弹栈为-，欧拉序记录了dfs的全部信息，只要有了这个树的欧拉序，就算没有树，给我们一个栈，照样可以在树上跑dfs。</strong></p><p><strong>我们发现，抽出来的那只树，它的欧拉序大小关系和原来的树的欧拉序是一样的，所以只需要把所有点的复制一个弹出点，然后把压栈点和弹栈点按原来树上的欧拉序排一波序，就是新树中的点按欧拉序排序的结果，然后欧拉序我们有了，直接不建树跑dfs即可</strong></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="图论" scheme="http://yoursite.com/categories/%E5%9B%BE%E8%AE%BA/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>2020CCPC威海站</title>
+    <link href="http://yoursite.com/2021/09/09/ACM/2020CCPC%E5%A8%81%E6%B5%B7%E7%AB%99/"/>
+    <id>http://yoursite.com/2021/09/09/ACM/2020CCPC%E5%A8%81%E6%B5%B7%E7%AB%99/</id>
+    <published>2021-09-09T08:35:19.000Z</published>
+    <updated>2021-09-09T14:12:47.291Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="2020CCPC威海站"><a href="#2020CCPC威海站" class="headerlink" title="2020CCPC威海站"></a>2020CCPC威海站</h2><table><thead><tr><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th></tr></thead><tbody><tr><td>⚫</td><td>▲</td><td>⚫</td><td>⚫</td><td></td><td></td></tr><tr><td>思维</td><td>BFS</td><td>图上计数</td><td>数学</td><td>概率DP</td><td>？</td></tr></tbody></table><table><thead><tr><th>G</th><th>H</th><th>I</th><th>J</th><th>K</th><th>L</th></tr></thead><tbody><tr><td>▲</td><td>⚫</td><td></td><td>△</td><td></td><td>⚫</td></tr><tr><td>哈希+线段树</td><td>差分（线段树）</td><td>？</td><td>博弈论+计数</td><td>？</td><td>数学+背包</td></tr></tbody></table><h3 id="B-Labyrinth"><a href="#B-Labyrinth" class="headerlink" title="B Labyrinth"></a>B <a href="https://vjudge.net/problem/Gym-102798B" target="_blank" rel="noopener">Labyrinth</a></h3><h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p><strong>一个n*m的矩阵，其中有一些不能走的黑洞。询问q次，每次给起点终点，问最短距离。</strong></p><h4 id="做法："><a href="#做法：" class="headerlink" title="做法："></a>做法：</h4><p><strong>1.如果起点终点之间没有黑洞，那么最短距离就是两点的曼哈顿距离。</strong></p><p><strong>2.如果起点终点之间有黑洞，那么最短距离一定经过某个黑洞四周的一个点。</strong></p><p><strong>因为黑洞最多只有42个，所以首先预处理出每个黑洞四周的每个点到任一点的最短距离。</strong></p><p><strong>处理询问时，只需要枚举这些点，答案就是这个点到起点距离+这个点到终点距离。</strong></p><p><strong>代码：</strong></p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> dis[<span class="number">210</span>][<span class="number">200010</span>];</span><br><span class="line"><span class="keyword">int</span> dis_pos[<span class="number">210</span>];</span><br><span class="line"><span class="keyword">int</span> bk[<span class="number">45</span>];</span><br><span class="line"><span class="keyword">int</span> c[<span class="number">200010</span>];</span><br><span class="line"><span class="keyword">int</span> xp[<span class="number">4</span>] = &#123; <span class="number">0</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">1</span> &#125;, yp[<span class="number">4</span>] = &#123; <span class="number">-1</span>, <span class="number">1</span>, <span class="number">0</span> , <span class="number">0</span> &#125;;</span><br><span class="line"><span class="keyword">int</span> n, m, k, q;</span><br><span class="line"><span class="keyword">int</span> tot = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pos</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line"><span class="keyword">return</span> (x - <span class="number">1</span>) * m + y;</span><br><span class="line">&#125;</span><br><span class="line">pair&lt;int, int&gt; apos(int p) &#123;</span><br><span class="line"><span class="keyword">return</span> make_pair((p - <span class="number">1</span>) / m + <span class="number">1</span>, (p - <span class="number">1</span>) % m + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line"><span class="keyword">if</span> (x &gt;= <span class="number">1</span> &amp;&amp; x &lt;= n &amp;&amp; y &gt;= <span class="number">1</span> &amp;&amp; y &lt;= m)<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> mp[<span class="number">200010</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bfs</span><span class="params">(<span class="keyword">int</span> num, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">c[pos(x, y)] = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;q;</span><br><span class="line">dis[num][pos(x, y)] = <span class="number">0</span>;</span><br><span class="line">q.push(pos(x, y));</span><br><span class="line"><span class="keyword">while</span> (!q.empty()) &#123;</span><br><span class="line"><span class="keyword">int</span> top1 = q.front();</span><br><span class="line">q.pop();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line"><span class="keyword">auto</span> p = apos(top1);</span><br><span class="line">p.first += xp[i], p.second += yp[i];</span><br><span class="line"><span class="keyword">if</span> (!check(p.first, p.second))<span class="keyword">continue</span>;</span><br><span class="line"><span class="keyword">if</span> (c[pos(p.first, p.second)])<span class="keyword">continue</span>;</span><br><span class="line"><span class="keyword">if</span> (mp[pos(p.first, p.second)])<span class="keyword">continue</span>;</span><br><span class="line">c[pos(p.first, p.second)] = <span class="number">1</span>;</span><br><span class="line">dis[num][pos(p.first, p.second)] = dis[num][top1] + <span class="number">1</span>;</span><br><span class="line">q.push(pos(p.first, p.second));</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="built_in">memset</span>(dis, <span class="number">-1</span>, <span class="keyword">sizeof</span>(dis));</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d%d%d%d"</span>, &amp;n, &amp;m, &amp;k, &amp;q);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= k; i++) &#123;</span><br><span class="line"><span class="keyword">int</span> x, y;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;x, &amp;y);</span><br><span class="line">bk[i] = pos(x, y);</span><br><span class="line">mp[pos(x, y)] = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= k; i++) &#123;</span><br><span class="line"><span class="keyword">int</span> x = apos(bk[i]).first, y = apos(bk[i]).second;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">4</span>; j++) &#123;</span><br><span class="line"><span class="keyword">int</span> xn = x + xp[j], yn = y + yp[j];</span><br><span class="line"><span class="keyword">if</span> (!check(xn, yn))<span class="keyword">continue</span>;</span><br><span class="line"><span class="keyword">if</span> (mp[pos(xn, yn)])<span class="keyword">continue</span>;</span><br><span class="line">dis_pos[++tot] = pos(xn, yn);</span><br><span class="line"><span class="built_in">memset</span>(c, <span class="number">0</span>, <span class="keyword">sizeof</span>(c));</span><br><span class="line">bfs(tot, xn, yn);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">while</span> (q--) &#123;</span><br><span class="line"><span class="keyword">int</span> xl, yl, xr, yr;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d%d%d%d"</span>, &amp;xl, &amp;yl, &amp;xr, &amp;yr);</span><br><span class="line"><span class="keyword">if</span> (mp[pos(xl, yl)] || mp[pos(xr, yr)]) &#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"-1\n"</span>);</span><br><span class="line"><span class="keyword">continue</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> ff = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= k; i++) &#123;</span><br><span class="line"><span class="keyword">auto</span> p = apos(bk[i]);</span><br><span class="line"><span class="keyword">if</span> (p.first &gt;= <span class="built_in">min</span>(xl, xr) &amp;&amp; p.first &lt;= <span class="built_in">max</span>(xl, xr) &amp;&amp; p.second &gt;= <span class="built_in">min</span>(yl, yr) &amp;&amp; p.second &lt;= <span class="built_in">max</span>(yl, yr)) &#123;</span><br><span class="line">ff = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (!ff) &#123;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>, <span class="built_in">abs</span>(xl - xr) + <span class="built_in">abs</span>(yl - yr));</span><br><span class="line"><span class="keyword">continue</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> mmin = <span class="number">1e9</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= tot; i++) &#123;</span><br><span class="line"><span class="keyword">if</span> (dis[i][pos(xl, yl)] == <span class="number">-1</span> || dis[i][pos(xr, yr)] == <span class="number">-1</span>)<span class="keyword">continue</span>;</span><br><span class="line">mmin = <span class="built_in">min</span>(mmin, dis[i][pos(xl, yl)] + dis[i][pos(xr, yr)]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (mmin == <span class="number">1e9</span>)<span class="built_in">printf</span>(<span class="string">"-1\n"</span>);</span><br><span class="line"><span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, mmin);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="补题" scheme="http://yoursite.com/categories/%E8%A1%A5%E9%A2%98/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>SQL_Select</title>
+    <link href="http://yoursite.com/2021/01/20/SQL%E5%9F%BA%E7%A1%80/SQL_Select/"/>
+    <id>http://yoursite.com/2021/01/20/SQL%E5%9F%BA%E7%A1%80/SQL_Select/</id>
+    <published>2021-01-20T05:39:30.000Z</published>
+    <updated>2022-01-20T06:12:33.030Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查询所有字段</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> [表]</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询指定字段 </span></span><br><span class="line"><span class="keyword">select</span> [字段名], [字段名] <span class="keyword">from</span> [表]</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 别名，给结果起名</span></span><br><span class="line"><span class="keyword">select</span> [字段名] <span class="keyword">as</span> [别名] <span class="keyword">from</span> [表]</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 函数 concat(a, b) 拼接字符串</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">concat</span>(<span class="string">'姓名：'</span>, [字段名]) <span class="keyword">as</span> [别名] <span class="keyword">from</span> [表]</span><br></pre></td></tr></table></figure><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 去重</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> [] <span class="keyword">from</span> []</span><br><span class="line"></span><br><span class="line"><span class="comment">-- select 其他用法</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">version</span>() <span class="comment">-- 查询系统版本</span></span><br><span class="line"><span class="keyword">select</span> [表达式] <span class="comment">-- 计算结果</span></span><br><span class="line"><span class="keyword">select</span> @@auto_increment_increment <span class="comment">-- 查询自增步长（变量）</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> [] + <span class="number">1</span> <span class="keyword">from</span> [] <span class="comment">-- 结果加一</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="MySQL" scheme="http://yoursite.com/categories/MySQL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>SQL_where子句</title>
+    <link href="http://yoursite.com/2021/01/20/SQL%E5%9F%BA%E7%A1%80/SQL_where%E6%9D%A1%E4%BB%B6%E5%AD%90%E5%8F%A5/"/>
+    <id>http://yoursite.com/2021/01/20/SQL%E5%9F%BA%E7%A1%80/SQL_where%E6%9D%A1%E4%BB%B6%E5%AD%90%E5%8F%A5/</id>
+    <published>2021-01-20T05:39:30.000Z</published>
+    <updated>2022-01-20T06:34:14.862Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="MySQL" scheme="http://yoursite.com/categories/MySQL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>SQL_Update与Delete语句</title>
+    <link href="http://yoursite.com/2021/01/19/SQL%E5%9F%BA%E7%A1%80/SQL_Update%E4%B8%8EDelete%E8%AF%AD%E5%8F%A5/"/>
+    <id>http://yoursite.com/2021/01/19/SQL%E5%9F%BA%E7%A1%80/SQL_Update%E4%B8%8EDelete%E8%AF%AD%E5%8F%A5/</id>
+    <published>2021-01-19T15:48:30.000Z</published>
+    <updated>2022-01-20T05:39:00.983Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- update 表名 set colnum_name = value, [colnum_name = value...] where [条件]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 条件 between...and... 在两者时间</span></span><br><span class="line"><span class="comment">-- AND &amp;&amp;</span></span><br><span class="line"><span class="comment">-- OR ||</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- delete from 表名 where [条件]</span></span><br></pre></td></tr></table></figure><p>delete 与 truncate</p><ul><li>相同点：都能删除数据，都不会删表结构</li><li>不同： truncate重新设置自增列，计数器会归零，在innodb中delete需要重启数据库才会归零，因为存在内存中。truncate不会影响事务</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="MySQL" scheme="http://yoursite.com/categories/MySQL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>字节流中文乱码处理(转换流)</title>
+    <link href="http://yoursite.com/2020/06/17/Java/%E5%AD%97%E8%8A%82%E6%B5%81%E4%B9%B1%E7%A0%81%E5%A4%84%E7%90%86/"/>
+    <id>http://yoursite.com/2020/06/17/Java/%E5%AD%97%E8%8A%82%E6%B5%81%E4%B9%B1%E7%A0%81%E5%A4%84%E7%90%86/</id>
+    <published>2020-06-17T14:28:03.000Z</published>
+    <updated>2021-09-11T17:20:19.765Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="转换流"><a href="#转换流" class="headerlink" title="转换流"></a>转换流</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">LuanMa</span><span class="params">()</span></span>&#123;</span><br><span class="line">    FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">"X:\\xxx.xxx"</span>);</span><br><span class="line">    <span class="comment">//BufferedOutputStream bos = new BufferedOutputStream(fos);//缓冲流自动处理乱码</span></span><br><span class="line">    OutputStreamWriter osw = <span class="keyword">new</span> OutputStreamWriter(fos,<span class="string">"UTF-8"</span>);<span class="comment">//UTF-8,GBK等</span></span><br><span class="line">    <span class="comment">//fos.write("hello 中国".getBytes());//产生乱码</span></span><br><span class="line">    osw.write(<span class="string">"hello 中国"</span>);</span><br><span class="line">    <span class="comment">//bos.close();</span></span><br><span class="line">    osw.close();</span><br><span class="line">    fos.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
+    
+      <category term="I/O" scheme="http://yoursite.com/categories/Java/I-O/"/>
+    
+    
+      <category term="io流" scheme="http://yoursite.com/tags/io%E6%B5%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>字符流</title>
+    <link href="http://yoursite.com/2020/06/17/Java/%E5%AD%97%E7%AC%A6%E6%B5%81/"/>
+    <id>http://yoursite.com/2020/06/17/Java/%E5%AD%97%E7%AC%A6%E6%B5%81/</id>
+    <published>2020-06-17T08:10:43.000Z</published>
+    <updated>2021-09-11T17:20:02.683Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="与字节流"><a href="#与字节流" class="headerlink" title="与字节流"></a>与字节流</h4><p>什么时候用字节流：用来读取图片、视频、音频等等。(字节流可以处理任何文件)</p><p>什么时候用字符流：便于读取纯文本。(但字符流底层仍是字节流)</p><h4 id="字符输入流"><a href="#字符输入流" class="headerlink" title="字符输入流"></a>字符输入流</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">readFile</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">    <span class="comment">//建立字符输入流</span></span><br><span class="line">    FileReader fr = <span class="keyword">new</span> FileReader(<span class="string">"X:\\xxx.xxx"</span>);<span class="comment">//类似FileInputStream</span></span><br><span class="line">    <span class="keyword">char</span>[] car = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">1024</span>];</span><br><span class="line">    <span class="keyword">int</span> len = <span class="number">0</span>;<span class="comment">//返回字符数组中字符数</span></span><br><span class="line">    <span class="keyword">while</span>((len=fr.read(car))!=-<span class="number">1</span>)&#123;</span><br><span class="line">        System.out.println(<span class="keyword">new</span> String(car,<span class="number">0</span>,len));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//关闭流</span></span><br><span class="line">    fr.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="缓冲输入字符流"><a href="#缓冲输入字符流" class="headerlink" title="缓冲输入字符流"></a>缓冲输入字符流</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">readFile</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">    <span class="comment">//建立字符输入流</span></span><br><span class="line">    FileReader fr = <span class="keyword">new</span> FileReader(<span class="string">"X:\\xxx.xxx"</span>);<span class="comment">//类似FileInputStream</span></span><br><span class="line">    BufferedReader br = <span class="keyword">new</span> BufferedReader(fr);<span class="comment">//逐行读取</span></span><br><span class="line">    String line = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">while</span>((line=br.readLine())!=<span class="keyword">null</span>)&#123;</span><br><span class="line">        System.out.println(line);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//关闭流</span></span><br><span class="line">    br.close();</span><br><span class="line">    fr.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="字符输出流"><a href="#字符输出流" class="headerlink" title="字符输出流"></a>字符输出流</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writeToFile</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">    <span class="comment">//建立字符输出流</span></span><br><span class="line">    FileWriter fw = <span class="keyword">new</span> FileWriter(<span class="string">"X:\\xxx.xxx"</span>);</span><br><span class="line">    <span class="comment">//fw.write("kkkooo");//默认从开头覆盖</span></span><br><span class="line">    fw.write(<span class="string">"oookkk"</span>,<span class="keyword">true</span>);<span class="comment">//true从文件末尾，false从文件开头</span></span><br><span class="line">    fw.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="缓冲输出字符流"><a href="#缓冲输出字符流" class="headerlink" title="缓冲输出字符流"></a>缓冲输出字符流</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">piblic <span class="keyword">void</span> <span class="title">writeToFileFast</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">    FileWriter fw = <span class="keyword">new</span> FileWriter(<span class="string">"X:\\xxx.xxx"</span>);</span><br><span class="line">    BufferedWriter bw = <span class="keyword">new</span> BufferedWriter(fw);</span><br><span class="line">    bw.write(<span class="string">"kkkooo"</span>);</span><br><span class="line">    bw.newLine();<span class="comment">//各操作系统通用换行方法</span></span><br><span class="line">    bw.close();</span><br><span class="line">    fw.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
+    
+      <category term="I/O" scheme="http://yoursite.com/categories/Java/I-O/"/>
+    
+    
+      <category term="io流" scheme="http://yoursite.com/tags/io%E6%B5%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>对象流改造集合</title>
+    <link href="http://yoursite.com/2020/06/17/Java/%E5%AF%B9%E8%B1%A1%E6%B5%81%E6%94%B9%E9%80%A0%E9%9B%86%E5%90%88/"/>
+    <id>http://yoursite.com/2020/06/17/Java/%E5%AF%B9%E8%B1%A1%E6%B5%81%E6%94%B9%E9%80%A0%E9%9B%86%E5%90%88/</id>
+    <published>2020-06-17T05:47:48.000Z</published>
+    <updated>2021-09-11T17:18:48.263Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="HashMap与对象流组合应用-主函数部分实现"><a href="#HashMap与对象流组合应用-主函数部分实现" class="headerlink" title="HashMap与对象流组合应用(主函数部分实现)"></a>HashMap与对象流组合应用(主函数部分实现)</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">    <span class="comment">//用File可判断文件是否为空，否则出现异常</span></span><br><span class="line">    File file = <span class="keyword">new</span> File(<span class="string">"X:\\xxx.xxx"</span>);</span><br><span class="line">    <span class="keyword">long</span> len = file.length();</span><br><span class="line">    Map&lt;String, Person&gt; map = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">if</span>(len&gt;<span class="number">0</span>)&#123;<span class="comment">//有数据</span></span><br><span class="line">       FileInputStream fis = <span class="keyword">new</span> FileInputStream(file);</span><br><span class="line">       ObjectInputStream ois = <span class="keyword">new</span> ObjectInputStream(fis);</span><br><span class="line">       Map&lt;String, Person&gt; map = (Map&lt;String, Person&gt;)ois.readObject();</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        map = <span class="keyword">new</span> HashMap&lt;String, Person&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">do</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"************请输入如下选项************"</span>);</span><br><span class="line">        System.out.println(<span class="string">"\t\t\t1.信息录入"</span>);</span><br><span class="line">        System.out.println(<span class="string">"\t\t\t2.信息查询"</span>);</span><br><span class="line">        System.out.println(<span class="string">"\t\t\t3.信息修改"</span>);</span><br><span class="line">        System.out.println(<span class="string">"\t\t\t4.信息删除"</span>);</span><br><span class="line">        System.out.println(<span class="string">"\t\t\t5.退出"</span>);</span><br><span class="line">        Scanner input = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> flag = input.nextInt();</span><br><span class="line">        <span class="keyword">switch</span>(flag)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">                Operation.addPerson(input,map);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">                Operation.getAllPerson(map);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line">                System.out.println(<span class="string">"退出成功"</span>);</span><br><span class="line">                FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">"X:\\xxx.xxx"</span>);</span><br><span class="line">                ObjectOutputStream oos = <span class="keyword">new</span> ObjectOutputStream(fos);</span><br><span class="line">                oos.writeObject(map);</span><br><span class="line">                oos.close();</span><br><span class="line">                fos.close();</span><br><span class="line">                System.exit(<span class="number">0</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">while</span>(<span class="keyword">true</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
+    
+      <category term="I/O" scheme="http://yoursite.com/categories/Java/I-O/"/>
+    
+    
+      <category term="io流" scheme="http://yoursite.com/tags/io%E6%B5%81/"/>
+    
+  </entry>
+  
+</feed>
