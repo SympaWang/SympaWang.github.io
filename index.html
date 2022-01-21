@@ -275,6 +275,286 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/20/SQL%E5%9F%BA%E7%A1%80/SQL%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2%EF%BC%8C%E8%81%94%E8%A1%A8%E6%9F%A5%E8%AF%A2JoinON/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/20/SQL%E5%9F%BA%E7%A1%80/SQL%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2%EF%BC%8C%E8%81%94%E8%A1%A8%E6%9F%A5%E8%AF%A2JoinON/" class="post-title-link" itemprop="url">SQL模糊查询，联表查询JoinON</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-20 15:05:10" itemprop="dateCreated datePublished" datetime="2022-01-20T15:05:10+08:00">2022-01-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-01-21 18:30:25" itemprop="dateModified" datetime="2022-01-21T18:30:25+08:00">2022-01-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/01/20/SQL%E5%9F%BA%E7%A1%80/SQL%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2%EF%BC%8C%E8%81%94%E8%A1%A8%E6%9F%A5%E8%AF%A2JoinON/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/01/20/SQL%E5%9F%BA%E7%A1%80/SQL%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2%EF%BC%8C%E8%81%94%E8%A1%A8%E6%9F%A5%E8%AF%A2JoinON/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 模糊查询</span></span><br><span class="line"><span class="comment">-- like结合 %(代表0到任意个字符) _(代表一个字符)</span></span><br><span class="line"><span class="keyword">select</span> [] <span class="keyword">from</span> [] <span class="keyword">where</span> xxx <span class="keyword">like</span> <span class="string">'刘%'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- in</span></span><br><span class="line"><span class="keyword">select</span> [] <span class="keyword">from</span> [] <span class="keyword">where</span> xxx <span class="keyword">in</span> (a, b, c);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- join</span></span><br><span class="line"><span class="comment">-- join on 连接查询</span></span><br><span class="line"><span class="comment">-- where 等值查询</span></span><br><span class="line"><span class="keyword">select</span> A.a, b, c, d</span><br><span class="line"><span class="keyword">from</span> xxx <span class="keyword">as</span> A</span><br><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span> yyy <span class="keyword">as</span> B</span><br><span class="line"><span class="keyword">on</span> A.a = B.a</span><br></pre></td></tr></table></figure>
+
+<p><img src="/.com//F:%5CBlog%5Csource%5Cimages%5C7%E7%A7%8Djoin.png" alt></p>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/20/SQL%E5%9F%BA%E7%A1%80/SQL_Select/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/20/SQL%E5%9F%BA%E7%A1%80/SQL_Select/" class="post-title-link" itemprop="url">SQL_Select</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-01-20 13:39:30 / 修改时间：15:00:39" itemprop="dateCreated datePublished" datetime="2022-01-20T13:39:30+08:00">2022-01-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/01/20/SQL%E5%9F%BA%E7%A1%80/SQL_Select/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/01/20/SQL%E5%9F%BA%E7%A1%80/SQL_Select/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查询所有字段</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> [表]</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询指定字段 </span></span><br><span class="line"><span class="keyword">select</span> [字段名], [字段名] <span class="keyword">from</span> [表]</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 别名，给结果起名</span></span><br><span class="line"><span class="keyword">select</span> [字段名] <span class="keyword">as</span> [别名] <span class="keyword">from</span> [表]</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 函数 concat(a, b) 拼接字符串</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">concat</span>(<span class="string">'姓名：'</span>, [字段名]) <span class="keyword">as</span> [别名] <span class="keyword">from</span> [表]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 去重</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> [] <span class="keyword">from</span> []</span><br><span class="line"></span><br><span class="line"><span class="comment">-- select 其他用法</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">version</span>() <span class="comment">-- 查询系统版本</span></span><br><span class="line"><span class="keyword">select</span> [表达式] <span class="comment">-- 计算结果</span></span><br><span class="line"><span class="keyword">select</span> @@auto_increment_increment <span class="comment">-- 查询自增步长（变量）</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> [] + <span class="number">1</span> <span class="keyword">from</span> [] <span class="comment">-- 结果加一</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/19/SQL%E5%9F%BA%E7%A1%80/SQL_Update%E4%B8%8EDelete%E8%AF%AD%E5%8F%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/19/SQL%E5%9F%BA%E7%A1%80/SQL_Update%E4%B8%8EDelete%E8%AF%AD%E5%8F%A5/" class="post-title-link" itemprop="url">SQL_Update与Delete语句</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-19 23:48:30" itemprop="dateCreated datePublished" datetime="2022-01-19T23:48:30+08:00">2022-01-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-01-20 15:00:25" itemprop="dateModified" datetime="2022-01-20T15:00:25+08:00">2022-01-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/01/19/SQL%E5%9F%BA%E7%A1%80/SQL_Update%E4%B8%8EDelete%E8%AF%AD%E5%8F%A5/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/01/19/SQL%E5%9F%BA%E7%A1%80/SQL_Update%E4%B8%8EDelete%E8%AF%AD%E5%8F%A5/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- update 表名 set colnum_name = value, [colnum_name = value...] where [条件]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 条件 between...and... 在两者时间</span></span><br><span class="line"><span class="comment">-- AND &amp;&amp;</span></span><br><span class="line"><span class="comment">-- OR ||</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- delete from 表名 where [条件]</span></span><br></pre></td></tr></table></figure>
+
+<p>delete 与 truncate</p>
+<ul>
+<li>相同点：都能删除数据，都不会删表结构</li>
+<li>不同： truncate重新设置自增列，计数器会归零，在innodb中delete需要重启数据库才会归零，因为存在内存中。truncate不会影响事务</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/12/15/SQL%E5%9F%BA%E7%A1%80/SQL_Insert%E8%AF%AD%E5%8F%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -856,386 +1136,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%97%E6%AE%B5%E5%B1%9E%E6%80%A7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%97%E6%AE%B5%E5%B1%9E%E6%80%A7/" class="post-title-link" itemprop="url">数据库字段属性</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-09-14 16:03:06 / 修改时间：16:21:48" itemprop="dateCreated datePublished" datetime="2021-09-14T16:03:06+08:00">2021-09-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%97%E6%AE%B5%E5%B1%9E%E6%80%A7/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%97%E6%AE%B5%E5%B1%9E%E6%80%A7/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="1、Unsigned"><a href="#1、Unsigned" class="headerlink" title="1、Unsigned"></a>1、Unsigned</h3><ol>
-<li>表示无符号整数</li>
-<li>当前列无法被声明为负数</li>
-</ol>
-<h3 id="2、zerofill"><a href="#2、zerofill" class="headerlink" title="2、zerofill"></a>2、zerofill</h3><ol>
-<li>0填充</li>
-<li>不足的位数，使用0填充</li>
-<li>5 –&gt; 005</li>
-</ol>
-<h3 id="3、自增"><a href="#3、自增" class="headerlink" title="3、自增"></a>3、自增</h3><ol>
-<li>自动在上一条记录的基础+1</li>
-<li>通常用来设计唯一主键，必须是整数类型</li>
-<li>可以自定义增量</li>
-</ol>
-<h3 id="4、非空-null-OR-not-null"><a href="#4、非空-null-OR-not-null" class="headerlink" title="4、非空(null OR not null)"></a>4、非空(null OR not null)</h3><ol>
-<li>如为非空，必须赋值</li>
-<li>否则若不赋值，默认是null(字符串除外)</li>
-<li><strong>空字符串不是null</strong></li>
-</ol>
-<h3 id="5、默认-default"><a href="#5、默认-default" class="headerlink" title="5、默认(default)"></a>5、默认(default)</h3><p>如果不指定该列值，则值变为默认值</p>
-<h2 id="以下5个字段每个表必须存在，表示一个记录存在的意义-项目用"><a href="#以下5个字段每个表必须存在，表示一个记录存在的意义-项目用" class="headerlink" title="以下5个字段每个表必须存在，表示一个记录存在的意义(项目用)"></a>以下5个字段每个表必须存在，表示一个记录存在的意义(项目用)</h2><h3 id="6、version（版本-乐观锁）"><a href="#6、version（版本-乐观锁）" class="headerlink" title="6、version（版本 乐观锁）"></a>6、version（版本 乐观锁）</h3><h3 id="7、is-delete-伪删除-存在但不可查询"><a href="#7、is-delete-伪删除-存在但不可查询" class="headerlink" title="7、is_delete (伪删除 存在但不可查询)"></a>7、is_delete (伪删除 存在但不可查询)</h3><h3 id="8、gmt-create-创建时间"><a href="#8、gmt-create-创建时间" class="headerlink" title="8、gmt_create (创建时间)"></a>8、gmt_create (创建时间)</h3><h3 id="9、gmt-update-修改时间"><a href="#9、gmt-update-修改时间" class="headerlink" title="9、gmt_update (修改时间)"></a>9、gmt_update (修改时间)</h3><h3 id="10、id-主键"><a href="#10、id-主键" class="headerlink" title="10、id (主键)"></a>10、id (主键)</h3>
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%97%E7%B1%BB%E5%9E%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%97%E7%B1%BB%E5%9E%8B/" class="post-title-link" itemprop="url">数据库列类型</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-09-14 15:47:08 / 修改时间：16:02:22" itemprop="dateCreated datePublished" datetime="2021-09-14T15:47:08+08:00">2021-09-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%97%E7%B1%BB%E5%9E%8B/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%97%E7%B1%BB%E5%9E%8B/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="1、数值类型"><a href="#1、数值类型" class="headerlink" title="1、数值类型"></a>1、数值类型</h3><table>
-<thead>
-<tr>
-<th>数据类型</th>
-<th>范围</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>tinyint</td>
-<td>1个字节的整数</td>
-</tr>
-<tr>
-<td>smallint</td>
-<td>2个字节的整数</td>
-</tr>
-<tr>
-<td>mediumuint</td>
-<td>3个字节的整数</td>
-</tr>
-<tr>
-<td><strong>int</strong></td>
-<td><strong>4个字节的整数</strong></td>
-</tr>
-<tr>
-<td>bigint</td>
-<td>8个字节的整数</td>
-</tr>
-<tr>
-<td>float</td>
-<td>4个字节的浮点数</td>
-</tr>
-<tr>
-<td><strong>double</strong></td>
-<td><strong>8个字节的浮点数</strong></td>
-</tr>
-<tr>
-<td>decimal</td>
-<td>字符串浮点数(金融计算)</td>
-</tr>
-</tbody></table>
-<h3 id="2、字符串类型"><a href="#2、字符串类型" class="headerlink" title="2、字符串类型"></a>2、字符串类型</h3><table>
-<thead>
-<tr>
-<th>数据类型</th>
-<th>范围</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>char</td>
-<td>固定长度字符串(0 ~ 255)</td>
-</tr>
-<tr>
-<td><strong>varchar</strong></td>
-<td><strong>可变长字符串(0 ~ 65535)</strong></td>
-</tr>
-<tr>
-<td>tinytext</td>
-<td>微型文本 (0 ~ 2^8 - 1)</td>
-</tr>
-<tr>
-<td>text</td>
-<td>大文本(0 ~ 2^16 - 1)</td>
-</tr>
-</tbody></table>
-<h3 id="3、时间日期类型"><a href="#3、时间日期类型" class="headerlink" title="3、时间日期类型"></a>3、时间日期类型</h3><table>
-<thead>
-<tr>
-<th>数据类型</th>
-<th>范围</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>date</td>
-<td>YYYY - MM - DD 日期</td>
-</tr>
-<tr>
-<td>time</td>
-<td>hh : mm : ss 时间</td>
-</tr>
-<tr>
-<td><strong>datetime</strong></td>
-<td><strong>YYYY - MM - DD hh : mm : ss 日期+时间</strong></td>
-</tr>
-<tr>
-<td><strong>timestamp</strong></td>
-<td><strong>时间戳 1970.1.1到现在的毫秒数</strong></td>
-</tr>
-<tr>
-<td>year</td>
-<td>年份</td>
-</tr>
-</tbody></table>
-<h3 id="4、null类型"><a href="#4、null类型" class="headerlink" title="4、null类型"></a>4、null类型</h3><p>表示未知数据</p>
-<p>使用null运算，结果为null</p>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/14/SQL%E5%9F%BA%E7%A1%80/SQL%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/14/SQL%E5%9F%BA%E7%A1%80/SQL%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-title-link" itemprop="url">SQL操作数据库</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-09-14 15:32:33 / 修改时间：15:46:40" itemprop="dateCreated datePublished" datetime="2021-09-14T15:32:33+08:00">2021-09-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/09/14/SQL%E5%9F%BA%E7%A1%80/SQL%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/09/14/SQL%E5%9F%BA%E7%A1%80/SQL%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="1、创建数据库"><a href="#1、创建数据库" class="headerlink" title="1、创建数据库"></a>1、创建数据库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> [<span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>] XXX</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="2、删除数据库"><a href="#2、删除数据库" class="headerlink" title="2、删除数据库"></a>2、删除数据库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">DATABASE</span> [<span class="keyword">IF</span> <span class="keyword">EXISTS</span>] XXX</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="3、切换数据库"><a href="#3、切换数据库" class="headerlink" title="3、切换数据库"></a>3、切换数据库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">USE</span> XXX</span><br><span class="line"><span class="comment">--如果字段名是特殊字符，需要用`XXX`</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="4、查看所有数据库"><a href="#4、查看所有数据库" class="headerlink" title="4、查看所有数据库"></a>4、查看所有数据库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">DATABASE</span></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1403,7 +1303,7 @@ $(document).ready(function() {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共7.4k字</span>
+  <span class="post-count">博客全站共7.5k字</span>
 </div>
         
 <div class="busuanzi-count">
