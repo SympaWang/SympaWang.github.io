@@ -25,20 +25,19 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="什么是序列化？所谓的序列化就是将对象流化，就是将对象变成字节。 如何实现序列化？让某个类实现Serializable接口(标记性接口)。 将一个对象保存到文件1234567891011121314151617181920212223&#x2F;&#x2F;创建Student类public class Student implements Serializable&amp;#123; &#x2F;&#x2F;实现标记性接口Serializable">
+  <meta name="description" content="什么是事务？要么都成功，要么都失败 将一组SQL放在一个批次执行 事务原则：ACID原则原子性，一致性，隔离性，持久性原子性（Atomicity）原子性是指事务是一个不可分割的工作单位，事务中的操作要么都发生，要么都不发生。 一致性（Consistency）事务前后数据的完整性必须保持一致。 隔离性（Isolation）事务的隔离性是多个用户并发访问数据库时，数据库为每一个用户开启的事务，不能被其">
 <meta property="og:type" content="article">
-<meta property="og:title" content="序列化与对象流">
-<meta property="og:url" content="http://yoursite.com/2020/06/15/Java/%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%AF%B9%E8%B1%A1%E6%B5%81/index.html">
+<meta property="og:title" content="SQL事务">
+<meta property="og:url" content="http://yoursite.com/2022/01/23/SQL%E8%BF%9B%E9%98%B6/SQL_%E4%BA%8B%E5%8A%A1/index.html">
 <meta property="og:site_name" content="避风港">
-<meta property="og:description" content="什么是序列化？所谓的序列化就是将对象流化，就是将对象变成字节。 如何实现序列化？让某个类实现Serializable接口(标记性接口)。 将一个对象保存到文件1234567891011121314151617181920212223&#x2F;&#x2F;创建Student类public class Student implements Serializable&amp;#123; &#x2F;&#x2F;实现标记性接口Serializable">
+<meta property="og:description" content="什么是事务？要么都成功，要么都失败 将一组SQL放在一个批次执行 事务原则：ACID原则原子性，一致性，隔离性，持久性原子性（Atomicity）原子性是指事务是一个不可分割的工作单位，事务中的操作要么都发生，要么都不发生。 一致性（Consistency）事务前后数据的完整性必须保持一致。 隔离性（Isolation）事务的隔离性是多个用户并发访问数据库时，数据库为每一个用户开启的事务，不能被其">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-06-15T08:40:28.000Z">
-<meta property="article:modified_time" content="2021-09-11T17:19:52.881Z">
+<meta property="article:published_time" content="2022-01-23T12:44:30.000Z">
+<meta property="article:modified_time" content="2022-01-23T14:32:55.457Z">
 <meta property="article:author" content="Sympa">
-<meta property="article:tag" content="io流">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2020/06/15/Java/%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%AF%B9%E8%B1%A1%E6%B5%81/">
+<link rel="canonical" href="http://yoursite.com/2022/01/23/SQL%E8%BF%9B%E9%98%B6/SQL_%E4%BA%8B%E5%8A%A1/">
 
 
 <script id="page-configurations">
@@ -51,7 +50,7 @@
   };
 </script>
 
-  <title>序列化与对象流 | 避风港</title>
+  <title>SQL事务 | 避风港</title>
   
 
 
@@ -184,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/15/Java/%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%AF%B9%E8%B1%A1%E6%B5%81/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/23/SQL%E8%BF%9B%E9%98%B6/SQL_%E4%BA%8B%E5%8A%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +196,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          序列化与对象流
+          SQL事务
         </h1>
 
         <div class="post-meta">
@@ -208,27 +207,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-06-15 16:40:28" itemprop="dateCreated datePublished" datetime="2020-06-15T16:40:28+08:00">2020-06-15</time>
+              <time title="创建时间：2022-01-23 20:44:30 / 修改时间：22:32:55" itemprop="dateCreated datePublished" datetime="2022-01-23T20:44:30+08:00">2022-01-23</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-12 01:19:52" itemprop="dateModified" datetime="2021-09-12T01:19:52+08:00">2021-09-12</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/I-O/" itemprop="url" rel="index"><span itemprop="name">I/O</span></a>
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
                 </span>
             </span>
 
@@ -248,8 +237,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/06/15/Java/%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%AF%B9%E8%B1%A1%E6%B5%81/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/15/Java/%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%AF%B9%E8%B1%A1%E6%B5%81/" itemprop="commentCount"></span>
+    <a title="valine" href="/2022/01/23/SQL%E8%BF%9B%E9%98%B6/SQL_%E4%BA%8B%E5%8A%A1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/01/23/SQL%E8%BF%9B%E9%98%B6/SQL_%E4%BA%8B%E5%8A%A1/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -264,11 +253,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="什么是序列化？"><a href="#什么是序列化？" class="headerlink" title="什么是序列化？"></a>什么是序列化？</h4><p>所谓的序列化就是将对象流化，就是将对象变成字节。</p>
-<h4 id="如何实现序列化？"><a href="#如何实现序列化？" class="headerlink" title="如何实现序列化？"></a>如何实现序列化？</h4><p>让某个类实现Serializable接口(标记性接口)。</p>
-<h4 id="将一个对象保存到文件"><a href="#将一个对象保存到文件" class="headerlink" title="将一个对象保存到文件"></a>将一个对象保存到文件</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建Student类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">implements</span> <span class="title">Serializable</span></span>&#123; <span class="comment">//实现标记性接口Serializable</span></span><br><span class="line">    <span class="keyword">private</span> String Num;</span><br><span class="line">    <span class="keyword">private</span> String Name;</span><br><span class="line">    <span class="keyword">private</span> String Sex;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(String Num,String Name,String Sex)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.Num = Num;</span><br><span class="line">        <span class="keyword">this</span>.Name = Name;</span><br><span class="line">        <span class="keyword">this</span>.Sex = Sex;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> objectToFile <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">     <span class="comment">//创建对象流</span></span><br><span class="line">     FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">"X:\\xxx.xxx"</span>);</span><br><span class="line">     ObjcetOutputStream oos = <span class="keyword">new</span> ObjcetOutputStream(fos);</span><br><span class="line">     <span class="comment">//创建对象</span></span><br><span class="line">     Student student1 = <span class="keyword">new</span> Student(<span class="string">"123"</span>,<span class="string">"王五"</span>，<span class="string">"男"</span>);</span><br><span class="line">     <span class="comment">//将对象写出</span></span><br><span class="line">     oos.writeObject(student1);</span><br><span class="line">     <span class="comment">//关闭流(从外到内)</span></span><br><span class="line">     oos.close();</span><br><span class="line">     fos.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="从文件中读取一个对象"><a href="#从文件中读取一个对象" class="headerlink" title="从文件中读取一个对象"></a>从文件中读取一个对象</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">readFromFile</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">     <span class="comment">//创建对象流</span></span><br><span class="line">     FileInputStream fis = <span class="keyword">new</span> FileInputStream(<span class="string">"X:\\xxx.xxx"</span>);</span><br><span class="line">     ObjectInputStream ois = <span class="keyword">new</span> ObjectInputStream(fis);</span><br><span class="line">     <span class="comment">//读取对象</span></span><br><span class="line">     Student student2 = (Student)ois.readObject();</span><br><span class="line">     <span class="comment">//输出对象</span></span><br><span class="line">     System.out.println(student2);</span><br><span class="line">     <span class="comment">//关闭流(从外到内)</span></span><br><span class="line">     ois.close();</span><br><span class="line">     fis.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h3 id="什么是事务？"><a href="#什么是事务？" class="headerlink" title="什么是事务？"></a>什么是事务？</h3><p>要么都成功，要么都失败</p>
+<p>将一组SQL放在一个批次执行</p>
+<h4 id="事务原则：ACID原则"><a href="#事务原则：ACID原则" class="headerlink" title="事务原则：ACID原则"></a>事务原则：ACID原则</h4><h5 id="原子性，一致性，隔离性，持久性"><a href="#原子性，一致性，隔离性，持久性" class="headerlink" title="原子性，一致性，隔离性，持久性"></a>原子性，一致性，隔离性，持久性</h5><h4 id="原子性（Atomicity）"><a href="#原子性（Atomicity）" class="headerlink" title="原子性（Atomicity）"></a>原子性（Atomicity）</h4><p>原子性是指事务是一个不可分割的工作单位，事务中的操作要么都发生，要么都不发生。</p>
+<h4 id="一致性（Consistency）"><a href="#一致性（Consistency）" class="headerlink" title="一致性（Consistency）"></a>一致性（Consistency）</h4><p>事务前后数据的完整性必须保持一致。</p>
+<h4 id="隔离性（Isolation）"><a href="#隔离性（Isolation）" class="headerlink" title="隔离性（Isolation）"></a>隔离性（Isolation）</h4><p>事务的隔离性是多个用户并发访问数据库时，数据库为每一个用户开启的事务，不能被其他事务的操作数据所干扰，多个并发事务之间要相互隔离。</p>
+<h4 id="持久性（Durability）"><a href="#持久性（Durability）" class="headerlink" title="持久性（Durability）"></a>持久性（Durability）</h4><p><strong>事务提交不可逆</strong></p>
+<p>持久性是指一个事务一旦被提交，它对数据库中数据的改变就是永久性的，接下来即使数据库发生故障也不应该对其有任何影响</p>
+<h4 id="事务的隔离级别"><a href="#事务的隔离级别" class="headerlink" title="事务的隔离级别"></a>事务的隔离级别</h4><h4 id="脏读："><a href="#脏读：" class="headerlink" title="脏读："></a>脏读：</h4><p>指一个事务读取了另外一个事务未提交的数据</p>
+<h4 id="不可重复读："><a href="#不可重复读：" class="headerlink" title="不可重复读："></a>不可重复读：</h4><p>在一个事务内读取表中的某一行数据，多次读取结果不同。（这个不一定是错误，只是某些场合不对）</p>
+<h4 id="虚读-幻读-："><a href="#虚读-幻读-：" class="headerlink" title="虚读(幻读)："></a>虚读(幻读)：</h4><p>是指在一个事务内读取到了别的事务插入的数据，导致前后读取数量总量不一致。<br>（一般是行影响）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- mysql 是默认开启事务自动提交的</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">0</span> <span class="comment">-- 关闭</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">1</span> <span class="comment">-- 开启</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 手动处理事务</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">0</span> <span class="comment">-- 第一步 关闭自动提交</span></span><br><span class="line"><span class="comment">-- 事务开启</span></span><br><span class="line"><span class="keyword">start</span> <span class="keyword">transaction</span> <span class="comment">-- 标记一个事务开始，从这之后的sql都在一个事务内</span></span><br><span class="line"><span class="comment">-- 两种情况</span></span><br><span class="line"><span class="comment">-- 提交： 持久化（成功）</span></span><br><span class="line"><span class="keyword">commit</span></span><br><span class="line"><span class="comment">-- 回滚： 回到原来的样子（失败）</span></span><br><span class="line"><span class="keyword">rollback</span></span><br><span class="line"><span class="comment">-- 事务结束</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">1</span> <span class="comment">-- 开启自动提交</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">savepoint</span> 名称 <span class="comment">-- 设置事务保存点</span></span><br><span class="line"><span class="keyword">rollback</span> <span class="keyword">to</span> <span class="keyword">savepoint</span> 名称 <span class="comment">-- 回滚到保存点</span></span><br><span class="line"><span class="keyword">release</span> <span class="keyword">savepoint</span> 名称 <span class="comment">-- 撤销保存点</span></span><br></pre></td></tr></table></figure>
 
 
     </div>
@@ -315,9 +310,6 @@
 
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/io%E6%B5%81/" rel="tag"># io流</a>
-          </div>
 
         
 
@@ -325,13 +317,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/06/15/Java/io%E7%B1%BB/" rel="prev" title="字节流">
-      <i class="fa fa-chevron-left"></i> 字节流
+    <a href="/2022/01/21/SQL%E5%9F%BA%E7%A1%80/SQL%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E4%B8%8E%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0/" rel="prev" title="SQL常用函数与聚合函数,分组">
+      <i class="fa fa-chevron-left"></i> SQL常用函数与聚合函数,分组
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/06/17/Java/%E5%AF%B9%E8%B1%A1%E6%B5%81%E6%94%B9%E9%80%A0%E9%9B%86%E5%90%88/" rel="next" title="对象流改造集合">
-      对象流改造集合 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -408,7 +397,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是序列化？"><span class="nav-number">1.</span> <span class="nav-text">什么是序列化？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何实现序列化？"><span class="nav-number">2.</span> <span class="nav-text">如何实现序列化？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将一个对象保存到文件"><span class="nav-number">3.</span> <span class="nav-text">将一个对象保存到文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#从文件中读取一个对象"><span class="nav-number">4.</span> <span class="nav-text">从文件中读取一个对象</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是事务？"><span class="nav-number">1.</span> <span class="nav-text">什么是事务？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#事务原则：ACID原则"><span class="nav-number">1.1.</span> <span class="nav-text">事务原则：ACID原则</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#原子性，一致性，隔离性，持久性"><span class="nav-number">1.1.1.</span> <span class="nav-text">原子性，一致性，隔离性，持久性</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原子性（Atomicity）"><span class="nav-number">1.2.</span> <span class="nav-text">原子性（Atomicity）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一致性（Consistency）"><span class="nav-number">1.3.</span> <span class="nav-text">一致性（Consistency）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#隔离性（Isolation）"><span class="nav-number">1.4.</span> <span class="nav-text">隔离性（Isolation）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#持久性（Durability）"><span class="nav-number">1.5.</span> <span class="nav-text">持久性（Durability）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事务的隔离级别"><span class="nav-number">1.6.</span> <span class="nav-text">事务的隔离级别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#脏读："><span class="nav-number">1.7.</span> <span class="nav-text">脏读：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不可重复读："><span class="nav-number">1.8.</span> <span class="nav-text">不可重复读：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#虚读-幻读-："><span class="nav-number">1.9.</span> <span class="nav-text">虚读(幻读)：</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
