@@ -180,6 +180,379 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%97%E7%B1%BB%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%97%E7%B1%BB%E5%9E%8B/" class="post-title-link" itemprop="url">数据库列类型</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-09-14 15:47:08 / 修改时间：16:02:22" itemprop="dateCreated datePublished" datetime="2021-09-14T15:47:08+08:00">2021-09-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%97%E7%B1%BB%E5%9E%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%97%E7%B1%BB%E5%9E%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="1、数值类型"><a href="#1、数值类型" class="headerlink" title="1、数值类型"></a>1、数值类型</h3><table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>tinyint</td>
+<td>1个字节的整数</td>
+</tr>
+<tr>
+<td>smallint</td>
+<td>2个字节的整数</td>
+</tr>
+<tr>
+<td>mediumuint</td>
+<td>3个字节的整数</td>
+</tr>
+<tr>
+<td><strong>int</strong></td>
+<td><strong>4个字节的整数</strong></td>
+</tr>
+<tr>
+<td>bigint</td>
+<td>8个字节的整数</td>
+</tr>
+<tr>
+<td>float</td>
+<td>4个字节的浮点数</td>
+</tr>
+<tr>
+<td><strong>double</strong></td>
+<td><strong>8个字节的浮点数</strong></td>
+</tr>
+<tr>
+<td>decimal</td>
+<td>字符串浮点数(金融计算)</td>
+</tr>
+</tbody></table>
+<h3 id="2、字符串类型"><a href="#2、字符串类型" class="headerlink" title="2、字符串类型"></a>2、字符串类型</h3><table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>char</td>
+<td>固定长度字符串(0 ~ 255)</td>
+</tr>
+<tr>
+<td><strong>varchar</strong></td>
+<td><strong>可变长字符串(0 ~ 65535)</strong></td>
+</tr>
+<tr>
+<td>tinytext</td>
+<td>微型文本 (0 ~ 2^8 - 1)</td>
+</tr>
+<tr>
+<td>text</td>
+<td>大文本(0 ~ 2^16 - 1)</td>
+</tr>
+</tbody></table>
+<h3 id="3、时间日期类型"><a href="#3、时间日期类型" class="headerlink" title="3、时间日期类型"></a>3、时间日期类型</h3><table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>date</td>
+<td>YYYY - MM - DD 日期</td>
+</tr>
+<tr>
+<td>time</td>
+<td>hh : mm : ss 时间</td>
+</tr>
+<tr>
+<td><strong>datetime</strong></td>
+<td><strong>YYYY - MM - DD hh : mm : ss 日期+时间</strong></td>
+</tr>
+<tr>
+<td><strong>timestamp</strong></td>
+<td><strong>时间戳 1970.1.1到现在的毫秒数</strong></td>
+</tr>
+<tr>
+<td>year</td>
+<td>年份</td>
+</tr>
+</tbody></table>
+<h3 id="4、null类型"><a href="#4、null类型" class="headerlink" title="4、null类型"></a>4、null类型</h3><p>表示未知数据</p>
+<p>使用null运算，结果为null</p>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/14/SQL%E5%9F%BA%E7%A1%80/SQL%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/14/SQL%E5%9F%BA%E7%A1%80/SQL%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-title-link" itemprop="url">SQL操作数据库</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-09-14 15:32:33 / 修改时间：15:46:40" itemprop="dateCreated datePublished" datetime="2021-09-14T15:32:33+08:00">2021-09-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/09/14/SQL%E5%9F%BA%E7%A1%80/SQL%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/09/14/SQL%E5%9F%BA%E7%A1%80/SQL%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="1、创建数据库"><a href="#1、创建数据库" class="headerlink" title="1、创建数据库"></a>1、创建数据库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> [<span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>] XXX</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2、删除数据库"><a href="#2、删除数据库" class="headerlink" title="2、删除数据库"></a>2、删除数据库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">DATABASE</span> [<span class="keyword">IF</span> <span class="keyword">EXISTS</span>] XXX</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3、切换数据库"><a href="#3、切换数据库" class="headerlink" title="3、切换数据库"></a>3、切换数据库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">USE</span> XXX</span><br><span class="line"><span class="comment">--如果字段名是特殊字符，需要用`XXX`</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4、查看所有数据库"><a href="#4、查看所有数据库" class="headerlink" title="4、查看所有数据库"></a>4、查看所有数据库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">DATABASE</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/12/SQL%E5%9F%BA%E7%A1%80/MySQL%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/12/SQL%E5%9F%BA%E7%A1%80/MySQL%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">MySQL基本操作和概念</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-09-12 00:43:14 / 修改时间：01:17:11" itemprop="dateCreated datePublished" datetime="2021-09-12T00:43:14+08:00">2021-09-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/09/12/SQL%E5%9F%BA%E7%A1%80/MySQL%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/09/12/SQL%E5%9F%BA%E7%A1%80/MySQL%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="一、创建数据库"><a href="#一、创建数据库" class="headerlink" title="一、创建数据库"></a>一、创建数据库</h2><img src="/images/创建数据库.PNG">
+
+<p><em>*CREATE DATABASE *xxx</em> CHARACTER SET utf8 COLLATE utf8_general_ci; **</p>
+<h2 id="二、创建表"><a href="#二、创建表" class="headerlink" title="二、创建表"></a>二、创建表</h2><img src="/images/新建表.PNG">
+
+
+
+<h2 id="三、命令行操作"><a href="#三、命令行操作" class="headerlink" title="三、命令行操作"></a>三、命令行操作</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p  <span class="comment">--连接数据库</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">databases</span>; <span class="comment">--查看所有数据库</span></span><br><span class="line"><span class="keyword">use</span> xxx <span class="comment">--切换数据库</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">tables</span>； <span class="comment">--查看所有表</span></span><br><span class="line"><span class="keyword">describe</span> xxx; <span class="comment">--显示表中所有信息</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> xxx; <span class="comment">--创建数据库</span></span><br><span class="line">exit; <span class="comment">--连接退出</span></span><br><span class="line"><span class="comment">--单行注释</span></span><br><span class="line"><span class="comment">/* 多行注释 */</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="四、语言概念"><a href="#四、语言概念" class="headerlink" title="四、语言概念"></a>四、语言概念</h2><p><strong>DDL 数据库定义语言</strong></p>
+<p><strong>DML 数据库操作语言</strong></p>
+<p><strong>DQL 数据库查询语言</strong></p>
+<p><strong>DCL 数据库控制语言</strong></p>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/09/ACM/DAG%E5%9B%BE%E4%B8%8A%E7%9A%84%E7%81%AD%E7%BB%9D%E6%A0%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -910,297 +1283,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/15/Java/%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%AF%B9%E8%B1%A1%E6%B5%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/15/Java/%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%AF%B9%E8%B1%A1%E6%B5%81/" class="post-title-link" itemprop="url">序列化与对象流</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-15 16:40:28" itemprop="dateCreated datePublished" datetime="2020-06-15T16:40:28+08:00">2020-06-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-12 01:19:52" itemprop="dateModified" datetime="2021-09-12T01:19:52+08:00">2021-09-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/I-O/" itemprop="url" rel="index"><span itemprop="name">I/O</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/06/15/Java/%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%AF%B9%E8%B1%A1%E6%B5%81/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/15/Java/%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%AF%B9%E8%B1%A1%E6%B5%81/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="什么是序列化？"><a href="#什么是序列化？" class="headerlink" title="什么是序列化？"></a>什么是序列化？</h4><p>所谓的序列化就是将对象流化，就是将对象变成字节。</p>
-<h4 id="如何实现序列化？"><a href="#如何实现序列化？" class="headerlink" title="如何实现序列化？"></a>如何实现序列化？</h4><p>让某个类实现Serializable接口(标记性接口)。</p>
-<h4 id="将一个对象保存到文件"><a href="#将一个对象保存到文件" class="headerlink" title="将一个对象保存到文件"></a>将一个对象保存到文件</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建Student类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">implements</span> <span class="title">Serializable</span></span>&#123; <span class="comment">//实现标记性接口Serializable</span></span><br><span class="line">    <span class="keyword">private</span> String Num;</span><br><span class="line">    <span class="keyword">private</span> String Name;</span><br><span class="line">    <span class="keyword">private</span> String Sex;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Student</span><span class="params">(String Num,String Name,String Sex)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.Num = Num;</span><br><span class="line">        <span class="keyword">this</span>.Name = Name;</span><br><span class="line">        <span class="keyword">this</span>.Sex = Sex;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> objectToFile <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">     <span class="comment">//创建对象流</span></span><br><span class="line">     FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">"X:\\xxx.xxx"</span>);</span><br><span class="line">     ObjcetOutputStream oos = <span class="keyword">new</span> ObjcetOutputStream(fos);</span><br><span class="line">     <span class="comment">//创建对象</span></span><br><span class="line">     Student student1 = <span class="keyword">new</span> Student(<span class="string">"123"</span>,<span class="string">"王五"</span>，<span class="string">"男"</span>);</span><br><span class="line">     <span class="comment">//将对象写出</span></span><br><span class="line">     oos.writeObject(student1);</span><br><span class="line">     <span class="comment">//关闭流(从外到内)</span></span><br><span class="line">     oos.close();</span><br><span class="line">     fos.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="从文件中读取一个对象"><a href="#从文件中读取一个对象" class="headerlink" title="从文件中读取一个对象"></a>从文件中读取一个对象</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">readFromFile</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">     <span class="comment">//创建对象流</span></span><br><span class="line">     FileInputStream fis = <span class="keyword">new</span> FileInputStream(<span class="string">"X:\\xxx.xxx"</span>);</span><br><span class="line">     ObjectInputStream ois = <span class="keyword">new</span> ObjectInputStream(fis);</span><br><span class="line">     <span class="comment">//读取对象</span></span><br><span class="line">     Student student2 = (Student)ois.readObject();</span><br><span class="line">     <span class="comment">//输出对象</span></span><br><span class="line">     System.out.println(student2);</span><br><span class="line">     <span class="comment">//关闭流(从外到内)</span></span><br><span class="line">     ois.close();</span><br><span class="line">     fis.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/15/Java/io%E7%B1%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/15/Java/io%E7%B1%BB/" class="post-title-link" itemprop="url">字节流</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-15 14:07:16" itemprop="dateCreated datePublished" datetime="2020-06-15T14:07:16+08:00">2020-06-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-12 01:19:43" itemprop="dateModified" datetime="2021-09-12T01:19:43+08:00">2021-09-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/I-O/" itemprop="url" rel="index"><span itemprop="name">I/O</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/06/15/Java/io%E7%B1%BB/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/15/Java/io%E7%B1%BB/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="字节输出流"><a href="#字节输出流" class="headerlink" title="字节输出流"></a>字节输出流</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writeFile</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">      Scanner input = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">      <span class="comment">//将文件封装为File对象</span></span><br><span class="line">      File file = <span class="keyword">new</span> File(<span class="string">"X:\\xxx.xxx"</span>);</span><br><span class="line">      <span class="comment">//输出数据</span></span><br><span class="line">      String str = input.next();</span><br><span class="line">      <span class="comment">//字节输出流</span></span><br><span class="line">      FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(file,<span class="keyword">true</span>);</span><br><span class="line">      <span class="comment">//将代码数据保存到磁盘</span></span><br><span class="line">      fos.write(str.getBytes());</span><br><span class="line">      <span class="comment">//关闭流</span></span><br><span class="line">      fos.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="字节输入流"><a href="#字节输入流" class="headerlink" title="字节输入流"></a>字节输入流</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">readFile</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">     <span class="comment">//将文件封装为File对象</span></span><br><span class="line">     File file = <span class="keyword">new</span> File(<span class="string">"X:\\xxx.xxx"</span>);</span><br><span class="line">     建立磁盘通向程序代码的管道(字节输入流)</span><br><span class="line">     FileInputStream fis = <span class="keyword">new</span> FileInputStream(file);</span><br><span class="line">     <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">     <span class="comment">//读取数据</span></span><br><span class="line">     <span class="keyword">while</span>((len = fis.read()) != -<span class="number">1</span>)&#123;</span><br><span class="line">         System.out.print((<span class="keyword">char</span>)len);</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="comment">//关闭流</span></span><br><span class="line">     fis.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="缓冲流-文件的复制"><a href="#缓冲流-文件的复制" class="headerlink" title="(缓冲流)文件的复制"></a>(缓冲流)文件的复制</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">copyVideoQuik</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">      <span class="comment">//磁盘通往代码的管道</span></span><br><span class="line">      FileInputStream fis = <span class="keyword">new</span> FileInputSteam(<span class="string">"X:\\xxx.xxx"</span>);</span><br><span class="line">      <span class="comment">//管道加粗</span></span><br><span class="line">      BufferedInputSteam bis = <span class="keyword">new</span> BufferedInputSteam(fis);</span><br><span class="line">      <span class="comment">//代码通往磁盘的管道</span></span><br><span class="line">      FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">"X:\\xxx.xxx"</span>);</span><br><span class="line">      <span class="comment">//管道加粗</span></span><br><span class="line">      BufferedOutputStream bos = <span class="keyword">new</span> BufferedOutputStream(fos);</span><br><span class="line">      <span class="keyword">byte</span>[] car = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];<span class="comment">//一次读取1024字节(速度最优)</span></span><br><span class="line">      <span class="keyword">int</span> len = <span class="number">0</span>;<span class="comment">//len=-1代表读取结束</span></span><br><span class="line">      <span class="keyword">while</span>((len = bis.read(car)) != -<span class="number">1</span>)&#123;</span><br><span class="line">          <span class="comment">//读取的数据保存到磁盘</span></span><br><span class="line">         bos.write(car,<span class="number">0</span>,len);<span class="comment">//从car里读取，从下标0开始，读1024个</span></span><br><span class="line">         <span class="comment">//System.out.println(new String(car,0,len));//转字符串逐行打印</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">//关闭流：先关外管道流，再关内管道流</span></span><br><span class="line">      <span class="comment">//关输入流</span></span><br><span class="line">      bis.close();</span><br><span class="line">      fis.close();</span><br><span class="line">      <span class="comment">//关输出流</span></span><br><span class="line">      bos.close();</span><br><span class="line">      fos.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/09/%E6%9C%AA%E7%9F%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/09/%E6%9C%AA%E7%9F%A5/" class="post-title-link" itemprop="url">未知</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-09 08:17:38" itemprop="dateCreated datePublished" datetime="2020-06-09T08:17:38+08:00">2020-06-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-09 22:28:35" itemprop="dateModified" datetime="2021-09-09T22:28:35+08:00">2021-09-09</time>
-              </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/06/09/%E6%9C%AA%E7%9F%A5/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/09/%E6%9C%AA%E7%9F%A5/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          Here's something encrypted, password is required to continue reading.
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/06/09/%E6%9C%AA%E7%9F%A5/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1272,14 +1354,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1368,7 +1450,7 @@ $(document).ready(function() {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共9k字</span>
+  <span class="post-count">博客全站共9.8k字</span>
 </div>
         
 <div class="busuanzi-count">
@@ -1474,6 +1556,7 @@ $(document).ready(function() {
   
 
 
+
 <script>
 NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
   NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
@@ -1501,7 +1584,6 @@ NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
   }, window.Valine);
 });
 </script>
-
 
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
 </html>
