@@ -308,7 +308,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-13 15:31:18" itemprop="dateModified" datetime="2022-02-13T15:31:18+08:00">2022-02-13</time>
+                <time title="修改时间：2022-02-13 16:28:47" itemprop="dateModified" datetime="2022-02-13T16:28:47+08:00">2022-02-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -434,6 +434,14 @@
 <li>优先级的设定建议在start()调度前</li>
 <li><strong>优先级低只是意味着获得调度的概率低，并不是优先级低就不会被调用，都是看CPU的调度（性能倒置）</strong></li>
 </ul>
+<h4 id="守护-daemon-线程"><a href="#守护-daemon-线程" class="headerlink" title="守护(daemon)线程"></a>守护(daemon)线程</h4><ul>
+<li>线程分为用户线程和守护线程</li>
+<li>虚拟机必须确保用户线程执行完毕</li>
+<li>虚拟机不用等待守护线程执行完毕</li>
+<li>如，后台记录操作日志，监控内存，垃圾回收等</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Thread thread = <span class="keyword">new</span> Thread();</span><br><span class="line">thread.setDaemon(<span class="keyword">true</span>); <span class="comment">//默认是false代表用户线程，正常线程都是用户线程</span></span><br><span class="line">thread.start(); <span class="comment">//守护线程启动</span></span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -1414,7 +1422,7 @@ $(document).ready(function() {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共10.9k字</span>
+  <span class="post-count">博客全站共11k字</span>
 </div>
         
 <div class="busuanzi-count">
