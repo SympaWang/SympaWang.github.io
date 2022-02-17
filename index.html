@@ -275,7 +275,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/11/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/17/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -289,7 +289,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/02/11/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81/" class="post-title-link" itemprop="url">多线程——线程状态</a>
+            <a href="/2022/02/17/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E6%B1%A0/" class="post-title-link" itemprop="url">多线程——线程池</a>
         </h2>
 
         <div class="post-meta">
@@ -301,14 +301,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-02-11 22:10:15" itemprop="dateCreated datePublished" datetime="2022-02-11T22:10:15+08:00">2022-02-11</time>
+              <time title="创建时间：2022-02-17 17:25:10" itemprop="dateCreated datePublished" datetime="2022-02-17T17:25:10+08:00">2022-02-17</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-13 16:28:47" itemprop="dateModified" datetime="2022-02-13T16:28:47+08:00">2022-02-13</time>
+                <time title="修改时间：2022-02-18 00:58:46" itemprop="dateModified" datetime="2022-02-18T00:58:46+08:00">2022-02-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -333,8 +333,667 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2022/02/11/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/11/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81/" itemprop="commentCount"></span>
+    <a title="valine" href="/2022/02/17/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E6%B1%A0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/17/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E6%B1%A0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>背景：经常创建和销毁、使用量特别大的资源，比如并发情况下的线程，对性能影响很大。</li>
+<li>思路：提前创建好多个线程，放入线程池中，使用时直接获取，使用完放回池中。可以避免频繁创建销毁、实现重复利用。类似生活中的公共交通工具</li>
+<li>好处：<ul>
+<li>提高响应速度（减少创建线程时间）</li>
+<li>降低资源消耗（重复利用线程池中的线程，不需要每次都创建）</li>
+<li>便于线程管理<ul>
+<li>corePoolSize：核心池大小</li>
+<li>maximumPoolSize：最大线程数</li>
+<li>keepAliveTime：线程没有任务时最多保持多长时间后会终止</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="使用线程池"><a href="#使用线程池" class="headerlink" title="使用线程池"></a>使用线程池</h4><ul>
+<li>JDK5.0起提供了线程池相关API：ExecutorServise和Executors</li>
+<li>ExecutorService：真正的线程池接口。常见子类ThreadPoolExecutor<ul>
+<li>void execute(Runnable command)：执行任务/命令，没有返回值，一般用来执行Runnable</li>
+<li><T>Future<T>submit(Callable<T>task)：执行任务，有返回值，一般用来执行Callable</T></T></T></li>
+<li>void shutdown()：关闭连接池</li>
+</ul>
+</li>
+<li>Executors：工具类，线程池的工厂类，用于创建并返回不同类型的线程池</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ExecutorService;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Executors;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestPool</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1.创建服务，创建线程池</span></span><br><span class="line">        <span class="comment">//newFixedThreadPool 参数为：线程池大小</span></span><br><span class="line"></span><br><span class="line">        ExecutorService service = Executors.newFixedThreadPool(<span class="number">10</span>);</span><br><span class="line">        service.execute(<span class="keyword">new</span> MyThread());</span><br><span class="line">        service.execute(<span class="keyword">new</span> MyThread());</span><br><span class="line">        service.execute(<span class="keyword">new</span> MyThread());</span><br><span class="line">        service.execute(<span class="keyword">new</span> MyThread());</span><br><span class="line"></span><br><span class="line">        service.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(Thread.currentThread().getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/17/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/17/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1/" class="post-title-link" itemprop="url">多线程——线程通信</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-17 17:25:10 / 修改时间：23:04:38" itemprop="dateCreated datePublished" datetime="2022-02-17T17:25:10+08:00">2022-02-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">多线程</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/02/17/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/17/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="Java提供了几个方法解决线程之间的通信问题"><a href="#Java提供了几个方法解决线程之间的通信问题" class="headerlink" title="Java提供了几个方法解决线程之间的通信问题"></a>Java提供了几个方法解决线程之间的通信问题</h4><table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>wait()</td>
+<td>表示线程一直等待，直到其他线程通知，与sleep不同，会释放锁</td>
+</tr>
+<tr>
+<td>wait(long timeout)</td>
+<td>指定等待的毫秒数</td>
+</tr>
+<tr>
+<td>notify()</td>
+<td>唤醒一个处于等待状态的线程</td>
+</tr>
+<tr>
+<td>notifyAll()</td>
+<td>唤醒同一个对象上所有调用wait()方法的线程，优先级别高的线程优先调度</td>
+</tr>
+</tbody></table>
+<p><strong>注意：均是Object类方法，都只能在同步方法或者同步代码块中使用，否则会抛出异常IllegalMonitorStateExption</strong></p>
+<h3 id="并发协作模型“生产者-消费者模式”"><a href="#并发协作模型“生产者-消费者模式”" class="headerlink" title="并发协作模型“生产者/消费者模式”"></a>并发协作模型“生产者/消费者模式”</h3><h4 id="解决方式1：管程法"><a href="#解决方式1：管程法" class="headerlink" title="解决方式1：管程法"></a>解决方式1：管程法</h4><ul>
+<li>生产者：负责生产数据的模块（可能是方法，对象，线程，进程）</li>
+<li>消费者：负责处理数据的模块（可能是方法，对象，线程，进程）</li>
+<li>缓冲区：消费者不能直接使用生产者的数据，他们之间有个“缓冲区”</li>
+<li><strong>生产者将生产好的数据放入缓冲区，消费者从缓冲区拿出数据</strong></li>
+</ul>
+<h4 id="解决方式2：信号灯法"><a href="#解决方式2：信号灯法" class="headerlink" title="解决方式2：信号灯法"></a>解决方式2：信号灯法</h4><ul>
+<li>设置标志位</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/17/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94Lock%E9%94%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/17/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94Lock%E9%94%81/" class="post-title-link" itemprop="url">多线程——Lock锁</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-17 13:16:30 / 修改时间：16:48:41" itemprop="dateCreated datePublished" datetime="2022-02-17T13:16:30+08:00">2022-02-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">多线程</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/02/17/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94Lock%E9%94%81/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/17/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94Lock%E9%94%81/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>从JDK 5.0开始，Java提供了更强大的线程同步机制——通过显式定义同步锁对象来实现同步。同步锁使用Lock对象充当</li>
+<li>java.util.concurrent.locks.Lock接口是控制多个线程对共享资源进行访问的工具。锁提供了对共享资源的独占访问，每次只能有一个线程对Lock对象加锁，线程开始访问共享资源之前应先获得Lock对象</li>
+<li>ReentrantLock(可重入锁)类实现了Lock，它拥有与synchronized相同的并发性和内存语义，在实现线程安全的控制中，比较常用的是ReentrantLock，可以显式加锁、释放锁。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.locks.ReentrantLock;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Tickets01</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Tickets tickets = <span class="keyword">new</span> Tickets();</span><br><span class="line">        <span class="keyword">new</span> Thread(tickets, <span class="string">"黄牛1号"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(tickets, <span class="string">"黄牛2号"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(tickets, <span class="string">"黄牛3号"</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tickets</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> ticket = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> ReentrantLock lock = <span class="keyword">new</span> ReentrantLock();</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(flag) &#123;</span><br><span class="line">            buy();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">buy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            lock.lock();</span><br><span class="line">            <span class="keyword">if</span>(ticket == <span class="number">0</span>) &#123;</span><br><span class="line">                flag = <span class="keyword">false</span>;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(Thread.currentThread().getName() + <span class="string">"拿到了第"</span> + ticket-- + <span class="string">"张票"</span>);</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">100</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            lock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="synchronized与lock的对比"><a href="#synchronized与lock的对比" class="headerlink" title="synchronized与lock的对比"></a>synchronized与lock的对比</h4><ul>
+<li>Lock是显示锁（手动开启和关闭锁，别忘记关闭锁）synchronized是隐式锁，出了作用域自动释放</li>
+<li>Lock只有代码块锁，synchronized有代码块锁和方法锁</li>
+<li>使用Lock锁，JVM将花费较少时间来调度线程，性能更好。并且具有更好的扩展性（提供更多的子类）</li>
+<li>优先使用顺序：<ul>
+<li>Lock &gt; 同步代码块（已经进入了方法体，分配了相应资源） &gt; 同步方法（在方法体外）</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/14/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E6%AD%BB%E9%94%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/14/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E6%AD%BB%E9%94%81/" class="post-title-link" itemprop="url">多线程——死锁</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-02-14 22:31:40" itemprop="dateCreated datePublished" datetime="2022-02-14T22:31:40+08:00">2022-02-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-16 21:36:07" itemprop="dateModified" datetime="2022-02-16T21:36:07+08:00">2022-02-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">多线程</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/02/14/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E6%AD%BB%E9%94%81/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/14/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E6%AD%BB%E9%94%81/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="“死锁”的形成"><a href="#“死锁”的形成" class="headerlink" title="“死锁”的形成"></a>“死锁”的形成</h4><p>多个线程各自占有一些公共资源，并且互相等待其它线程占有的资源才能运行，而导致两个或者多个线程都在等待对方释放资源，都停止执行的情形。某一个同步块同时拥有“两个以上对象的锁”时，就可能会发生“死锁”的问题。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="comment">//死锁：多个线程互相抱着对方需要的资源，然后形成僵持</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DeadLock</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Play boy = <span class="keyword">new</span> Play();</span><br><span class="line">        <span class="keyword">new</span> Thread(boy, <span class="string">"Bob"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(boy, <span class="string">"Alice"</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Toy</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Play</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    Toy toy1 = <span class="keyword">new</span> Toy();</span><br><span class="line">    Toy toy2 = <span class="keyword">new</span> Toy();</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        gg();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gg</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(Thread.currentThread().getName().equals(<span class="string">"Bob"</span>))&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (toy1)&#123;</span><br><span class="line">                System.out.println(<span class="string">"Bob的toy1"</span>);</span><br><span class="line">                <span class="keyword">try</span>&#123;</span><br><span class="line">                    Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e)&#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">synchronized</span> (toy2)&#123;</span><br><span class="line">                    System.out.println(<span class="string">"Bob的toy2"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (toy2)&#123;</span><br><span class="line">                System.out.println(<span class="string">"Alice的toy2"</span>);</span><br><span class="line">                <span class="keyword">try</span>&#123;</span><br><span class="line">                    Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e)&#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">synchronized</span> (toy1)&#123;</span><br><span class="line">                    System.out.println(<span class="string">"Alice的toy1"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/13/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E4%B8%8D%E5%AE%89%E5%85%A8%E6%A1%88%E4%BE%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/13/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E4%B8%8D%E5%AE%89%E5%85%A8%E6%A1%88%E4%BE%8B/" class="post-title-link" itemprop="url">多线程——不安全案例</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-02-13 22:13:30" itemprop="dateCreated datePublished" datetime="2022-02-13T22:13:30+08:00">2022-02-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-14 00:24:46" itemprop="dateModified" datetime="2022-02-14T00:24:46+08:00">2022-02-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">多线程</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/02/13/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E4%B8%8D%E5%AE%89%E5%85%A8%E6%A1%88%E4%BE%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/13/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E4%B8%8D%E5%AE%89%E5%85%A8%E6%A1%88%E4%BE%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="不安全的买票"><a href="#不安全的买票" class="headerlink" title="不安全的买票"></a>不安全的买票</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="comment">//线程不安全，有负数</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Tickets01</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> ticket = <span class="number">10</span>;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (ticket &lt;= <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">100</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//Thread.currentThread() 获得当前线程对象的引用</span></span><br><span class="line">            System.out.println(Thread.currentThread().getName() + <span class="string">"拿到了第"</span> + ticket-- + <span class="string">"张票"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Tickets01 tickets01 = <span class="keyword">new</span> Tickets01();</span><br><span class="line">        <span class="keyword">new</span> Thread(tickets01, <span class="string">"黄牛1号"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(tickets01, <span class="string">"黄牛2号"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(tickets01, <span class="string">"黄牛3号"</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/13/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5%E6%9C%BA%E5%88%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/13/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5%E6%9C%BA%E5%88%B6/" class="post-title-link" itemprop="url">多线程——线程同步机制</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-02-13 18:36:16" itemprop="dateCreated datePublished" datetime="2022-02-13T18:36:16+08:00">2022-02-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-14 22:30:39" itemprop="dateModified" datetime="2022-02-14T22:30:39+08:00">2022-02-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">多线程</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/02/13/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5%E6%9C%BA%E5%88%B6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/13/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5%E6%9C%BA%E5%88%B6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="并发：多个线程访问同个对象"><a href="#并发：多个线程访问同个对象" class="headerlink" title="并发：多个线程访问同个对象"></a>并发：多个线程访问同个对象</h3><h3 id="线程同步：队列-锁"><a href="#线程同步：队列-锁" class="headerlink" title="线程同步：队列 + 锁"></a>线程同步：队列 + 锁</h3><ul>
+<li>由于同一进程的多个线程共享同一块存储空间，在带来方便的同时，也带来了访问冲突问题，为了保证数据在方法中被访问时的正确性，在访问时加入<strong>锁机制synchronized</strong>，当一个线程获得对象的排它锁，独占资源，其他线程必须等待，使用后释放锁即可，存在以下问题：<ul>
+<li>一个线程持有锁会导致其他所有需要此锁的线程挂起</li>
+<li>在多线程竞争下，加锁，释放锁会导致比较多的上下文切换和调度延时，引起性能问题</li>
+<li>如果一个优先级高的线程等待一个优先级低的线程释放锁，会导致优先级倒置，引起性能问题</li>
+</ul>
+</li>
+</ul>
+<h3 id="同步方法及同步块"><a href="#同步方法及同步块" class="headerlink" title="同步方法及同步块"></a>同步方法及同步块</h3><ul>
+<li>由于我们可以通过private关键字来保证数据对象只能被方法访问，所以我们只需要针对方法提出一套机制，这套机制就是synchronized关键字，它包括两种用法：synchronized方法和synchronized块。</li>
+<li><strong>同步方法：public synchronized void method(int args){}</strong></li>
+<li>synchronized方法控制对“对象”的访问，每个对象对应一把锁，每个synchronized方法都必须获得调用该方法的对象的锁才能执行，否则线程会阻塞，方法一旦执行，就独占该锁，直到该方法返回才释放锁，后面被阻塞的线程才能获得这个锁，继续执行。</li>
+<li><strong>缺陷：若将一个大的方法声明为synchronized，将会影响效率</strong></li>
+<li><strong>方法里需要修改的内容才需要锁，锁的太多，浪费资源</strong></li>
+<li>同步块：<strong>synchronized(Obj){}</strong></li>
+<li>Obj称之为<strong>同步监视器</strong><ul>
+<li>Obj可以是任何对象，但是推荐使用共享资源作为同步监视器</li>
+<li>同步方法中无需指定同步监视器，因为同步方法的同步监视器就是this，就是这个对象本身，</li>
+<li>或者是class[反射中讲解]</li>
+</ul>
+</li>
+<li>同步监视器执行过程</li>
+</ul>
+<ol>
+<li>第一个线程访问，锁定同步监视器，执行其中代码</li>
+<li>第二个线程访问，发现同步监视器被锁定，无法访问</li>
+<li>第一个线程访问完毕，解锁同步监视器</li>
+<li>第二个线程访问，发现同步监视器没锁，然后锁定并访问</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/13/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/13/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81/" class="post-title-link" itemprop="url">多线程——线程状态</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-13 14:21:33 / 修改时间：23:12:33" itemprop="dateCreated datePublished" datetime="2022-02-13T14:21:33+08:00">2022-02-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">多线程</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/02/13/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/13/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -648,617 +1307,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/07/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BFThread%E7%B1%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/07/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BFThread%E7%B1%BB/" class="post-title-link" itemprop="url">多线程——继承Thread类</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-07 14:35:32" itemprop="dateCreated datePublished" datetime="2022-02-07T14:35:32+08:00">2022-02-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-09 14:08:31" itemprop="dateModified" datetime="2022-02-09T14:08:31+08:00">2022-02-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">多线程</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/02/07/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BFThread%E7%B1%BB/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/07/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BFThread%E7%B1%BB/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="继承Thread类，重写run-方法，调用start并开启线程"><a href="#继承Thread类，重写run-方法，调用start并开启线程" class="headerlink" title="继承Thread类，重写run()方法，调用start并开启线程"></a>继承Thread类，重写run()方法，调用start并开启线程</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建线程方式一：继承Thread类，重写run()方法，调用start并开启线程</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestThread1</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//run方法线程体</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">200</span>; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">"我在看片\n"</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="comment">//main线程，主线程</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//创建一个线程对象</span></span><br><span class="line">        TestThread1 testThread1 = <span class="keyword">new</span> TestThread1();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//调用start()方法开启线程</span></span><br><span class="line">        testThread1.start();</span><br><span class="line">        <span class="comment">//线程开启不一定立即执行，由CPU调度执行</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">200</span>; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">"我在学习\n"</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="练习Thread，实现多线程下载图片"><a href="#练习Thread，实现多线程下载图片" class="headerlink" title="练习Thread，实现多线程下载图片"></a>练习Thread，实现多线程下载图片</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.commons.io.FileUtils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.net.URL;</span><br><span class="line"></span><br><span class="line"><span class="comment">//练习Thread，实现多线程下载图片</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestThread02</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String url;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TestThread02</span><span class="params">(String url, String name)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.url = url;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        WebDownloader webDownloader = <span class="keyword">new</span> WebDownloader();</span><br><span class="line">        webDownloader.downloader(url, name);</span><br><span class="line">        System.out.println(<span class="string">"下载了文件名为："</span> + name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        TestThread02 t1 = <span class="keyword">new</span> TestThread02(<span class="string">"https://sympawang.com/images/7%E7%A7%8Djoin.png"</span>, <span class="string">"01.jpg"</span>);</span><br><span class="line">        TestThread02 t2 = <span class="keyword">new</span> TestThread02(<span class="string">"https://sympawang.com/images/7%E7%A7%8Djoin.png"</span>, <span class="string">"02.jpg"</span>);</span><br><span class="line">        TestThread02 t3 = <span class="keyword">new</span> TestThread02(<span class="string">"https://sympawang.com/images/7%E7%A7%8Djoin.png"</span>, <span class="string">"03.jpg"</span>);</span><br><span class="line">        t1.start();</span><br><span class="line">        t2.start();</span><br><span class="line">        t3.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//下载器</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WebDownloader</span></span>&#123;</span><br><span class="line">    <span class="comment">//下载方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">downloader</span><span class="params">(String url, String name)</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            FileUtils.copyURLToFile(<span class="keyword">new</span> URL(url), <span class="keyword">new</span> File(name));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            System.out.println(<span class="string">"IO异常\n"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/06/SQL%E8%BF%9B%E9%98%B6/statement%E5%AF%B9%E8%B1%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/06/SQL%E8%BF%9B%E9%98%B6/statement%E5%AF%B9%E8%B1%A1/" class="post-title-link" itemprop="url">statement对象</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-02-06 19:53:40 / 修改时间：20:42:11" itemprop="dateCreated datePublished" datetime="2022-02-06T19:53:40+08:00">2022-02-06</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/02/06/SQL%E8%BF%9B%E9%98%B6/statement%E5%AF%B9%E8%B1%A1/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/06/SQL%E8%BF%9B%E9%98%B6/statement%E5%AF%B9%E8%B1%A1/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>jdbc中的statement对象用于向数据库发送SQL语句，想完成对数据库的增删改查，只需要通过这个对象向数据库发送增删改查语句即可。</p>
-<p>Statement对象的executeUpdate方法，用于向数据库发送增、删、改的sql语句，executeUpdate执行完后，将会返回一个整数（即增删改语句导致了数据库几行数据发生了变化）。</p>
-<p>Statement.executeQuery方法用于向数据库发送查询语句，executeQuery方法返回代表查询结果的ResultSet对象。</p>
-<h4 id="CRUD操作"><a href="#CRUD操作" class="headerlink" title="CRUD操作"></a>CRUD操作</h4><ul>
-<li>create，使用executeUpdate(String sql)方法完成数据添加操作，实例操作：</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Statement st = conn.createStatement();</span><br><span class="line">String sql = <span class="string">"insert into user(...) values(...)"</span>;</span><br><span class="line"><span class="keyword">int</span> num = st.executeUpdate(sql);</span><br><span class="line"><span class="keyword">if</span>(num &gt; <span class="number">0</span>)&#123;</span><br><span class="line">    System.out.println(<span class="string">"插入成功"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>delete，数据删除操作，实例操作：</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Statement st = conn.createStatement();</span><br><span class="line">String sql = <span class="string">"delete from user where [...]"</span>;</span><br><span class="line"><span class="keyword">int</span> num = st.executeUpdate(sql);</span><br><span class="line"><span class="keyword">if</span>(num &gt; <span class="number">0</span>)&#123;</span><br><span class="line">    System.out.println(<span class="string">"删除成功"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>update，数据修改操作，实例操作：</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Statement st = conn.createStatement();</span><br><span class="line">String sql = <span class="string">"update user set name='' where name=''"</span>;</span><br><span class="line"><span class="keyword">int</span> num = st.executeUpdate(sql);</span><br><span class="line"><span class="keyword">if</span>(num &gt; <span class="number">0</span>)&#123;</span><br><span class="line">    System.out.println(<span class="string">"修改成功"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/04/SQL%E8%BF%9B%E9%98%B6/%E7%AC%AC%E4%B8%80%E4%B8%AAJDBC%E7%A8%8B%E5%BA%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/04/SQL%E8%BF%9B%E9%98%B6/%E7%AC%AC%E4%B8%80%E4%B8%AAJDBC%E7%A8%8B%E5%BA%8F/" class="post-title-link" itemprop="url">第一个JDBC程序</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-02-04 00:04:10 / 修改时间：01:14:53" itemprop="dateCreated datePublished" datetime="2022-02-04T00:04:10+08:00">2022-02-04</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/02/04/SQL%E8%BF%9B%E9%98%B6/%E7%AC%AC%E4%B8%80%E4%B8%AAJDBC%E7%A8%8B%E5%BA%8F/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/04/SQL%E8%BF%9B%E9%98%B6/%E7%AC%AC%E4%B8%80%E4%B8%AAJDBC%E7%A8%8B%E5%BA%8F/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.sql.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">//我的第一个JDBC程序</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JdbcFirstDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException, SQLException </span>&#123;</span><br><span class="line">        <span class="comment">//1.加载驱动</span></span><br><span class="line">        <span class="comment">// DriverManager.registerDriver(new com.mysql.jdbc.Driver());</span></span><br><span class="line">        Class.forName(<span class="string">"com.mysql.cj.jdbc.Driver"</span>); <span class="comment">//固定写法，加载驱动</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">//2.用户信息和url</span></span><br><span class="line">        <span class="comment">// jdbc:mysql://主机地址:端口号(mysql默认3306)/数据库名?参数1&amp;参数2&amp;....</span></span><br><span class="line">        String url = <span class="string">"jdbc:mysql://127.0.0.1:3306/jdbcstudy?serverTimezone=UTC&amp;userUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false"</span>;</span><br><span class="line">        String username = <span class="string">"root"</span>;</span><br><span class="line">        String password = <span class="string">""</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//3.连接成功，数据库对象 Connection 代表数据库</span></span><br><span class="line">        <span class="comment">//数据库级别操作 设置自动提交，事务提交，事务回滚</span></span><br><span class="line">        <span class="comment">//rollback() commit() setAutoCommit()</span></span><br><span class="line">        Connection connection = DriverManager.getConnection(url, username, password);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//4.执行SQL的对象</span></span><br><span class="line">        <span class="comment">//查询返回结果集 .executeQuery()</span></span><br><span class="line">        <span class="comment">//更新插入删除，返回影响行数 .executeUpdate()</span></span><br><span class="line">        <span class="comment">//任何SQL .execute()</span></span><br><span class="line">        Statement statement = connection.createStatement();</span><br><span class="line"></span><br><span class="line">        String sql = <span class="string">"select * from users"</span>;</span><br><span class="line">        ResultSet resultSet = statement.executeQuery(sql); <span class="comment">//返回的结果集</span></span><br><span class="line">        <span class="comment">//获得指定数据类型</span></span><br><span class="line">        <span class="comment">//不知道列类型.getObject() 知道列类型.getInt()等</span></span><br><span class="line">        <span class="keyword">while</span>(resultSet.next())&#123;</span><br><span class="line">            System.out.println(<span class="string">"id="</span> + resultSet.getObject(<span class="string">"id"</span>));</span><br><span class="line">            System.out.println(<span class="string">"name="</span> + resultSet.getObject(<span class="string">"name"</span>));</span><br><span class="line">            System.out.println(<span class="string">"password="</span> + resultSet.getObject(<span class="string">"password"</span>));</span><br><span class="line">            System.out.println(<span class="string">"email="</span> + resultSet.getObject(<span class="string">"email"</span>));</span><br><span class="line">            System.out.println(<span class="string">"birthday="</span> + resultSet.getObject(<span class="string">"birthday"</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//5.释放连接</span></span><br><span class="line">        resultSet.close();</span><br><span class="line">        statement.close();</span><br><span class="line">        connection.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/25/SQL%E8%BF%9B%E9%98%B6/SQL%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E5%92%8C%E5%A4%87%E4%BB%BD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/25/SQL%E8%BF%9B%E9%98%B6/SQL%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E5%92%8C%E5%A4%87%E4%BB%BD/" class="post-title-link" itemprop="url">SQL权限管理和备份</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-01-25 20:21:50 / 修改时间：21:47:00" itemprop="dateCreated datePublished" datetime="2022-01-25T20:21:50+08:00">2022-01-25</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/01/25/SQL%E8%BF%9B%E9%98%B6/SQL%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E5%92%8C%E5%A4%87%E4%BB%BD/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/01/25/SQL%E8%BF%9B%E9%98%B6/SQL%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E5%92%8C%E5%A4%87%E4%BB%BD/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h3><ul>
-<li><h4 id="SQL可视化管理"><a href="#SQL可视化管理" class="headerlink" title="SQL可视化管理"></a>SQL可视化管理</h4></li>
-<li><h4 id="SQL命令操作"><a href="#SQL命令操作" class="headerlink" title="SQL命令操作"></a>SQL命令操作</h4><p>用户表：mysql.user</p>
-<p>本质：对用户表增删改查</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建用户</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> [用户名] <span class="keyword">identified</span> <span class="keyword">by</span> [密码]</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 修改密码（当前用户）</span></span><br><span class="line"><span class="keyword">set</span> <span class="keyword">password</span> = <span class="keyword">password</span>([])</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 修改密码（指定）</span></span><br><span class="line"><span class="keyword">set</span> <span class="keyword">password</span> <span class="keyword">for</span> [] = <span class="keyword">password</span>([])</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 重命名</span></span><br><span class="line"><span class="keyword">rename</span> <span class="keyword">user</span> [] <span class="keyword">to</span> []</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 用户授权(授予全部权限,除了给别的用户授权)</span></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">all</span> <span class="keyword">privileges</span> <span class="keyword">on</span> [库名].[表名] <span class="keyword">to</span> [用户名]</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询权限</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">grants</span> <span class="keyword">for</span> [用户]</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 撤销全部权限</span></span><br><span class="line"><span class="keyword">revoke</span> <span class="keyword">all</span> <span class="keyword">privileges</span> <span class="keyword">on</span> [库名].[表名] <span class="keyword">to</span> [用户名]</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 删除用户</span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">user</span> []</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<h3 id="MySQL备份"><a href="#MySQL备份" class="headerlink" title="MySQL备份"></a>MySQL备份</h3><p>MySQL数据库备份方式</p>
-<ul>
-<li>拷贝物理文件</li>
-<li>在Sqlyog这种可视化工具中手动导出<ul>
-<li>在想要导出的表或者库中选择备份或导出</li>
-<li>导出后拉进来就行了</li>
-</ul>
-</li>
-<li>使用命令行 mysqldump<ul>
-<li>mysqldump -主机名 -用户名 -密码 表名 &gt;路径</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/24/SQL%E8%BF%9B%E9%98%B6/SQL_%E7%B4%A2%E5%BC%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/24/SQL%E8%BF%9B%E9%98%B6/SQL_%E7%B4%A2%E5%BC%95/" class="post-title-link" itemprop="url">SQL索引</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-01-24 17:40:50" itemprop="dateCreated datePublished" datetime="2022-01-24T17:40:50+08:00">2022-01-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-01-25 20:07:24" itemprop="dateModified" datetime="2022-01-25T20:07:24+08:00">2022-01-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/01/24/SQL%E8%BF%9B%E9%98%B6/SQL_%E7%B4%A2%E5%BC%95/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/01/24/SQL%E8%BF%9B%E9%98%B6/SQL_%E7%B4%A2%E5%BC%95/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="什么是索引？"><a href="#什么是索引？" class="headerlink" title="什么是索引？"></a>什么是索引？</h3><h4 id="索引（Index）是帮助MySQL高效获取数据的数据结构"><a href="#索引（Index）是帮助MySQL高效获取数据的数据结构" class="headerlink" title="索引（Index）是帮助MySQL高效获取数据的数据结构"></a>索引（Index）是帮助MySQL高效获取数据的数据结构</h4><h4 id="索引的分类"><a href="#索引的分类" class="headerlink" title="索引的分类"></a>索引的分类</h4><ul>
-<li>主键索引（primary key）<ul>
-<li>唯一的标识，主键不可重复，只能有一个列作为主键</li>
-</ul>
-</li>
-<li>唯一索引（unique key）<ul>
-<li>避免重复的列出现，唯一索引可以重复，多个列都可标识唯一索引</li>
-</ul>
-</li>
-<li>常规索引（key/index）<ul>
-<li>默认的，index。key关键字设置</li>
-</ul>
-</li>
-<li>全文索引（fulltext）<ul>
-<li>在特定数据库引擎下，MyISAM</li>
-<li>快速定位数据</li>
-</ul>
-</li>
-</ul>
-<h3 id="索引原则"><a href="#索引原则" class="headerlink" title="索引原则"></a>索引原则</h3><ul>
-<li>索引不是越多越好</li>
-<li>不要对进程变动数据加索引</li>
-<li>小数据量的表不需要加索引</li>
-<li>索引一般加在常用来查询的字段上</li>
-</ul>
-<h3 id="索引的数据结构"><a href="#索引的数据结构" class="headerlink" title="索引的数据结构"></a>索引的数据结构</h3><ul>
-<li>Btree：<a href="https://blog.csdn.net/wufuhuai/article/details/79631466" target="_blank" rel="noopener">InnoDB默认数据结构</a></li>
-<li>Hash类型</li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/23/SQL%E8%BF%9B%E9%98%B6/SQL_%E4%BA%8B%E5%8A%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/23/SQL%E8%BF%9B%E9%98%B6/SQL_%E4%BA%8B%E5%8A%A1/" class="post-title-link" itemprop="url">SQL事务</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-01-23 20:44:30 / 修改时间：22:32:55" itemprop="dateCreated datePublished" datetime="2022-01-23T20:44:30+08:00">2022-01-23</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/01/23/SQL%E8%BF%9B%E9%98%B6/SQL_%E4%BA%8B%E5%8A%A1/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/01/23/SQL%E8%BF%9B%E9%98%B6/SQL_%E4%BA%8B%E5%8A%A1/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="什么是事务？"><a href="#什么是事务？" class="headerlink" title="什么是事务？"></a>什么是事务？</h3><p>要么都成功，要么都失败</p>
-<p>将一组SQL放在一个批次执行</p>
-<h4 id="事务原则：ACID原则"><a href="#事务原则：ACID原则" class="headerlink" title="事务原则：ACID原则"></a>事务原则：ACID原则</h4><h5 id="原子性，一致性，隔离性，持久性"><a href="#原子性，一致性，隔离性，持久性" class="headerlink" title="原子性，一致性，隔离性，持久性"></a>原子性，一致性，隔离性，持久性</h5><h4 id="原子性（Atomicity）"><a href="#原子性（Atomicity）" class="headerlink" title="原子性（Atomicity）"></a>原子性（Atomicity）</h4><p>原子性是指事务是一个不可分割的工作单位，事务中的操作要么都发生，要么都不发生。</p>
-<h4 id="一致性（Consistency）"><a href="#一致性（Consistency）" class="headerlink" title="一致性（Consistency）"></a>一致性（Consistency）</h4><p>事务前后数据的完整性必须保持一致。</p>
-<h4 id="隔离性（Isolation）"><a href="#隔离性（Isolation）" class="headerlink" title="隔离性（Isolation）"></a>隔离性（Isolation）</h4><p>事务的隔离性是多个用户并发访问数据库时，数据库为每一个用户开启的事务，不能被其他事务的操作数据所干扰，多个并发事务之间要相互隔离。</p>
-<h4 id="持久性（Durability）"><a href="#持久性（Durability）" class="headerlink" title="持久性（Durability）"></a>持久性（Durability）</h4><p><strong>事务提交不可逆</strong></p>
-<p>持久性是指一个事务一旦被提交，它对数据库中数据的改变就是永久性的，接下来即使数据库发生故障也不应该对其有任何影响</p>
-<h4 id="事务的隔离级别"><a href="#事务的隔离级别" class="headerlink" title="事务的隔离级别"></a>事务的隔离级别</h4><h4 id="脏读："><a href="#脏读：" class="headerlink" title="脏读："></a>脏读：</h4><p>指一个事务读取了另外一个事务未提交的数据</p>
-<h4 id="不可重复读："><a href="#不可重复读：" class="headerlink" title="不可重复读："></a>不可重复读：</h4><p>在一个事务内读取表中的某一行数据，多次读取结果不同。（这个不一定是错误，只是某些场合不对）</p>
-<h4 id="虚读-幻读-："><a href="#虚读-幻读-：" class="headerlink" title="虚读(幻读)："></a>虚读(幻读)：</h4><p>是指在一个事务内读取到了别的事务插入的数据，导致前后读取数量总量不一致。<br>（一般是行影响）</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- mysql 是默认开启事务自动提交的</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">0</span> <span class="comment">-- 关闭</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">1</span> <span class="comment">-- 开启</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 手动处理事务</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">0</span> <span class="comment">-- 第一步 关闭自动提交</span></span><br><span class="line"><span class="comment">-- 事务开启</span></span><br><span class="line"><span class="keyword">start</span> <span class="keyword">transaction</span> <span class="comment">-- 标记一个事务开始，从这之后的sql都在一个事务内</span></span><br><span class="line"><span class="comment">-- 两种情况</span></span><br><span class="line"><span class="comment">-- 提交： 持久化（成功）</span></span><br><span class="line"><span class="keyword">commit</span></span><br><span class="line"><span class="comment">-- 回滚： 回到原来的样子（失败）</span></span><br><span class="line"><span class="keyword">rollback</span></span><br><span class="line"><span class="comment">-- 事务结束</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">1</span> <span class="comment">-- 开启自动提交</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">savepoint</span> 名称 <span class="comment">-- 设置事务保存点</span></span><br><span class="line"><span class="keyword">rollback</span> <span class="keyword">to</span> <span class="keyword">savepoint</span> 名称 <span class="comment">-- 回滚到保存点</span></span><br><span class="line"><span class="keyword">release</span> <span class="keyword">savepoint</span> 名称 <span class="comment">-- 撤销保存点</span></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1326,7 +1378,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1422,7 +1474,7 @@ $(document).ready(function() {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共11k字</span>
+  <span class="post-count">博客全站共13k字</span>
 </div>
         
 <div class="busuanzi-count">
