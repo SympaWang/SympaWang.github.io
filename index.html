@@ -275,6 +275,294 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/21/Java/%E5%8F%8D%E5%B0%84/%E8%B0%83%E7%94%A8%E8%BF%90%E8%A1%8C%E6%97%B6%E7%B1%BB%E7%BB%93%E6%9E%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/21/Java/%E5%8F%8D%E5%B0%84/%E8%B0%83%E7%94%A8%E8%BF%90%E8%A1%8C%E6%97%B6%E7%B1%BB%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">调用运行时类结构</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-21 19:46:59 / 修改时间：21:05:43" itemprop="dateCreated datePublished" datetime="2022-02-21T19:46:59+08:00">2022-02-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/%E5%8F%8D%E5%B0%84/" itemprop="url" rel="index"><span itemprop="name">反射</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/02/21/Java/%E5%8F%8D%E5%B0%84/%E8%B0%83%E7%94%A8%E8%BF%90%E8%A1%8C%E6%97%B6%E7%B1%BB%E7%BB%93%E6%9E%84/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/21/Java/%E5%8F%8D%E5%B0%84/%E8%B0%83%E7%94%A8%E8%BF%90%E8%A1%8C%E6%97%B6%E7%B1%BB%E7%BB%93%E6%9E%84/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationTargetException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReflectionTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchMethodException, NoSuchFieldException, InvocationTargetException, InstantiationException, IllegalAccessException </span>&#123;</span><br><span class="line"></span><br><span class="line">        Class&lt;Person&gt; clazz = Person<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">        Person person = clazz.getDeclaredConstructor().newInstance();</span><br><span class="line">        <span class="comment">//操作运行时类的指定属性</span></span><br><span class="line">        Field age = clazz.getDeclaredField(<span class="string">"age"</span>);</span><br><span class="line">        <span class="comment">//设置当前对象指定属性值</span></span><br><span class="line">        age.set(person, <span class="number">10</span>); <span class="comment">//(操作对象, 设置值)</span></span><br><span class="line">        <span class="comment">//获取当前对象指定属性值</span></span><br><span class="line">        <span class="keyword">int</span> ans = (<span class="keyword">int</span>)age.get(person);</span><br><span class="line">        System.out.println(ans);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//操作运行时类的指定方法</span></span><br><span class="line">        <span class="comment">//获取指定方法</span></span><br><span class="line">        Method show = clazz.getDeclaredMethod(<span class="string">"show"</span>, <span class="keyword">int</span><span class="class">.<span class="keyword">class</span>)</span>; <span class="comment">//(方法名, 形参列表)</span></span><br><span class="line">        <span class="comment">//保证当前方法可访问</span></span><br><span class="line">        show.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">        <span class="comment">//执行方法</span></span><br><span class="line">        show.invoke(person, <span class="number">2</span>); <span class="comment">//(方法名, 实参列表)</span></span><br><span class="line">        <span class="comment">//invoke返回值即为方法返回值</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/21/Java/%E5%8F%8D%E5%B0%84/%E8%8E%B7%E5%8F%96%E8%BF%90%E8%A1%8C%E6%97%B6%E7%B1%BB%E7%BB%93%E6%9E%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/21/Java/%E5%8F%8D%E5%B0%84/%E8%8E%B7%E5%8F%96%E8%BF%90%E8%A1%8C%E6%97%B6%E7%B1%BB%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">获取运行时类结构</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-21 19:46:09 / 修改时间：19:47:26" itemprop="dateCreated datePublished" datetime="2022-02-21T19:46:09+08:00">2022-02-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/%E5%8F%8D%E5%B0%84/" itemprop="url" rel="index"><span itemprop="name">反射</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/02/21/Java/%E5%8F%8D%E5%B0%84/%E8%8E%B7%E5%8F%96%E8%BF%90%E8%A1%8C%E6%97%B6%E7%B1%BB%E7%BB%93%E6%9E%84/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/21/Java/%E5%8F%8D%E5%B0%84/%E8%8E%B7%E5%8F%96%E8%BF%90%E8%A1%8C%E6%97%B6%E7%B1%BB%E7%BB%93%E6%9E%84/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationTargetException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReflectionTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException </span>&#123;</span><br><span class="line"></span><br><span class="line">        Class&lt;Person&gt; clazz = Person<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//newInstance：创建对应运行时类对象</span></span><br><span class="line">        Person person = clazz.getDeclaredConstructor().newInstance();</span><br><span class="line">        System.out.println(person);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//获取运行时类的属性结构</span></span><br><span class="line">        Field[] fields = clazz.getDeclaredFields();</span><br><span class="line">        <span class="keyword">for</span>(Field f : fields)&#123;</span><br><span class="line">            System.out.println(f);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//获取运行时类的方法结构</span></span><br><span class="line">        Method[] methods = clazz.getDeclaredMethods();</span><br><span class="line">        <span class="keyword">for</span>(Method m : methods)&#123;</span><br><span class="line">            System.out.println(m);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Method show = clazz.getMethod(<span class="string">"show"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//…………………………</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/21/Java/%E5%8F%8D%E5%B0%84/Class%E7%B1%BB%E7%9B%B8%E5%85%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/21/Java/%E5%8F%8D%E5%B0%84/Class%E7%B1%BB%E7%9B%B8%E5%85%B3/" class="post-title-link" itemprop="url">Class类相关</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-21 15:57:18 / 修改时间：16:51:21" itemprop="dateCreated datePublished" datetime="2022-02-21T15:57:18+08:00">2022-02-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/%E5%8F%8D%E5%B0%84/" itemprop="url" rel="index"><span itemprop="name">反射</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/02/21/Java/%E5%8F%8D%E5%B0%84/Class%E7%B1%BB%E7%9B%B8%E5%85%B3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/21/Java/%E5%8F%8D%E5%B0%84/Class%E7%B1%BB%E7%9B%B8%E5%85%B3/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="关于java-Lang-Class类的理解"><a href="#关于java-Lang-Class类的理解" class="headerlink" title="关于java.Lang.Class类的理解"></a>关于java.Lang.Class类的理解</h4><h5 id="类的加载过程"><a href="#类的加载过程" class="headerlink" title="类的加载过程"></a>类的加载过程</h5><ul>
+<li>程序经过javac,exe命令后，会生成一个或多个字节码文件（.class结尾）。</li>
+<li>接着使用java.exe命令对某个字节码文件进行解释运行，相当于将某个字节码文件加载到内存中，此过程就称为类的加载</li>
+<li>加载到内存中的类，我们就称为运行时类，此运行时类，就称为Class类的一个实例</li>
+<li>换句话说，Class的实例对应着一个运行时类</li>
+<li>加载到内存中的运行时类，会缓存一定时间，可以通过不同方式来获取此运行时类</li>
+</ul>
+<h4 id="获取Class实例的四种方式"><a href="#获取Class实例的四种方式" class="headerlink" title="获取Class实例的四种方式"></a>获取Class实例的四种方式</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Constructor;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationTargetException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReflectionTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//方式1：调用运行时类的属性</span></span><br><span class="line">        Class clazz = Person<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//方式2：通过运行时类的对象，调用getClass()</span></span><br><span class="line">        Person person = <span class="keyword">new</span> Person();</span><br><span class="line">        Class clazz1 = person.getClass();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//方式3：调用Class的静态方法：forName(String, classPath)</span></span><br><span class="line">        Class clazz2 = Class.forName(<span class="string">"com.sympa.lesson01.Person"</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(clazz == clazz1); <span class="comment">//true</span></span><br><span class="line">        System.out.println(clazz == clazz2); <span class="comment">//true</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//方式4：使用类的加载器：ClassLoader</span></span><br><span class="line">        ClassLoader classLoader = ReflectionTest<span class="class">.<span class="keyword">class</span>.<span class="title">getClassLoader</span>()</span>;</span><br><span class="line">        Class clazz3 = classLoader.loadClass(<span class="string">"com.sympa.lesson01.Person"</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="哪些类型可以有Class对象"><a href="#哪些类型可以有Class对象" class="headerlink" title="哪些类型可以有Class对象"></a>哪些类型可以有Class对象</h4><ul>
+<li>class：外部类，成员（成员内部类，静态内部类），局部内部类，匿名内部类</li>
+<li>interface：接口</li>
+<li>[]：数组（元素类型和维度一样，就是同一个Class）</li>
+<li>enum：枚举类</li>
+<li>annotation：注解</li>
+<li>primitive type：基本数据类型</li>
+<li>void</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/21/Java/%E5%8F%8D%E5%B0%84/%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6%E6%A6%82%E8%BF%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -302,7 +590,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-02-21 00:24:48 / 修改时间：01:27:32" itemprop="dateCreated datePublished" datetime="2022-02-21T00:24:48+08:00">2022-02-21</time>
+              <time title="创建时间：2022-02-21 00:24:48 / 修改时间：15:51:39" itemprop="dateCreated datePublished" datetime="2022-02-21T00:24:48+08:00">2022-02-21</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -359,7 +647,9 @@
 <li>java.lang.reflect.Constructor：代表类的构造器</li>
 <li>……</li>
 </ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Constructor;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationTargetException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReflectionTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchFieldException </span>&#123;</span><br><span class="line"></span><br><span class="line">        Class clazz = Person<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">        <span class="comment">//1.通过反射，创建Person对象</span></span><br><span class="line">        Constructor cons = clazz.getConstructor(String<span class="class">.<span class="keyword">class</span>, <span class="title">int</span>.<span class="title">class</span>)</span>;</span><br><span class="line">        Object obj = cons.newInstance(<span class="string">"Tom"</span>, <span class="number">12</span>);</span><br><span class="line">        Person p = (Person) obj;</span><br><span class="line">        System.out.println(p.toString());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2.通过反射调用对象属性</span></span><br><span class="line">        Field age = clazz.getField(<span class="string">"age"</span>);</span><br><span class="line">        age.set(p, <span class="number">10</span>);</span><br><span class="line">        System.out.println(p.toString());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3.通过反射调用对象方法</span></span><br><span class="line">        Method show = clazz.getDeclaredMethod(<span class="string">"show"</span>);</span><br><span class="line">        show.invoke(p);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(name + age);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h4 id="反射与封装性不矛盾"><a href="#反射与封装性不矛盾" class="headerlink" title="反射与封装性不矛盾"></a>反射与封装性不矛盾</h4>
       
     </div>
     
@@ -884,374 +1174,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/18/Java/%E6%B3%A8%E8%A7%A3/%E5%85%83%E6%B3%A8%E8%A7%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/18/Java/%E6%B3%A8%E8%A7%A3/%E5%85%83%E6%B3%A8%E8%A7%A3/" class="post-title-link" itemprop="url">元注解</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-02-18 17:50:20 / 修改时间：18:19:49" itemprop="dateCreated datePublished" datetime="2022-02-18T17:50:20+08:00">2022-02-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/%E6%B3%A8%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">注解</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/02/18/Java/%E6%B3%A8%E8%A7%A3/%E5%85%83%E6%B3%A8%E8%A7%A3/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/18/Java/%E6%B3%A8%E8%A7%A3/%E5%85%83%E6%B3%A8%E8%A7%A3/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li>JDK的元Annotation用于修饰其他Annotation定义</li>
-<li>JDK5.0提供了4个标准的meta-annotation类型，分别是：<ul>
-<li>Retention</li>
-<li>Target</li>
-<li>Documented</li>
-<li>Inherited</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><strong>@Retention</strong>：只能用于修饰一个Annotation定义，用于指定该Annotation的生命周期，@Rentention包含一个RetentionPolicy类型的成员变量，使用@Rentention时必须为该value成员变量指定值：<ul>
-<li>RetentionPolicy.SOURCE：在源文件中有效</li>
-<li>RetentionPolicy.CLASS：在class文件中有效（默认）</li>
-<li>RetentionPolicy.RUNTIME：在运行时有效，能通过反射获取</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><strong>@Target</strong>：用于修饰Annotation定义，用于指定被修饰的Annotation能用于修饰哪些元素，@Target也包含一个名为value的成员变量</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>取值</th>
-<th></th>
-<th>取值</th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>CONSTRUCTOR</td>
-<td>用于描述构造器</td>
-<td>PACKAGE</td>
-<td>用于描述包</td>
-</tr>
-<tr>
-<td>FIELD</td>
-<td>用于描述域</td>
-<td>PARAMETER</td>
-<td>用于描述参数</td>
-</tr>
-<tr>
-<td>LOCAL_VARIABLE</td>
-<td>用于描述局部变量</td>
-<td>TYPE</td>
-<td>用于描述类，接口或enum声明</td>
-</tr>
-<tr>
-<td>METHOD</td>
-<td>用于描述方法</td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<ul>
-<li>@Documented：用于指定被该元Annotation修饰的Annotation类将被javadoc工具提取成文档。默认情况下，javadoc是不包括注解的</li>
-<li>定义为Documented的注解必须设置Retention值为RUNTIME</li>
-</ul>
-<ul>
-<li>@Inherited：被它修饰的Annotation将具有继承性，子类将自动具有该注解</li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/18/Java/%E6%B3%A8%E8%A7%A3/%E6%B3%A8%E8%A7%A3%EF%BC%88Annotation%EF%BC%89%E7%AE%80%E4%BB%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/18/Java/%E6%B3%A8%E8%A7%A3/%E6%B3%A8%E8%A7%A3%EF%BC%88Annotation%EF%BC%89%E7%AE%80%E4%BB%8B/" class="post-title-link" itemprop="url">注解（Annotation）简介</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-02-18 14:51:30 / 修改时间：17:50:29" itemprop="dateCreated datePublished" datetime="2022-02-18T14:51:30+08:00">2022-02-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/%E6%B3%A8%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">注解</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/02/18/Java/%E6%B3%A8%E8%A7%A3/%E6%B3%A8%E8%A7%A3%EF%BC%88Annotation%EF%BC%89%E7%AE%80%E4%BB%8B/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/18/Java/%E6%B3%A8%E8%A7%A3/%E6%B3%A8%E8%A7%A3%EF%BC%88Annotation%EF%BC%89%E7%AE%80%E4%BB%8B/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li>JDK5.0开始，Java增加了对元数据（MetaData）的支持，也就是注解</li>
-<li>Annotation其实就是代码里的特殊标记，这些标记可以在编译，类加载，运行时被读取，并执行相应的处理。通过使用Annotation，程序员可以在不改变原有逻辑的情况下，在源文件中嵌入补充信息。代码分析工具，开发工具和部署工具可以通过这些补充信息进行验证或部署</li>
-<li>Annotation可以像修饰符一样被使用，可用于<strong>修饰包，类，构造器，方法，成员变量，参数，局部变量的声明</strong></li>
-<li>在JavaSE中，注解使用目的较为简单，例如标记过时功能，忽略警告等。在JavaEE/Android中注解占据了更重要的角色，例如用来配置应用程序的任何界面，代替JavaEE旧版中所遗留的繁冗代码和XML配置等</li>
-<li>未来的开发模式都是基于注解的，一定程度上：框架 = 注解 + 反射 + 设计模式。</li>
-</ul>
-<h4 id="常见Annotation"><a href="#常见Annotation" class="headerlink" title="常见Annotation"></a>常见Annotation</h4><ul>
-<li>生成文档相关注解<ul>
-<li>@author 标明开发该类模块的作者，多个作者直接使用,分隔</li>
-<li>@version 标明该类模块的版本</li>
-<li>@see 参考转向，也就是相关主题</li>
-<li>@since 从哪个版本开始增加的</li>
-<li>@param 对方法中某参数的说明，如果没有参数就不能写。格式：@param 形参名 形参类型 形参说明</li>
-<li>@return 对方法返回值说明。格式：@return 返回值类型 返回值说明</li>
-<li>@exception 对方法可能抛出异常说明，没有throws显式抛出异常就不能写。格式：@exception 异常类型 异常说明</li>
-</ul>
-</li>
-<li>在编译时进行格式检查（JDK内置三个基本注解）<ul>
-<li>@Override：限定重写父类方法</li>
-<li>@Deprecated：表示所修饰的元素已过时</li>
-<li>@SuppressWarnings：抑制编译器警告</li>
-</ul>
-</li>
-<li>跟踪代码依赖性，实现替代配置文件功能</li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/18/Java/%E5%B8%B8%E7%94%A8%E7%B1%BB/%E6%9E%9A%E4%B8%BE%E7%B1%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/18/Java/%E5%B8%B8%E7%94%A8%E7%B1%BB/%E6%9E%9A%E4%B8%BE%E7%B1%BB/" class="post-title-link" itemprop="url">Java枚举类</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-02-18 14:21:11 / 修改时间：14:49:17" itemprop="dateCreated datePublished" datetime="2022-02-18T14:21:11+08:00">2022-02-18</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/%E5%B8%B8%E7%94%A8%E7%B1%BB/" itemprop="url" rel="index"><span itemprop="name">常用类</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/02/18/Java/%E5%B8%B8%E7%94%A8%E7%B1%BB/%E6%9E%9A%E4%B8%BE%E7%B1%BB/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/18/Java/%E5%B8%B8%E7%94%A8%E7%B1%BB/%E6%9E%9A%E4%B8%BE%E7%B1%BB/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="如何定义枚举类"><a href="#如何定义枚举类" class="headerlink" title="如何定义枚举类"></a>如何定义枚举类</h4><ul>
-<li>jdk5.0之前，自定义枚举类</li>
-<li>之后，可以使用enum关键字</li>
-</ul>
-<h4 id="自定义枚举类"><a href="#自定义枚举类" class="headerlink" title="自定义枚举类"></a>自定义枚举类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Season</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String seasonName;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String seasonDesc;</span><br><span class="line">    <span class="comment">//1.私有化类的构造器</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Season</span><span class="params">(String seasonName, String seasonDesc)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.seasonName = seasonName;</span><br><span class="line">        <span class="keyword">this</span>.seasonDesc = seasonDesc;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//2.提供当前枚举类多个对象</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Season SPRING = <span class="keyword">new</span> Season(<span class="string">"春天"</span>, <span class="string">"春暖花开"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//3.其他诉求1：获取枚举类对象属性</span></span><br><span class="line">	<span class="comment">//4。其他诉求2：提供toString()</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="enum关键字（默认继承于Enum类）"><a href="#enum关键字（默认继承于Enum类）" class="headerlink" title="enum关键字（默认继承于Enum类）"></a>enum关键字（默认继承于Enum类）</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> Season&#123;</span><br><span class="line">    <span class="comment">//多个之间用,分隔</span></span><br><span class="line">    SPRING(<span class="string">"春天"</span>, <span class="string">"春暖花开"</span>);</span><br><span class="line">    <span class="comment">//toString返回对象名</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="使用enum关键字定义枚举类实现接口"><a href="#使用enum关键字定义枚举类实现接口" class="headerlink" title="使用enum关键字定义枚举类实现接口"></a>使用enum关键字定义枚举类实现接口</h4><ul>
-<li>情况一：在enum枚举类中实现抽象方法</li>
-<li>情况二：在每个对象后添加代码块实现方法</li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1323,7 +1245,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-count">60</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1419,7 +1341,7 @@ $(document).ready(function() {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共16.6k字</span>
+  <span class="post-count">博客全站共17.4k字</span>
 </div>
         
 <div class="busuanzi-count">
