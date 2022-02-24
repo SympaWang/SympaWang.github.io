@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2022-02-21T13:05:43.384Z</updated>
+  <updated>2022-02-24T17:10:43.204Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,270 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Response对象</title>
+    <link href="http://yoursite.com/2022/02/25/Web/Request%E5%AF%B9%E8%B1%A1/"/>
+    <id>http://yoursite.com/2022/02/25/Web/Request%E5%AF%B9%E8%B1%A1/</id>
+    <published>2022-02-24T16:10:27.000Z</published>
+    <updated>2022-02-24T17:10:43.204Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="Response继承体系"><a href="#Response继承体系" class="headerlink" title="Response继承体系"></a>Response继承体系</h4><ul><li>ServletResponse：Java提供的请求对象根接口</li><li>HttpServletResponse：Java提供的对Http协议封装的请求对象接口</li><li>ResponseFacade：Tomcat定义的实现类</li></ul><h4 id="Response获取请求数据"><a href="#Response获取请求数据" class="headerlink" title="Response获取请求数据"></a>Response获取请求数据</h4><ul><li><h5 id="响应行：HTTP-1-1-200-OK"><a href="#响应行：HTTP-1-1-200-OK" class="headerlink" title="响应行：HTTP/1.1 200 OK"></a>响应行：HTTP/1.1 200 OK</h5><ul><li>void setStatus(int sc)：设置响应状态码</li></ul></li><li><h5 id="响应头：Content-Type-text-html"><a href="#响应头：Content-Type-text-html" class="headerlink" title="响应头：Content-Type: text/html"></a>响应头：Content-Type: text/html</h5><ul><li>void setHeader(String name, String value)：设置响应头键值对</li></ul></li><li><h5 id="响应体"><a href="#响应体" class="headerlink" title="响应体"></a>响应体</h5><ul><li>ServletOutputStream getOutputSteam()：获取字节输出流</li><li>PrintWriter getWriter()：获取字符输出流</li></ul></li></ul><h4 id="Response完成重定向"><a href="#Response完成重定向" class="headerlink" title="Response完成重定向"></a>Response完成重定向</h4><ul><li>重定向：一种资源跳转方式</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.sendRedirect(<span class="string">"虚拟路径"</span>);</span><br></pre></td></tr></table></figure><ul><li><p>动态获取虚拟路径</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String contextPath = request.getContextPath();</span><br><span class="line">response.sendRedirect(contextPath + <span class="string">"/demo1"</span>);</span><br></pre></td></tr></table></figure></li></ul><h4 id="Response响应字符数据"><a href="#Response响应字符数据" class="headerlink" title="Response响应字符数据"></a>Response响应字符数据</h4><ul><li><p>使用</p><ul><li>通过Response对象获取字符输出流</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PrintWriter writer = resp.getWriter();</span><br></pre></td></tr></table></figure><ul><li>写数据</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">writer.write(<span class="string">"aaa"</span>);</span><br></pre></td></tr></table></figure><ul><li>响应头设置响应体解析格式与编码</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.setContentType(<span class="string">"text/html;charset=utf-8"</span>);</span><br></pre></td></tr></table></figure><p><strong>流不需要关闭</strong></p></li></ul><h4 id="Response响应字节数据"><a href="#Response响应字节数据" class="headerlink" title="Response响应字节数据"></a>Response响应字节数据</h4><ul><li><p>使用</p><ul><li>通过Response对象获取字节输出流</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ServletOutputStream outputStream = resp.getOutputStream();</span><br></pre></td></tr></table></figure><ul><li><p>写数据</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">outputStream.write(字节数据);</span><br></pre></td></tr></table></figure></li><li><p>文件copy工具类(在pom.xml中引入commons-io工具包)</p></li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IOUtils.copy(fis, os);</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="Web" scheme="http://yoursite.com/categories/Web/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Request对象</title>
+    <link href="http://yoursite.com/2022/02/23/Web/Response%E5%AF%B9%E8%B1%A1/"/>
+    <id>http://yoursite.com/2022/02/23/Web/Response%E5%AF%B9%E8%B1%A1/</id>
+    <published>2022-02-23T14:53:09.000Z</published>
+    <updated>2022-02-24T15:45:16.334Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="Request继承体系"><a href="#Request继承体系" class="headerlink" title="Request继承体系"></a>Request继承体系</h4><ul><li>ServletRequest：Java提供的请求对象根接口</li><li>HttpServletRequest：Java提供的对Http协议封装的请求对象接口</li><li>RequestFacade：Tomcat定义的实现类</li></ul><h4 id="Request获取请求数据"><a href="#Request获取请求数据" class="headerlink" title="Request获取请求数据"></a>Request获取请求数据</h4><ul><li><h5 id="请求行：GET-request-demo-req1-username-zhangsan-HTTP-1-1"><a href="#请求行：GET-request-demo-req1-username-zhangsan-HTTP-1-1" class="headerlink" title="请求行：GET /request-demo/req1?username=zhangsan HTTP/1.1"></a>请求行：GET /request-demo/req1?username=zhangsan HTTP/1.1</h5><ul><li>String getMethod()：获取请求方式，GET</li><li>String getContextPath()：获取虚拟目录（项目访问路径），/request-demo</li><li>StringBuffer getRequestURL()：获取URL（统一资源定位符）</li><li>String getRequestURI()：获取URI（统一资源标识符），/request-demo/req1</li><li>String getQueryString()：获取请求参数，username=zhangsan&amp;password=123</li></ul></li><li><h5 id="请求头"><a href="#请求头" class="headerlink" title="请求头"></a>请求头</h5><ul><li>String getHeader(String name)：根据请求头名称，获取值</li></ul></li><li><h5 id="请求体"><a href="#请求体" class="headerlink" title="请求体"></a>请求体</h5><ul><li>ServletInputStream getInputSteam()：获取字节输入流</li><li>BufferedReader getReader()：获取字符输入流</li></ul></li></ul><h4 id="Request通用方式获取参数"><a href="#Request通用方式获取参数" class="headerlink" title="Request通用方式获取参数"></a>Request通用方式获取参数</h4><ul><li>Map&lt;String, String[]&gt; getParameterMap()：获取所有参数Map集合</li><li>String[] getParameterValues(String name)：根据名称获取参数值（数组）</li><li>String getParameter(String name)：根据名称获取参数值（单个值）</li></ul><h4 id="POST请求参数中文乱码解决"><a href="#POST请求参数中文乱码解决" class="headerlink" title="POST请求参数中文乱码解决"></a>POST请求参数中文乱码解决</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">req.setCharacterEncoding(<span class="string">"UTF-8"</span>); <span class="comment">//设置输入流编码</span></span><br></pre></td></tr></table></figure><h4 id="Tomcat8-0版本前，GET请求参数中文乱码解决-POST通用"><a href="#Tomcat8-0版本前，GET请求参数中文乱码解决-POST通用" class="headerlink" title="Tomcat8.0版本前，GET请求参数中文乱码解决(POST通用)"></a>Tomcat8.0版本前，GET请求参数中文乱码解决(POST通用)</h4><ul><li>本质是URL字符集的编解码</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"get.."</span>);</span><br><span class="line">    StringBuffer url = req.getRequestURL();</span><br><span class="line">    System.out.println(url);</span><br><span class="line">    String username = req.getParameter(<span class="string">"username"</span>);</span><br><span class="line">    <span class="keyword">byte</span>[] bytes = username.getBytes(StandardCharsets.ISO_8859_1);</span><br><span class="line">    username = <span class="keyword">new</span> String(bytes, StandardCharsets.UTF_8);</span><br><span class="line">    System.out.println(username);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="请求转发"><a href="#请求转发" class="headerlink" title="请求转发"></a>请求转发</h4><ul><li>一种在服务器内部的资源跳转方式</li><li>实现方式</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">req.getRequestDisptcher(<span class="string">"资源B路径"</span>).forward(req, resp);</span><br></pre></td></tr></table></figure><ul><li>请求转发资源间共享数据，使用Request对象</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setAttribute</span><span class="params">(String name, Object o)</span> <span class="comment">//存储数据到request域中</span></span></span><br><span class="line"><span class="function">Object <span class="title">getAttribute</span><span class="params">(String name)</span> <span class="comment">//根据key，获取值</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">removeAttribute</span><span class="params">(String name)</span> <span class="comment">//根据key，删除该键值对</span></span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="Web" scheme="http://yoursite.com/categories/Web/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Servlet</title>
+    <link href="http://yoursite.com/2022/02/23/Web/Servlet/"/>
+    <id>http://yoursite.com/2022/02/23/Web/Servlet/</id>
+    <published>2022-02-23T10:33:46.000Z</published>
+    <updated>2022-02-23T14:36:48.012Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="Maven中Servlet的配置"><a href="#Maven中Servlet的配置" class="headerlink" title="Maven中Servlet的配置"></a>Maven中Servlet的配置</h4><p>1.创建web项目，导入Servlet依赖坐标</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javax.servlet-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure><p>2.创建：定义一个类，实现Servlet接口，并重写接口中的所有方法，并在service方法中输出一句话</p><p>3.再类上使用@WebServlet注解，配置该Servlet的访问路径</p><p>4.访问：启动Tomcat，浏览器输入URL访问该Servlet</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.web;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.*;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.annotation.WebServlet;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="meta">@WebServlet</span>(<span class="string">"/demo1"</span>)</span><br><span class="line"><span class="comment">//浏览器输入http://localhost:8080/demo1</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServletDemo1</span> <span class="keyword">implements</span> <span class="title">Servlet</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(ServletConfig servletConfig)</span> <span class="keyword">throws</span> ServletException </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ServletConfig <span class="title">getServletConfig</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">service</span><span class="params">(ServletRequest servletRequest, ServletResponse servletResponse)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"servlet hello world!!!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getServletInfo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="Servlet的生命周期"><a href="#Servlet的生命周期" class="headerlink" title="Servlet的生命周期"></a>Servlet的生命周期</h4><ol><li>加载和实例化：默认情况下，当Servlet第一次被访问时，由容器创建Servlet对象</li><li>初始化：在Servlet实例化后，容器将调用Servlet的init()方法初始化这个对象，完成一些如加载配置文件、创建连接等初始化的工作。该方法只调用一次</li><li>请求处理：每次请求Servlet时，Servlet容器都会调用Servlet的service()方法对请求进行处理</li><li>服务终止：当需要释放内存或者容器关闭时，容器就会调用Servlet实例的destroy()方法完成资源的释放。在destroy()方法调用之后，容器就会释放Servlet实例，该实例随后会被Java的垃圾收集器回收</li></ol><h4 id="Servlet的体系结构"><a href="#Servlet的体系结构" class="headerlink" title="Servlet的体系结构"></a>Servlet的体系结构</h4><ul><li>Servlet：Servlet体系根接口</li><li>GenericServlet：Servlet抽象实现类（实现了Servlet接口）</li><li>HttpServlet：对HTTP协议封装的Servlet实现类（继承于GenericServlet抽象类）<ul><li>重写doGet和doPost方法</li></ul></li></ul><h4 id="Servlet-urlPattern配置"><a href="#Servlet-urlPattern配置" class="headerlink" title="Servlet urlPattern配置"></a>Servlet urlPattern配置</h4><ul><li>Servlet想要被访问，必须配置其访问路径</li><li>一个Servlet，可以配置多个访问路径<ul><li>@WebServlet(urlPatterns = {“/demo1”, “/demo2”})</li></ul></li><li>urlPattern四种配置规则（按优先级）<ul><li>精确匹配：/xxx/xxx</li><li>目录匹配：/xxx/*</li><li>扩展名匹配：*.xxx</li><li>任意匹配： /</li></ul></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="Web" scheme="http://yoursite.com/categories/Web/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JavaWeb概念</title>
+    <link href="http://yoursite.com/2022/02/22/Web/JavaWeb%E6%A6%82%E5%BF%B5/"/>
+    <id>http://yoursite.com/2022/02/22/Web/JavaWeb%E6%A6%82%E5%BF%B5/</id>
+    <published>2022-02-22T14:58:14.000Z</published>
+    <updated>2022-02-22T16:49:50.057Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="Web基本概念"><a href="#Web基本概念" class="headerlink" title="Web基本概念"></a>Web基本概念</h4><ul><li>web，网页的意思</li><li>静态web<ul><li>html，css</li><li>提供给所有人看的数据始终不变</li></ul></li><li>动态web<ul><li>Servlet/JSP，ASP，PHP</li><li>提供给所有人看的数据始终变化</li></ul></li><li>在Java中，动态web资源开发的技术统称为JavaWeb</li></ul><h4 id="Web应用程序"><a href="#Web应用程序" class="headerlink" title="Web应用程序"></a>Web应用程序</h4><ul><li>可以提供浏览器访问的程序</li><li>一个web应用由多部份组成<ul><li>html，css，js</li><li>jsp，servlet</li><li>java程序</li><li>jar包</li><li>配置文件（Properties）</li></ul></li><li>若想提供给外界访问，需要一个服务器统一管理</li></ul><h4 id="Web服务器"><a href="#Web服务器" class="headerlink" title="Web服务器"></a>Web服务器</h4><ul><li>服务器是一种被动操作，用来处理用户的一些请求和给用户一些相应信息</li><li>IIS，Tomcat</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="Web" scheme="http://yoursite.com/categories/Web/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>MyBatis简介</title>
+    <link href="http://yoursite.com/2022/02/22/%E6%A1%86%E6%9E%B6/MyBatis%E7%AE%80%E4%BB%8B/"/>
+    <id>http://yoursite.com/2022/02/22/%E6%A1%86%E6%9E%B6/MyBatis%E7%AE%80%E4%BB%8B/</id>
+    <published>2022-02-22T14:58:14.000Z</published>
+    <updated>2022-02-22T15:52:55.286Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="什么是MyBatis"><a href="#什么是MyBatis" class="headerlink" title="什么是MyBatis"></a>什么是MyBatis</h4><ul><li>MyBatis是一款优秀的<strong>持久层</strong>框架，用于简化JDBC开发</li><li>MyBatis本是Apache的一个开源项目iBatis，2010年这个项目由apache software foundation迁移到了google code，并且改名为MyBatis。2013年11月迁移到Github</li><li>官网：<a href="https://mybatis.org/mybatis-3/zh/index.html" target="_blank" rel="noopener">https://mybatis.org/mybatis-3/zh/index.html</a></li></ul><h5 id="持久层"><a href="#持久层" class="headerlink" title="持久层"></a>持久层</h5><ul><li>负责将数据保存到数据库的那一层代码</li><li>JavaEE三层架构：表现层，业务层，持久层</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="框架" scheme="http://yoursite.com/categories/%E6%A1%86%E6%9E%B6/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Maven</title>
+    <link href="http://yoursite.com/2022/02/22/%E5%B7%A5%E5%85%B7/Maven/"/>
+    <id>http://yoursite.com/2022/02/22/%E5%B7%A5%E5%85%B7/Maven/</id>
+    <published>2022-02-22T09:43:45.000Z</published>
+    <updated>2022-02-22T15:53:05.219Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Maven是专门用于管理和构建Java项目的工具，它的主要功能有：</p><ul><li>提供了一套标准化的项目结构</li><li>提供了一套标准化的构建流程（编译，测试，打包，发布……）</li><li>提供了一套依赖管理机制</li></ul><img src="/images/maven结构.png"><p>仓库分类</p><ul><li>本地仓库：自己计算机的一个目录</li><li><a href="https://repo1.maven.org/maven2/" target="_blank" rel="noopener">中央仓库</a>：由Maven团队维护的全球唯一的仓库</li><li>远程放库：一般由公司团队搭建的私有仓库</li></ul><p>当项目中使用坐标引入对应依赖jar包后，首先会查找本地仓库中是否有对应的jar包</p><ul><li>有，则在项目中直接引用</li><li>没有，则去中央仓库下载对应jar包到本地仓库</li></ul><h4 id="Maven常用命令"><a href="#Maven常用命令" class="headerlink" title="Maven常用命令"></a>Maven常用命令</h4><ul><li>compile：编译</li><li>clean：清理</li><li>test：测试</li><li>package：打包</li><li>install：安装</li></ul><h4 id="Maven生命周期"><a href="#Maven生命周期" class="headerlink" title="Maven生命周期"></a>Maven生命周期</h4><ul><li>Maven构建项目生命周期描述的是一次构建过程经历了多少个事件</li><li>Maven对项目构建的生命周期划分为3套<ul><li>clean：清理工作</li><li>default：核心工作，例如编译，测试，打包，安装等</li><li>site：产生报告，发布站点等</li></ul></li><li>同一生命周期内，执行后边的命令，前边所有的命令会自动执行</li></ul><h4 id="Maven坐标详解"><a href="#Maven坐标详解" class="headerlink" title="Maven坐标详解"></a>Maven坐标详解</h4><ul><li>什么是坐标？<ul><li>Maven中的坐标是资源的唯一标识</li><li>使用坐标来定义项目或引入项目中需要的依赖</li></ul></li><li>Maven坐标主要组成<ul><li>groupId：定义当前Maven项目隶属组织名称（通常是域名反写）</li><li>artifactId：定义当前Maven项目名称（通常是模块名称）</li><li>version：定义当前项目版本号</li></ul></li></ul><h4 id="使用坐标导入jar包"><a href="#使用坐标导入jar包" class="headerlink" title="使用坐标导入jar包"></a>使用坐标导入jar包</h4><ol><li>在pom.xml中编写<dependencies>标签</dependencies></li><li>在<dependencies>标签中使用<dependency>引入坐标</dependency></dependencies></li><li>定义坐标的groupId，artifactId，version</li><li>点击刷新按钮，使坐标生效</li></ol><h4 id="依赖范围"><a href="#依赖范围" class="headerlink" title="依赖范围"></a>依赖范围</h4><p>通过设置坐标的依赖范围(scope)，可以设置对应jar包的作用范围：编译环境，测试环境，运行环境</p><table><thead><tr><th>依赖范围</th><th>编译classpath</th><th>测试classpath</th><th>运行classpath</th><th>例子</th></tr></thead><tbody><tr><td>compile(默认)</td><td>Y</td><td>Y</td><td>Y</td><td>logback</td></tr><tr><td>test</td><td>-</td><td>Y</td><td>-</td><td>Junit</td></tr><tr><td>provided</td><td>Y</td><td>Y</td><td>-</td><td>servlet-api</td></tr><tr><td>runtime</td><td>-</td><td>Y</td><td>Y</td><td>jdbc驱动</td></tr><tr><td>system</td><td>Y</td><td>Y</td><td>-</td><td>存储在本地的jar包</td></tr><tr><td>import</td><td></td><td></td><td></td><td>引入DependencyManagement</td></tr></tbody></table>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="工具" scheme="http://yoursite.com/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>数据库连接池</title>
+    <link href="http://yoursite.com/2022/02/22/SQL%E8%BF%9B%E9%98%B6/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/"/>
+    <id>http://yoursite.com/2022/02/22/SQL%E8%BF%9B%E9%98%B6/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/</id>
+    <published>2022-02-22T05:53:15.000Z</published>
+    <updated>2022-02-22T06:53:21.786Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><ul><li>数据库连接池是个容器，负责分配，管理数据库链接</li><li>它允许应用程序重复使用一个现有的数据库连接，而不是再重新建立一个</li><li>释放空闲时间超过最大空闲时间的数据库连接来避免因为没有释放数据库连接而引起的数据库连接遗漏</li><li>好处：<ul><li>资源重用</li><li>提升系统响应速度</li><li>避免数据库连接遗漏</li></ul></li></ul><h4 id="数据库连接池实现"><a href="#数据库连接池实现" class="headerlink" title="数据库连接池实现"></a>数据库连接池实现</h4><ul><li>标准接口：DataSource<ul><li>官方(SUN)提供的数据库连接池标准接口，由第三方组织实现此接口</li><li>功能：获取连接  Connection getConnextion()</li></ul></li><li>常见的数据库连接池<ul><li>DBCP</li><li>C3P0</li><li>Druid(德鲁伊)<ul><li>Druid连接池是阿里巴巴开源的数据库连接池项目</li><li>功能强大，性能优秀，是Java语言最好的数据库连接池之一</li></ul></li></ul></li></ul><h4 id="Druid使用步骤"><a href="#Druid使用步骤" class="headerlink" title="Druid使用步骤"></a>Druid使用步骤</h4><ol><li>导入jar包druid-1.1.12.jar</li><li><a href="https://www.cnblogs.com/halberd-lee/p/11304790.html" target="_blank" rel="noopener">定义配置文件</a></li><li>加载配置文件</li><li>获取数据库连接池对象</li><li>获取连接</li></ol><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.alibaba.druid.pool.DruidDataSourceFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.sql.DataSource;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.sql.*;</span><br><span class="line"><span class="keyword">import</span> java.util.Properties;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    Druid数据库连接池</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JdbcFirstDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//加载配置文件</span></span><br><span class="line">        Properties properties = <span class="keyword">new</span> Properties();</span><br><span class="line">        properties.load(<span class="keyword">new</span> FileInputStream(<span class="string">"src/druid.properties"</span>));</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//获取连接池对象</span></span><br><span class="line">        DataSource dataSource = DruidDataSourceFactory.createDataSource(properties);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//获取数据库连接</span></span><br><span class="line">        Connection connection =  dataSource.getConnection();</span><br><span class="line">        System.out.println(connection);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="MySQL" scheme="http://yoursite.com/categories/MySQL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>HTTP</title>
+    <link href="http://yoursite.com/2022/02/22/Web/Http/"/>
+    <id>http://yoursite.com/2022/02/22/Web/Http/</id>
+    <published>2022-02-22T03:27:07.000Z</published>
+    <updated>2022-02-23T07:47:22.719Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="HTTP协议特点"><a href="#HTTP协议特点" class="headerlink" title="HTTP协议特点"></a>HTTP协议特点</h4><ul><li>基于TCP协议，面向连接，安全</li><li>基于请求-相应模型的，一次请求对应一次相应</li><li>HTTP协议是无状态的协议：对于事务处理没有记忆能力。每次请求-相应都是独立的<ul><li>缺点：多次请求间不能共享数据</li><li>优点：速度快</li></ul></li></ul><h4 id="HTTP-请求数据格式"><a href="#HTTP-请求数据格式" class="headerlink" title="HTTP-请求数据格式"></a>HTTP-请求数据格式</h4><ul><li>请求数据分为3部分：<ol><li>请求行：请求数据的第一行。其中GET表示请求方式，/表示请求资源路径，HTTP/1.1表示协议版本</li><li>请求头：第二行开始，格式为key : value形式</li><li>请求体：POST请求的最后一部分，存放请求参数</li></ol></li></ul><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/</span> HTTP/1.1</span><br><span class="line"><span class="attribute">Host</span>: www.itcast.cn</span><br><span class="line"><span class="attribute">Connection</span>: keep-alive</span><br><span class="line"><span class="attribute">Cache-Control</span>: max-age=0 Upgrade-Insecure-Requests:1</span><br><span class="line"><span class="attribute">User-Agent</span>: Mozilla/5.0 Chrome/91.0.4472.106</span><br></pre></td></tr></table></figure><ul><li>常见HTTP请求头：<ul><li>Host：表示请求的主机名</li><li>User-Agent：浏览器版本，例如Chrome浏览器的标识类似Mozilla/5.0 … Chrome/79</li><li>Accept：标识浏览器能接收的资源类型</li><li>Accept-Language：表示浏览器偏好的语言</li><li>Accept——Encoding：表示浏览器可以支持的压缩类型</li></ul></li><li>GET请求和POST请求区别<ul><li>GET请求请求参数在请求行中，没有请求体。POST请求请求参数在请求体中</li><li>GET请求请求参数大小有限制，POST没有</li></ul></li></ul><h4 id="HTTP-相应数据格式"><a href="#HTTP-相应数据格式" class="headerlink" title="HTTP-相应数据格式"></a>HTTP-相应数据格式</h4><ul><li>响应数据分为三部分<ol><li>相应行：相应数据第一行。200表示状态码，OK表示状态码描述</li><li>响应头：第二行开始，格式为key : value</li><li>响应体</li></ol></li></ul><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Server</span>: Tengine</span><br><span class="line"><span class="attribute">Content-Type</span>: text/html</span><br><span class="line"><span class="attribute">Transfer-Encoding</span>: chunked</span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;title&gt;&lt;/title&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;body&gt;&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure><ul><li>常见的HTTP响应头<ul><li>Content-Type：表示该相应内容的类型</li><li>Content-Length：表示该相应内容长度</li><li>Content-Encoding：表示该相应压缩算法</li><li>Cache-Control：指示客户端应如何缓存</li></ul></li></ul><p><strong><a href="https://cloud.tencent.com/developer/chapter/13553" target="_blank" rel="noopener">响应状态码大全</a></strong></p><table><thead><tr><th>状态码分类</th><th>说明</th></tr></thead><tbody><tr><td>1xx</td><td><strong>响应中</strong>——临时状态码，表示请求已经接受，告诉客户端应该继续请求或者如果它已经完成则忽略</td></tr><tr><td>2xx</td><td><strong>成功</strong>——表示请求已经被成功接收，处理已完成</td></tr><tr><td>3xx</td><td><strong>重定向</strong>——重定向到其它地方，它让客户端再发起一个请求以完成整个处理</td></tr><tr><td>4xx</td><td><strong>客户端错误</strong>——处理发生错误，责任在客户端</td></tr><tr><td>5xx</td><td><strong>服务器错误</strong>——处理发生错误，责任在服务器</td></tr></tbody></table>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="Web" scheme="http://yoursite.com/categories/Web/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Tomcat</title>
+    <link href="http://yoursite.com/2022/02/22/Web/Tomcat/"/>
+    <id>http://yoursite.com/2022/02/22/Web/Tomcat/</id>
+    <published>2022-02-22T03:27:07.000Z</published>
+    <updated>2022-02-23T10:43:51.033Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>对HTTP协议操作进行封装，使得程序员不必直接对协议进行操作，让Web开发更加便捷</p><h4 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h4><ul><li>bin 可执行文件目录</li><li>conf 配置文件目录</li><li>lib 存放lib的目录</li><li>logs 日志文件目录</li><li>webapps 项目部署目录</li><li>work 工作目录</li><li>temp 临时目录</li></ul><h4 id="Maven中Tomcat的配置"><a href="#Maven中Tomcat的配置" class="headerlink" title="Maven中Tomcat的配置"></a>Maven中Tomcat的配置</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.tomcat.maven<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>tomcat7-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">port</span>&gt;</span>8080<span class="tag">&lt;/<span class="name">port</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">path</span>&gt;</span>/<span class="tag">&lt;/<span class="name">path</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="Web" scheme="http://yoursite.com/categories/Web/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>PreparedStatement对象</title>
+    <link href="http://yoursite.com/2022/02/22/SQL%E8%BF%9B%E9%98%B6/PreparedStatement%E5%AF%B9%E8%B1%A1/"/>
+    <id>http://yoursite.com/2022/02/22/SQL%E8%BF%9B%E9%98%B6/PreparedStatement%E5%AF%B9%E8%B1%A1/</id>
+    <published>2022-02-22T02:49:32.000Z</published>
+    <updated>2022-02-22T06:21:54.326Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><ul><li>继承于Prepared类</li><li>作用：预编译SQL语句并执行，预防SQL注入问题</li><li>SQL注入是通过操作输入来修改事先定义好的SQL语句，用以达到代码对服务器进行攻击的方法</li></ul><h4 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h4><ol><li>在获取PreparedStatement对象时，将sql语句发送给mysql服务器进行检查，编译</li><li>执行时就不用进行这些步骤，速度更快</li><li>如果sql模板相同，只需要进行一次检查，编译</li></ol><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.swing.plaf.nimbus.State;</span><br><span class="line"><span class="keyword">import</span> java.sql.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JdbcFirstDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException, SQLException </span>&#123;</span><br><span class="line">        <span class="comment">//1.加载驱动</span></span><br><span class="line">        <span class="comment">//Class.forName("com.mysql.cj.jdbc.Driver"); //固定写法，加载驱动</span></span><br><span class="line">        <span class="comment">//2.用户信息和url</span></span><br><span class="line">        <span class="comment">//在url中添加useServerPrepStmts=true开启预编译功能</span></span><br><span class="line">        String url = <span class="string">"jdbc:mysql://127.0.0.1:3306/jdbcstudy?serverTimezone=UTC&amp;useSSL=false&amp;useServerPrepStmts=true"</span>;</span><br><span class="line">        String username = <span class="string">"root"</span>;</span><br><span class="line">        String password = <span class="string">""</span>;</span><br><span class="line">        <span class="comment">//3.连接成功，数据库对象 Connection 代表数据库</span></span><br><span class="line">        Connection connection = DriverManager.getConnection(url, username, password);</span><br><span class="line"></span><br><span class="line">        String sql = <span class="string">"select * from users"</span>;</span><br><span class="line">        String sql1 = <span class="string">"update users set password = ? where id = ?"</span>;</span><br><span class="line">        PreparedStatement pstmt = connection.prepareStatement(sql);</span><br><span class="line">        PreparedStatement pstmt1 = connection.prepareStatement(sql1);</span><br><span class="line">        pstmt1.setInt(<span class="number">1</span>, <span class="number">23333</span>);</span><br><span class="line">        pstmt1.setInt(<span class="number">2</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        ResultSet resultSet = <span class="keyword">null</span>; <span class="comment">//返回的结果集</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//开启事务</span></span><br><span class="line">            connection.setAutoCommit(<span class="keyword">false</span>);</span><br><span class="line">            <span class="keyword">int</span> resultSet1 = pstmt1.executeUpdate();</span><br><span class="line">            resultSet = pstmt.executeQuery();</span><br><span class="line">            <span class="keyword">while</span>(resultSet.next())&#123;</span><br><span class="line">                System.out.println(<span class="string">"id="</span> + resultSet.getObject(<span class="string">"id"</span>));</span><br><span class="line">                System.out.println(<span class="string">"name="</span> + resultSet.getObject(<span class="string">"name"</span>));</span><br><span class="line">                System.out.println(<span class="string">"password="</span> + resultSet.getObject(<span class="string">"password"</span>));</span><br><span class="line">                System.out.println(<span class="string">"email="</span> + resultSet.getObject(<span class="string">"email"</span>));</span><br><span class="line">                System.out.println(<span class="string">"birthday="</span> + resultSet.getObject(<span class="string">"birthday"</span>));</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//提交事务</span></span><br><span class="line">            connection.commit();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            <span class="comment">//回滚事务</span></span><br><span class="line">            connection.rollback();</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//5.释放连接</span></span><br><span class="line">        resultSet.close();</span><br><span class="line">        pstmt.close();</span><br><span class="line">        pstmt1.close();</span><br><span class="line">        connection.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="MySQL" scheme="http://yoursite.com/categories/MySQL/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>connection对象</title>
+    <link href="http://yoursite.com/2022/02/22/SQL%E8%BF%9B%E9%98%B6/connection%E5%AF%B9%E8%B1%A1/"/>
+    <id>http://yoursite.com/2022/02/22/SQL%E8%BF%9B%E9%98%B6/connection%E5%AF%B9%E8%B1%A1/</id>
+    <published>2022-02-21T16:47:14.000Z</published>
+    <updated>2022-02-22T02:49:20.227Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="Connection功能"><a href="#Connection功能" class="headerlink" title="Connection功能"></a>Connection功能</h4><ol><li><p>获取执行SQL的对象</p><ul><li>普通执行SQL对象：Statement createStatement()</li><li>预编译SQL的执行SQL对象，防止SQL注入：PreparedStatement prepareStatement(sql)</li><li>执行存储过程的对象：CallableStatement prepareCall(sql)</li></ul></li><li><p>事务管理</p><ul><li>开启事务：setAutoCommit(boolean autoCommit)，true为自动提交，false为手动提交</li><li>提交事务：commit()</li><li>回滚事务：rollback()</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.swing.plaf.nimbus.State;</span><br><span class="line"><span class="keyword">import</span> java.sql.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">//我的第一个JDBC程序</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JdbcFirstDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException, SQLException </span>&#123;</span><br><span class="line">        <span class="comment">//1.加载驱动</span></span><br><span class="line">        <span class="comment">//Class.forName("com.mysql.cj.jdbc.Driver"); //固定写法，加载驱动</span></span><br><span class="line">        <span class="comment">//2.用户信息和url</span></span><br><span class="line">        String url = <span class="string">"jdbc:mysql://127.0.0.1:3306/jdbcstudy?serverTimezone=UTC&amp;userUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false"</span>;</span><br><span class="line">        String username = <span class="string">"root"</span>;</span><br><span class="line">        String password = <span class="string">""</span>;</span><br><span class="line">        <span class="comment">//3.连接成功，数据库对象 Connection 代表数据库</span></span><br><span class="line">        Connection connection = DriverManager.getConnection(url, username, password);</span><br><span class="line">        <span class="comment">//4.执行SQL的对象</span></span><br><span class="line">        Statement statement = connection.createStatement();</span><br><span class="line"></span><br><span class="line">        String sql = <span class="string">"select * from users"</span>;</span><br><span class="line">        String sql1 = <span class="string">"update users set password = 114514 where id = 1"</span>;</span><br><span class="line"></span><br><span class="line">        ResultSet resultSet = <span class="keyword">null</span>; <span class="comment">//返回的结果集</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//开启事务</span></span><br><span class="line">            connection.setAutoCommit(<span class="keyword">false</span>);</span><br><span class="line">            <span class="keyword">int</span> resultSet1 = statement.executeUpdate(sql1);</span><br><span class="line">            resultSet = statement.executeQuery(sql);</span><br><span class="line">            <span class="keyword">while</span>(resultSet.next())&#123;</span><br><span class="line">                System.out.println(<span class="string">"id="</span> + resultSet.getObject(<span class="string">"id"</span>));</span><br><span class="line">                System.out.println(<span class="string">"name="</span> + resultSet.getObject(<span class="string">"name"</span>));</span><br><span class="line">                System.out.println(<span class="string">"password="</span> + resultSet.getObject(<span class="string">"password"</span>));</span><br><span class="line">                System.out.println(<span class="string">"email="</span> + resultSet.getObject(<span class="string">"email"</span>));</span><br><span class="line">                System.out.println(<span class="string">"birthday="</span> + resultSet.getObject(<span class="string">"birthday"</span>));</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//提交事务</span></span><br><span class="line">            connection.commit();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            <span class="comment">//回滚事务</span></span><br><span class="line">            connection.rollback();</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//5.释放连接</span></span><br><span class="line">        resultSet.close();</span><br><span class="line">        statement.close();</span><br><span class="line">        connection.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="MySQL" scheme="http://yoursite.com/categories/MySQL/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>调用运行时类结构</title>
@@ -246,294 +510,6 @@
       <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
     
       <category term="泛型" scheme="http://yoursite.com/categories/Java/%E6%B3%9B%E5%9E%8B/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>元注解</title>
-    <link href="http://yoursite.com/2022/02/18/Java/%E6%B3%A8%E8%A7%A3/%E5%85%83%E6%B3%A8%E8%A7%A3/"/>
-    <id>http://yoursite.com/2022/02/18/Java/%E6%B3%A8%E8%A7%A3/%E5%85%83%E6%B3%A8%E8%A7%A3/</id>
-    <published>2022-02-18T09:50:20.000Z</published>
-    <updated>2022-02-18T10:19:49.447Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><ul><li>JDK的元Annotation用于修饰其他Annotation定义</li><li>JDK5.0提供了4个标准的meta-annotation类型，分别是：<ul><li>Retention</li><li>Target</li><li>Documented</li><li>Inherited</li></ul></li></ul><ul><li><strong>@Retention</strong>：只能用于修饰一个Annotation定义，用于指定该Annotation的生命周期，@Rentention包含一个RetentionPolicy类型的成员变量，使用@Rentention时必须为该value成员变量指定值：<ul><li>RetentionPolicy.SOURCE：在源文件中有效</li><li>RetentionPolicy.CLASS：在class文件中有效（默认）</li><li>RetentionPolicy.RUNTIME：在运行时有效，能通过反射获取</li></ul></li></ul><ul><li><strong>@Target</strong>：用于修饰Annotation定义，用于指定被修饰的Annotation能用于修饰哪些元素，@Target也包含一个名为value的成员变量</li></ul><table><thead><tr><th>取值</th><th></th><th>取值</th><th></th></tr></thead><tbody><tr><td>CONSTRUCTOR</td><td>用于描述构造器</td><td>PACKAGE</td><td>用于描述包</td></tr><tr><td>FIELD</td><td>用于描述域</td><td>PARAMETER</td><td>用于描述参数</td></tr><tr><td>LOCAL_VARIABLE</td><td>用于描述局部变量</td><td>TYPE</td><td>用于描述类，接口或enum声明</td></tr><tr><td>METHOD</td><td>用于描述方法</td><td></td><td></td></tr></tbody></table><ul><li>@Documented：用于指定被该元Annotation修饰的Annotation类将被javadoc工具提取成文档。默认情况下，javadoc是不包括注解的</li><li>定义为Documented的注解必须设置Retention值为RUNTIME</li></ul><ul><li>@Inherited：被它修饰的Annotation将具有继承性，子类将自动具有该注解</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
-    
-      <category term="注解" scheme="http://yoursite.com/categories/Java/%E6%B3%A8%E8%A7%A3/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>注解（Annotation）简介</title>
-    <link href="http://yoursite.com/2022/02/18/Java/%E6%B3%A8%E8%A7%A3/%E6%B3%A8%E8%A7%A3%EF%BC%88Annotation%EF%BC%89%E7%AE%80%E4%BB%8B/"/>
-    <id>http://yoursite.com/2022/02/18/Java/%E6%B3%A8%E8%A7%A3/%E6%B3%A8%E8%A7%A3%EF%BC%88Annotation%EF%BC%89%E7%AE%80%E4%BB%8B/</id>
-    <published>2022-02-18T06:51:30.000Z</published>
-    <updated>2022-02-18T09:50:29.272Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><ul><li>JDK5.0开始，Java增加了对元数据（MetaData）的支持，也就是注解</li><li>Annotation其实就是代码里的特殊标记，这些标记可以在编译，类加载，运行时被读取，并执行相应的处理。通过使用Annotation，程序员可以在不改变原有逻辑的情况下，在源文件中嵌入补充信息。代码分析工具，开发工具和部署工具可以通过这些补充信息进行验证或部署</li><li>Annotation可以像修饰符一样被使用，可用于<strong>修饰包，类，构造器，方法，成员变量，参数，局部变量的声明</strong></li><li>在JavaSE中，注解使用目的较为简单，例如标记过时功能，忽略警告等。在JavaEE/Android中注解占据了更重要的角色，例如用来配置应用程序的任何界面，代替JavaEE旧版中所遗留的繁冗代码和XML配置等</li><li>未来的开发模式都是基于注解的，一定程度上：框架 = 注解 + 反射 + 设计模式。</li></ul><h4 id="常见Annotation"><a href="#常见Annotation" class="headerlink" title="常见Annotation"></a>常见Annotation</h4><ul><li>生成文档相关注解<ul><li>@author 标明开发该类模块的作者，多个作者直接使用,分隔</li><li>@version 标明该类模块的版本</li><li>@see 参考转向，也就是相关主题</li><li>@since 从哪个版本开始增加的</li><li>@param 对方法中某参数的说明，如果没有参数就不能写。格式：@param 形参名 形参类型 形参说明</li><li>@return 对方法返回值说明。格式：@return 返回值类型 返回值说明</li><li>@exception 对方法可能抛出异常说明，没有throws显式抛出异常就不能写。格式：@exception 异常类型 异常说明</li></ul></li><li>在编译时进行格式检查（JDK内置三个基本注解）<ul><li>@Override：限定重写父类方法</li><li>@Deprecated：表示所修饰的元素已过时</li><li>@SuppressWarnings：抑制编译器警告</li></ul></li><li>跟踪代码依赖性，实现替代配置文件功能</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
-    
-      <category term="注解" scheme="http://yoursite.com/categories/Java/%E6%B3%A8%E8%A7%A3/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Java枚举类</title>
-    <link href="http://yoursite.com/2022/02/18/Java/%E5%B8%B8%E7%94%A8%E7%B1%BB/%E6%9E%9A%E4%B8%BE%E7%B1%BB/"/>
-    <id>http://yoursite.com/2022/02/18/Java/%E5%B8%B8%E7%94%A8%E7%B1%BB/%E6%9E%9A%E4%B8%BE%E7%B1%BB/</id>
-    <published>2022-02-18T06:21:11.000Z</published>
-    <updated>2022-02-18T06:49:17.220Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="如何定义枚举类"><a href="#如何定义枚举类" class="headerlink" title="如何定义枚举类"></a>如何定义枚举类</h4><ul><li>jdk5.0之前，自定义枚举类</li><li>之后，可以使用enum关键字</li></ul><h4 id="自定义枚举类"><a href="#自定义枚举类" class="headerlink" title="自定义枚举类"></a>自定义枚举类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Season</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String seasonName;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String seasonDesc;</span><br><span class="line">    <span class="comment">//1.私有化类的构造器</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Season</span><span class="params">(String seasonName, String seasonDesc)</span></span>&#123;</span><br><span class="line"><span class="keyword">this</span>.seasonName = seasonName;</span><br><span class="line">        <span class="keyword">this</span>.seasonDesc = seasonDesc;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//2.提供当前枚举类多个对象</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Season SPRING = <span class="keyword">new</span> Season(<span class="string">"春天"</span>, <span class="string">"春暖花开"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//3.其他诉求1：获取枚举类对象属性</span></span><br><span class="line"><span class="comment">//4。其他诉求2：提供toString()</span></span><br></pre></td></tr></table></figure><h4 id="enum关键字（默认继承于Enum类）"><a href="#enum关键字（默认继承于Enum类）" class="headerlink" title="enum关键字（默认继承于Enum类）"></a>enum关键字（默认继承于Enum类）</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> Season&#123;</span><br><span class="line">    <span class="comment">//多个之间用,分隔</span></span><br><span class="line">    SPRING(<span class="string">"春天"</span>, <span class="string">"春暖花开"</span>);</span><br><span class="line">    <span class="comment">//toString返回对象名</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="使用enum关键字定义枚举类实现接口"><a href="#使用enum关键字定义枚举类实现接口" class="headerlink" title="使用enum关键字定义枚举类实现接口"></a>使用enum关键字定义枚举类实现接口</h4><ul><li>情况一：在enum枚举类中实现抽象方法</li><li>情况二：在每个对象后添加代码块实现方法</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
-    
-      <category term="常用类" scheme="http://yoursite.com/categories/Java/%E5%B8%B8%E7%94%A8%E7%B1%BB/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Java比较器</title>
-    <link href="http://yoursite.com/2022/02/18/Java/%E5%B8%B8%E7%94%A8%E7%B1%BB/%E6%AF%94%E8%BE%83%E5%99%A8/"/>
-    <id>http://yoursite.com/2022/02/18/Java/%E5%B8%B8%E7%94%A8%E7%B1%BB/%E6%AF%94%E8%BE%83%E5%99%A8/</id>
-    <published>2022-02-18T05:31:23.000Z</published>
-    <updated>2022-02-18T06:07:13.964Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Java实现对象排序方式</p><ul><li>自然排序：java.lang.Comparable</li><li>定制排序：java.util.Comparator</li></ul><h4 id="Comparable接口（自然排序）"><a href="#Comparable接口（自然排序）" class="headerlink" title="Comparable接口（自然排序）"></a>Comparable接口（自然排序）</h4><ul><li>重写compareTo(obj)方法</li><li>当前对象this大于形参对象obj，返回正整数，反之。</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(o <span class="keyword">instanceof</span> Goods)&#123;</span><br><span class="line">        Goods goods = (Goods)o;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.price == goods.price)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.price &lt; goods.price;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"数据类型不一致！"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="Comparator接口（定制排序）"><a href="#Comparator接口（定制排序）" class="headerlink" title="Comparator接口（定制排序）"></a>Comparator接口（定制排序）</h4><ul><li>重写compare(Object o1, Object o2)方法</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
-    
-      <category term="常用类" scheme="http://yoursite.com/categories/Java/%E5%B8%B8%E7%94%A8%E7%B1%BB/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>StringBufferBuilder</title>
-    <link href="http://yoursite.com/2022/02/18/Java/%E5%B8%B8%E7%94%A8%E7%B1%BB/StringBufferBuilder/"/>
-    <id>http://yoursite.com/2022/02/18/Java/%E5%B8%B8%E7%94%A8%E7%B1%BB/StringBufferBuilder/</id>
-    <published>2022-02-18T04:34:11.000Z</published>
-    <updated>2022-02-18T06:14:48.679Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><ul><li>String(JDK1.0)：不可变字符序列</li><li>StringBuffer(JDK1.0)：可变字符序列，效率低，线程安全</li><li>StringBuilder(JDK5.0)：可变字符序列，效率高，线程不安全</li></ul><h4 id="可变字符序列"><a href="#可变字符序列" class="headerlink" title="可变字符序列"></a>可变字符序列</h4><ul><li>创建时默认char[16]（无参），可以指定容量（带参）</li><li>扩容：2倍 + 2，还不够直接扩容增加的长度</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
-    
-      <category term="常用类" scheme="http://yoursite.com/categories/Java/%E5%B8%B8%E7%94%A8%E7%B1%BB/"/>
-    
-    
-      <category term="字符串" scheme="http://yoursite.com/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>多线程——线程池</title>
-    <link href="http://yoursite.com/2022/02/17/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
-    <id>http://yoursite.com/2022/02/17/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E6%B1%A0/</id>
-    <published>2022-02-17T09:25:10.000Z</published>
-    <updated>2022-02-17T16:58:46.432Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><ul><li>背景：经常创建和销毁、使用量特别大的资源，比如并发情况下的线程，对性能影响很大。</li><li>思路：提前创建好多个线程，放入线程池中，使用时直接获取，使用完放回池中。可以避免频繁创建销毁、实现重复利用。类似生活中的公共交通工具</li><li>好处：<ul><li>提高响应速度（减少创建线程时间）</li><li>降低资源消耗（重复利用线程池中的线程，不需要每次都创建）</li><li>便于线程管理<ul><li>corePoolSize：核心池大小</li><li>maximumPoolSize：最大线程数</li><li>keepAliveTime：线程没有任务时最多保持多长时间后会终止</li></ul></li></ul></li></ul><h4 id="使用线程池"><a href="#使用线程池" class="headerlink" title="使用线程池"></a>使用线程池</h4><ul><li>JDK5.0起提供了线程池相关API：ExecutorServise和Executors</li><li>ExecutorService：真正的线程池接口。常见子类ThreadPoolExecutor<ul><li>void execute(Runnable command)：执行任务/命令，没有返回值，一般用来执行Runnable</li><li><T>Future<T>submit(Callable<T>task)：执行任务，有返回值，一般用来执行Callable</T></T></T></li><li>void shutdown()：关闭连接池</li></ul></li><li>Executors：工具类，线程池的工厂类，用于创建并返回不同类型的线程池</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ExecutorService;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Executors;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestPool</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1.创建服务，创建线程池</span></span><br><span class="line">        <span class="comment">//newFixedThreadPool 参数为：线程池大小</span></span><br><span class="line"></span><br><span class="line">        ExecutorService service = Executors.newFixedThreadPool(<span class="number">10</span>);</span><br><span class="line">        service.execute(<span class="keyword">new</span> MyThread());</span><br><span class="line">        service.execute(<span class="keyword">new</span> MyThread());</span><br><span class="line">        service.execute(<span class="keyword">new</span> MyThread());</span><br><span class="line">        service.execute(<span class="keyword">new</span> MyThread());</span><br><span class="line"></span><br><span class="line">        service.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(Thread.currentThread().getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
-    
-      <category term="多线程" scheme="http://yoursite.com/categories/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>多线程——线程通信</title>
-    <link href="http://yoursite.com/2022/02/17/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1/"/>
-    <id>http://yoursite.com/2022/02/17/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1/</id>
-    <published>2022-02-17T09:25:10.000Z</published>
-    <updated>2022-02-17T15:04:38.745Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="Java提供了几个方法解决线程之间的通信问题"><a href="#Java提供了几个方法解决线程之间的通信问题" class="headerlink" title="Java提供了几个方法解决线程之间的通信问题"></a>Java提供了几个方法解决线程之间的通信问题</h4><table><thead><tr><th>方法名</th><th>作用</th></tr></thead><tbody><tr><td>wait()</td><td>表示线程一直等待，直到其他线程通知，与sleep不同，会释放锁</td></tr><tr><td>wait(long timeout)</td><td>指定等待的毫秒数</td></tr><tr><td>notify()</td><td>唤醒一个处于等待状态的线程</td></tr><tr><td>notifyAll()</td><td>唤醒同一个对象上所有调用wait()方法的线程，优先级别高的线程优先调度</td></tr></tbody></table><p><strong>注意：均是Object类方法，都只能在同步方法或者同步代码块中使用，否则会抛出异常IllegalMonitorStateExption</strong></p><h3 id="并发协作模型“生产者-消费者模式”"><a href="#并发协作模型“生产者-消费者模式”" class="headerlink" title="并发协作模型“生产者/消费者模式”"></a>并发协作模型“生产者/消费者模式”</h3><h4 id="解决方式1：管程法"><a href="#解决方式1：管程法" class="headerlink" title="解决方式1：管程法"></a>解决方式1：管程法</h4><ul><li>生产者：负责生产数据的模块（可能是方法，对象，线程，进程）</li><li>消费者：负责处理数据的模块（可能是方法，对象，线程，进程）</li><li>缓冲区：消费者不能直接使用生产者的数据，他们之间有个“缓冲区”</li><li><strong>生产者将生产好的数据放入缓冲区，消费者从缓冲区拿出数据</strong></li></ul><h4 id="解决方式2：信号灯法"><a href="#解决方式2：信号灯法" class="headerlink" title="解决方式2：信号灯法"></a>解决方式2：信号灯法</h4><ul><li>设置标志位</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
-    
-      <category term="多线程" scheme="http://yoursite.com/categories/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>多线程——Lock锁</title>
-    <link href="http://yoursite.com/2022/02/17/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94Lock%E9%94%81/"/>
-    <id>http://yoursite.com/2022/02/17/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94Lock%E9%94%81/</id>
-    <published>2022-02-17T05:16:30.000Z</published>
-    <updated>2022-02-17T08:48:41.783Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><ul><li>从JDK 5.0开始，Java提供了更强大的线程同步机制——通过显式定义同步锁对象来实现同步。同步锁使用Lock对象充当</li><li>java.util.concurrent.locks.Lock接口是控制多个线程对共享资源进行访问的工具。锁提供了对共享资源的独占访问，每次只能有一个线程对Lock对象加锁，线程开始访问共享资源之前应先获得Lock对象</li><li>ReentrantLock(可重入锁)类实现了Lock，它拥有与synchronized相同的并发性和内存语义，在实现线程安全的控制中，比较常用的是ReentrantLock，可以显式加锁、释放锁。</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.locks.ReentrantLock;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Tickets01</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Tickets tickets = <span class="keyword">new</span> Tickets();</span><br><span class="line">        <span class="keyword">new</span> Thread(tickets, <span class="string">"黄牛1号"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(tickets, <span class="string">"黄牛2号"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(tickets, <span class="string">"黄牛3号"</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tickets</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> ticket = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> ReentrantLock lock = <span class="keyword">new</span> ReentrantLock();</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(flag) &#123;</span><br><span class="line">            buy();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">buy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            lock.lock();</span><br><span class="line">            <span class="keyword">if</span>(ticket == <span class="number">0</span>) &#123;</span><br><span class="line">                flag = <span class="keyword">false</span>;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(Thread.currentThread().getName() + <span class="string">"拿到了第"</span> + ticket-- + <span class="string">"张票"</span>);</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">100</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            lock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="synchronized与lock的对比"><a href="#synchronized与lock的对比" class="headerlink" title="synchronized与lock的对比"></a>synchronized与lock的对比</h4><ul><li>Lock是显示锁（手动开启和关闭锁，别忘记关闭锁）synchronized是隐式锁，出了作用域自动释放</li><li>Lock只有代码块锁，synchronized有代码块锁和方法锁</li><li>使用Lock锁，JVM将花费较少时间来调度线程，性能更好。并且具有更好的扩展性（提供更多的子类）</li><li>优先使用顺序：<ul><li>Lock &gt; 同步代码块（已经进入了方法体，分配了相应资源） &gt; 同步方法（在方法体外）</li></ul></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
-    
-      <category term="多线程" scheme="http://yoursite.com/categories/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>多线程——死锁</title>
-    <link href="http://yoursite.com/2022/02/14/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E6%AD%BB%E9%94%81/"/>
-    <id>http://yoursite.com/2022/02/14/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E6%AD%BB%E9%94%81/</id>
-    <published>2022-02-14T14:31:40.000Z</published>
-    <updated>2022-02-16T13:36:07.909Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="“死锁”的形成"><a href="#“死锁”的形成" class="headerlink" title="“死锁”的形成"></a>“死锁”的形成</h4><p>多个线程各自占有一些公共资源，并且互相等待其它线程占有的资源才能运行，而导致两个或者多个线程都在等待对方释放资源，都停止执行的情形。某一个同步块同时拥有“两个以上对象的锁”时，就可能会发生“死锁”的问题。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="comment">//死锁：多个线程互相抱着对方需要的资源，然后形成僵持</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DeadLock</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Play boy = <span class="keyword">new</span> Play();</span><br><span class="line">        <span class="keyword">new</span> Thread(boy, <span class="string">"Bob"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(boy, <span class="string">"Alice"</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Toy</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Play</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    Toy toy1 = <span class="keyword">new</span> Toy();</span><br><span class="line">    Toy toy2 = <span class="keyword">new</span> Toy();</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        gg();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gg</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(Thread.currentThread().getName().equals(<span class="string">"Bob"</span>))&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (toy1)&#123;</span><br><span class="line">                System.out.println(<span class="string">"Bob的toy1"</span>);</span><br><span class="line">                <span class="keyword">try</span>&#123;</span><br><span class="line">                    Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e)&#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">synchronized</span> (toy2)&#123;</span><br><span class="line">                    System.out.println(<span class="string">"Bob的toy2"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (toy2)&#123;</span><br><span class="line">                System.out.println(<span class="string">"Alice的toy2"</span>);</span><br><span class="line">                <span class="keyword">try</span>&#123;</span><br><span class="line">                    Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e)&#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">synchronized</span> (toy1)&#123;</span><br><span class="line">                    System.out.println(<span class="string">"Alice的toy1"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
-    
-      <category term="多线程" scheme="http://yoursite.com/categories/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>多线程——不安全案例</title>
-    <link href="http://yoursite.com/2022/02/13/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E4%B8%8D%E5%AE%89%E5%85%A8%E6%A1%88%E4%BE%8B/"/>
-    <id>http://yoursite.com/2022/02/13/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E4%B8%8D%E5%AE%89%E5%85%A8%E6%A1%88%E4%BE%8B/</id>
-    <published>2022-02-13T14:13:30.000Z</published>
-    <updated>2022-02-13T16:24:46.253Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="不安全的买票"><a href="#不安全的买票" class="headerlink" title="不安全的买票"></a>不安全的买票</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="comment">//线程不安全，有负数</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Tickets01</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> ticket = <span class="number">10</span>;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (ticket &lt;= <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">100</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//Thread.currentThread() 获得当前线程对象的引用</span></span><br><span class="line">            System.out.println(Thread.currentThread().getName() + <span class="string">"拿到了第"</span> + ticket-- + <span class="string">"张票"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Tickets01 tickets01 = <span class="keyword">new</span> Tickets01();</span><br><span class="line">        <span class="keyword">new</span> Thread(tickets01, <span class="string">"黄牛1号"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(tickets01, <span class="string">"黄牛2号"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(tickets01, <span class="string">"黄牛3号"</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
-    
-      <category term="多线程" scheme="http://yoursite.com/categories/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>多线程——线程同步机制</title>
-    <link href="http://yoursite.com/2022/02/13/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5%E6%9C%BA%E5%88%B6/"/>
-    <id>http://yoursite.com/2022/02/13/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5%E6%9C%BA%E5%88%B6/</id>
-    <published>2022-02-13T10:36:16.000Z</published>
-    <updated>2022-02-14T14:30:39.604Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="并发：多个线程访问同个对象"><a href="#并发：多个线程访问同个对象" class="headerlink" title="并发：多个线程访问同个对象"></a>并发：多个线程访问同个对象</h3><h3 id="线程同步：队列-锁"><a href="#线程同步：队列-锁" class="headerlink" title="线程同步：队列 + 锁"></a>线程同步：队列 + 锁</h3><ul><li>由于同一进程的多个线程共享同一块存储空间，在带来方便的同时，也带来了访问冲突问题，为了保证数据在方法中被访问时的正确性，在访问时加入<strong>锁机制synchronized</strong>，当一个线程获得对象的排它锁，独占资源，其他线程必须等待，使用后释放锁即可，存在以下问题：<ul><li>一个线程持有锁会导致其他所有需要此锁的线程挂起</li><li>在多线程竞争下，加锁，释放锁会导致比较多的上下文切换和调度延时，引起性能问题</li><li>如果一个优先级高的线程等待一个优先级低的线程释放锁，会导致优先级倒置，引起性能问题</li></ul></li></ul><h3 id="同步方法及同步块"><a href="#同步方法及同步块" class="headerlink" title="同步方法及同步块"></a>同步方法及同步块</h3><ul><li>由于我们可以通过private关键字来保证数据对象只能被方法访问，所以我们只需要针对方法提出一套机制，这套机制就是synchronized关键字，它包括两种用法：synchronized方法和synchronized块。</li><li><strong>同步方法：public synchronized void method(int args){}</strong></li><li>synchronized方法控制对“对象”的访问，每个对象对应一把锁，每个synchronized方法都必须获得调用该方法的对象的锁才能执行，否则线程会阻塞，方法一旦执行，就独占该锁，直到该方法返回才释放锁，后面被阻塞的线程才能获得这个锁，继续执行。</li><li><strong>缺陷：若将一个大的方法声明为synchronized，将会影响效率</strong></li><li><strong>方法里需要修改的内容才需要锁，锁的太多，浪费资源</strong></li><li>同步块：<strong>synchronized(Obj){}</strong></li><li>Obj称之为<strong>同步监视器</strong><ul><li>Obj可以是任何对象，但是推荐使用共享资源作为同步监视器</li><li>同步方法中无需指定同步监视器，因为同步方法的同步监视器就是this，就是这个对象本身，</li><li>或者是class[反射中讲解]</li></ul></li><li>同步监视器执行过程</li></ul><ol><li>第一个线程访问，锁定同步监视器，执行其中代码</li><li>第二个线程访问，发现同步监视器被锁定，无法访问</li><li>第一个线程访问完毕，解锁同步监视器</li><li>第二个线程访问，发现同步监视器没锁，然后锁定并访问</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
-    
-      <category term="多线程" scheme="http://yoursite.com/categories/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
     
   </entry>

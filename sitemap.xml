@@ -2,6 +2,83 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2022/02/25/Web/Request%E5%AF%B9%E8%B1%A1/</loc>
+    
+    <lastmod>2022-02-24T17:10:43.204Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2022/02/23/Web/Response%E5%AF%B9%E8%B1%A1/</loc>
+    
+    <lastmod>2022-02-24T15:45:16.334Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2022/02/23/Web/Servlet/</loc>
+    
+    <lastmod>2022-02-23T14:36:48.012Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2022/02/22/Web/Tomcat/</loc>
+    
+    <lastmod>2022-02-23T10:43:51.033Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2022/02/22/Web/Http/</loc>
+    
+    <lastmod>2022-02-23T07:47:22.719Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2022/02/22/Web/JavaWeb%E6%A6%82%E5%BF%B5/</loc>
+    
+    <lastmod>2022-02-22T16:49:50.057Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2022/02/22/%E5%B7%A5%E5%85%B7/Maven/</loc>
+    
+    <lastmod>2022-02-22T15:53:05.219Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2022/02/22/%E6%A1%86%E6%9E%B6/MyBatis%E7%AE%80%E4%BB%8B/</loc>
+    
+    <lastmod>2022-02-22T15:52:55.286Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2022/02/22/SQL%E8%BF%9B%E9%98%B6/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B1%A0/</loc>
+    
+    <lastmod>2022-02-22T06:53:21.786Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2022/02/22/SQL%E8%BF%9B%E9%98%B6/PreparedStatement%E5%AF%B9%E8%B1%A1/</loc>
+    
+    <lastmod>2022-02-22T06:21:54.326Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2022/02/22/SQL%E8%BF%9B%E9%98%B6/connection%E5%AF%B9%E8%B1%A1/</loc>
+    
+    <lastmod>2022-02-22T02:49:20.227Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2022/02/21/Java/%E5%8F%8D%E5%B0%84/%E8%B0%83%E7%94%A8%E8%BF%90%E8%A1%8C%E6%97%B6%E7%B1%BB%E7%BB%93%E6%9E%84/</loc>
     
     <lastmod>2022-02-21T13:05:43.384Z</lastmod>
