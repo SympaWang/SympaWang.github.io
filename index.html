@@ -275,6 +275,248 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/27/%E6%A1%86%E6%9E%B6/MyBatis/MyBatis%E8%8E%B7%E5%8F%96%E5%8F%82%E6%95%B0%E5%80%BC%E6%96%B9%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/27/%E6%A1%86%E6%9E%B6/MyBatis/MyBatis%E8%8E%B7%E5%8F%96%E5%8F%82%E6%95%B0%E5%80%BC%E6%96%B9%E5%BC%8F/" class="post-title-link" itemprop="url">MyBatis获取参数值方式</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-27 11:22:45 / 修改时间：14:01:41" itemprop="dateCreated datePublished" datetime="2022-02-27T11:22:45+08:00">2022-02-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">框架</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%A1%86%E6%9E%B6/MyBatis/" itemprop="url" rel="index"><span itemprop="name">MyBatis</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/02/27/%E6%A1%86%E6%9E%B6/MyBatis/MyBatis%E8%8E%B7%E5%8F%96%E5%8F%82%E6%95%B0%E5%80%BC%E6%96%B9%E5%BC%8F/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/27/%E6%A1%86%E6%9E%B6/MyBatis/MyBatis%E8%8E%B7%E5%8F%96%E5%8F%82%E6%95%B0%E5%80%BC%E6%96%B9%E5%BC%8F/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">MyBatis获取参数值的两种方式：$&#123;&#125;与#&#123;&#125;</span><br><span class="line"></span><br><span class="line">$&#123;&#125;的本质就是字符串拼接，#&#123;&#125;的本质就是占位符赋值 </span><br><span class="line"></span><br><span class="line">$&#123;&#125;使用字符串拼接的方式拼接sql，若为字符串类型或日期类型的字段进行赋值时，需要手动加单引号；</span><br><span class="line">但是#&#123;&#125;使用占位符赋值的方式拼接sql，此时为字符串类型或日期类型的字段进行赋值时，可以自动添加单引号</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="情况一：mapper接口方法参数为单个字面量类型"><a href="#情况一：mapper接口方法参数为单个字面量类型" class="headerlink" title="情况一：mapper接口方法参数为单个字面量类型"></a>情况一：mapper接口方法参数为单个字面量类型</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testMybatis</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    SqlSession sqlSession = SqlSessionUtils.getSqlSession();</span><br><span class="line">    ParameterMapper parameterMapper = sqlSession.getMapper(ParameterMapper<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    List&lt;User&gt; result = parameterMapper.getUserByUsername(<span class="string">"张三"</span>);</span><br><span class="line">    result.forEach(user -&gt; System.out.println(user));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--User getUserByUsername(String username);--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getUserByUsername"</span> <span class="attr">resultType</span>=<span class="string">"User"</span>&gt;</span></span><br><span class="line">select * from t_user where username = #&#123;username&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="情况二：mapper接口方法参数为多个"><a href="#情况二：mapper接口方法参数为多个" class="headerlink" title="情况二：mapper接口方法参数为多个"></a>情况二：mapper接口方法参数为多个</h4><ul>
+<li>使用arg0，arg1，……  或 param1，param2，…… 为键，参数为值</li>
+<li>只需通过#{}或${}以键的方式访问值即可</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testMybatis</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    SqlSession sqlSession = SqlSessionUtils.getSqlSession();</span><br><span class="line">    ParameterMapper parameterMapper = sqlSession.getMapper(ParameterMapper<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    List&lt;User&gt; result = parameterMapper.checkLogin(<span class="string">"张三"</span>, <span class="string">"123456"</span>);</span><br><span class="line">    result.forEach(user -&gt; System.out.println(user));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--User checkLogin(String username, String password)--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"checkLogin"</span> <span class="attr">resultType</span>=<span class="string">"User"</span>&gt;</span></span><br><span class="line">    select * from t_user where username = #&#123;arg0&#125; and password = #&#123;arg1&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="情况三：mapper接口方法参数有多个，可以手动放在一个map中存储"><a href="#情况三：mapper接口方法参数有多个，可以手动放在一个map中存储" class="headerlink" title="情况三：mapper接口方法参数有多个，可以手动放在一个map中存储"></a>情况三：mapper接口方法参数有多个，可以手动放在一个map中存储</h4><ul>
+<li>只需通过#{}或${}以键的方式访问值即可</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testMybatis</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    SqlSession sqlSession = SqlSessionUtils.getSqlSession();</span><br><span class="line">    ParameterMapper parameterMapper = sqlSession.getMapper(ParameterMapper<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    Map&lt;String, Object&gt; mp = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    mp.put(<span class="string">"username"</span>, <span class="string">"张三"</span>);</span><br><span class="line">    mp.put(<span class="string">"password"</span>, <span class="string">"123456"</span>);</span><br><span class="line">    List&lt;User&gt; result = parameterMapper.checkLoginByMap(mp);</span><br><span class="line">    result.forEach(user -&gt; System.out.println(user));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--List&lt;User&gt; checkLoginByMap(Map&lt;String, Object&gt; mp)--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"checkLoginByMap"</span> <span class="attr">resultType</span>=<span class="string">"User"</span>&gt;</span></span><br><span class="line">    select * from t_user where username = #&#123;username&#125; and password = #&#123;password&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="情况四：参数是一个实体类类型"><a href="#情况四：参数是一个实体类类型" class="headerlink" title="情况四：参数是一个实体类类型"></a>情况四：参数是一个实体类类型</h4><ul>
+<li>直接通过属性名访问属性值</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testMybatis</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    SqlSession sqlSession = SqlSessionUtils.getSqlSession();</span><br><span class="line">    ParameterMapper parameterMapper = sqlSession.getMapper(ParameterMapper<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    Map&lt;String, Object&gt; mp = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    mp.put(<span class="string">"username"</span>, <span class="string">"张三"</span>);</span><br><span class="line">    mp.put(<span class="string">"password"</span>, <span class="string">"123456"</span>);</span><br><span class="line">    User user = <span class="keyword">new</span> User(<span class="string">"Alice"</span>, <span class="string">"666666"</span>, <span class="number">22</span>, <span class="string">"女"</span>, <span class="string">"666@163.com"</span>);</span><br><span class="line">    <span class="keyword">int</span> result = parameterMapper.insertUser(user);</span><br><span class="line">    System.out.println(result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--int insertUser(User user)--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"insertUser"</span>&gt;</span></span><br><span class="line">    insert into t_user values(null, #&#123;username&#125;, #&#123;password&#125;, #&#123;age&#125;, #&#123;sex&#125;, #&#123;email&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="情况五：通过-param命名参数"><a href="#情况五：通过-param命名参数" class="headerlink" title="情况五：通过@param命名参数"></a>情况五：通过@param命名参数</h4><ul>
+<li>以@param注解的值 或 param1，param2，……为键，以参数为值</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testMybatis</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    SqlSession sqlSession = SqlSessionUtils.getSqlSession();</span><br><span class="line">    ParameterMapper parameterMapper = sqlSession.getMapper(ParameterMapper<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    Map&lt;String, Object&gt; mp = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    mp.put(<span class="string">"username"</span>, <span class="string">"张三"</span>);</span><br><span class="line">    mp.put(<span class="string">"password"</span>, <span class="string">"123456"</span>);</span><br><span class="line">    List&lt;User&gt; result = parameterMapper.checkLoginByParam(<span class="string">"Alice"</span>, <span class="string">"666666"</span>);</span><br><span class="line">    result.forEach(User -&gt; System.out.println(User));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--List&lt;User&gt; checkLoginByParam(@Param("username") String username, @Param("password") String password)--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"checkLoginByParam"</span> <span class="attr">resultType</span>=<span class="string">"User"</span>&gt;</span></span><br><span class="line">    select * from t_user where username = #&#123;username&#125; and password = #&#123;password&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="建议整合为两种情况"><a href="#建议整合为两种情况" class="headerlink" title="建议整合为两种情况"></a>建议整合为两种情况</h4><ul>
+<li>参数是实体类对象</li>
+<li>否则全都用@param</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/26/%E6%A1%86%E6%9E%B6/MyBatis/%E6%B5%8B%E8%AF%95MyBatis%E5%8A%9F%E8%83%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/26/%E6%A1%86%E6%9E%B6/MyBatis/%E6%B5%8B%E8%AF%95MyBatis%E5%8A%9F%E8%83%BD/" class="post-title-link" itemprop="url">测试MyBatis功能</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-02-26 20:18:30" itemprop="dateCreated datePublished" datetime="2022-02-26T20:18:30+08:00">2022-02-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-27 11:18:41" itemprop="dateModified" datetime="2022-02-27T11:18:41+08:00">2022-02-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">框架</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%A1%86%E6%9E%B6/MyBatis/" itemprop="url" rel="index"><span itemprop="name">MyBatis</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/02/26/%E6%A1%86%E6%9E%B6/MyBatis/%E6%B5%8B%E8%AF%95MyBatis%E5%8A%9F%E8%83%BD/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/26/%E6%A1%86%E6%9E%B6/MyBatis/%E6%B5%8B%E8%AF%95MyBatis%E5%8A%9F%E8%83%BD/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="测试添加功能"><a href="#测试添加功能" class="headerlink" title="测试添加功能"></a>测试添加功能</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.mybatis.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.sympa.mybatis.mapper.UserMapper;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.io.Resources;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSession;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactory;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactoryBuilder;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MybatisTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testMybatis</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">//加载核心配置文件</span></span><br><span class="line">        InputStream is = Resources.getResourceAsStream(<span class="string">"mybatis.config.xml"</span>);</span><br><span class="line">        <span class="comment">//获取sqlSessionFactoryBuilder</span></span><br><span class="line">        SqlSessionFactoryBuilder sqlSessionFactoryBuilder = <span class="keyword">new</span> SqlSessionFactoryBuilder();</span><br><span class="line">        <span class="comment">//通过核心配置文件所对应的字节输入流创建工厂类SqlSessionFactory，生产SqlSession对象</span></span><br><span class="line">        SqlSessionFactory sqlSessionFactory = sqlSessionFactoryBuilder.build(is);</span><br><span class="line">        <span class="comment">//创建SqlSession对象，此时通过SqlSession对象所操作的sql都必须手动提交或回滚事务</span></span><br><span class="line">        SqlSession sqlSession = sqlSessionFactory.openSession();</span><br><span class="line">        <span class="comment">//创建SqlSession对象，此时通过SqlSession对象所操作的sql都会自动提交</span></span><br><span class="line">        <span class="comment">//SqlSession sqlSession = sqlSessionFactory.openSession(true);</span></span><br><span class="line">        <span class="comment">//通过代理模式创建UserMapper接口的代理实现类对象</span></span><br><span class="line">        UserMapper userMapper = sqlSession.getMapper(UserMapper<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        <span class="comment">//调用UserMapper接口中的方法，就可以根据UserMapper的全类名匹配元素文件，通过调用的方法名匹配映射文件中的SQL标签，并执行标签中的SQL语句</span></span><br><span class="line">        <span class="comment">//测试添加功能</span></span><br><span class="line">        <span class="keyword">int</span> result = userMapper.insertUser();</span><br><span class="line">        System.out.println(<span class="string">"result:"</span> + result);</span><br><span class="line">        <span class="comment">//提交事务</span></span><br><span class="line">        sqlSession.commit();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"insertUser"</span>&gt;</span></span><br><span class="line">    insert into t_user values(null, '张三', '123456', 18, '男', '123@qq.com')</span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="测试查询功能"><a href="#测试查询功能" class="headerlink" title="测试查询功能"></a>测试查询功能</h4><p>查询功能标签必须设置resultType或resultMap</p>
+<ul>
+<li>resultType：设置默认映射关系</li>
+<li>resultMap：设置自定义的映射关系</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.mybatis.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.sympa.mybatis.mapper.UserMapper;</span><br><span class="line"><span class="keyword">import</span> com.sympa.mybatis.pojo.User;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.io.Resources;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSession;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactory;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactoryBuilder;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MybatisTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testMybatis</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        InputStream is = Resources.getResourceAsStream(<span class="string">"mybatis.config.xml"</span>);</span><br><span class="line"></span><br><span class="line">        SqlSessionFactoryBuilder sqlSessionFactoryBuilder = <span class="keyword">new</span> SqlSessionFactoryBuilder();</span><br><span class="line">        SqlSessionFactory sqlSessionFactory = sqlSessionFactoryBuilder.build(is);</span><br><span class="line">        SqlSession sqlSession = sqlSessionFactory.openSession(<span class="keyword">true</span>);</span><br><span class="line">        UserMapper userMapper = sqlSession.getMapper(UserMapper<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        List&lt;User&gt; result = userMapper.getUserById();</span><br><span class="line">        result.forEach(user -&gt; System.out.println(user));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="设置结果映射"><a href="#设置结果映射" class="headerlink" title="设置结果映射"></a>设置结果映射</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--User getUserById();--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getUserById"</span> <span class="attr">resultType</span>=<span class="string">"com.sympa.mybatis.pojo.User"</span>&gt;</span></span><br><span class="line">    select * from t_user</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="封装SqlSessionUtils工具类，获取SqlSession对象"><a href="#封装SqlSessionUtils工具类，获取SqlSession对象" class="headerlink" title="封装SqlSessionUtils工具类，获取SqlSession对象"></a>封装SqlSessionUtils工具类，获取SqlSession对象</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.mybatis.utils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.io.Resources;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSession;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactory;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactoryBuilder;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SqlSessionUtils</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SqlSession <span class="title">getSqlSession</span><span class="params">()</span></span>&#123;</span><br><span class="line">        InputStream is = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            is = Resources.getResourceAsStream(<span class="string">"mybatis.config.xml"</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        SqlSessionFactory sqlSessionFactory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(is);</span><br><span class="line">        SqlSession sqlSession = sqlSessionFactory.openSession(<span class="keyword">true</span>);</span><br><span class="line">        <span class="keyword">return</span> sqlSession;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/25/Web/Request%E5%AF%B9%E8%B1%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -814,7 +1056,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/22/%E6%A1%86%E6%9E%B6/MyBatis%E7%AE%80%E4%BB%8B/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/22/%E6%A1%86%E6%9E%B6/MyBatis/MyBatis%E7%AE%80%E4%BB%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -828,7 +1070,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/02/22/%E6%A1%86%E6%9E%B6/MyBatis%E7%AE%80%E4%BB%8B/" class="post-title-link" itemprop="url">MyBatis简介</a>
+            <a href="/2022/02/22/%E6%A1%86%E6%9E%B6/MyBatis/MyBatis%E7%AE%80%E4%BB%8B/" class="post-title-link" itemprop="url">MyBatis简介</a>
         </h2>
 
         <div class="post-meta">
@@ -839,10 +1081,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-02-22 22:58:14 / 修改时间：23:52:55" itemprop="dateCreated datePublished" datetime="2022-02-22T22:58:14+08:00">2022-02-22</time>
+              <time title="创建时间：2022-02-22 22:58:14" itemprop="dateCreated datePublished" datetime="2022-02-22T22:58:14+08:00">2022-02-22</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-27 11:06:57" itemprop="dateModified" datetime="2022-02-27T11:06:57+08:00">2022-02-27</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -850,6 +1098,10 @@
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">框架</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%A1%86%E6%9E%B6/MyBatis/" itemprop="url" rel="index"><span itemprop="name">MyBatis</span></a>
                 </span>
             </span>
 
@@ -862,8 +1114,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2022/02/22/%E6%A1%86%E6%9E%B6/MyBatis%E7%AE%80%E4%BB%8B/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/22/%E6%A1%86%E6%9E%B6/MyBatis%E7%AE%80%E4%BB%8B/" itemprop="commentCount"></span>
+    <a title="valine" href="/2022/02/22/%E6%A1%86%E6%9E%B6/MyBatis/MyBatis%E7%AE%80%E4%BB%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/22/%E6%A1%86%E6%9E%B6/MyBatis/MyBatis%E7%AE%80%E4%BB%8B/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -887,6 +1139,49 @@
 <li>负责将数据保存到数据库的那一层代码</li>
 <li>JavaEE三层架构：表现层，业务层，持久层</li>
 </ul>
+<h4 id="MyBatis核心配置文件mybatis-config-xml"><a href="#MyBatis核心配置文件mybatis-config-xml" class="headerlink" title="MyBatis核心配置文件mybatis.config.xml"></a>MyBatis核心配置文件mybatis.config.xml</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">configuration</span></span></span><br><span class="line"><span class="meta">        <span class="meta-keyword">PUBLIC</span> <span class="meta-string">"-//mybatis.org//DTD Config 3.0//EN"</span></span></span><br><span class="line"><span class="meta">        <span class="meta-string">"http://mybatis.org/dtd/mybatis-3-config.dtd"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span> <span class="attr">resource</span>=<span class="string">"jdbc.properties"</span>/&gt;</span></span><br><span class="line">    </span><br><span class="line">	<span class="comment">&lt;!--设置类型别名--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"com.sympa.mybatis.pojo"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">"development"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">"development"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"JDBC"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.driver&#125;"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.url&#125;"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.username&#125;"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.password&#125;"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--设置映射别名--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"com.sympa.mybatis.mapper"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="创建实现类与mapper接口"><a href="#创建实现类与mapper接口" class="headerlink" title="创建实现类与mapper接口"></a>创建实现类与mapper接口</h4><hr>
+<h4 id="创建Mybatis的映射文件"><a href="#创建Mybatis的映射文件" class="headerlink" title="创建Mybatis的映射文件"></a>创建Mybatis的映射文件</h4><p>相关概念：<strong>ORM</strong>（<strong>O</strong>bject <strong>R</strong>elationship <strong>M</strong>apping）对象关系映射</p>
+<ul>
+<li>对象：Java实体类对象</li>
+<li>关系：关系型数据库</li>
+<li>映射：二者之间的对应关系</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Java概念</th>
+<th>数据库概念</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>类</td>
+<td>表</td>
+</tr>
+<tr>
+<td>属性</td>
+<td>字段/列</td>
+</tr>
+<tr>
+<td>对象</td>
+<td>记录/行</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>1、映射文件的命名规则：</p>
+<p>表所对应的实体类的类名+Mapper.xml</p>
+<p>例如：表t_user，映射的实体类为User，所对应的映射文件为UserMapper.xml</p>
+<p>因此一个映射文件对应一个实体类，对应一张表的操作</p>
+<p>MyBatis映射文件用于编写SQL，访问以及操作表中的数据</p>
+<p>MyBatis映射文件存放的位置是src/main/resources/mappers目录下</p>
+<p>2、MyBatis中可以面向接口操作数据，要保证<strong>两个一致</strong>：</p>
+<p>a&gt;mapper接口的全类名和映射文件的命名空间（namespace）保持一致</p>
+<p>b&gt;mapper接口中方法的方法名和映射文件中编写SQL的标签的id属性保持一致  </p>
+<p><strong>表 –&gt; 实体类 –&gt; mapper接口 –&gt; 映射文件</strong></p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">mapper</span></span></span><br><span class="line"><span class="meta">  <span class="meta-keyword">PUBLIC</span> <span class="meta-string">"-//mybatis.org//DTD Mapper 3.0//EN"</span></span></span><br><span class="line"><span class="meta">  <span class="meta-string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"org.mybatis.example.BlogMapper"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectBlog"</span> <span class="attr">resultType</span>=<span class="string">"Blog"</span>&gt;</span></span><br><span class="line">    select * from Blog where id = #&#123;id&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -1219,280 +1514,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/22/Web/Http/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/22/Web/Http/" class="post-title-link" itemprop="url">HTTP</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-22 11:27:07" itemprop="dateCreated datePublished" datetime="2022-02-22T11:27:07+08:00">2022-02-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-23 15:47:22" itemprop="dateModified" datetime="2022-02-23T15:47:22+08:00">2022-02-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/02/22/Web/Http/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/22/Web/Http/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="HTTP协议特点"><a href="#HTTP协议特点" class="headerlink" title="HTTP协议特点"></a>HTTP协议特点</h4><ul>
-<li>基于TCP协议，面向连接，安全</li>
-<li>基于请求-相应模型的，一次请求对应一次相应</li>
-<li>HTTP协议是无状态的协议：对于事务处理没有记忆能力。每次请求-相应都是独立的<ul>
-<li>缺点：多次请求间不能共享数据</li>
-<li>优点：速度快</li>
-</ul>
-</li>
-</ul>
-<h4 id="HTTP-请求数据格式"><a href="#HTTP-请求数据格式" class="headerlink" title="HTTP-请求数据格式"></a>HTTP-请求数据格式</h4><ul>
-<li>请求数据分为3部分：<ol>
-<li>请求行：请求数据的第一行。其中GET表示请求方式，/表示请求资源路径，HTTP/1.1表示协议版本</li>
-<li>请求头：第二行开始，格式为key : value形式</li>
-<li>请求体：POST请求的最后一部分，存放请求参数</li>
-</ol>
-</li>
-</ul>
-<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/</span> HTTP/1.1</span><br><span class="line"><span class="attribute">Host</span>: www.itcast.cn</span><br><span class="line"><span class="attribute">Connection</span>: keep-alive</span><br><span class="line"><span class="attribute">Cache-Control</span>: max-age=0 Upgrade-Insecure-Requests:1</span><br><span class="line"><span class="attribute">User-Agent</span>: Mozilla/5.0 Chrome/91.0.4472.106</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>常见HTTP请求头：<ul>
-<li>Host：表示请求的主机名</li>
-<li>User-Agent：浏览器版本，例如Chrome浏览器的标识类似Mozilla/5.0 … Chrome/79</li>
-<li>Accept：标识浏览器能接收的资源类型</li>
-<li>Accept-Language：表示浏览器偏好的语言</li>
-<li>Accept——Encoding：表示浏览器可以支持的压缩类型</li>
-</ul>
-</li>
-<li>GET请求和POST请求区别<ul>
-<li>GET请求请求参数在请求行中，没有请求体。POST请求请求参数在请求体中</li>
-<li>GET请求请求参数大小有限制，POST没有</li>
-</ul>
-</li>
-</ul>
-<h4 id="HTTP-相应数据格式"><a href="#HTTP-相应数据格式" class="headerlink" title="HTTP-相应数据格式"></a>HTTP-相应数据格式</h4><ul>
-<li>响应数据分为三部分<ol>
-<li>相应行：相应数据第一行。200表示状态码，OK表示状态码描述</li>
-<li>响应头：第二行开始，格式为key : value</li>
-<li>响应体</li>
-</ol>
-</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Server</span>: Tengine</span><br><span class="line"><span class="attribute">Content-Type</span>: text/html</span><br><span class="line"><span class="attribute">Transfer-Encoding</span>: chunked</span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">	&lt;title&gt;&lt;/title&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;body&gt;&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>常见的HTTP响应头<ul>
-<li>Content-Type：表示该相应内容的类型</li>
-<li>Content-Length：表示该相应内容长度</li>
-<li>Content-Encoding：表示该相应压缩算法</li>
-<li>Cache-Control：指示客户端应如何缓存</li>
-</ul>
-</li>
-</ul>
-<p><strong><a href="https://cloud.tencent.com/developer/chapter/13553" target="_blank" rel="noopener">响应状态码大全</a></strong></p>
-<table>
-<thead>
-<tr>
-<th>状态码分类</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1xx</td>
-<td><strong>响应中</strong>——临时状态码，表示请求已经接受，告诉客户端应该继续请求或者如果它已经完成则忽略</td>
-</tr>
-<tr>
-<td>2xx</td>
-<td><strong>成功</strong>——表示请求已经被成功接收，处理已完成</td>
-</tr>
-<tr>
-<td>3xx</td>
-<td><strong>重定向</strong>——重定向到其它地方，它让客户端再发起一个请求以完成整个处理</td>
-</tr>
-<tr>
-<td>4xx</td>
-<td><strong>客户端错误</strong>——处理发生错误，责任在客户端</td>
-</tr>
-<tr>
-<td>5xx</td>
-<td><strong>服务器错误</strong>——处理发生错误，责任在服务器</td>
-</tr>
-</tbody></table>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/22/Web/Tomcat/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/22/Web/Tomcat/" class="post-title-link" itemprop="url">Tomcat</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-22 11:27:07" itemprop="dateCreated datePublished" datetime="2022-02-22T11:27:07+08:00">2022-02-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-23 18:43:51" itemprop="dateModified" datetime="2022-02-23T18:43:51+08:00">2022-02-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/02/22/Web/Tomcat/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/22/Web/Tomcat/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>对HTTP协议操作进行封装，使得程序员不必直接对协议进行操作，让Web开发更加便捷</p>
-<h4 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h4><ul>
-<li>bin 可执行文件目录</li>
-<li>conf 配置文件目录</li>
-<li>lib 存放lib的目录</li>
-<li>logs 日志文件目录</li>
-<li>webapps 项目部署目录</li>
-<li>work 工作目录</li>
-<li>temp 临时目录</li>
-</ul>
-<h4 id="Maven中Tomcat的配置"><a href="#Maven中Tomcat的配置" class="headerlink" title="Maven中Tomcat的配置"></a>Maven中Tomcat的配置</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.tomcat.maven<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>tomcat7-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">port</span>&gt;</span>8080<span class="tag">&lt;/<span class="name">port</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">path</span>&gt;</span>/<span class="tag">&lt;/<span class="name">path</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1564,14 +1585,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-count">73</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1660,7 +1681,7 @@ $(document).ready(function() {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共21.2k字</span>
+  <span class="post-count">博客全站共23k字</span>
 </div>
         
 <div class="busuanzi-count">

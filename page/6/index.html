@@ -180,6 +180,211 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/18/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E6%A6%82%E8%BF%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/18/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E6%A6%82%E8%BF%B0/" class="post-title-link" itemprop="url">集合框架概述</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-18 21:45:38" itemprop="dateCreated datePublished" datetime="2022-01-18T21:45:38+08:00">2022-01-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-20 01:31:32" itemprop="dateModified" datetime="2022-02-20T01:31:32+08:00">2022-02-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">集合框架</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/01/18/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E6%A6%82%E8%BF%B0/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/01/18/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E6%A6%82%E8%BF%B0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li><strong>Collection接口</strong><ul>
+<li><strong>List接口</strong>：存储有序的，可重复的数据<ul>
+<li>ArrayList：作为List接口的主要实现类，线程不安全，效率高，底层使用Object[]</li>
+<li>LinkedList：底层使用双向链表，频繁插入删除</li>
+<li>Vector：作为List古老实现类，线程安全，效率低</li>
+</ul>
+</li>
+<li><strong>Set接口</strong><ul>
+<li>HashSet：作为Set接口主要实现类，线程不安全，可以存null值</li>
+<li>LinkedHashSet：HashSet的子类，遍历按添加顺序，用于频繁遍历</li>
+<li>TreeSet：红黑树实现，数据要是同一个类，可以按指定属性排序</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Map接口</strong><ul>
+<li>HashMap：Map的主要实现类，线程不安全，效率高，可以存null的key和value</li>
+<li>LinkedHashMap：HashMap的子类，遍历按添加顺序，用于频繁遍历</li>
+<li>TreeMap：按照添加的key-value排序，实现排序遍历，此时考虑key的排序，底层使用红黑树</li>
+<li>Hashtable：古老实现类，线程安全，效率低，不能存null</li>
+<li>Properties：Hashtable子类，key和value都是String，常用来处理配置文件</li>
+</ul>
+</li>
+</ul>
+<h4 id="使用Iterator接口遍历Collection"><a href="#使用Iterator接口遍历Collection" class="headerlink" title="使用Iterator接口遍历Collection"></a>使用Iterator接口遍历Collection</h4>
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/12/15/SQL%E5%9F%BA%E7%A1%80/SQL_Insert%E8%AF%AD%E5%8F%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/15/SQL%E5%9F%BA%E7%A1%80/SQL_Insert%E8%AF%AD%E5%8F%A5/" class="post-title-link" itemprop="url">SQL_Insert语句</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-12-15 22:05:30 / 修改时间：22:32:46" itemprop="dateCreated datePublished" datetime="2021-12-15T22:05:30+08:00">2021-12-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2021/12/15/SQL%E5%9F%BA%E7%A1%80/SQL_Insert%E8%AF%AD%E5%8F%A5/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2021/12/15/SQL%E5%9F%BA%E7%A1%80/SQL_Insert%E8%AF%AD%E5%8F%A5/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 插入语句</span></span><br><span class="line"><span class="comment">-- insert into 表名 (字段名1， 字段名2， ...) values(值1.1,值1.2,...)， (数据2)， ...</span></span><br><span class="line"><span class="comment">-- 主键自增可以忽略</span></span><br><span class="line"><span class="comment">-- 不写表字段就会一一匹配</span></span><br><span class="line"><span class="comment">-- 一般写插入语句， 一定要数据和字段一一对应</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/12/15/SQL%E5%9F%BA%E7%A1%80/SQL%E5%A4%96%E9%94%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1055,191 +1260,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/12/SQL%E5%9F%BA%E7%A1%80/MySQL%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/12/SQL%E5%9F%BA%E7%A1%80/MySQL%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">MySQL基本操作和概念</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-09-12 00:43:14 / 修改时间：01:17:11" itemprop="dateCreated datePublished" datetime="2021-09-12T00:43:14+08:00">2021-09-12</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/09/12/SQL%E5%9F%BA%E7%A1%80/MySQL%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/09/12/SQL%E5%9F%BA%E7%A1%80/MySQL%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="一、创建数据库"><a href="#一、创建数据库" class="headerlink" title="一、创建数据库"></a>一、创建数据库</h2><img src="/images/创建数据库.PNG">
-
-<p><em>*CREATE DATABASE *xxx</em> CHARACTER SET utf8 COLLATE utf8_general_ci; **</p>
-<h2 id="二、创建表"><a href="#二、创建表" class="headerlink" title="二、创建表"></a>二、创建表</h2><img src="/images/新建表.PNG">
-
-
-
-<h2 id="三、命令行操作"><a href="#三、命令行操作" class="headerlink" title="三、命令行操作"></a>三、命令行操作</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p  <span class="comment">--连接数据库</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">databases</span>; <span class="comment">--查看所有数据库</span></span><br><span class="line"><span class="keyword">use</span> xxx <span class="comment">--切换数据库</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">tables</span>； <span class="comment">--查看所有表</span></span><br><span class="line"><span class="keyword">describe</span> xxx; <span class="comment">--显示表中所有信息</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> xxx; <span class="comment">--创建数据库</span></span><br><span class="line">exit; <span class="comment">--连接退出</span></span><br><span class="line"><span class="comment">--单行注释</span></span><br><span class="line"><span class="comment">/* 多行注释 */</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="四、语言概念"><a href="#四、语言概念" class="headerlink" title="四、语言概念"></a>四、语言概念</h2><p><strong>DDL 数据库定义语言</strong></p>
-<p><strong>DML 数据库操作语言</strong></p>
-<p><strong>DQL 数据库查询语言</strong></p>
-<p><strong>DCL 数据库控制语言</strong></p>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/09/ACM/DAG%E5%9B%BE%E4%B8%8A%E7%9A%84%E7%81%AD%E7%BB%9D%E6%A0%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/09/ACM/DAG%E5%9B%BE%E4%B8%8A%E7%9A%84%E7%81%AD%E7%BB%9D%E6%A0%91/" class="post-title-link" itemprop="url">DAG图上的灭绝树</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-09-09 22:16:19 / 修改时间：22:16:42" itemprop="dateCreated datePublished" datetime="2021-09-09T22:16:19+08:00">2021-09-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%9B%BE%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">图论</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/09/09/ACM/DAG%E5%9B%BE%E4%B8%8A%E7%9A%84%E7%81%AD%E7%BB%9D%E6%A0%91/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/09/09/ACM/DAG%E5%9B%BE%E4%B8%8A%E7%9A%84%E7%81%AD%E7%BB%9D%E6%A0%91/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="DAG图上的灭绝树"><a href="#DAG图上的灭绝树" class="headerlink" title="DAG图上的灭绝树"></a>DAG图上的灭绝树</h2><p>例题P2597</p>
-<h4 id="难点：DAG图上求LCA"><a href="#难点：DAG图上求LCA" class="headerlink" title="难点：DAG图上求LCA"></a>难点：DAG图上求LCA</h4><p><strong>其思路是：给每个数多维护一个值dad,用来表示如果此时它要被连入灭绝树中，它应该是哪个点的儿子。一开始将dad清为-1，将开始入度为0的点 pi的dad设为0（太阳）。在拓扑排序取出一个点i的时候连接边 dad[i]-&gt;i(此时i的父亲（根节点的父亲前面已经确定）都已经被处理过了，所以dad[i]已经确定（怎么确定的马上会说））。然后更新点i相对应的深度和倍增数组（因为i的祖先们已经在i之前被确定，所以此时的深度和其倍增数组可以唯一确定），接着遍历i的儿子们，如果它的儿子p的父亲dad[p]为0，说明它的父亲还没有被更新过，此时把dad[p]更新为i。否则就将dad[p]更新为LCA（dad[p],i）。这样，在遍历到p的时候它的父节点就被确定下来了。</strong></p>
-<h4 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> in[<span class="number">100010</span>];</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;v1[<span class="number">100010</span>];</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;v2[<span class="number">100010</span>];</span><br><span class="line"><span class="keyword">int</span> f[<span class="number">100010</span>][<span class="number">30</span>], d[<span class="number">100010</span>];</span><br><span class="line"><span class="keyword">int</span> sz[<span class="number">100010</span>];</span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;q;</span><br><span class="line"><span class="keyword">int</span> t;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lca</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (d[x] &gt; d[y])swap(x, y);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = t; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">		<span class="keyword">if</span> (f[y][i] == <span class="number">-1</span>)<span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">if</span> (d[f[y][i]] &gt;= d[x])y = f[y][i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (x == y)<span class="keyword">return</span> x;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = t; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">		<span class="keyword">if</span> (f[x][i] == <span class="number">-1</span> || f[y][i] == <span class="number">-1</span>)<span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">if</span> (f[x][i] != f[y][i])x = f[x][i], y = f[y][i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> f[x][<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bfs</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">while</span> (!q.empty()) &#123;</span><br><span class="line">		<span class="keyword">int</span> x = q.front(); q.pop();</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; v1[x].<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">			<span class="keyword">int</span> k = v1[x][i];</span><br><span class="line">			in[k]--;</span><br><span class="line">			<span class="keyword">if</span> (f[k][<span class="number">0</span>] == <span class="number">-1</span>)f[k][<span class="number">0</span>] = x;</span><br><span class="line">			<span class="keyword">else</span> f[k][<span class="number">0</span>] = lca(f[k][<span class="number">0</span>], x);</span><br><span class="line">			d[k] = d[f[k][<span class="number">0</span>]] + <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= t; j++)f[k][j] = f[f[k][j - <span class="number">1</span>]][j - <span class="number">1</span>];</span><br><span class="line">			<span class="keyword">if</span> (!in[k]) &#123;</span><br><span class="line">				q.push(k);</span><br><span class="line">				v2[f[k][<span class="number">0</span>]].push_back(k);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">	sz[x] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; v2[x].<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">		dfs(v2[x][i]);</span><br><span class="line">		sz[x] += sz[v2[x][i]];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">	<span class="built_in">memset</span>(f, <span class="number">-1</span>, <span class="keyword">sizeof</span>(f));</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">	t = <span class="built_in">log</span>(n + <span class="number">1</span>) / <span class="built_in">log</span>(<span class="number">2</span>) + <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">			<span class="keyword">int</span> k;</span><br><span class="line">			<span class="built_in">cin</span> &gt;&gt; k;</span><br><span class="line">			<span class="keyword">if</span> (!k)<span class="keyword">break</span>;</span><br><span class="line">			v1[k].push_back(i);</span><br><span class="line">			in[i]++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!in[i]) &#123;</span><br><span class="line">			d[i] = <span class="number">1</span>;</span><br><span class="line">			f[i][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">			q.push(i);</span><br><span class="line">			v2[<span class="number">0</span>].push_back(i);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	bfs();</span><br><span class="line">	dfs(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; sz[i] - <span class="number">1</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1311,14 +1331,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-count">73</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1407,7 +1427,7 @@ $(document).ready(function() {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共21.2k字</span>
+  <span class="post-count">博客全站共23k字</span>
 </div>
         
 <div class="busuanzi-count">
