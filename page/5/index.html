@@ -180,6 +180,91 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/04/SQL%E8%BF%9B%E9%98%B6/%E7%AC%AC%E4%B8%80%E4%B8%AAJDBC%E7%A8%8B%E5%BA%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/04/SQL%E8%BF%9B%E9%98%B6/%E7%AC%AC%E4%B8%80%E4%B8%AAJDBC%E7%A8%8B%E5%BA%8F/" class="post-title-link" itemprop="url">第一个JDBC程序</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-04 00:04:10 / 修改时间：01:14:53" itemprop="dateCreated datePublished" datetime="2022-02-04T00:04:10+08:00">2022-02-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/02/04/SQL%E8%BF%9B%E9%98%B6/%E7%AC%AC%E4%B8%80%E4%B8%AAJDBC%E7%A8%8B%E5%BA%8F/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/04/SQL%E8%BF%9B%E9%98%B6/%E7%AC%AC%E4%B8%80%E4%B8%AAJDBC%E7%A8%8B%E5%BA%8F/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.sql.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">//我的第一个JDBC程序</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JdbcFirstDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException, SQLException </span>&#123;</span><br><span class="line">        <span class="comment">//1.加载驱动</span></span><br><span class="line">        <span class="comment">// DriverManager.registerDriver(new com.mysql.jdbc.Driver());</span></span><br><span class="line">        Class.forName(<span class="string">"com.mysql.cj.jdbc.Driver"</span>); <span class="comment">//固定写法，加载驱动</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">//2.用户信息和url</span></span><br><span class="line">        <span class="comment">// jdbc:mysql://主机地址:端口号(mysql默认3306)/数据库名?参数1&amp;参数2&amp;....</span></span><br><span class="line">        String url = <span class="string">"jdbc:mysql://127.0.0.1:3306/jdbcstudy?serverTimezone=UTC&amp;userUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false"</span>;</span><br><span class="line">        String username = <span class="string">"root"</span>;</span><br><span class="line">        String password = <span class="string">""</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//3.连接成功，数据库对象 Connection 代表数据库</span></span><br><span class="line">        <span class="comment">//数据库级别操作 设置自动提交，事务提交，事务回滚</span></span><br><span class="line">        <span class="comment">//rollback() commit() setAutoCommit()</span></span><br><span class="line">        Connection connection = DriverManager.getConnection(url, username, password);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//4.执行SQL的对象</span></span><br><span class="line">        <span class="comment">//查询返回结果集 .executeQuery()</span></span><br><span class="line">        <span class="comment">//更新插入删除，返回影响行数 .executeUpdate()</span></span><br><span class="line">        <span class="comment">//任何SQL .execute()</span></span><br><span class="line">        Statement statement = connection.createStatement();</span><br><span class="line"></span><br><span class="line">        String sql = <span class="string">"select * from users"</span>;</span><br><span class="line">        ResultSet resultSet = statement.executeQuery(sql); <span class="comment">//返回的结果集</span></span><br><span class="line">        <span class="comment">//获得指定数据类型</span></span><br><span class="line">        <span class="comment">//不知道列类型.getObject() 知道列类型.getInt()等</span></span><br><span class="line">        <span class="keyword">while</span>(resultSet.next())&#123;</span><br><span class="line">            System.out.println(<span class="string">"id="</span> + resultSet.getObject(<span class="string">"id"</span>));</span><br><span class="line">            System.out.println(<span class="string">"name="</span> + resultSet.getObject(<span class="string">"name"</span>));</span><br><span class="line">            System.out.println(<span class="string">"password="</span> + resultSet.getObject(<span class="string">"password"</span>));</span><br><span class="line">            System.out.println(<span class="string">"email="</span> + resultSet.getObject(<span class="string">"email"</span>));</span><br><span class="line">            System.out.println(<span class="string">"birthday="</span> + resultSet.getObject(<span class="string">"birthday"</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//5.释放连接</span></span><br><span class="line">        resultSet.close();</span><br><span class="line">        statement.close();</span><br><span class="line">        connection.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/25/SQL%E8%BF%9B%E9%98%B6/SQL%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E5%92%8C%E5%A4%87%E4%BB%BD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1083,114 +1168,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/19/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/List%E6%8E%A5%E5%8F%A3%E5%AE%B9%E5%99%A8%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/19/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/List%E6%8E%A5%E5%8F%A3%E5%AE%B9%E5%99%A8%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">List接口容器源码分析</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-01-19 11:33:51" itemprop="dateCreated datePublished" datetime="2022-01-19T11:33:51+08:00">2022-01-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-19 20:25:31" itemprop="dateModified" datetime="2022-02-19T20:25:31+08:00">2022-02-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">集合框架</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/01/19/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/List%E6%8E%A5%E5%8F%A3%E5%AE%B9%E5%99%A8%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/01/19/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/List%E6%8E%A5%E5%8F%A3%E5%AE%B9%E5%99%A8%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h4><h5 id="JDK7"><a href="#JDK7" class="headerlink" title="JDK7"></a>JDK7</h5><ul>
-<li>无参：底层创建长度为10的Object[]数组<em>elementData</em></li>
-<li>扩容：扩容为原来的1.5倍</li>
-</ul>
-<h5 id="JDK8"><a href="#JDK8" class="headerlink" title="JDK8"></a>JDK8</h5><ul>
-<li>无参：空的Object[]数组<em>DEFAULTCAPACITY_EMPTY_ELEMENTDATA</em></li>
-<li>首次添加：<em>minCapacity</em> = min(10, 添加长度)</li>
-<li>扩容：扩容为原来的1.5倍</li>
-</ul>
-<hr>
-<h4 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h4><ul>
-<li>内部声明名为Node类型的first和last属性，值为null</li>
-<li>双向链表</li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1275,7 +1252,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1358,7 +1335,7 @@ $(document).ready(function() {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共23k字</span>
+  <span class="post-count">博客全站共23.2k字</span>
 </div>
         
 <div class="busuanzi-count">

@@ -180,7 +180,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/09/%E6%9C%AA%E7%9F%A5/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/15/Java/io/io%E7%B1%BB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -194,7 +194,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/06/09/%E6%9C%AA%E7%9F%A5/" class="post-title-link" itemprop="url">未知</a>
+            <a href="/2020/06/15/Java/io/io%E7%B1%BB/" class="post-title-link" itemprop="url">字节流</a>
         </h2>
 
         <div class="post-meta">
@@ -206,15 +206,28 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-06-09 08:17:38" itemprop="dateCreated datePublished" datetime="2020-06-09T08:17:38+08:00">2020-06-09</time>
+              <time title="创建时间：2020-06-15 14:07:16" itemprop="dateCreated datePublished" datetime="2020-06-15T14:07:16+08:00">2020-06-15</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-09 22:28:35" itemprop="dateModified" datetime="2021-09-09T22:28:35+08:00">2021-09-09</time>
+                <time title="修改时间：2021-09-12 01:19:43" itemprop="dateModified" datetime="2021-09-12T01:19:43+08:00">2021-09-12</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/I-O/" itemprop="url" rel="index"><span itemprop="name">I/O</span></a>
+                </span>
+            </span>
 
           
   
@@ -225,8 +238,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/06/09/%E6%9C%AA%E7%9F%A5/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/09/%E6%9C%AA%E7%9F%A5/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/06/15/Java/io/io%E7%B1%BB/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/15/Java/io/io%E7%B1%BB/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -241,15 +254,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          Here's something encrypted, password is required to continue reading.
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/06/09/%E6%9C%AA%E7%9F%A5/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <h4 id="字节输出流"><a href="#字节输出流" class="headerlink" title="字节输出流"></a>字节输出流</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writeFile</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">      Scanner input = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">      <span class="comment">//将文件封装为File对象</span></span><br><span class="line">      File file = <span class="keyword">new</span> File(<span class="string">"X:\\xxx.xxx"</span>);</span><br><span class="line">      <span class="comment">//输出数据</span></span><br><span class="line">      String str = input.next();</span><br><span class="line">      <span class="comment">//字节输出流</span></span><br><span class="line">      FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(file,<span class="keyword">true</span>);</span><br><span class="line">      <span class="comment">//将代码数据保存到磁盘</span></span><br><span class="line">      fos.write(str.getBytes());</span><br><span class="line">      <span class="comment">//关闭流</span></span><br><span class="line">      fos.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="字节输入流"><a href="#字节输入流" class="headerlink" title="字节输入流"></a>字节输入流</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">readFile</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">     <span class="comment">//将文件封装为File对象</span></span><br><span class="line">     File file = <span class="keyword">new</span> File(<span class="string">"X:\\xxx.xxx"</span>);</span><br><span class="line">     建立磁盘通向程序代码的管道(字节输入流)</span><br><span class="line">     FileInputStream fis = <span class="keyword">new</span> FileInputStream(file);</span><br><span class="line">     <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">     <span class="comment">//读取数据</span></span><br><span class="line">     <span class="keyword">while</span>((len = fis.read()) != -<span class="number">1</span>)&#123;</span><br><span class="line">         System.out.print((<span class="keyword">char</span>)len);</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="comment">//关闭流</span></span><br><span class="line">     fis.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="缓冲流-文件的复制"><a href="#缓冲流-文件的复制" class="headerlink" title="(缓冲流)文件的复制"></a>(缓冲流)文件的复制</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">copyVideoQuik</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">      <span class="comment">//磁盘通往代码的管道</span></span><br><span class="line">      FileInputStream fis = <span class="keyword">new</span> FileInputSteam(<span class="string">"X:\\xxx.xxx"</span>);</span><br><span class="line">      <span class="comment">//管道加粗</span></span><br><span class="line">      BufferedInputSteam bis = <span class="keyword">new</span> BufferedInputSteam(fis);</span><br><span class="line">      <span class="comment">//代码通往磁盘的管道</span></span><br><span class="line">      FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(<span class="string">"X:\\xxx.xxx"</span>);</span><br><span class="line">      <span class="comment">//管道加粗</span></span><br><span class="line">      BufferedOutputStream bos = <span class="keyword">new</span> BufferedOutputStream(fos);</span><br><span class="line">      <span class="keyword">byte</span>[] car = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];<span class="comment">//一次读取1024字节(速度最优)</span></span><br><span class="line">      <span class="keyword">int</span> len = <span class="number">0</span>;<span class="comment">//len=-1代表读取结束</span></span><br><span class="line">      <span class="keyword">while</span>((len = bis.read(car)) != -<span class="number">1</span>)&#123;</span><br><span class="line">          <span class="comment">//读取的数据保存到磁盘</span></span><br><span class="line">         bos.write(car,<span class="number">0</span>,len);<span class="comment">//从car里读取，从下标0开始，读1024个</span></span><br><span class="line">         <span class="comment">//System.out.println(new String(car,0,len));//转字符串逐行打印</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">//关闭流：先关外管道流，再关内管道流</span></span><br><span class="line">      <span class="comment">//关输入流</span></span><br><span class="line">      bis.close();</span><br><span class="line">      fis.close();</span><br><span class="line">      <span class="comment">//关输出流</span></span><br><span class="line">      bos.close();</span><br><span class="line">      fos.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
       
     </div>
     
@@ -589,7 +602,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -672,7 +685,7 @@ $(document).ready(function() {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共23k字</span>
+  <span class="post-count">博客全站共23.2k字</span>
 </div>
         
 <div class="busuanzi-count">
