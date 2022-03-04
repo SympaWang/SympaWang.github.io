@@ -275,6 +275,120 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/03/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E6%B3%A8%E5%86%8C%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/03/03/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E6%B3%A8%E5%86%8C%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/" class="post-title-link" itemprop="url">注册模块开发</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-03-03 19:34:35" itemprop="dateCreated datePublished" datetime="2022-03-03T19:34:35+08:00">2022-03-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-04 19:34:33" itemprop="dateModified" datetime="2022-03-04T19:34:33+08:00">2022-03-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">牛客讨论区项目</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/03/03/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E6%B3%A8%E5%86%8C%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/03/03/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E6%B3%A8%E5%86%8C%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><h5 id="配置域名"><a href="#配置域名" class="headerlink" title="配置域名"></a>配置域名</h5><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#community</span></span><br><span class="line"><span class="meta">community.path.domain</span>=<span class="string">http://localhost:8080</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="封装生成随机字符串工具类（UUID），拼接随机字符串后MD5加密"><a href="#封装生成随机字符串工具类（UUID），拼接随机字符串后MD5加密" class="headerlink" title="封装生成随机字符串工具类（UUID），拼接随机字符串后MD5加密"></a>封装生成随机字符串工具类（UUID），拼接随机字符串后MD5加密</h5><h4 id="注册整体逻辑"><a href="#注册整体逻辑" class="headerlink" title="注册整体逻辑"></a>注册整体逻辑</h4><h5 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h5><ul>
+<li>主要目标：接收Controller传递来的User对象，判断是否合法，合法则添加进User表，发送激活邮件。返回给Controller错误信息。</li>
+<li>不合法类型<ul>
+<li>填写值为空</li>
+<li>账号已存在</li>
+<li>邮箱已注册</li>
+<li>密码格式不合法（还未实现）</li>
+</ul>
+</li>
+<li>使用map记录不合法信息</li>
+<li>若合法则发送激活邮件</li>
+</ul>
+<h5 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h5><ul>
+<li>主要目标：接受用户注册的POST请求，将User对象传递给Service。向用户显示注册成功与否的信息</li>
+<li>若无错误信息，跳转到operate-result界面，显示注册成功信息</li>
+<li>若有错误，返回register界面，渲染html界面，显示错误信息并保留用户上次填写的信息</li>
+</ul>
+<h4 id="激活邮件设置"><a href="#激活邮件设置" class="headerlink" title="激活邮件设置"></a>激活邮件设置</h4><ul>
+<li>创建激活结果的工具接口</li>
+<li>Service：接收激活url中的userId和激活码，到数据库中查询，返回激活工具接口中的结果</li>
+<li>Controller：形参使用@PathVariable注解提取@RequestMapping中path的变量，判断激活结果，渲染html</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/02/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/Spring%20Boot%20Starter%20Mail%E4%BD%BF%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -497,120 +611,6 @@
 <li>数据大小：Cookie 3kb，Session无限制</li>
 <li>存储时间：Cookie可长期存储，Session默认30分钟</li>
 <li>服务器性能：Cookie不占用服务器资源，Session占用</li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/28/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E6%B3%A8%E5%86%8C%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/28/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E6%B3%A8%E5%86%8C%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/" class="post-title-link" itemprop="url">注册模块开发</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-28 23:00:00" itemprop="dateCreated datePublished" datetime="2022-02-28T23:00:00+08:00">2022-02-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-04 19:25:27" itemprop="dateModified" datetime="2022-03-04T19:25:27+08:00">2022-03-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">牛客讨论区项目</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/02/28/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E6%B3%A8%E5%86%8C%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/28/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E6%B3%A8%E5%86%8C%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><h5 id="配置域名"><a href="#配置域名" class="headerlink" title="配置域名"></a>配置域名</h5><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#community</span></span><br><span class="line"><span class="meta">community.path.domain</span>=<span class="string">http://localhost:8080</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="封装生成随机字符串工具类（UUID），拼接随机字符串后MD5加密"><a href="#封装生成随机字符串工具类（UUID），拼接随机字符串后MD5加密" class="headerlink" title="封装生成随机字符串工具类（UUID），拼接随机字符串后MD5加密"></a>封装生成随机字符串工具类（UUID），拼接随机字符串后MD5加密</h5><h4 id="注册整体逻辑"><a href="#注册整体逻辑" class="headerlink" title="注册整体逻辑"></a>注册整体逻辑</h4><h5 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h5><ul>
-<li>主要目标：接收Controller传递来的User对象，判断是否合法，合法则添加进User表，发送激活邮件。返回给Controller错误信息。</li>
-<li>不合法类型<ul>
-<li>填写值为空</li>
-<li>账号已存在</li>
-<li>邮箱已注册</li>
-<li>密码格式不合法（还未实现）</li>
-</ul>
-</li>
-<li>使用map记录不合法信息</li>
-<li>若合法则发送激活邮件</li>
-</ul>
-<h5 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h5><ul>
-<li>主要目标：接受用户注册的POST请求，将User对象传递给Service。向用户显示注册成功与否的信息</li>
-<li>若无错误信息，跳转到operate-result界面，显示注册成功信息</li>
-<li>若有错误，返回register界面，渲染html界面，显示错误信息并保留用户上次填写的信息</li>
-</ul>
-<h4 id="激活邮件设置"><a href="#激活邮件设置" class="headerlink" title="激活邮件设置"></a>激活邮件设置</h4><ul>
-<li>创建激活结果的工具接口</li>
-<li>Service：接收激活url中的userId和激活码，到数据库中查询，返回激活工具接口中的结果</li>
-<li>Controller：形参使用@PathVariable注解提取@RequestMapping中path的变量，判断激活结果，渲染html</li>
 </ul>
 
       

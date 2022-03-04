@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2022-03-03T12:34:46.955Z</updated>
+  <updated>2022-03-04T11:34:33.018Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>注册模块开发</title>
+    <link href="http://yoursite.com/2022/03/03/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E6%B3%A8%E5%86%8C%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/"/>
+    <id>http://yoursite.com/2022/03/03/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E6%B3%A8%E5%86%8C%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/</id>
+    <published>2022-03-03T11:34:35.000Z</published>
+    <updated>2022-03-04T11:34:33.018Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><h5 id="配置域名"><a href="#配置域名" class="headerlink" title="配置域名"></a>配置域名</h5><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#community</span></span><br><span class="line"><span class="meta">community.path.domain</span>=<span class="string">http://localhost:8080</span></span><br></pre></td></tr></table></figure><h5 id="封装生成随机字符串工具类（UUID），拼接随机字符串后MD5加密"><a href="#封装生成随机字符串工具类（UUID），拼接随机字符串后MD5加密" class="headerlink" title="封装生成随机字符串工具类（UUID），拼接随机字符串后MD5加密"></a>封装生成随机字符串工具类（UUID），拼接随机字符串后MD5加密</h5><h4 id="注册整体逻辑"><a href="#注册整体逻辑" class="headerlink" title="注册整体逻辑"></a>注册整体逻辑</h4><h5 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h5><ul><li>主要目标：接收Controller传递来的User对象，判断是否合法，合法则添加进User表，发送激活邮件。返回给Controller错误信息。</li><li>不合法类型<ul><li>填写值为空</li><li>账号已存在</li><li>邮箱已注册</li><li>密码格式不合法（还未实现）</li></ul></li><li>使用map记录不合法信息</li><li>若合法则发送激活邮件</li></ul><h5 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h5><ul><li>主要目标：接受用户注册的POST请求，将User对象传递给Service。向用户显示注册成功与否的信息</li><li>若无错误信息，跳转到operate-result界面，显示注册成功信息</li><li>若有错误，返回register界面，渲染html界面，显示错误信息并保留用户上次填写的信息</li></ul><h4 id="激活邮件设置"><a href="#激活邮件设置" class="headerlink" title="激活邮件设置"></a>激活邮件设置</h4><ul><li>创建激活结果的工具接口</li><li>Service：接收激活url中的userId和激活码，到数据库中查询，返回激活工具接口中的结果</li><li>Controller：形参使用@PathVariable注解提取@RequestMapping中path的变量，判断激活结果，渲染html</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="牛客讨论区项目" scheme="http://yoursite.com/categories/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Spring Boot Starter Mail使用</title>
@@ -60,30 +84,6 @@
     
     
       <category term="Web" scheme="http://yoursite.com/categories/Web/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>注册模块开发</title>
-    <link href="http://yoursite.com/2022/02/28/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E6%B3%A8%E5%86%8C%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/"/>
-    <id>http://yoursite.com/2022/02/28/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E6%B3%A8%E5%86%8C%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/</id>
-    <published>2022-02-28T15:00:00.000Z</published>
-    <updated>2022-03-04T11:25:27.783Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><h5 id="配置域名"><a href="#配置域名" class="headerlink" title="配置域名"></a>配置域名</h5><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#community</span></span><br><span class="line"><span class="meta">community.path.domain</span>=<span class="string">http://localhost:8080</span></span><br></pre></td></tr></table></figure><h5 id="封装生成随机字符串工具类（UUID），拼接随机字符串后MD5加密"><a href="#封装生成随机字符串工具类（UUID），拼接随机字符串后MD5加密" class="headerlink" title="封装生成随机字符串工具类（UUID），拼接随机字符串后MD5加密"></a>封装生成随机字符串工具类（UUID），拼接随机字符串后MD5加密</h5><h4 id="注册整体逻辑"><a href="#注册整体逻辑" class="headerlink" title="注册整体逻辑"></a>注册整体逻辑</h4><h5 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h5><ul><li>主要目标：接收Controller传递来的User对象，判断是否合法，合法则添加进User表，发送激活邮件。返回给Controller错误信息。</li><li>不合法类型<ul><li>填写值为空</li><li>账号已存在</li><li>邮箱已注册</li><li>密码格式不合法（还未实现）</li></ul></li><li>使用map记录不合法信息</li><li>若合法则发送激活邮件</li></ul><h5 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h5><ul><li>主要目标：接受用户注册的POST请求，将User对象传递给Service。向用户显示注册成功与否的信息</li><li>若无错误信息，跳转到operate-result界面，显示注册成功信息</li><li>若有错误，返回register界面，渲染html界面，显示错误信息并保留用户上次填写的信息</li></ul><h4 id="激活邮件设置"><a href="#激活邮件设置" class="headerlink" title="激活邮件设置"></a>激活邮件设置</h4><ul><li>创建激活结果的工具接口</li><li>Service：接收激活url中的userId和激活码，到数据库中查询，返回激活工具接口中的结果</li><li>Controller：形参使用@PathVariable注解提取@RequestMapping中path的变量，判断激活结果，渲染html</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-      <category term="牛客讨论区项目" scheme="http://yoursite.com/categories/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/"/>
     
     
   </entry>
