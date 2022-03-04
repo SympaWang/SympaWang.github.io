@@ -334,7 +334,10 @@
     <a href="/2022/02/27/%E6%A1%86%E6%9E%B6/MyBatis/MyBatis%E8%8E%B7%E5%8F%96%E5%8F%82%E6%95%B0%E5%80%BC%E6%96%B9%E5%BC%8F/" rel="prev" title="MyBatis获取参数值方式">
       <i class="fa fa-chevron-left"></i> MyBatis获取参数值方式
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/02/27/Web/Session%E4%BC%9A%E8%AF%9D%E8%B7%9F%E8%B8%AA/" rel="next" title="Session会话跟踪">
+      Session会话跟踪 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -349,19 +352,19 @@
           
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
-            <li class="tab"><a href="#comment-livere">livere</a></li>
             <li class="tab"><a href="#comment-valine">valine</a></li>
+            <li class="tab"><a href="#comment-livere">livere</a></li>
         </ul>
         <div class="tab-content">
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
+            </div>
             <div class="tab-pane livere" id="comment-livere">
               
   <div class="comments">
     <div id="lv-container" data-id="city" data-uid="MTAyMC81MDM4Mi8yNjg3Mg=="></div>
   </div>
   
-            </div>
-            <div class="tab-pane valine" id="comment-valine">
-              <div class="comments" id="valine-comments"></div>
             </div>
         </div>
       </div>
@@ -427,14 +430,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">73</span>
+          <span class="site-state-item-count">83</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -523,7 +526,7 @@ $(document).ready(function() {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共23.2k字</span>
+  <span class="post-count">博客全站共25.3k字</span>
 </div>
         
 <div class="busuanzi-count">
@@ -628,22 +631,6 @@ $(document).ready(function() {
 
   
 
-<script>
-NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
-  window.livereOptions = {
-    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
-  };
-  (function(d, s) {
-    var j, e = d.getElementsByTagName(s)[0];
-    if (typeof LivereTower === 'function') { return; }
-    j = d.createElement(s);
-    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-    j.async = true;
-    e.parentNode.insertBefore(j, e);
-  })(document, 'script');
-});
-</script>
-
 
 <script>
 NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
@@ -670,6 +657,22 @@ NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
       serverURLs : ''
     });
   }, window.Valine);
+});
+</script>
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
 });
 </script>
 
