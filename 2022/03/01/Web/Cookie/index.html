@@ -25,15 +25,15 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Cookie基本使用 Cookie：客户会话技术，将数据保存到客户端，以后每次请求都携带Cookie数据进行访问  发送Cookie  创建Cookie对象，设置数据 1Cookie cookie &#x3D; new Cookie(&quot;key&quot;, &quot;value&quot;);  发送Cookie到客户端：使用response对象 1response.addCookie(cookie);    获取Cookie  获取">
+  <meta name="description" content="Cookie基本使用 Cookie：客户会话技术，将数据保存到客户端，以后每次请求都携带Cookie数据进行访问  发送Cookie  创建Cookie对象，设置数据 1Cookie cookie &#x3D; new Cookie(&quot;key&quot;, &quot;value&quot;);  设置Cookie生效范围 1cookie.setPath(&quot;路径&quot;);  发送Cookie到客户端：使用response">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Cookie">
 <meta property="og:url" content="http://yoursite.com/2022/03/01/Web/Cookie/index.html">
 <meta property="og:site_name" content="避风港">
-<meta property="og:description" content="Cookie基本使用 Cookie：客户会话技术，将数据保存到客户端，以后每次请求都携带Cookie数据进行访问  发送Cookie  创建Cookie对象，设置数据 1Cookie cookie &#x3D; new Cookie(&quot;key&quot;, &quot;value&quot;);  发送Cookie到客户端：使用response对象 1response.addCookie(cookie);    获取Cookie  获取">
+<meta property="og:description" content="Cookie基本使用 Cookie：客户会话技术，将数据保存到客户端，以后每次请求都携带Cookie数据进行访问  发送Cookie  创建Cookie对象，设置数据 1Cookie cookie &#x3D; new Cookie(&quot;key&quot;, &quot;value&quot;);  设置Cookie生效范围 1cookie.setPath(&quot;路径&quot;);  发送Cookie到客户端：使用response">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-01T07:19:18.000Z">
-<meta property="article:modified_time" content="2022-03-01T13:02:19.980Z">
+<meta property="article:modified_time" content="2022-03-04T12:49:02.587Z">
 <meta property="article:author" content="Sympa">
 <meta name="twitter:card" content="summary">
 
@@ -207,10 +207,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-03-01 15:19:18 / 修改时间：21:02:19" itemprop="dateCreated datePublished" datetime="2022-03-01T15:19:18+08:00">2022-03-01</time>
+              <time title="创建时间：2022-03-01 15:19:18" itemprop="dateCreated datePublished" datetime="2022-03-01T15:19:18+08:00">2022-03-01</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-04 20:49:02" itemprop="dateModified" datetime="2022-03-04T20:49:02+08:00">2022-03-04</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -261,6 +267,9 @@
 <li><p>创建Cookie对象，设置数据</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">"key"</span>, <span class="string">"value"</span>);</span><br></pre></td></tr></table></figure>
 </li>
+<li><p>设置Cookie生效范围</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cookie.setPath(&quot;路径&quot;);</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>发送Cookie到客户端：使用response对象</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.addCookie(cookie);</span><br></pre></td></tr></table></figure>
 </li>
@@ -289,9 +298,9 @@
 </ul>
 <h4 id="Cookie使用细节"><a href="#Cookie使用细节" class="headerlink" title="Cookie使用细节"></a>Cookie使用细节</h4><ul>
 <li>Cookie存活时间<ul>
-<li>存储在浏览器内存中，默认当浏览器关闭，内存释放，Cookie被销毁</li>
+<li><strong>存储在浏览器内存中</strong>，<strong>默认</strong>当浏览器关闭，内存释放，Cookie被销毁</li>
 <li>setMaxAge(int seconds)：设置Cookie存活时间<ul>
-<li>正数：将Cookie写入浏览器所在电脑硬盘，持久化存储，到时间自动删除</li>
+<li>正数：将Cookie写入浏览器所在<strong>电脑硬盘</strong>，持久化存储，到时间自动删除</li>
 <li>负数：默认值</li>
 <li>零：删除对应Cookie</li>
 </ul>
@@ -380,19 +389,19 @@
           
       <div class="tabs tabs-comment">
         <ul class="nav-tabs">
-            <li class="tab"><a href="#comment-valine">valine</a></li>
             <li class="tab"><a href="#comment-livere">livere</a></li>
+            <li class="tab"><a href="#comment-valine">valine</a></li>
         </ul>
         <div class="tab-content">
-            <div class="tab-pane valine" id="comment-valine">
-              <div class="comments" id="valine-comments"></div>
-            </div>
             <div class="tab-pane livere" id="comment-livere">
               
   <div class="comments">
     <div id="lv-container" data-id="city" data-uid="MTAyMC81MDM4Mi8yNjg3Mg=="></div>
   </div>
   
+            </div>
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
             </div>
         </div>
       </div>
@@ -458,14 +467,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">85</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -554,7 +563,7 @@ $(document).ready(function() {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共25.3k字</span>
+  <span class="post-count">博客全站共27k字</span>
 </div>
         
 <div class="busuanzi-count">
@@ -659,6 +668,22 @@ $(document).ready(function() {
 
   
 
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
 
 <script>
 NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
@@ -685,22 +710,6 @@ NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
       serverURLs : ''
     });
   }, window.Valine);
-});
-</script>
-
-<script>
-NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
-  window.livereOptions = {
-    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
-  };
-  (function(d, s) {
-    var j, e = d.getElementsByTagName(s)[0];
-    if (typeof LivereTower === 'function') { return; }
-    j = d.createElement(s);
-    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-    j.async = true;
-    e.parentNode.insertBefore(j, e);
-  })(document, 'script');
 });
 </script>
 

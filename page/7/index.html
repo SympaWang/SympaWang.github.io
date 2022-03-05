@@ -180,6 +180,235 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/19/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/Map%E6%8E%A5%E5%8F%A3%E5%AE%B9%E5%99%A8%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/19/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/Map%E6%8E%A5%E5%8F%A3%E5%AE%B9%E5%99%A8%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">Map接口容器源码分析</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-19 21:13:11" itemprop="dateCreated datePublished" datetime="2022-01-19T21:13:11+08:00">2022-01-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-20 11:08:02" itemprop="dateModified" datetime="2022-02-20T11:08:02+08:00">2022-02-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">集合框架</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/01/19/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/Map%E6%8E%A5%E5%8F%A3%E5%AE%B9%E5%99%A8%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/01/19/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/Map%E6%8E%A5%E5%8F%A3%E5%AE%B9%E5%99%A8%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>Map中的key：无序，不可重复，使用Set存储</li>
+<li>Map中的value：无序，可重复，使用Collection存储</li>
+<li>一个key-value键值对构成一个Entry对象(JDK7)，Node(JDK8)</li>
+<li>键值对无序，不可重复，使用Set存储</li>
+</ul>
+<h4 id="HashMap底层实现"><a href="#HashMap底层实现" class="headerlink" title="HashMap底层实现"></a>HashMap底层实现</h4><h5 id="JDK8相较于JDK7在底层实现方面不同"><a href="#JDK8相较于JDK7在底层实现方面不同" class="headerlink" title="JDK8相较于JDK7在底层实现方面不同"></a>JDK8相较于JDK7在底层实现方面不同</h5><ul>
+<li>new HashMap()：底层没有创建一个长度为16的数组</li>
+<li>jdk8底层数组是：Node[]</li>
+<li>首次使用put()，创建长度为16数组</li>
+<li>数组+链表+红黑树</li>
+<li>当数组中某一索引位置元素以链表形式存在的数据个数 &gt; 8，且当前数据长度 &gt; 64时，此索引位置上改为红黑树存储</li>
+</ul>
+<h5 id="HashMap源码中重要常量"><a href="#HashMap源码中重要常量" class="headerlink" title="HashMap源码中重要常量"></a>HashMap源码中重要常量</h5><ul>
+<li>DEFAULT_INITIAL_CAPACITY：HashMap的默认容量，16</li>
+<li>MAXIMUM_CAPACITY：HashMap的最大支持容量，2^30</li>
+<li>DEFAULT_LOAD_FACTOR：HashMap的默认加载因子，0.75</li>
+<li>TREEIFY_THRESHOLD：Bucket中链表长度大于该默认值，转化为红黑树</li>
+<li>UNTREEIFY_THRESHOLD：Bucket中红黑树存储的Node小于该默认值，转化为链表</li>
+<li>MIN_TREEIFY_CAPACITY：桶中的Node被树化时最小的hash表容量（当桶中Node的数量大到需要变红黑树时，若hash表容量小于MIN_TREEIFY_CAPACITY时，此时应执行resize扩容操作，这个MIN_TREEIFY_CAPACITY的值至少是TREEIFY_THRESHOLD的4倍）</li>
+<li>table：存储元素的数组，总是2的n次幂</li>
+<li>entrySet：存储具体元素的集</li>
+<li>size：HashMap中存储键值对的数量</li>
+<li>modCount：HashMap扩容和结构改变次数</li>
+<li>threshold：扩容临界值 = 容量 * 填充因子</li>
+<li>loadFactor：填充因子</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/19/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/List%E6%8E%A5%E5%8F%A3%E5%AE%B9%E5%99%A8%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/19/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/List%E6%8E%A5%E5%8F%A3%E5%AE%B9%E5%99%A8%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">List接口容器源码分析</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-19 11:33:51" itemprop="dateCreated datePublished" datetime="2022-01-19T11:33:51+08:00">2022-01-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-19 20:25:31" itemprop="dateModified" datetime="2022-02-19T20:25:31+08:00">2022-02-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">集合框架</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/01/19/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/List%E6%8E%A5%E5%8F%A3%E5%AE%B9%E5%99%A8%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/01/19/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/List%E6%8E%A5%E5%8F%A3%E5%AE%B9%E5%99%A8%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h4><h5 id="JDK7"><a href="#JDK7" class="headerlink" title="JDK7"></a>JDK7</h5><ul>
+<li>无参：底层创建长度为10的Object[]数组<em>elementData</em></li>
+<li>扩容：扩容为原来的1.5倍</li>
+</ul>
+<h5 id="JDK8"><a href="#JDK8" class="headerlink" title="JDK8"></a>JDK8</h5><ul>
+<li>无参：空的Object[]数组<em>DEFAULTCAPACITY_EMPTY_ELEMENTDATA</em></li>
+<li>首次添加：<em>minCapacity</em> = min(10, 添加长度)</li>
+<li>扩容：扩容为原来的1.5倍</li>
+</ul>
+<hr>
+<h4 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h4><ul>
+<li>内部声明名为Node类型的first和last属性，值为null</li>
+<li>双向链表</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/18/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E6%A6%82%E8%BF%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -982,288 +1211,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%97%E6%AE%B5%E5%B1%9E%E6%80%A7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%97%E6%AE%B5%E5%B1%9E%E6%80%A7/" class="post-title-link" itemprop="url">数据库字段属性</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-09-14 16:03:06 / 修改时间：16:21:48" itemprop="dateCreated datePublished" datetime="2021-09-14T16:03:06+08:00">2021-09-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%97%E6%AE%B5%E5%B1%9E%E6%80%A7/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%97%E6%AE%B5%E5%B1%9E%E6%80%A7/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="1、Unsigned"><a href="#1、Unsigned" class="headerlink" title="1、Unsigned"></a>1、Unsigned</h3><ol>
-<li>表示无符号整数</li>
-<li>当前列无法被声明为负数</li>
-</ol>
-<h3 id="2、zerofill"><a href="#2、zerofill" class="headerlink" title="2、zerofill"></a>2、zerofill</h3><ol>
-<li>0填充</li>
-<li>不足的位数，使用0填充</li>
-<li>5 –&gt; 005</li>
-</ol>
-<h3 id="3、自增"><a href="#3、自增" class="headerlink" title="3、自增"></a>3、自增</h3><ol>
-<li>自动在上一条记录的基础+1</li>
-<li>通常用来设计唯一主键，必须是整数类型</li>
-<li>可以自定义增量</li>
-</ol>
-<h3 id="4、非空-null-OR-not-null"><a href="#4、非空-null-OR-not-null" class="headerlink" title="4、非空(null OR not null)"></a>4、非空(null OR not null)</h3><ol>
-<li>如为非空，必须赋值</li>
-<li>否则若不赋值，默认是null(字符串除外)</li>
-<li><strong>空字符串不是null</strong></li>
-</ol>
-<h3 id="5、默认-default"><a href="#5、默认-default" class="headerlink" title="5、默认(default)"></a>5、默认(default)</h3><p>如果不指定该列值，则值变为默认值</p>
-<h2 id="以下5个字段每个表必须存在，表示一个记录存在的意义-项目用"><a href="#以下5个字段每个表必须存在，表示一个记录存在的意义-项目用" class="headerlink" title="以下5个字段每个表必须存在，表示一个记录存在的意义(项目用)"></a>以下5个字段每个表必须存在，表示一个记录存在的意义(项目用)</h2><h3 id="6、version（版本-乐观锁）"><a href="#6、version（版本-乐观锁）" class="headerlink" title="6、version（版本 乐观锁）"></a>6、version（版本 乐观锁）</h3><h3 id="7、is-delete-伪删除-存在但不可查询"><a href="#7、is-delete-伪删除-存在但不可查询" class="headerlink" title="7、is_delete (伪删除 存在但不可查询)"></a>7、is_delete (伪删除 存在但不可查询)</h3><h3 id="8、gmt-create-创建时间"><a href="#8、gmt-create-创建时间" class="headerlink" title="8、gmt_create (创建时间)"></a>8、gmt_create (创建时间)</h3><h3 id="9、gmt-update-修改时间"><a href="#9、gmt-update-修改时间" class="headerlink" title="9、gmt_update (修改时间)"></a>9、gmt_update (修改时间)</h3><h3 id="10、id-主键"><a href="#10、id-主键" class="headerlink" title="10、id (主键)"></a>10、id (主键)</h3>
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%97%E7%B1%BB%E5%9E%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%97%E7%B1%BB%E5%9E%8B/" class="post-title-link" itemprop="url">数据库列类型</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-09-14 15:47:08 / 修改时间：16:02:22" itemprop="dateCreated datePublished" datetime="2021-09-14T15:47:08+08:00">2021-09-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%97%E7%B1%BB%E5%9E%8B/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%97%E7%B1%BB%E5%9E%8B/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="1、数值类型"><a href="#1、数值类型" class="headerlink" title="1、数值类型"></a>1、数值类型</h3><table>
-<thead>
-<tr>
-<th>数据类型</th>
-<th>范围</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>tinyint</td>
-<td>1个字节的整数</td>
-</tr>
-<tr>
-<td>smallint</td>
-<td>2个字节的整数</td>
-</tr>
-<tr>
-<td>mediumuint</td>
-<td>3个字节的整数</td>
-</tr>
-<tr>
-<td><strong>int</strong></td>
-<td><strong>4个字节的整数</strong></td>
-</tr>
-<tr>
-<td>bigint</td>
-<td>8个字节的整数</td>
-</tr>
-<tr>
-<td>float</td>
-<td>4个字节的浮点数</td>
-</tr>
-<tr>
-<td><strong>double</strong></td>
-<td><strong>8个字节的浮点数</strong></td>
-</tr>
-<tr>
-<td>decimal</td>
-<td>字符串浮点数(金融计算)</td>
-</tr>
-</tbody></table>
-<h3 id="2、字符串类型"><a href="#2、字符串类型" class="headerlink" title="2、字符串类型"></a>2、字符串类型</h3><table>
-<thead>
-<tr>
-<th>数据类型</th>
-<th>范围</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>char</td>
-<td>固定长度字符串(0 ~ 255)</td>
-</tr>
-<tr>
-<td><strong>varchar</strong></td>
-<td><strong>可变长字符串(0 ~ 65535)</strong></td>
-</tr>
-<tr>
-<td>tinytext</td>
-<td>微型文本 (0 ~ 2^8 - 1)</td>
-</tr>
-<tr>
-<td>text</td>
-<td>大文本(0 ~ 2^16 - 1)</td>
-</tr>
-</tbody></table>
-<h3 id="3、时间日期类型"><a href="#3、时间日期类型" class="headerlink" title="3、时间日期类型"></a>3、时间日期类型</h3><table>
-<thead>
-<tr>
-<th>数据类型</th>
-<th>范围</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>date</td>
-<td>YYYY - MM - DD 日期</td>
-</tr>
-<tr>
-<td>time</td>
-<td>hh : mm : ss 时间</td>
-</tr>
-<tr>
-<td><strong>datetime</strong></td>
-<td><strong>YYYY - MM - DD hh : mm : ss 日期+时间</strong></td>
-</tr>
-<tr>
-<td><strong>timestamp</strong></td>
-<td><strong>时间戳 1970.1.1到现在的毫秒数</strong></td>
-</tr>
-<tr>
-<td>year</td>
-<td>年份</td>
-</tr>
-</tbody></table>
-<h3 id="4、null类型"><a href="#4、null类型" class="headerlink" title="4、null类型"></a>4、null类型</h3><p>表示未知数据</p>
-<p>使用null运算，结果为null</p>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1335,14 +1282,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">85</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1431,7 +1378,7 @@ $(document).ready(function() {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共25.3k字</span>
+  <span class="post-count">博客全站共27k字</span>
 </div>
         
 <div class="busuanzi-count">
@@ -1537,6 +1484,7 @@ $(document).ready(function() {
   
 
 
+
 <script>
 NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
   NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
@@ -1564,7 +1512,6 @@ NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
   }, window.Valine);
 });
 </script>
-
 
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
 </html>
