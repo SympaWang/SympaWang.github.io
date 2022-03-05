@@ -25,12 +25,12 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="HTTP是无状态的 服务器无法判断这两次请求是否为同一个客户端发出 通过会话跟踪技术解决无状态问题    输出sessionID123456@Overrideprotected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException &amp;#123;    Sys">
+  <meta name="description" content="HTTP是无状态的 服务器无法判断这两次请求是否为同一个客户端发出 通过会话跟踪技术解决无状态问题   输出sessionID123456@Overrideprotected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException &amp;#123;    Syst">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Session会话跟踪">
 <meta property="og:url" content="http://yoursite.com/2022/02/27/Web/Session%E4%BC%9A%E8%AF%9D%E8%B7%9F%E8%B8%AA/index.html">
 <meta property="og:site_name" content="避风港">
-<meta property="og:description" content="HTTP是无状态的 服务器无法判断这两次请求是否为同一个客户端发出 通过会话跟踪技术解决无状态问题    输出sessionID123456@Overrideprotected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException &amp;#123;    Sys">
+<meta property="og:description" content="HTTP是无状态的 服务器无法判断这两次请求是否为同一个客户端发出 通过会话跟踪技术解决无状态问题   输出sessionID123456@Overrideprotected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException &amp;#123;    Syst">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/images/session1.png">
 <meta property="og:image" content="http://yoursite.com/images/session2.png">
@@ -266,23 +266,16 @@
 <li>服务器无法判断这两次请求是否为同一个客户端发出</li>
 <li>通过会话跟踪技术解决无状态问题</li>
 </ul>
-<img src="/images/session1.png">
-
+<p><img src="/images/session1.png"></p>
 <h5 id="输出sessionID"><a href="#输出sessionID" class="headerlink" title="输出sessionID"></a>输出sessionID</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"get.."</span>);</span><br><span class="line">    HttpSession session = req.getSession(); <span class="comment">//若参数为false，没有会返回null，不创建新的会话</span></span><br><span class="line">    System.out.println(<span class="string">"sessionID:"</span> + session.getId());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h5 id="最大闲置时间"><a href="#最大闲置时间" class="headerlink" title="最大闲置时间"></a>最大闲置时间</h5><p>默认：1800秒</p>
-<img src="/images/session2.png">
-
+<p><img src="/images/session2.png"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取默认的最大闲置时间</span></span><br><span class="line"><span class="keyword">int</span> maxInactiveIntervalSecond = session.getMaxInactiveInterval(); <span class="comment">//非激活间隔时长</span></span><br><span class="line">System.out.println(<span class="string">"maxInactiveIntervalSecond = "</span> + maxInactiveIntervalSecond);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置默认的最大闲置时间</span></span><br><span class="line">session.setMaxInactiveInterval(<span class="number">15</span>);</span><br><span class="line"></span><br><span class="line">session.invalidate(); <span class="comment">//强制失效</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="Session保存作用域"><a href="#Session保存作用域" class="headerlink" title="Session保存作用域"></a>Session保存作用域</h4><ul>
 <li>是和具体的某一个session唯一对应的</li>
 <li>常用API</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HttpSession session = req.getSession();</span><br><span class="line">session.setAttribute(<span class="string">"username"</span>, <span class="string">"Bob"</span>); <span class="comment">//向当前session保存作用域保存一个数据</span></span><br><span class="line">session.getAttribute(<span class="string">"username"</span>); <span class="comment">//从当前session保存作用域获取指定key对应的value</span></span><br><span class="line">session.removeAttribute(<span class="string">"username"</span>);</span><br></pre></td></tr></table></figure>
-
 
     </div>
     

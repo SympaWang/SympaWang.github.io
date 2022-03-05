@@ -25,12 +25,12 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="一、创建数据库  *CREATE DATABASE *xxx CHARACTER SET utf8 COLLATE utf8_general_ci; ** 二、创建表    三、命令行操作123456789mysql -u root -p  --连接数据库show databases; --查看所有数据库use xxx --切换数据库show tables； --查看所有表describe xxx">
+  <meta name="description" content="一、创建数据库 CREATE DATABASE xxx CHARACTER SET utf8 COLLATE utf8_general_ci;  二、创建表 三、命令行操作123456789mysql -u root -p  --连接数据库show databases; --查看所有数据库use xxx --切换数据库show tables； --查看所有表describe xxx; --显示表中">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL基本操作和概念">
 <meta property="og:url" content="http://yoursite.com/2021/09/12/SQL%E5%9F%BA%E7%A1%80/MySQL%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/index.html">
 <meta property="og:site_name" content="避风港">
-<meta property="og:description" content="一、创建数据库  *CREATE DATABASE *xxx CHARACTER SET utf8 COLLATE utf8_general_ci; ** 二、创建表    三、命令行操作123456789mysql -u root -p  --连接数据库show databases; --查看所有数据库use xxx --切换数据库show tables； --查看所有表describe xxx">
+<meta property="og:description" content="一、创建数据库 CREATE DATABASE xxx CHARACTER SET utf8 COLLATE utf8_general_ci;  二、创建表 三、命令行操作123456789mysql -u root -p  --连接数据库show databases; --查看所有数据库use xxx --切换数据库show tables； --查看所有表describe xxx; --显示表中">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/images/%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93.PNG">
 <meta property="og:image" content="http://yoursite.com/images/%E6%96%B0%E5%BB%BA%E8%A1%A8.PNG">
@@ -256,15 +256,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="一、创建数据库"><a href="#一、创建数据库" class="headerlink" title="一、创建数据库"></a>一、创建数据库</h2><img src="/images/创建数据库.PNG">
-
-<p><em>*CREATE DATABASE *xxx</em> CHARACTER SET utf8 COLLATE utf8_general_ci; **</p>
-<h2 id="二、创建表"><a href="#二、创建表" class="headerlink" title="二、创建表"></a>二、创建表</h2><img src="/images/新建表.PNG">
-
-
-
+        <h2 id="一、创建数据库"><a href="#一、创建数据库" class="headerlink" title="一、创建数据库"></a>一、创建数据库</h2><p><img src="/images/创建数据库.PNG"></p>
+<p><strong>CREATE DATABASE <em>xxx</em> CHARACTER SET utf8 COLLATE utf8_general_ci; </strong></p>
+<h2 id="二、创建表"><a href="#二、创建表" class="headerlink" title="二、创建表"></a>二、创建表</h2><p><img src="/images/新建表.PNG"></p>
 <h2 id="三、命令行操作"><a href="#三、命令行操作" class="headerlink" title="三、命令行操作"></a>三、命令行操作</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p  <span class="comment">--连接数据库</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">databases</span>; <span class="comment">--查看所有数据库</span></span><br><span class="line"><span class="keyword">use</span> xxx <span class="comment">--切换数据库</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">tables</span>； <span class="comment">--查看所有表</span></span><br><span class="line"><span class="keyword">describe</span> xxx; <span class="comment">--显示表中所有信息</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> xxx; <span class="comment">--创建数据库</span></span><br><span class="line">exit; <span class="comment">--连接退出</span></span><br><span class="line"><span class="comment">--单行注释</span></span><br><span class="line"><span class="comment">/* 多行注释 */</span></span><br></pre></td></tr></table></figure>
-
 <h2 id="四、语言概念"><a href="#四、语言概念" class="headerlink" title="四、语言概念"></a>四、语言概念</h2><p><strong>DDL 数据库定义语言</strong></p>
 <p><strong>DML 数据库操作语言</strong></p>
 <p><strong>DQL 数据库查询语言</strong></p>
@@ -321,8 +316,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/09/09/ACM/DAG%E5%9B%BE%E4%B8%8A%E7%9A%84%E7%81%AD%E7%BB%9D%E6%A0%91/" rel="prev" title="DAG图上的灭绝树">
-      <i class="fa fa-chevron-left"></i> DAG图上的灭绝树
+    <a href="/2021/09/09/ACM/%E4%B8%80%E8%88%AC%E5%9B%BE%E5%8C%B9%E9%85%8D(%E5%B8%A6%E8%8A%B1%E6%A0%91)%E6%A8%A1%E6%9D%BF/" rel="prev" title="一般图最大匹配(带花树)模板">
+      <i class="fa fa-chevron-left"></i> 一般图最大匹配(带花树)模板
     </a></div>
       <div class="post-nav-item">
     <a href="/2021/09/14/SQL%E5%9F%BA%E7%A1%80/SQL%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="next" title="SQL操作数据库">

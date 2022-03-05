@@ -278,6 +278,7 @@
 <ul>
 <li><strong>@Target</strong>：用于修饰Annotation定义，用于指定被修饰的Annotation能用于修饰哪些元素，@Target也包含一个名为value的成员变量</li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -287,7 +288,8 @@
 <th></th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>CONSTRUCTOR</td>
 <td>用于描述构造器</td>
 <td>PACKAGE</td>
@@ -309,9 +311,10 @@
 <td>METHOD</td>
 <td>用于描述方法</td>
 <td></td>
-<td></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <ul>
 <li>@Documented：用于指定被该元Annotation修饰的Annotation类将被javadoc工具提取成文档。默认情况下，javadoc是不包括注解的</li>
 <li>定义为Documented的注解必须设置Retention值为RUNTIME</li>

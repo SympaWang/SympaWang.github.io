@@ -696,7 +696,6 @@
       
           <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 插入语句</span></span><br><span class="line"><span class="comment">-- insert into 表名 (字段名1， 字段名2， ...) values(值1.1,值1.2,...)， (数据2)， ...</span></span><br><span class="line"><span class="comment">-- 主键自增可以忽略</span></span><br><span class="line"><span class="comment">-- 不写表字段就会一一匹配</span></span><br><span class="line"><span class="comment">-- 一般写插入语句， 一定要数据和字段一一对应</span></span><br></pre></td></tr></table></figure>
 
-
       
     </div>
     
@@ -781,7 +780,6 @@
 
       
           <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 学生表(从表)的gradeid字段 要去引用年级表(主表)的gradeid</span></span><br><span class="line"><span class="comment">-- 定义外键key</span></span><br><span class="line"><span class="comment">-- 给这个外键添加约束 （执行引用） references</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建表时</span></span><br><span class="line">KEY `FK_gradeid` (`gradeid`),</span><br><span class="line">CONSTRAINT `FK_gradeid` FOREIGN KEY (`gradeid`) REFERENCES `grade` (`gradeid`)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 修改表</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`student`</span></span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> <span class="string">`FK_gradeid`</span> <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span>(<span class="string">`gradeid`</span>) <span class="keyword">REFERENCES</span> <span class="string">`grade`</span> (<span class="string">`gradeid`</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 以上操作都是物理外键， 数据库级别外键， 不建议使用， 避免数据库过多造成困扰</span></span><br><span class="line"><span class="comment">-- 最佳实践：</span></span><br><span class="line"><span class="comment">-- 数据库就是单纯的表，只用来存数据，只有行和列</span></span><br><span class="line"><span class="comment">-- 我们想使用多张表的数据，想使用外键，用程序实现</span></span><br></pre></td></tr></table></figure>
-
 
       
     </div>
@@ -874,7 +872,6 @@
       
           <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> school <span class="comment">-- 查看创建数据库语句</span></span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> student <span class="comment">-- 查看student数据表的定义语句</span></span><br><span class="line"><span class="keyword">DESC</span> student <span class="comment">-- 显示表结构</span></span><br></pre></td></tr></table></figure>
 
-
       
     </div>
     
@@ -959,11 +956,7 @@
 
       
           <h3 id="1、修改"><a href="#1、修改" class="headerlink" title="1、修改"></a>1、修改</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`XXX`</span> <span class="keyword">RENAME</span> <span class="keyword">AS</span> <span class="string">`YYY`</span>(修改表名)</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`XXX`</span> <span class="keyword">ADD</span> <span class="string">`YYY`</span> <span class="built_in">INT</span>(<span class="number">10</span>)(增加字段)</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`XXX`</span> <span class="keyword">MODIFY</span> <span class="string">'YYY'</span> <span class="built_in">VARCHAR</span>(<span class="number">10</span>)(修改约束)</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`XXX`</span> <span class="keyword">CHANGE</span> <span class="string">`YYY`</span> <span class="string">`ZZZ`</span> <span class="built_in">INT</span>(<span class="number">10</span>)(字段重命名)</span><br><span class="line"><span class="comment">--MODIFY 和 CHANGE 的区别？</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="2、删除"><a href="#2、删除" class="headerlink" title="2、删除"></a>2、删除</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`XXX`</span> <span class="keyword">DROP</span> <span class="string">`YYY`</span>(删除表字段)</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> [<span class="keyword">IF</span> <span class="keyword">EXISTS</span>] <span class="string">`XXX`</span>(删除表)</span><br></pre></td></tr></table></figure>
-
 
       
     </div>
@@ -1054,7 +1047,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <table>
+          <div class="table-container">
+<table>
 <thead>
 <tr>
 <th></th>
@@ -1062,7 +1056,8 @@
 <th>INNODB</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>事务支持</td>
 <td>不支持</td>
 <td>支持</td>
@@ -1087,7 +1082,9 @@
 <td>较小</td>
 <td>较大，约为MYISAM两倍</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>常规使用操作：</p>
 <ul>
 <li>MYISAM节约空间，速度较快</li>
@@ -1194,7 +1191,6 @@
 
       
           <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`XXX`</span>  <span class="comment">--查看某张表的创建语句</span></span><br><span class="line"><span class="comment">--尽量表名字段使用``</span></span><br><span class="line"><span class="comment">--字符串使用''</span></span><br><span class="line"><span class="comment">--所有语句后加, 最后一个不用加</span></span><br><span class="line"><span class="comment">--主键最好加最后，一般一个表唯一</span></span><br><span class="line"><span class="comment">--注意顺序 [属性][索引][注释]</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> [<span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>] <span class="string">`XXX`</span> (</span><br><span class="line">	<span class="string">`列名`</span> <span class="built_in">INT</span>(<span class="number">4</span>)(类型) [<span class="keyword">NOT</span> <span class="literal">NULL</span>(非空) AUTO_INCREMENT(自增) <span class="keyword">COMMENT</span>(注释) <span class="string">'注释'</span>],</span><br><span class="line">    <span class="string">`列名`</span> <span class="built_in">VARCHAR</span>(<span class="number">30</span>) [<span class="keyword">DEFAULT</span> <span class="literal">NULL</span>(默认为空) <span class="keyword">COMMENT</span> <span class="string">''</span>],</span><br><span class="line">     …………,</span><br><span class="line">    PRIMARY <span class="keyword">KEY</span> (<span class="string">`列名`</span>)</span><br><span class="line">)[<span class="keyword">ENGINE</span> = <span class="keyword">INNODB</span>(引擎/类型) <span class="keyword">DEFAULT</span> = UFT8(编码)]</span><br><span class="line"></span><br><span class="line"><span class="keyword">DESC</span> <span class="string">`XXX`</span> <span class="comment">--查看表结构</span></span><br></pre></td></tr></table></figure>
-
 
       
     </div>

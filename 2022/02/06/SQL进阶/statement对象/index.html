@@ -260,17 +260,14 @@
 <li>create，使用executeUpdate(String sql)方法完成数据添加操作，实例操作：</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Statement st = conn.createStatement();</span><br><span class="line">String sql = <span class="string">"insert into user(...) values(...)"</span>;</span><br><span class="line"><span class="keyword">int</span> num = st.executeUpdate(sql);</span><br><span class="line"><span class="keyword">if</span>(num &gt; <span class="number">0</span>)&#123;</span><br><span class="line">    System.out.println(<span class="string">"插入成功"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>delete，数据删除操作，实例操作：</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Statement st = conn.createStatement();</span><br><span class="line">String sql = <span class="string">"delete from user where [...]"</span>;</span><br><span class="line"><span class="keyword">int</span> num = st.executeUpdate(sql);</span><br><span class="line"><span class="keyword">if</span>(num &gt; <span class="number">0</span>)&#123;</span><br><span class="line">    System.out.println(<span class="string">"删除成功"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>update，数据修改操作，实例操作：</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Statement st = conn.createStatement();</span><br><span class="line">String sql = <span class="string">"update user set name='' where name=''"</span>;</span><br><span class="line"><span class="keyword">int</span> num = st.executeUpdate(sql);</span><br><span class="line"><span class="keyword">if</span>(num &gt; <span class="number">0</span>)&#123;</span><br><span class="line">    System.out.println(<span class="string">"修改成功"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 
     </div>
     

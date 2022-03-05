@@ -277,13 +277,9 @@
 <li>重定向：一种资源跳转方式</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.sendRedirect(<span class="string">"虚拟路径"</span>);</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p>动态获取虚拟路径</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String contextPath = request.getContextPath();</span><br><span class="line">response.sendRedirect(contextPath + <span class="string">"/demo1"</span>);</span><br></pre></td></tr></table></figure>
-
-
-
 </li>
 </ul>
 <h4 id="Response响应字符数据"><a href="#Response响应字符数据" class="headerlink" title="Response响应字符数据"></a>Response响应字符数据</h4><ul>
@@ -292,17 +288,14 @@
 <li>通过Response对象获取字符输出流</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PrintWriter writer = resp.getWriter();</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>写数据</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">writer.write(<span class="string">"aaa"</span>);</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>响应头设置响应体解析格式与编码</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.setContentType(<span class="string">"text/html;charset=utf-8"</span>);</span><br></pre></td></tr></table></figure>
-
 <p><strong>流不需要关闭</strong></p>
 </li>
 </ul>
@@ -312,7 +305,6 @@
 <li>通过Response对象获取字节输出流</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ServletOutputStream outputStream = resp.getOutputStream();</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p>写数据</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">outputStream.write(字节数据);</span><br></pre></td></tr></table></figure>
@@ -321,8 +313,6 @@
 </li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IOUtils.copy(fis, os);</span><br></pre></td></tr></table></figure>
-
-
 </li>
 </ul>
 

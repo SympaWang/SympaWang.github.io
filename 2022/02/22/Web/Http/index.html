@@ -277,7 +277,6 @@
 </li>
 </ul>
 <figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/</span> HTTP/1.1</span><br><span class="line"><span class="attribute">Host</span>: www.itcast.cn</span><br><span class="line"><span class="attribute">Connection</span>: keep-alive</span><br><span class="line"><span class="attribute">Cache-Control</span>: max-age=0 Upgrade-Insecure-Requests:1</span><br><span class="line"><span class="attribute">User-Agent</span>: Mozilla/5.0 Chrome/91.0.4472.106</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>常见HTTP请求头：<ul>
 <li>Host：表示请求的主机名</li>
@@ -302,7 +301,6 @@
 </li>
 </ul>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Server</span>: Tengine</span><br><span class="line"><span class="attribute">Content-Type</span>: text/html</span><br><span class="line"><span class="attribute">Transfer-Encoding</span>: chunked</span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">	&lt;title&gt;&lt;/title&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;body&gt;&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>常见的HTTP响应头<ul>
 <li>Content-Type：表示该相应内容的类型</li>
@@ -313,6 +311,7 @@
 </li>
 </ul>
 <p><strong><a href="https://cloud.tencent.com/developer/chapter/13553" target="_blank" rel="noopener">响应状态码大全</a></strong></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -320,7 +319,8 @@
 <th>说明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>1xx</td>
 <td><strong>响应中</strong>——临时状态码，表示请求已经接受，告诉客户端应该继续请求或者如果它已经完成则忽略</td>
 </tr>
@@ -340,7 +340,9 @@
 <td>5xx</td>
 <td><strong>服务器错误</strong>——处理发生错误，责任在服务器</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 
     </div>
     

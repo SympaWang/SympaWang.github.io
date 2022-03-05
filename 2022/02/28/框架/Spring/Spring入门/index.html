@@ -295,14 +295,16 @@
 </ul>
 </li>
 </ul>
-<h4 id="四种类型注解"><a href="#四种类型注解" class="headerlink" title="四种类型注解"></a>四种类型注解</h4><table>
+<h4 id="四种类型注解"><a href="#四种类型注解" class="headerlink" title="四种类型注解"></a>四种类型注解</h4><div class="table-container">
+<table>
 <thead>
 <tr>
 <th><strong>注解</strong></th>
 <th><strong>说明</strong></th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>@Component</td>
 <td>组件注解，通用注解，被该注解描述的类将被IoC容器管理并实例化</td>
 </tr>
@@ -318,14 +320,12 @@
 <td>@Repository</td>
 <td>语义注解，说明当前类用于业务持久层，通常描述对应的Dao类，负责与数据库实现增删改查的Dao类</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p><strong>Controller -&gt; Service -&gt; Dao</strong></p>
 <h4 id="从Srping容器获取bean"><a href="#从Srping容器获取bean" class="headerlink" title="从Srping容器获取bean"></a>从Srping容器获取bean</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="meta">@ContextConfiguration</span>(classes = CommunityApplication<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">CommunityApplicationTests</span> <span class="keyword">implements</span> <span class="title">ApplicationContextAware</span> </span>&#123;</span><br><span class="line">   <span class="keyword">private</span> ApplicationContext applicationContext;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setApplicationContext</span><span class="params">(ApplicationContext applicationContext)</span> <span class="keyword">throws</span> BeansException </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.applicationContext = applicationContext;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Test</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testApplicationContext</span><span class="params">()</span></span>&#123;</span><br><span class="line">      AlphaDao alphaDao = applicationContext.getBean(<span class="string">"AlphaHibernate"</span>, AlphaDao<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">      System.out.println(alphaDao.select());</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="Bean注入"><a href="#Bean注入" class="headerlink" title="Bean注入"></a>Bean注入</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> AlphaDao alphaDao;</span><br></pre></td></tr></table></figure>
-
 
     </div>
     

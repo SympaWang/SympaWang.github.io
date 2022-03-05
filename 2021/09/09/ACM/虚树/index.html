@@ -270,20 +270,16 @@
 <p><strong>由于lc是stak[top]的祖先，lc必然在我们维护的最右链上。</strong></p>
 <p><strong>考虑lc和stak[top]及栈中第二个元素stak[top-1]的关系。</strong></p>
 <h4 id="情况一"><a href="#情况一" class="headerlink" title="情况一"></a>情况一</h4><p><strong>lc = stak[top]，也就是说，now在stak[top]的子树中</strong></p>
-<img src="/images/虚树1.PNG">
-
+<p><img src="/images/虚树1.PNG"></p>
 <p><strong>这时候，我们只需把now入栈，即把它加到最右链的末端即可。</strong></p>
 <h3 id="情况二"><a href="#情况二" class="headerlink" title="情况二"></a>情况二</h3><p><strong>lc在stak[top]和stak[top-1]之间。</strong></p>
-<img src="/images/虚树2.PNG">
-
+<p><img src="/images/虚树2.PNG"></p>
 <p><strong>显然，此时最右链的末端从stak[top-1]-&gt;stak[top]变成了stak[top-1]-&gt;lc-&gt;stak[top]，我们需要做的，首先是把边lc-stak[top]加入虚树，然后，把stak[top]出栈，把lc和now入栈。</strong></p>
 <h3 id="情况三"><a href="#情况三" class="headerlink" title="情况三"></a>情况三</h3><p><strong>lc=stak[top−1]。</strong></p>
-<img src="/images/虚树3.PNG">
-
+<p><img src="/images/虚树3.PNG"></p>
 <p><strong>这种情况和第二种情况大同小异，唯一的区别就是lc不用入栈了。</strong></p>
 <h3 id="情况四"><a href="#情况四" class="headerlink" title="情况四"></a>情况四</h3><p><strong>此时有dep[lc]&lt;dep[stak[top-1]]。lc已经不在stak[top-1]的子树中了，甚至也未必在stak[top-2],stak[top-3]……的子树中。</strong></p>
-<img src="/images/虚树4.PNG">
-
+<p><img src="/images/虚树4.PNG"></p>
 <p><strong>以图中为例，最右链从stak[top-3]-&gt;stak[top-2]-&gt;stak[top-1]-&gt;stak[top]变成了stak[top-3]-&gt;lc-&gt;now。我们需要循环依次将最右链的末端剪下，将被剪下的边加入虚树，直到不再是情况四。</strong></p>
 <p><strong>就上图而言，循环会持续两轮，将stak[top],stak[top-1]依次出栈，并且把边stak[top-1]-stak[top],stak[top-2]-stak[top-1]加入虚树中。随后通过情况二完成构建。</strong></p>
 <p>当最后一个询问点加入之后，再将最右链加入虚树，即可完成构建。</p>
@@ -345,8 +341,8 @@
       <i class="fa fa-chevron-left"></i> 2020CCPC威海站
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/09/09/ACM/%E4%B8%80%E8%88%AC%E5%9B%BE%E5%8C%B9%E9%85%8D(%E5%B8%A6%E8%8A%B1%E6%A0%91)%E6%A8%A1%E6%9D%BF/" rel="next" title="一般图最大匹配(带花树)模板">
-      一般图最大匹配(带花树)模板 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/09/09/ACM/DAG%E5%9B%BE%E4%B8%8A%E7%9A%84%E7%81%AD%E7%BB%9D%E6%A0%91/" rel="next" title="DAG图上的灭绝树">
+      DAG图上的灭绝树 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>

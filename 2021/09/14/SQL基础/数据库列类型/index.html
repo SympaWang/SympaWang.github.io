@@ -25,12 +25,12 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="1、数值类型   数据类型 范围    tinyint 1个字节的整数   smallint 2个字节的整数   mediumuint 3个字节的整数   int 4个字节的整数   bigint 8个字节的整数   float 4个字节的浮点数   double 8个字节的浮点数   decimal 字符串浮点数(金融计算)   2、字符串类型   数据类型 范围    char 固定长度字符串">
+  <meta name="description" content="1、数值类型    数据类型 范围     tinyint 1个字节的整数   smallint 2个字节的整数   mediumuint 3个字节的整数   int 4个字节的整数   bigint 8个字节的整数   float 4个字节的浮点数   double 8个字节的浮点数   decimal 字符串浮点数(金融计算)     2、字符串类型    数据类型 范围     char 固">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库列类型">
 <meta property="og:url" content="http://yoursite.com/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%97%E7%B1%BB%E5%9E%8B/index.html">
 <meta property="og:site_name" content="避风港">
-<meta property="og:description" content="1、数值类型   数据类型 范围    tinyint 1个字节的整数   smallint 2个字节的整数   mediumuint 3个字节的整数   int 4个字节的整数   bigint 8个字节的整数   float 4个字节的浮点数   double 8个字节的浮点数   decimal 字符串浮点数(金融计算)   2、字符串类型   数据类型 范围    char 固定长度字符串">
+<meta property="og:description" content="1、数值类型    数据类型 范围     tinyint 1个字节的整数   smallint 2个字节的整数   mediumuint 3个字节的整数   int 4个字节的整数   bigint 8个字节的整数   float 4个字节的浮点数   double 8个字节的浮点数   decimal 字符串浮点数(金融计算)     2、字符串类型    数据类型 范围     char 固">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-09-14T07:47:08.000Z">
 <meta property="article:modified_time" content="2021-09-14T08:02:22.134Z">
@@ -253,14 +253,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="1、数值类型"><a href="#1、数值类型" class="headerlink" title="1、数值类型"></a>1、数值类型</h3><table>
+        <h3 id="1、数值类型"><a href="#1、数值类型" class="headerlink" title="1、数值类型"></a>1、数值类型</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>数据类型</th>
 <th>范围</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>tinyint</td>
 <td>1个字节的整数</td>
 </tr>
@@ -292,15 +294,19 @@
 <td>decimal</td>
 <td>字符串浮点数(金融计算)</td>
 </tr>
-</tbody></table>
-<h3 id="2、字符串类型"><a href="#2、字符串类型" class="headerlink" title="2、字符串类型"></a>2、字符串类型</h3><table>
+</tbody>
+</table>
+</div>
+<h3 id="2、字符串类型"><a href="#2、字符串类型" class="headerlink" title="2、字符串类型"></a>2、字符串类型</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>数据类型</th>
 <th>范围</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>char</td>
 <td>固定长度字符串(0 ~ 255)</td>
 </tr>
@@ -316,15 +322,19 @@
 <td>text</td>
 <td>大文本(0 ~ 2^16 - 1)</td>
 </tr>
-</tbody></table>
-<h3 id="3、时间日期类型"><a href="#3、时间日期类型" class="headerlink" title="3、时间日期类型"></a>3、时间日期类型</h3><table>
+</tbody>
+</table>
+</div>
+<h3 id="3、时间日期类型"><a href="#3、时间日期类型" class="headerlink" title="3、时间日期类型"></a>3、时间日期类型</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>数据类型</th>
 <th>范围</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>date</td>
 <td>YYYY - MM - DD 日期</td>
 </tr>
@@ -344,7 +354,9 @@
 <td>year</td>
 <td>年份</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="4、null类型"><a href="#4、null类型" class="headerlink" title="4、null类型"></a>4、null类型</h3><p>表示未知数据</p>
 <p>使用null运算，结果为null</p>
 

@@ -254,11 +254,7 @@
 
       
         <h3 id="1、修改"><a href="#1、修改" class="headerlink" title="1、修改"></a>1、修改</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`XXX`</span> <span class="keyword">RENAME</span> <span class="keyword">AS</span> <span class="string">`YYY`</span>(修改表名)</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`XXX`</span> <span class="keyword">ADD</span> <span class="string">`YYY`</span> <span class="built_in">INT</span>(<span class="number">10</span>)(增加字段)</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`XXX`</span> <span class="keyword">MODIFY</span> <span class="string">'YYY'</span> <span class="built_in">VARCHAR</span>(<span class="number">10</span>)(修改约束)</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`XXX`</span> <span class="keyword">CHANGE</span> <span class="string">`YYY`</span> <span class="string">`ZZZ`</span> <span class="built_in">INT</span>(<span class="number">10</span>)(字段重命名)</span><br><span class="line"><span class="comment">--MODIFY 和 CHANGE 的区别？</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="2、删除"><a href="#2、删除" class="headerlink" title="2、删除"></a>2、删除</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`XXX`</span> <span class="keyword">DROP</span> <span class="string">`YYY`</span>(删除表字段)</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> [<span class="keyword">IF</span> <span class="keyword">EXISTS</span>] <span class="string">`XXX`</span>(删除表)</span><br></pre></td></tr></table></figure>
-
 
     </div>
     

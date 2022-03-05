@@ -25,12 +25,12 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="准备工作配置域名12#communitycommunity.path.domain&#x3D;http:&#x2F;&#x2F;localhost:8080  封装生成随机字符串工具类（UUID），拼接随机字符串后MD5加密注册整体逻辑Service 主要目标：接收Controller传递来的User对象，判断是否合法，合法则添加进User表，发送激活邮件。返回给Controller错误信息。 不合法类型 填写值为空 账号已存">
+  <meta name="description" content="准备工作配置域名12#communitycommunity.path.domain&#x3D;http:&#x2F;&#x2F;localhost:8080 封装生成随机字符串工具类（UUID），拼接随机字符串后MD5加密注册整体逻辑Service 主要目标：接收Controller传递来的User对象，判断是否合法，合法则添加进User表，发送激活邮件。返回给Controller错误信息。 不合法类型 填写值为空 账号已存在">
 <meta property="og:type" content="article">
 <meta property="og:title" content="注册模块开发">
 <meta property="og:url" content="http://yoursite.com/2022/03/03/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E6%B3%A8%E5%86%8C%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/index.html">
 <meta property="og:site_name" content="避风港">
-<meta property="og:description" content="准备工作配置域名12#communitycommunity.path.domain&#x3D;http:&#x2F;&#x2F;localhost:8080  封装生成随机字符串工具类（UUID），拼接随机字符串后MD5加密注册整体逻辑Service 主要目标：接收Controller传递来的User对象，判断是否合法，合法则添加进User表，发送激活邮件。返回给Controller错误信息。 不合法类型 填写值为空 账号已存">
+<meta property="og:description" content="准备工作配置域名12#communitycommunity.path.domain&#x3D;http:&#x2F;&#x2F;localhost:8080 封装生成随机字符串工具类（UUID），拼接随机字符串后MD5加密注册整体逻辑Service 主要目标：接收Controller传递来的User对象，判断是否合法，合法则添加进User表，发送激活邮件。返回给Controller错误信息。 不合法类型 填写值为空 账号已存在">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-03T11:34:35.000Z">
 <meta property="article:modified_time" content="2022-03-04T11:34:33.018Z">
@@ -260,7 +260,6 @@
 
       
         <h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><h5 id="配置域名"><a href="#配置域名" class="headerlink" title="配置域名"></a>配置域名</h5><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#community</span></span><br><span class="line"><span class="meta">community.path.domain</span>=<span class="string">http://localhost:8080</span></span><br></pre></td></tr></table></figure>
-
 <h5 id="封装生成随机字符串工具类（UUID），拼接随机字符串后MD5加密"><a href="#封装生成随机字符串工具类（UUID），拼接随机字符串后MD5加密" class="headerlink" title="封装生成随机字符串工具类（UUID），拼接随机字符串后MD5加密"></a>封装生成随机字符串工具类（UUID），拼接随机字符串后MD5加密</h5><h4 id="注册整体逻辑"><a href="#注册整体逻辑" class="headerlink" title="注册整体逻辑"></a>注册整体逻辑</h4><h5 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h5><ul>
 <li>主要目标：接收Controller传递来的User对象，判断是否合法，合法则添加进User表，发送激活邮件。返回给Controller错误信息。</li>
 <li>不合法类型<ul>

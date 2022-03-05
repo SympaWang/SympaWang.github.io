@@ -273,7 +273,6 @@
 <li>泛型方法在返回值前加<E>，否则会被误认为是确定的类</E></li>
 </ul>
 <h4 id="通过通配符定义泛型对象公共父类"><a href="#通过通配符定义泛型对象公共父类" class="headerlink" title="通过通配符定义泛型对象公共父类"></a>通过通配符定义泛型对象公共父类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; list1 = <span class="keyword">null</span>;</span><br><span class="line">List&lt;String&gt; list2 = <span class="keyword">null</span>;</span><br><span class="line">List&lt;?&gt; list = <span class="keyword">null</span>;</span><br><span class="line">list = list1;</span><br><span class="line">list = list2;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>对于List&lt;?&gt;，不能向其内部添加数据，除了添加null</li>
 <li>可以使用Object类型读取</li>
