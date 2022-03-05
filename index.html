@@ -230,20 +230,6 @@
             </span>
 
           
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/06/05/hello-world/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/06/05/hello-world/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
 
         </div>
       </header>
@@ -302,7 +288,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-03-05 11:07:15 / 修改时间：13:46:18" itemprop="dateCreated datePublished" datetime="2022-03-05T11:07:15+08:00">2022-03-05</time>
+              <time title="创建时间：2022-03-05 11:07:15 / 修改时间：15:16:53" itemprop="dateCreated datePublished" datetime="2022-03-05T11:07:15+08:00">2022-03-05</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -315,20 +301,6 @@
             </span>
 
           
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/03/05/ACM/21%E7%BA%A7%E7%AC%AC%E4%BA%8C%E5%9C%BA%E6%8E%92%E4%BD%8D%E8%B5%9B%E9%A2%98%E8%A7%A3/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/03/05/ACM/21%E7%BA%A7%E7%AC%AC%E4%BA%8C%E5%9C%BA%E6%8E%92%E4%BD%8D%E8%B5%9B%E9%A2%98%E8%A7%A3/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
 
         </div>
       </header>
@@ -343,7 +315,7 @@
 <li>不会有人连二进制转换都不会吧</li>
 </ul>
 <p>参考代码：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">StringSplit</span><span class="params">(<span class="built_in">string</span> str, <span class="keyword">char</span> split, <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; rst)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> tot = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">string</span> str1 = <span class="string">""</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; str.length(); i++) &#123;</span><br><span class="line">		<span class="keyword">char</span> c = str[i];</span><br><span class="line">		<span class="keyword">if</span>(c != <span class="string">'.'</span>) str1 += c;</span><br><span class="line">		<span class="keyword">if</span> (c == <span class="string">'.'</span> || i + <span class="number">1</span> == str.length()) &#123;</span><br><span class="line">			rst.push_back(str1);</span><br><span class="line">			str1 = <span class="string">""</span>;</span><br><span class="line">			tot++;</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">	<span class="keyword">int</span> T;</span><br><span class="line">	<span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; T;</span><br><span class="line">	<span class="keyword">while</span> (T--) &#123;</span><br><span class="line">		<span class="built_in">string</span> ipAddress;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; ipAddress;</span><br><span class="line">		<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; ipAddressSplit;</span><br><span class="line">		StringSplit(ipAddress, <span class="string">'.'</span>, ipAddressSplit);</span><br><span class="line">		<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; ipAddressSplitBinary;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; ipAddress;</span><br><span class="line">		StringSplit(ipAddress, <span class="string">'.'</span>, ipAddressSplitBinary);</span><br><span class="line">		<span class="keyword">bool</span> flag = <span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">			<span class="keyword">int</span> tot1 = ipAddressSplit[i].length() - <span class="number">1</span>, tot2 = <span class="number">7</span>;</span><br><span class="line">			<span class="keyword">int</span> num1 = <span class="number">0</span>, num2 = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">char</span> c : ipAddressSplit[i]) &#123;</span><br><span class="line">				num1 += (c - <span class="string">'0'</span>) * <span class="built_in">pow</span>(<span class="number">10</span>, tot1--);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">char</span> c : ipAddressSplitBinary[i]) &#123;</span><br><span class="line">				num2 += (c - <span class="string">'0'</span>) * (<span class="number">1</span> &lt;&lt; tot2--);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (num1 != num2) &#123;</span><br><span class="line">				flag = <span class="literal">false</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"Case "</span> &lt;&lt; ++cnt &lt;&lt; <span class="string">": "</span>;</span><br><span class="line">		<span class="keyword">if</span> (flag) <span class="built_in">cout</span> &lt;&lt; <span class="string">"Yes"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="built_in">cout</span> &lt;&lt; <span class="string">"No"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">StringSplit</span><span class="params">(<span class="built_in">string</span> str, <span class="keyword">char</span> split, <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; rst)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> tot = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">string</span> str1 = <span class="string">""</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; str.length(); i++) &#123;</span><br><span class="line">		<span class="keyword">char</span> c = str[i];</span><br><span class="line">		<span class="keyword">if</span>(c != <span class="string">'.'</span>) str1 += c;</span><br><span class="line">		<span class="keyword">if</span> (c == <span class="string">'.'</span> || i + <span class="number">1</span> == str.length()) &#123;</span><br><span class="line">			rst.push_back(str1);</span><br><span class="line">			str1 = <span class="string">""</span>;</span><br><span class="line">			tot++;</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="keyword">int</span> T;</span><br><span class="line">    <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; T;</span><br><span class="line">    <span class="keyword">while</span> (T--) &#123;</span><br><span class="line">        <span class="built_in">string</span> ipAddress;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; ipAddress;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; ipAddressSplit;</span><br><span class="line">        StringSplit(ipAddress, <span class="string">'.'</span>, ipAddressSplit);</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; ipAddressSplitBinary;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; ipAddress;</span><br><span class="line">        StringSplit(ipAddress, <span class="string">'.'</span>, ipAddressSplitBinary);</span><br><span class="line">        <span class="keyword">bool</span> flag = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> tot1 = ipAddressSplit[i].length() - <span class="number">1</span>, tot2 = <span class="number">7</span>;</span><br><span class="line">            <span class="keyword">int</span> num1 = <span class="number">0</span>, num2 = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">char</span> c : ipAddressSplit[i]) &#123;</span><br><span class="line">                num1 += (c - <span class="string">'0'</span>) * <span class="built_in">pow</span>(<span class="number">10</span>, tot1--);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">char</span> c : ipAddressSplitBinary[i]) &#123;</span><br><span class="line">                num2 += (c - <span class="string">'0'</span>) * (<span class="number">1</span> &lt;&lt; tot2--);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (num1 != num2) &#123;</span><br><span class="line">                flag = <span class="literal">false</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Case "</span> &lt;&lt; ++cnt &lt;&lt; <span class="string">": "</span>;</span><br><span class="line">        <span class="keyword">if</span> (flag) <span class="built_in">cout</span> &lt;&lt; <span class="string">"Yes"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">cout</span> &lt;&lt; <span class="string">"No"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 <h4 id="B-Alexey-and-Train（Codeforces-1501A）"><a href="#B-Alexey-and-Train（Codeforces-1501A）" class="headerlink" title="B. Alexey and Train（Codeforces - 1501A）"></a>B. Alexey and Train（Codeforces - 1501A）</h4><h5 id="阅读理解签到题"><a href="#阅读理解签到题" class="headerlink" title="阅读理解签到题"></a>阅读理解签到题</h5><ul>
 <li>每次都是 $2$ 选 $1$，要不等到 $b_i$ ，要不就等待  $ \lceil \dfrac{b_i-a_i}{2} \rceil$ 的时间</li>
@@ -463,20 +435,6 @@
             </span>
 
           
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/03/04/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/03/04/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
 
         </div>
       </header>
@@ -553,20 +511,6 @@
             </span>
 
           
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/03/03/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E6%B3%A8%E5%86%8C%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/03/03/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E6%B3%A8%E5%86%8C%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
 
         </div>
       </header>
@@ -666,20 +610,6 @@
             </span>
 
           
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/03/02/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/Spring%20Boot%20Starter%20Mail%E4%BD%BF%E7%94%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/03/02/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/Spring%20Boot%20Starter%20Mail%E4%BD%BF%E7%94%A8/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
 
         </div>
       </header>
@@ -767,20 +697,6 @@
             </span>
 
           
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/03/01/Web/Cookie/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/03/01/Web/Cookie/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
 
         </div>
       </header>
@@ -911,20 +827,6 @@
             </span>
 
           
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/02/28/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/Thymeleaf/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/28/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/Thymeleaf/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
 
         </div>
       </header>
@@ -1020,20 +922,6 @@
             </span>
 
           
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/02/28/%E6%A1%86%E6%9E%B6/Spring/SpringMVC%E5%85%A5%E9%97%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/28/%E6%A1%86%E6%9E%B6/Spring/SpringMVC%E5%85%A5%E9%97%A8/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
 
         </div>
       </header>
@@ -1129,20 +1017,6 @@
             </span>
 
           
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/02/28/%E6%A1%86%E6%9E%B6/Spring/Spring%E5%85%A5%E9%97%A8/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/28/%E6%A1%86%E6%9E%B6/Spring/Spring%E5%85%A5%E9%97%A8/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
 
         </div>
       </header>
@@ -1286,20 +1160,6 @@
             </span>
 
           
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/02/28/%E6%A1%86%E6%9E%B6/SpringBoot/SpringBoot%E7%AE%80%E4%BB%8B/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/02/28/%E6%A1%86%E6%9E%B6/SpringBoot/SpringBoot%E7%AE%80%E4%BB%8B/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
 
         </div>
       </header>
@@ -1662,35 +1522,6 @@ $(document).ready(function() {
 
   
 
-
-
-<script>
-NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
-    var GUEST = ['nick', 'mail', 'link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item => {
-      return GUEST.includes(item);
-    });
-    new Valine({
-      el         : '#valine-comments',
-      verify     : false,
-      notify     : false,
-      appId      : 'Smp7NiETHmmPLH4FG3nYFyO4-gzGzoHsz',
-      appKey     : 'g8nwfuRpYW0UTn3d9SJKRbCY',
-      placeholder: "Just go go",
-      avatar     : 'mm',
-      meta       : guest,
-      pageSize   : '10' || 10,
-      visitor    : false,
-      lang       : '' || 'zh-cn',
-      path       : location.pathname,
-      recordIP   : false,
-      serverURLs : ''
-    });
-  }, window.Valine);
-});
-</script>
 
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
 </html>

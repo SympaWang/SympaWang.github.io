@@ -33,7 +33,7 @@
 <meta property="og:description" content="A. IP Checking（LightOJ - 1354）送分题？ 不会有人连二进制转换都不会吧  参考代码： 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950#include&lt;bits&#x2F;stdc++.h&gt;using namespace std;voi">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-05T03:07:15.000Z">
-<meta property="article:modified_time" content="2022-03-05T05:46:18.087Z">
+<meta property="article:modified_time" content="2022-03-05T07:16:53.723Z">
 <meta property="article:author" content="Sympa">
 <meta name="twitter:card" content="summary">
 
@@ -209,7 +209,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-03-05 11:07:15 / 修改时间：13:46:18" itemprop="dateCreated datePublished" datetime="2022-03-05T11:07:15+08:00">2022-03-05</time>
+              <time title="创建时间：2022-03-05 11:07:15 / 修改时间：15:16:53" itemprop="dateCreated datePublished" datetime="2022-03-05T11:07:15+08:00">2022-03-05</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -229,20 +229,6 @@
               <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
             </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/03/05/ACM/21%E7%BA%A7%E7%AC%AC%E4%BA%8C%E5%9C%BA%E6%8E%92%E4%BD%8D%E8%B5%9B%E9%A2%98%E8%A7%A3/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/03/05/ACM/21%E7%BA%A7%E7%AC%AC%E4%BA%8C%E5%9C%BA%E6%8E%92%E4%BD%8D%E8%B5%9B%E9%A2%98%E8%A7%A3/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
 
         </div>
       </header>
@@ -257,7 +243,7 @@
 <li>不会有人连二进制转换都不会吧</li>
 </ul>
 <p>参考代码：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">StringSplit</span><span class="params">(<span class="built_in">string</span> str, <span class="keyword">char</span> split, <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; rst)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> tot = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">string</span> str1 = <span class="string">""</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; str.length(); i++) &#123;</span><br><span class="line">		<span class="keyword">char</span> c = str[i];</span><br><span class="line">		<span class="keyword">if</span>(c != <span class="string">'.'</span>) str1 += c;</span><br><span class="line">		<span class="keyword">if</span> (c == <span class="string">'.'</span> || i + <span class="number">1</span> == str.length()) &#123;</span><br><span class="line">			rst.push_back(str1);</span><br><span class="line">			str1 = <span class="string">""</span>;</span><br><span class="line">			tot++;</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">	<span class="keyword">int</span> T;</span><br><span class="line">	<span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; T;</span><br><span class="line">	<span class="keyword">while</span> (T--) &#123;</span><br><span class="line">		<span class="built_in">string</span> ipAddress;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; ipAddress;</span><br><span class="line">		<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; ipAddressSplit;</span><br><span class="line">		StringSplit(ipAddress, <span class="string">'.'</span>, ipAddressSplit);</span><br><span class="line">		<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; ipAddressSplitBinary;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; ipAddress;</span><br><span class="line">		StringSplit(ipAddress, <span class="string">'.'</span>, ipAddressSplitBinary);</span><br><span class="line">		<span class="keyword">bool</span> flag = <span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">			<span class="keyword">int</span> tot1 = ipAddressSplit[i].length() - <span class="number">1</span>, tot2 = <span class="number">7</span>;</span><br><span class="line">			<span class="keyword">int</span> num1 = <span class="number">0</span>, num2 = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">char</span> c : ipAddressSplit[i]) &#123;</span><br><span class="line">				num1 += (c - <span class="string">'0'</span>) * <span class="built_in">pow</span>(<span class="number">10</span>, tot1--);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">char</span> c : ipAddressSplitBinary[i]) &#123;</span><br><span class="line">				num2 += (c - <span class="string">'0'</span>) * (<span class="number">1</span> &lt;&lt; tot2--);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> (num1 != num2) &#123;</span><br><span class="line">				flag = <span class="literal">false</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; <span class="string">"Case "</span> &lt;&lt; ++cnt &lt;&lt; <span class="string">": "</span>;</span><br><span class="line">		<span class="keyword">if</span> (flag) <span class="built_in">cout</span> &lt;&lt; <span class="string">"Yes"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="built_in">cout</span> &lt;&lt; <span class="string">"No"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">StringSplit</span><span class="params">(<span class="built_in">string</span> str, <span class="keyword">char</span> split, <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; rst)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> tot = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">string</span> str1 = <span class="string">""</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; str.length(); i++) &#123;</span><br><span class="line">		<span class="keyword">char</span> c = str[i];</span><br><span class="line">		<span class="keyword">if</span>(c != <span class="string">'.'</span>) str1 += c;</span><br><span class="line">		<span class="keyword">if</span> (c == <span class="string">'.'</span> || i + <span class="number">1</span> == str.length()) &#123;</span><br><span class="line">			rst.push_back(str1);</span><br><span class="line">			str1 = <span class="string">""</span>;</span><br><span class="line">			tot++;</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="keyword">int</span> T;</span><br><span class="line">    <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; T;</span><br><span class="line">    <span class="keyword">while</span> (T--) &#123;</span><br><span class="line">        <span class="built_in">string</span> ipAddress;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; ipAddress;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; ipAddressSplit;</span><br><span class="line">        StringSplit(ipAddress, <span class="string">'.'</span>, ipAddressSplit);</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; ipAddressSplitBinary;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; ipAddress;</span><br><span class="line">        StringSplit(ipAddress, <span class="string">'.'</span>, ipAddressSplitBinary);</span><br><span class="line">        <span class="keyword">bool</span> flag = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> tot1 = ipAddressSplit[i].length() - <span class="number">1</span>, tot2 = <span class="number">7</span>;</span><br><span class="line">            <span class="keyword">int</span> num1 = <span class="number">0</span>, num2 = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">char</span> c : ipAddressSplit[i]) &#123;</span><br><span class="line">                num1 += (c - <span class="string">'0'</span>) * <span class="built_in">pow</span>(<span class="number">10</span>, tot1--);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">char</span> c : ipAddressSplitBinary[i]) &#123;</span><br><span class="line">                num2 += (c - <span class="string">'0'</span>) * (<span class="number">1</span> &lt;&lt; tot2--);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (num1 != num2) &#123;</span><br><span class="line">                flag = <span class="literal">false</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Case "</span> &lt;&lt; ++cnt &lt;&lt; <span class="string">": "</span>;</span><br><span class="line">        <span class="keyword">if</span> (flag) <span class="built_in">cout</span> &lt;&lt; <span class="string">"Yes"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">cout</span> &lt;&lt; <span class="string">"No"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 <h4 id="B-Alexey-and-Train（Codeforces-1501A）"><a href="#B-Alexey-and-Train（Codeforces-1501A）" class="headerlink" title="B. Alexey and Train（Codeforces - 1501A）"></a>B. Alexey and Train（Codeforces - 1501A）</h4><h5 id="阅读理解签到题"><a href="#阅读理解签到题" class="headerlink" title="阅读理解签到题"></a>阅读理解签到题</h5><ul>
 <li>每次都是 $2$ 选 $1$，要不等到 $b_i$ ，要不就等待  $ \lceil \dfrac{b_i-a_i}{2} \rceil$ 的时间</li>
@@ -385,24 +371,11 @@
 
           </div>
           
-      <div class="tabs tabs-comment">
-        <ul class="nav-tabs">
-            <li class="tab"><a href="#comment-livere">livere</a></li>
-            <li class="tab"><a href="#comment-valine">valine</a></li>
-        </ul>
-        <div class="tab-content">
-            <div class="tab-pane livere" id="comment-livere">
-              
+    
   <div class="comments">
     <div id="lv-container" data-id="city" data-uid="MTAyMC81MDM4Mi8yNjg3Mg=="></div>
   </div>
   
-            </div>
-            <div class="tab-pane valine" id="comment-valine">
-              <div class="comments" id="valine-comments"></div>
-            </div>
-        </div>
-      </div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -732,35 +705,6 @@ NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
     j.async = true;
     e.parentNode.insertBefore(j, e);
   })(document, 'script');
-});
-</script>
-
-
-<script>
-NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
-    var GUEST = ['nick', 'mail', 'link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item => {
-      return GUEST.includes(item);
-    });
-    new Valine({
-      el         : '#valine-comments',
-      verify     : false,
-      notify     : false,
-      appId      : 'Smp7NiETHmmPLH4FG3nYFyO4-gzGzoHsz',
-      appKey     : 'g8nwfuRpYW0UTn3d9SJKRbCY',
-      placeholder: "Just go go",
-      avatar     : 'mm',
-      meta       : guest,
-      pageSize   : '10' || 10,
-      visitor    : false,
-      lang       : '' || 'zh-cn',
-      path       : location.pathname,
-      recordIP   : false,
-      serverURLs : ''
-    });
-  }, window.Valine);
 });
 </script>
 

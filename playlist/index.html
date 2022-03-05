@@ -204,7 +204,7 @@
       
       <div class="post-body">
           
-    <div id="aplayer-FCDVqmyZ" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="469192659" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#FF4081"></div>
+    <div id="aplayer-WHhUgLKd" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="469192659" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#FF4081"></div>
 
       </div>
       
@@ -220,24 +220,11 @@
 
           </div>
           
-      <div class="tabs tabs-comment">
-        <ul class="nav-tabs">
-            <li class="tab"><a href="#comment-livere">livere</a></li>
-            <li class="tab"><a href="#comment-valine">valine</a></li>
-        </ul>
-        <div class="tab-content">
-            <div class="tab-pane livere" id="comment-livere">
-              
+    
   <div class="comments">
     <div id="lv-container" data-id="city" data-uid="MTAyMC81MDM4Mi8yNjg3Mg=="></div>
   </div>
   
-            </div>
-            <div class="tab-pane valine" id="comment-valine">
-              <div class="comments" id="valine-comments"></div>
-            </div>
-        </div>
-      </div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -513,35 +500,6 @@ NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
     j.async = true;
     e.parentNode.insertBefore(j, e);
   })(document, 'script');
-});
-</script>
-
-
-<script>
-NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
-    var GUEST = ['nick', 'mail', 'link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(item => {
-      return GUEST.includes(item);
-    });
-    new Valine({
-      el         : '#valine-comments',
-      verify     : false,
-      notify     : false,
-      appId      : 'Smp7NiETHmmPLH4FG3nYFyO4-gzGzoHsz',
-      appKey     : 'g8nwfuRpYW0UTn3d9SJKRbCY',
-      placeholder: "Just go go",
-      avatar     : 'mm',
-      meta       : guest,
-      pageSize   : '10' || 10,
-      visitor    : false,
-      lang       : '' || 'zh-cn',
-      path       : location.pathname,
-      recordIP   : false,
-      serverURLs : ''
-    });
-  }, window.Valine);
 });
 </script>
 
