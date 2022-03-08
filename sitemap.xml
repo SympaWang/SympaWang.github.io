@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2022/02/23/Web/Response%E5%AF%B9%E8%B1%A1/</loc>
+    
+    <lastmod>2022-03-08T12:18:53.029Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2022/02/23/Web/Request%E5%AF%B9%E8%B1%A1%20/</loc>
     
     <lastmod>2022-03-08T12:09:11.745Z</lastmod>
@@ -124,13 +131,6 @@
     <loc>http://yoursite.com/2022/02/22/%E6%A1%86%E6%9E%B6/MyBatis/MyBatis%E7%AE%80%E4%BB%8B/</loc>
     
     <lastmod>2022-02-27T03:06:57.160Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2022/02/25/Web/Response%E5%AF%B9%E8%B1%A1/</loc>
-    
-    <lastmod>2022-02-24T17:10:43.204Z</lastmod>
     
   </url>
   
