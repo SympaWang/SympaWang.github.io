@@ -395,7 +395,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/04/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/04/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/Kaptcha%E7%94%9F%E6%88%90%E9%AA%8C%E8%AF%81%E7%A0%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -409,7 +409,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/03/04/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">会话管理</a>
+            <a href="/2022/03/04/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/Kaptcha%E7%94%9F%E6%88%90%E9%AA%8C%E8%AF%81%E7%A0%81/" class="post-title-link" itemprop="url">Kaptcha生成验证码</a>
         </h2>
 
         <div class="post-meta">
@@ -420,10 +420,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-03-04 20:27:17 / 修改时间：20:27:26" itemprop="dateCreated datePublished" datetime="2022-03-04T20:27:17+08:00">2022-03-04</time>
+              <time title="创建时间：2022-03-04 20:27:17" itemprop="dateCreated datePublished" datetime="2022-03-04T20:27:17+08:00">2022-03-04</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-08 19:10:28" itemprop="dateModified" datetime="2022-03-08T19:10:28+08:00">2022-03-08</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -445,7 +451,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <h4 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h4><ul>
+<li><p>导入jar包</p>
+</li>
+<li><p>编写Kaptcha配置类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">KaptchaConfig</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Producer <span class="title">kaptchaProducer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Properties properties = <span class="keyword">new</span> Properties();</span><br><span class="line">        properties.setProperty(<span class="string">"kaptcha.image.width"</span>, <span class="string">"100"</span>);</span><br><span class="line">        properties.setProperty(<span class="string">"kaptcha.image.height"</span>, <span class="string">"40"</span>);</span><br><span class="line">        properties.setProperty(<span class="string">"kaptcha.textproducer.font.size"</span>, <span class="string">"32"</span>);</span><br><span class="line">        properties.setProperty(<span class="string">"kaptcha.textproducer.char.string"</span>, <span class="string">"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"</span>);</span><br><span class="line">        properties.setProperty(<span class="string">"kaptcha.textproducer.char.length"</span>, <span class="string">"4"</span>);</span><br><span class="line">        properties.setProperty(<span class="string">"kaptcha.noise.impl"</span>, <span class="string">"com.google.code.kaptcha.impl.NoNoise"</span>);</span><br><span class="line"></span><br><span class="line">        DefaultKaptcha kaptcha = <span class="keyword">new</span> DefaultKaptcha();</span><br><span class="line">        Config config = <span class="keyword">new</span> Config(properties);</span><br><span class="line">        kaptcha.setConfig(config);</span><br><span class="line">        <span class="keyword">return</span> kaptcha;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>引入bean，生成随机字符，生成图片</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(path=<span class="string">"/kaptcha"</span>, method = RequestMethod.GET)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getKaptcha</span><span class="params">(HttpServletResponse response, HttpSession session)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//生成验证码</span></span><br><span class="line">    String text = kaptchaProducer.createText();</span><br><span class="line">    BufferedImage image = kaptchaProducer.createImage(text);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//存入session</span></span><br><span class="line">    session.setAttribute(<span class="string">"kaptcha"</span>, image);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//将图片输出给浏览器</span></span><br><span class="line">    response.setContentType(<span class="string">"image/png"</span>);</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        OutputStream os = response.getOutputStream();</span><br><span class="line">        ImageIO.write(image, <span class="string">"png"</span>, os);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        logger.error(<span class="string">"响应验证码失败"</span> + e.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
       
     </div>
     
@@ -684,7 +702,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-04 20:49:02" itemprop="dateModified" datetime="2022-03-04T20:49:02+08:00">2022-03-04</time>
+                <time title="修改时间：2022-03-06 09:02:10" itemprop="dateModified" datetime="2022-03-06T09:02:10+08:00">2022-03-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -730,6 +748,9 @@
 </li>
 <li><p>使用Cookie对象方法获取数据</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cookie.getName();</span><br><span class="line">cookie.getValue();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用@CookieValue注解获取指定Cookie</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getCookie</span><span class="params">(@CookieValue(<span class="string">"code"</span>)</span> String code) </span>&#123;</span><br><span class="line">	 System.out.println(code);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -1364,7 +1385,7 @@ $(document).ready(function() {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共27k字</span>
+  <span class="post-count">博客全站共27.2k字</span>
 </div>
         
 <div class="busuanzi-count">

@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://yoursite.com/2022/03/05/ACM/21%E7%BA%A7%E7%AC%AC%E4%BA%8C%E5%9C%BA%E6%8E%92%E4%BD%8D%E8%B5%9B%E9%A2%98%E8%A7%A3/</loc>
-    <lastmod>2022-03-05</lastmod>
+    <loc>http://yoursite.com/2022/02/23/Web/Request%E5%AF%B9%E8%B1%A1%20/</loc>
+    <lastmod>2022-03-08</lastmod>
+  </url>  <url>
+    <loc>http://yoursite.com/2022/03/04/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/Kaptcha%E7%94%9F%E6%88%90%E9%AA%8C%E8%AF%81%E7%A0%81/</loc>
+    <lastmod>2022-03-08</lastmod>
   </url>  <url>
     <loc>http://yoursite.com/2022/03/01/Web/Cookie/</loc>
-    <lastmod>2022-03-04</lastmod>
+    <lastmod>2022-03-06</lastmod>
   </url>  <url>
-    <loc>http://yoursite.com/2022/03/04/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86/</loc>
-    <lastmod>2022-03-04</lastmod>
+    <loc>http://yoursite.com/2022/03/05/ACM/21%E7%BA%A7%E7%AC%AC%E4%BA%8C%E5%9C%BA%E6%8E%92%E4%BD%8D%E8%B5%9B%E9%A2%98%E8%A7%A3/</loc>
+    <lastmod>2022-03-05</lastmod>
   </url>  <url>
     <loc>http://yoursite.com/2022/03/03/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E6%B3%A8%E5%86%8C%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/</loc>
     <lastmod>2022-03-04</lastmod>
@@ -50,9 +53,6 @@
     <lastmod>2022-02-27</lastmod>
   </url>  <url>
     <loc>http://yoursite.com/2022/02/25/Web/Response%E5%AF%B9%E8%B1%A1/</loc>
-    <lastmod>2022-02-24</lastmod>
-  </url>  <url>
-    <loc>http://yoursite.com/2022/02/23/Web/Request%E5%AF%B9%E8%B1%A1%20/</loc>
     <lastmod>2022-02-24</lastmod>
   </url>  <url>
     <loc>http://yoursite.com/2022/02/23/Web/Servlet/</loc>
