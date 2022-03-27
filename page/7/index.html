@@ -180,6 +180,166 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/20/SQL%E5%9F%BA%E7%A1%80/SQL_Select/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/20/SQL%E5%9F%BA%E7%A1%80/SQL_Select/" class="post-title-link" itemprop="url">SQL_Select</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-20 13:39:30" itemprop="dateCreated datePublished" datetime="2022-01-20T13:39:30+08:00">2022-01-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-01-21 19:10:18" itemprop="dateModified" datetime="2022-01-21T19:10:18+08:00">2022-01-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> [<span class="keyword">all</span> || <span class="keyword">distinct</span>]</span><br><span class="line">&#123;* | table.* | [table.field1[<span class="keyword">as</span> alias1][, table.field2[<span class="keyword">as</span> alias2]][,...]]&#125;</span><br><span class="line"><span class="keyword">from</span> table_name [<span class="keyword">as</span> table_alias]</span><br><span class="line">	[<span class="keyword">left</span> | <span class="keyword">right</span> | <span class="keyword">inner</span> <span class="keyword">join</span> table_name2] <span class="comment">-- 联合查询</span></span><br><span class="line">	[<span class="keyword">where</span> ...] <span class="comment">-- 指定结果需满足条件‘</span></span><br><span class="line">	[<span class="keyword">group</span> <span class="keyword">by</span> ...] <span class="comment">-- 指定结果按照哪几个字段分组</span></span><br><span class="line">	[<span class="keyword">having</span>] <span class="comment">-- 过滤分组的记录必须满足的次要条件</span></span><br><span class="line">	[<span class="keyword">order</span> <span class="keyword">by</span> ...] <span class="comment">-- 指定查询记录按一个或多个条件排序</span></span><br><span class="line">	[<span class="keyword">limit</span> &#123;[<span class="keyword">offset</span>,]<span class="keyword">row_count</span> | row_countOFFSET <span class="keyword">offset</span>&#125;];</span><br><span class="line">	</span><br><span class="line"><span class="comment">-- 查询所有字段</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> [表]</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询指定字段 </span></span><br><span class="line"><span class="keyword">select</span> [字段名], [字段名] <span class="keyword">from</span> [表]</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 别名，给结果起名</span></span><br><span class="line"><span class="keyword">select</span> [字段名] <span class="keyword">as</span> [别名] <span class="keyword">from</span> [表]</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 函数 concat(a, b) 拼接字符串</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">concat</span>(<span class="string">'姓名：'</span>, [字段名]) <span class="keyword">as</span> [别名] <span class="keyword">from</span> [表]</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 去重</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> [] <span class="keyword">from</span> []</span><br><span class="line"></span><br><span class="line"><span class="comment">-- select 其他用法</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">version</span>() <span class="comment">-- 查询系统版本</span></span><br><span class="line"><span class="keyword">select</span> [表达式] <span class="comment">-- 计算结果</span></span><br><span class="line"><span class="keyword">select</span> @@auto_increment_increment <span class="comment">-- 查询自增步长（变量）</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> [] + <span class="number">1</span> <span class="keyword">from</span> [] <span class="comment">-- 结果加一</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/19/SQL%E5%9F%BA%E7%A1%80/SQL_Update%E4%B8%8EDelete%E8%AF%AD%E5%8F%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/19/SQL%E5%9F%BA%E7%A1%80/SQL_Update%E4%B8%8EDelete%E8%AF%AD%E5%8F%A5/" class="post-title-link" itemprop="url">SQL_Update与Delete语句</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-19 23:48:30" itemprop="dateCreated datePublished" datetime="2022-01-19T23:48:30+08:00">2022-01-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-01-20 15:00:25" itemprop="dateModified" datetime="2022-01-20T15:00:25+08:00">2022-01-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- update 表名 set colnum_name = value, [colnum_name = value...] where [条件]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 条件 between...and... 在两者时间</span></span><br><span class="line"><span class="comment">-- AND &amp;&amp;</span></span><br><span class="line"><span class="comment">-- OR ||</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- delete from 表名 where [条件]</span></span><br></pre></td></tr></table></figure>
+<p>delete 与 truncate</p>
+<ul>
+<li>相同点：都能删除数据，都不会删表结构</li>
+<li>不同： truncate重新设置自增列，计数器会归零，在innodb中delete需要重启数据库才会归零，因为存在内存中。truncate不会影响事务</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/19/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/Map%E6%8E%A5%E5%8F%A3%E5%AE%B9%E5%99%A8%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -861,212 +1021,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%B1%BB%E5%9E%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%B1%BB%E5%9E%8B/" class="post-title-link" itemprop="url">数据表类型(MYISAM与INNODB)</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-09-14 23:24:00" itemprop="dateCreated datePublished" datetime="2021-09-14T23:24:00+08:00">2021-09-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-15 00:02:36" itemprop="dateModified" datetime="2021-09-15T00:02:36+08:00">2021-09-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th>MYISAM</th>
-<th>INNODB</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>事务支持</td>
-<td>不支持</td>
-<td>支持</td>
-</tr>
-<tr>
-<td>数据行锁定</td>
-<td>不支持</td>
-<td>支持</td>
-</tr>
-<tr>
-<td>外键约束</td>
-<td>不支持</td>
-<td>支持</td>
-</tr>
-<tr>
-<td>全文索引</td>
-<td>支持</td>
-<td>不支持</td>
-</tr>
-<tr>
-<td>表空间大小</td>
-<td>较小</td>
-<td>较大，约为MYISAM两倍</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>常规使用操作：</p>
-<ul>
-<li>MYISAM节约空间，速度较快</li>
-<li>INNODB安全性高，支持事务处理，多表多用户操作</li>
-</ul>
-<h3 id="物理空间位置"><a href="#物理空间位置" class="headerlink" title="物理空间位置"></a>物理空间位置</h3><p>所有数据库文件都存在data目录，一个文件夹一个数据库</p>
-<p>本质是文件存储</p>
-<h4 id="MySQL引擎在物理文件区别"><a href="#MySQL引擎在物理文件区别" class="headerlink" title="MySQL引擎在物理文件区别"></a>MySQL引擎在物理文件区别</h4><ul>
-<li><p>INNODB在数据库表中只有一个*.frm文件，以及上级目录下的ibdata1文件</p>
-</li>
-<li><p>MYISAM对应文件</p>
-<ul>
-<li>*.frm 表结构定义文件</li>
-<li>*.MYD 数据文件(Data)</li>
-<li>*.MYI  索引文件(Index)</li>
-</ul>
-</li>
-</ul>
-<h3 id="设置数据库表的字符集编码"><a href="#设置数据库表的字符集编码" class="headerlink" title="设置数据库表的字符集编码"></a>设置数据库表的字符集编码</h3><p><strong>CHARSET=UTF8</strong></p>
-<p>不设置会是mysql默认字符集编码，不支持中文</p>
-<h4 id="在my-ini中配置默认编码"><a href="#在my-ini中配置默认编码" class="headerlink" title="在my.ini中配置默认编码"></a>在my.ini中配置默认编码</h4><p><strong>character-set-server=utf8</strong></p>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/14/SQL%E5%9F%BA%E7%A1%80/SQL%E5%88%9B%E5%BB%BA%E8%A1%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/14/SQL%E5%9F%BA%E7%A1%80/SQL%E5%88%9B%E5%BB%BA%E8%A1%A8/" class="post-title-link" itemprop="url">SQL创建表</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-09-14 16:48:08 / 修改时间：23:23:23" itemprop="dateCreated datePublished" datetime="2021-09-14T16:48:08+08:00">2021-09-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`XXX`</span>  <span class="comment">--查看某张表的创建语句</span></span><br><span class="line"><span class="comment">--尽量表名字段使用``</span></span><br><span class="line"><span class="comment">--字符串使用''</span></span><br><span class="line"><span class="comment">--所有语句后加, 最后一个不用加</span></span><br><span class="line"><span class="comment">--主键最好加最后，一般一个表唯一</span></span><br><span class="line"><span class="comment">--注意顺序 [属性][索引][注释]</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> [<span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>] <span class="string">`XXX`</span> (</span><br><span class="line">	<span class="string">`列名`</span> <span class="built_in">INT</span>(<span class="number">4</span>)(类型) [<span class="keyword">NOT</span> <span class="literal">NULL</span>(非空) AUTO_INCREMENT(自增) <span class="keyword">COMMENT</span>(注释) <span class="string">'注释'</span>],</span><br><span class="line">    <span class="string">`列名`</span> <span class="built_in">VARCHAR</span>(<span class="number">30</span>) [<span class="keyword">DEFAULT</span> <span class="literal">NULL</span>(默认为空) <span class="keyword">COMMENT</span> <span class="string">''</span>],</span><br><span class="line">     …………,</span><br><span class="line">    PRIMARY <span class="keyword">KEY</span> (<span class="string">`列名`</span>)</span><br><span class="line">)[<span class="keyword">ENGINE</span> = <span class="keyword">INNODB</span>(引擎/类型) <span class="keyword">DEFAULT</span> = UFT8(编码)]</span><br><span class="line"></span><br><span class="line"><span class="keyword">DESC</span> <span class="string">`XXX`</span> <span class="comment">--查看表结构</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1138,14 +1092,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-count">87</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-count">23</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1234,7 +1188,7 @@ $(document).ready(function() {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共27.2k字</span>
+  <span class="post-count">博客全站共27.6k字</span>
 </div>
         
 <div class="busuanzi-count">

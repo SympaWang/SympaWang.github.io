@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2022-03-05T07:16:53.723Z</updated>
+  <updated>2022-03-27T05:03:20.891Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,54 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Interceptor拦截器</title>
+    <link href="http://yoursite.com/2022/03/26/%E6%A1%86%E6%9E%B6/Spring/Interceptor%E6%8B%A6%E6%88%AA%E5%99%A8/"/>
+    <id>http://yoursite.com/2022/03/26/%E6%A1%86%E6%9E%B6/Spring/Interceptor%E6%8B%A6%E6%88%AA%E5%99%A8/</id>
+    <published>2022-03-26T12:36:09.000Z</published>
+    <updated>2022-03-27T05:03:20.891Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="如何创建拦截器？"><a href="#如何创建拦截器？" class="headerlink" title="如何创建拦截器？"></a>如何创建拦截器？</h4><ul><li>在Controller层实现HandlerInterceptor接口</li><li>有三个可实现的方法<ul><li>preHandle方法，在Controller之前执行</li><li>postHandle方法，在调用Controller之后执行</li><li>afterCompletion方法，在模板引擎TemplateEngine之后执行</li></ul></li></ul><h4 id="如何使用拦截器？"><a href="#如何使用拦截器？" class="headerlink" title="如何使用拦截器？"></a>如何使用拦截器？</h4><ul><li>继承WebMvcConfigurer类，实现addInterceptors方法</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebMvcConfig</span> <span class="keyword">implements</span> <span class="title">WebMvcConfigurer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> AlphaInterceptor alphaInterceptor;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addInterceptors</span><span class="params">(InterceptorRegistry registry)</span> </span>&#123;</span><br><span class="line">        registry.addInterceptor(alphaInterceptor)</span><br><span class="line">                .excludePathPatterns(<span class="string">"/**/*.css"</span>, <span class="string">"/**/*.js"</span>, <span class="string">"/**/*.jpg"</span>, <span class="string">"/**/*.png"</span>, <span class="string">"/**/*.jpeg"</span>)</span><br><span class="line">                .addPathPatterns(<span class="string">"/register"</span>, <span class="string">"login"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="Spring" scheme="http://yoursite.com/categories/Spring/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>登录模块开发</title>
+    <link href="http://yoursite.com/2022/03/14/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%99%BB%E5%BD%95%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/"/>
+    <id>http://yoursite.com/2022/03/14/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%99%BB%E5%BD%95%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/</id>
+    <published>2022-03-14T10:48:11.000Z</published>
+    <updated>2022-03-27T06:05:17.178Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="基本功能"><a href="#基本功能" class="headerlink" title="基本功能"></a>基本功能</h3><ul><li>访问登陆界面</li><li>登录<ul><li>验证账号，密码，验证码</li><li>成功时，生成登陆凭证，返回给客户端</li><li>失败时，跳转回登录页</li></ul></li><li>退出<ul><li>将登陆凭证改为失效状态</li><li>跳转回首页</li></ul></li></ul><h4 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h4><ul><li>Service层<ul><li>接收账号密码，在数据库中查找，返回错误信息</li><li>若信息无误，生成登陆凭证，传给Controller层</li></ul></li><li>Controller层<ul><li>接收post请求，验证验证码是否正确</li><li>若验证码正确，将账号密码发送给Service层进行验证</li><li>接受错误信息，传给model</li><li>若无误，跳转回主页（重定向，return “redirect:/index”;）</li></ul></li></ul><h4 id="退出登录"><a href="#退出登录" class="headerlink" title="退出登录"></a>退出登录</h4><ul><li>Service层<ul><li>接收Controller层传来的登陆凭证，修改状态</li></ul></li><li>Controller层<ul><li>接收get请求，退出登录，将登陆凭证传给Controller层</li><li>重定向到登陆界面</li></ul></li></ul><h4 id="拦截器应用"><a href="#拦截器应用" class="headerlink" title="拦截器应用"></a>拦截器应用</h4><ul><li>在请求开始时查询登录用户</li><li>在本次请求中持有用户数据</li><li>在模板视图上显示用户数据</li><li>在请求结束时清理用户数据</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="牛客讨论区项目" scheme="http://yoursite.com/categories/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>21级第二场排位赛题解</title>
@@ -456,56 +504,6 @@
     
     
       <category term="Web" scheme="http://yoursite.com/categories/Web/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>MyBatis简介</title>
-    <link href="http://yoursite.com/2022/02/22/%E6%A1%86%E6%9E%B6/MyBatis/MyBatis%E7%AE%80%E4%BB%8B/"/>
-    <id>http://yoursite.com/2022/02/22/%E6%A1%86%E6%9E%B6/MyBatis/MyBatis%E7%AE%80%E4%BB%8B/</id>
-    <published>2022-02-22T14:58:14.000Z</published>
-    <updated>2022-02-27T03:06:57.160Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="什么是MyBatis"><a href="#什么是MyBatis" class="headerlink" title="什么是MyBatis"></a>什么是MyBatis</h4><ul><li>MyBatis是一款优秀的<strong>持久层</strong>框架，用于简化JDBC开发</li><li>MyBatis本是Apache的一个开源项目iBatis，2010年这个项目由apache software foundation迁移到了google code，并且改名为MyBatis。2013年11月迁移到Github</li><li>官网：<a href="https://mybatis.org/mybatis-3/zh/index.html" target="_blank" rel="noopener">https://mybatis.org/mybatis-3/zh/index.html</a></li></ul><h5 id="持久层"><a href="#持久层" class="headerlink" title="持久层"></a>持久层</h5><ul><li>负责将数据保存到数据库的那一层代码</li><li>JavaEE三层架构：表现层，业务层，持久层</li></ul><h4 id="MyBatis核心配置文件mybatis-config-xml"><a href="#MyBatis核心配置文件mybatis-config-xml" class="headerlink" title="MyBatis核心配置文件mybatis.config.xml"></a>MyBatis核心配置文件mybatis.config.xml</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">configuration</span></span></span><br><span class="line"><span class="meta">        <span class="meta-keyword">PUBLIC</span> <span class="meta-string">"-//mybatis.org//DTD Config 3.0//EN"</span></span></span><br><span class="line"><span class="meta">        <span class="meta-string">"http://mybatis.org/dtd/mybatis-3-config.dtd"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span> <span class="attr">resource</span>=<span class="string">"jdbc.properties"</span>/&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">&lt;!--设置类型别名--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"com.sympa.mybatis.pojo"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">"development"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">"development"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"JDBC"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.driver&#125;"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.url&#125;"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.username&#125;"</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.password&#125;"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--设置映射别名--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"com.sympa.mybatis.mapper"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure><h4 id="创建实现类与mapper接口"><a href="#创建实现类与mapper接口" class="headerlink" title="创建实现类与mapper接口"></a>创建实现类与mapper接口</h4><hr><h4 id="创建Mybatis的映射文件"><a href="#创建Mybatis的映射文件" class="headerlink" title="创建Mybatis的映射文件"></a>创建Mybatis的映射文件</h4><p>相关概念：<strong>ORM</strong>（<strong>O</strong>bject <strong>R</strong>elationship <strong>M</strong>apping）对象关系映射</p><ul><li>对象：Java实体类对象</li><li>关系：关系型数据库</li><li>映射：二者之间的对应关系</li></ul><div class="table-container"><table><thead><tr><th>Java概念</th><th>数据库概念</th></tr></thead><tbody><tr><td>类</td><td>表</td></tr><tr><td>属性</td><td>字段/列</td></tr><tr><td>对象</td><td>记录/行</td></tr></tbody></table></div><blockquote><p>1、映射文件的命名规则：</p><p>表所对应的实体类的类名+Mapper.xml</p><p>例如：表t_user，映射的实体类为User，所对应的映射文件为UserMapper.xml</p><p>因此一个映射文件对应一个实体类，对应一张表的操作</p><p>MyBatis映射文件用于编写SQL，访问以及操作表中的数据</p><p>MyBatis映射文件存放的位置是src/main/resources/mappers目录下</p><p>2、MyBatis中可以面向接口操作数据，要保证<strong>两个一致</strong>：</p><p>a&gt;mapper接口的全类名和映射文件的命名空间（namespace）保持一致</p><p>b&gt;mapper接口中方法的方法名和映射文件中编写SQL的标签的id属性保持一致  </p><p><strong>表 —&gt; 实体类 —&gt; mapper接口 —&gt; 映射文件</strong></p></blockquote><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">mapper</span></span></span><br><span class="line"><span class="meta">  <span class="meta-keyword">PUBLIC</span> <span class="meta-string">"-//mybatis.org//DTD Mapper 3.0//EN"</span></span></span><br><span class="line"><span class="meta">  <span class="meta-string">"http://mybatis.org/dtd/mybatis-3-mapper.dtd"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"org.mybatis.example.BlogMapper"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectBlog"</span> <span class="attr">resultType</span>=<span class="string">"Blog"</span>&gt;</span></span><br><span class="line">    select * from Blog where id = #&#123;id&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-      <category term="框架" scheme="http://yoursite.com/categories/%E6%A1%86%E6%9E%B6/"/>
-    
-      <category term="MyBatis" scheme="http://yoursite.com/categories/%E6%A1%86%E6%9E%B6/MyBatis/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Maven</title>
-    <link href="http://yoursite.com/2022/02/22/%E5%B7%A5%E5%85%B7/Maven/"/>
-    <id>http://yoursite.com/2022/02/22/%E5%B7%A5%E5%85%B7/Maven/</id>
-    <published>2022-02-22T09:43:45.000Z</published>
-    <updated>2022-02-22T15:53:05.219Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Maven是专门用于管理和构建Java项目的工具，它的主要功能有：</p><ul><li>提供了一套标准化的项目结构</li><li>提供了一套标准化的构建流程（编译，测试，打包，发布……）</li><li>提供了一套依赖管理机制</li></ul><p><img src="/images/maven结构.png"></p><p>仓库分类</p><ul><li>本地仓库：自己计算机的一个目录</li><li><a href="https://repo1.maven.org/maven2/" target="_blank" rel="noopener">中央仓库</a>：由Maven团队维护的全球唯一的仓库</li><li>远程放库：一般由公司团队搭建的私有仓库</li></ul><p>当项目中使用坐标引入对应依赖jar包后，首先会查找本地仓库中是否有对应的jar包</p><ul><li>有，则在项目中直接引用</li><li>没有，则去中央仓库下载对应jar包到本地仓库</li></ul><h4 id="Maven常用命令"><a href="#Maven常用命令" class="headerlink" title="Maven常用命令"></a>Maven常用命令</h4><ul><li>compile：编译</li><li>clean：清理</li><li>test：测试</li><li>package：打包</li><li>install：安装</li></ul><h4 id="Maven生命周期"><a href="#Maven生命周期" class="headerlink" title="Maven生命周期"></a>Maven生命周期</h4><ul><li>Maven构建项目生命周期描述的是一次构建过程经历了多少个事件</li><li>Maven对项目构建的生命周期划分为3套<ul><li>clean：清理工作</li><li>default：核心工作，例如编译，测试，打包，安装等</li><li>site：产生报告，发布站点等</li></ul></li><li>同一生命周期内，执行后边的命令，前边所有的命令会自动执行</li></ul><h4 id="Maven坐标详解"><a href="#Maven坐标详解" class="headerlink" title="Maven坐标详解"></a>Maven坐标详解</h4><ul><li>什么是坐标？<ul><li>Maven中的坐标是资源的唯一标识</li><li>使用坐标来定义项目或引入项目中需要的依赖</li></ul></li><li>Maven坐标主要组成<ul><li>groupId：定义当前Maven项目隶属组织名称（通常是域名反写）</li><li>artifactId：定义当前Maven项目名称（通常是模块名称）</li><li>version：定义当前项目版本号</li></ul></li></ul><h4 id="使用坐标导入jar包"><a href="#使用坐标导入jar包" class="headerlink" title="使用坐标导入jar包"></a>使用坐标导入jar包</h4><ol><li>在pom.xml中编写<dependencies>标签</dependencies></li><li>在<dependencies>标签中使用<dependency>引入坐标</dependency></dependencies></li><li>定义坐标的groupId，artifactId，version</li><li>点击刷新按钮，使坐标生效</li></ol><h4 id="依赖范围"><a href="#依赖范围" class="headerlink" title="依赖范围"></a>依赖范围</h4><p>通过设置坐标的依赖范围(scope)，可以设置对应jar包的作用范围：编译环境，测试环境，运行环境</p><div class="table-container"><table><thead><tr><th>依赖范围</th><th>编译classpath</th><th>测试classpath</th><th>运行classpath</th><th>例子</th></tr></thead><tbody><tr><td>compile(默认)</td><td>Y</td><td>Y</td><td>Y</td><td>logback</td></tr><tr><td>test</td><td>-</td><td>Y</td><td>-</td><td>Junit</td></tr><tr><td>provided</td><td>Y</td><td>Y</td><td>-</td><td>servlet-api</td></tr><tr><td>runtime</td><td>-</td><td>Y</td><td>Y</td><td>jdbc驱动</td></tr><tr><td>system</td><td>Y</td><td>Y</td><td>-</td><td>存储在本地的jar包</td></tr><tr><td>import</td><td></td><td></td><td></td><td>引入DependencyManagement</td></tr></tbody></table></div>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-      <category term="工具" scheme="http://yoursite.com/categories/%E5%B7%A5%E5%85%B7/"/>
     
     
   </entry>
