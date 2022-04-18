@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2022-03-27T05:03:20.891Z</updated>
+  <updated>2022-04-18T05:06:12.444Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,202 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>点赞功能</title>
+    <link href="http://yoursite.com/2022/04/16/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%82%B9%E8%B5%9E%E5%8A%9F%E8%83%BD/"/>
+    <id>http://yoursite.com/2022/04/16/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%82%B9%E8%B5%9E%E5%8A%9F%E8%83%BD/</id>
+    <published>2022-04-16T05:06:11.000Z</published>
+    <updated>2022-04-18T05:06:12.444Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><ul><li>点赞<ul><li>支持对帖子、评论点赞</li><li>第1次点赞，第2次取消点赞</li></ul></li><li>首页点赞数量<ul><li>统计帖子点赞数量</li></ul></li><li>详情页点赞数量<ul><li>统计点赞数量</li><li>显示点赞状态</li></ul></li></ul><h4 id="Service层"><a href="#Service层" class="headerlink" title="Service层"></a>Service层</h4><ul><li>点赞功能<ul><li>使用Redis在SpringBoot中的事务管理</li><li>对某实体与用户的赞的增加与删除</li></ul></li><li>查询实体点赞数量</li><li>查询某人对某实体的点赞状态</li><li>查询某个用户获得的赞数量</li></ul><h4 id="Controller层"><a href="#Controller层" class="headerlink" title="Controller层"></a>Controller层</h4><ul><li>HomeController中帖子列表增加点赞数显示</li><li>DiscussPostController中帖子与评论的点赞数显示</li><li>LikeController，使用AJAX异步，实现点赞数的动态修改</li></ul><h4 id="我收到的赞"><a href="#我收到的赞" class="headerlink" title="我收到的赞"></a>我收到的赞</h4><ul><li>个人信息页面显示</li><li>到redis查询用户收到的赞的数量</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="牛客讨论区项目" scheme="http://yoursite.com/categories/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Spring整合Redis</title>
+    <link href="http://yoursite.com/2022/04/12/%E6%A1%86%E6%9E%B6/Spring/Spring%E6%95%B4%E5%90%88Redis/"/>
+    <id>http://yoursite.com/2022/04/12/%E6%A1%86%E6%9E%B6/Spring/Spring%E6%95%B4%E5%90%88Redis/</id>
+    <published>2022-04-12T07:46:32.000Z</published>
+    <updated>2022-04-15T10:28:10.417Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><ul><li>引入依赖<ul><li>spring-boot-starter-data-redis</li></ul></li><li>配置Redis<ul><li>配置数据库参数</li><li>编写配置类，构造RedisTemplate</li></ul></li><li>访问Redis</li></ul><h4 id="配置redisTemplate"><a href="#配置redisTemplate" class="headerlink" title="配置redisTemplate"></a>配置redisTemplate</h4><ul><li>为什么要配置<ul><li>默认是<Object, object>键值对，重新设置序列化方式</Object,></li></ul></li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RedisTemplate&lt;String, Object&gt; <span class="title">redisTemplate</span><span class="params">(RedisConnectionFactory factory)</span> </span>&#123;</span><br><span class="line">        RedisTemplate&lt;String, Object&gt; template = <span class="keyword">new</span> RedisTemplate&lt;&gt;();</span><br><span class="line">        template.setConnectionFactory(factory);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//设置key的序列化方式</span></span><br><span class="line">        template.setKeySerializer(RedisSerializer.string());</span><br><span class="line">        <span class="comment">//设置普通value序列化方式</span></span><br><span class="line">        template.setValueSerializer(RedisSerializer.json());</span><br><span class="line">        <span class="comment">//设置hash的key的序列化方式</span></span><br><span class="line">        template.setHashKeySerializer(RedisSerializer.string());</span><br><span class="line">        <span class="comment">//设置hash的value的序列化方式</span></span><br><span class="line">        template.setHashValueSerializer(RedisSerializer.json());</span><br><span class="line"></span><br><span class="line">        template.afterPropertiesSet();</span><br><span class="line">        <span class="keyword">return</span> template;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><h4 id="访问Redis"><a href="#访问Redis" class="headerlink" title="访问Redis"></a>访问Redis</h4><ul><li>访问不同key<ul><li>redisTemplate.opsForValue()</li><li>redisTemplate.opsForHash()</li><li>redisTemplate.opsForList()</li><li>redisTemplate.opsForSet()</li><li>redisTemplate.opsForZSet()</li></ul></li><li>处理key<ul><li>删除：redisTemplate.delete()</li><li>查询是否存在：redisTemplate.hasKey()</li><li>设置有效时间：redisTemplate.expire(key, time, 时间单位(TimeUnit.SECONDS))</li></ul></li><li>多次访问同一个key，绑定key<ul><li>BoundValueOperations operations = redisTemplate.boundValueOps(redisKey)</li></ul></li></ul><h4 id="Redis事务管理"><a href="#Redis事务管理" class="headerlink" title="Redis事务管理"></a>Redis事务管理</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//编程式事务</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testTransactional</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Object obj = redisTemplate.execute(<span class="keyword">new</span> SessionCallback() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Object <span class="title">execute</span><span class="params">(RedisOperations operations)</span> <span class="keyword">throws</span> DataAccessException </span>&#123;</span><br><span class="line">            String redisKey = <span class="string">"test:tx"</span>;</span><br><span class="line"></span><br><span class="line">            operations.multi(); <span class="comment">//开启事务</span></span><br><span class="line"></span><br><span class="line">            operations.opsForSet().add(redisKey, <span class="string">"zhangsan"</span>);</span><br><span class="line">            operations.opsForSet().add(redisKey, <span class="string">"lisi"</span>);</span><br><span class="line">            operations.opsForSet().add(redisKey, <span class="string">"wangwu"</span>);</span><br><span class="line"></span><br><span class="line">            System.out.println(operations.opsForSet().members(redisKey));</span><br><span class="line">            <span class="keyword">return</span> operations.exec(); <span class="comment">//提交事务</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    System.out.println(obj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="Spring" scheme="http://yoursite.com/categories/Spring/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>统一记录日志</title>
+    <link href="http://yoursite.com/2022/04/10/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%BB%9F%E4%B8%80%E8%AE%B0%E5%BD%95%E6%97%A5%E5%BF%97/"/>
+    <id>http://yoursite.com/2022/04/10/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%BB%9F%E4%B8%80%E8%AE%B0%E5%BD%95%E6%97%A5%E5%BF%97/</id>
+    <published>2022-04-10T08:38:32.000Z</published>
+    <updated>2022-04-11T11:52:38.557Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h3 id="AOP的实现"><a href="#AOP的实现" class="headerlink" title="AOP的实现"></a>AOP的实现</h3><ul><li>AspectJ<ul><li>语言级的实现，扩展了Java语言，定义了AOP语法</li><li>在编译期织入代码，它有一个专门的编译器，用来生成遵守Java字节码规范的class文件</li></ul></li><li>Spring AOP<ul><li>Spring AOP使用Java实现，不需要专门的编译过程，也不需要特殊的类加载器</li><li>Spring AOP在运行时通过代理的方式织入代码，只支持方法类型的连接点</li><li>支持对AspectJ的集成</li></ul></li></ul><h4 id="Spring-AOP"><a href="#Spring-AOP" class="headerlink" title="Spring AOP"></a>Spring AOP</h4><ul><li>JDK动态代理<ul><li>Java提供的动态代理技术，可以在运行时创建接口的代理实例</li><li>Spring AOP默认采用此种方式，在接口的代理实例中织入代码</li></ul></li><li>CGLib动态代理<ul><li>采用底层的字节码技术，在运行时创建子类代理实例</li><li>当目标对象不存在接口时，Spring AOP会采用此种方式，在子类中织入代码</li></ul></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="牛客讨论区项目" scheme="http://yoursite.com/categories/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/"/>
+    
+    
+      <category term="AOP" scheme="http://yoursite.com/tags/AOP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>统一处理异常</title>
+    <link href="http://yoursite.com/2022/04/10/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%BB%9F%E4%B8%80%E5%A4%84%E7%90%86%E5%BC%82%E5%B8%B8/"/>
+    <id>http://yoursite.com/2022/04/10/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%BB%9F%E4%B8%80%E5%A4%84%E7%90%86%E5%BC%82%E5%B8%B8/</id>
+    <published>2022-04-10T04:20:32.000Z</published>
+    <updated>2022-04-10T08:24:10.582Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><ul><li>@ControllerAdvice<ul><li>用于修饰类，表示该类是Controller的全局配置类</li><li>在此类中，可以对Controller进行如下三种全局配置：<ul><li>异常处理方案</li><li>绑定数据方案</li><li>绑定参数方案</li></ul></li></ul></li><li>@ExceptionHandler<ul><li>用于修饰方法，该方法会在Controller出现异常后被调用，用于处理捕获到的异常</li></ul></li><li>@ModelAttribute<ul><li>用于修饰方法，该方法会在Controller方法执行前被调用，用于为Model对象绑定参数</li></ul></li><li>@DataBinder<ul><li>用于修饰方法，该方法会在Controller方法执行前被调用，用于绑定参数的转换器</li></ul></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="牛客讨论区项目" scheme="http://yoursite.com/categories/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>私信列表相关</title>
+    <link href="http://yoursite.com/2022/04/03/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%A7%81%E4%BF%A1%E5%88%97%E8%A1%A8%E7%9B%B8%E5%85%B3/"/>
+    <id>http://yoursite.com/2022/04/03/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%A7%81%E4%BF%A1%E5%88%97%E8%A1%A8%E7%9B%B8%E5%85%B3/</id>
+    <published>2022-04-03T02:52:00.000Z</published>
+    <updated>2022-04-03T05:46:44.576Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><ul><li>私信列表<ul><li>查询当前用户会话列表，每个会话只显示最新私信</li><li>支持分页</li></ul></li><li>私信详情<ul><li>查询某个会话所包含的私信</li><li>支持分页</li></ul></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="牛客讨论区项目" scheme="http://yoursite.com/categories/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>评论相关模块</title>
+    <link href="http://yoursite.com/2022/04/01/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E8%AF%84%E8%AE%BA%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9D%97/"/>
+    <id>http://yoursite.com/2022/04/01/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E8%AF%84%E8%AE%BA%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9D%97/</id>
+    <published>2022-04-01T06:37:23.000Z</published>
+    <updated>2022-04-03T02:28:17.126Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="显示评论"><a href="#显示评论" class="headerlink" title="显示评论"></a>显示评论</h4><ul><li>数据层<ul><li>根据实体查询一页评论数据</li><li>根据实体查询评论的数量</li></ul></li><li>业务层<ul><li>处理查询评论的业务</li><li>处理查询评论数量的业务</li></ul></li><li>表现层<ul><li>显示帖子详情数据时，同时显示该帖子所有评论数据</li></ul></li></ul><h5 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h5><ul><li>由于评论也有回复，所以Controller层返回的List是两层嵌套的</li><li>注意判断回复的性质，是给帖子的还是给评论的</li><li>前端渲染方面：<ul><li>rvo，cvo遍历链表</li><li>cvoStat.count，获取当前遍历的下表</li><li>分页可以复用主页的</li></ul></li></ul><h4 id="增加评论"><a href="#增加评论" class="headerlink" title="增加评论"></a>增加评论</h4><ul><li>数据层<ul><li>增加评论数据</li><li>修改帖子评论数量</li></ul></li><li>业务层<ul><li>处理添加评论业务<ul><li>增加评论</li><li>更新评论数量</li></ul></li></ul></li><li>表现层<ul><li>处理添加评论数据的请求</li><li>设置添加评论的表单</li></ul></li></ul><h5 id="业务层需要事务管理"><a href="#业务层需要事务管理" class="headerlink" title="业务层需要事务管理"></a>业务层需要事务管理</h5><ul><li>因为增加评论和更新评论数量这两步是原子的</li><li>隔离级别与传播机制分别为READ_COMMITTED与REQUIRED</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="牛客讨论区项目" scheme="http://yoursite.com/categories/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Spring事务管理</title>
+    <link href="http://yoursite.com/2022/03/31/%E6%A1%86%E6%9E%B6/Spring/Spring%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/"/>
+    <id>http://yoursite.com/2022/03/31/%E6%A1%86%E6%9E%B6/Spring/Spring%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/</id>
+    <published>2022-03-31T13:09:13.000Z</published>
+    <updated>2022-04-01T05:01:56.846Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><ul><li>声明式事务<ul><li>通过XML配置，声明某方法的事务特征</li><li>通过注解，声明某方法的事务特征</li></ul></li><li>编程式事务<ul><li>通过TransactionTemplate管理事务，并通过它执行数据库操作</li></ul></li></ul><h4 id="Transactional注解"><a href="#Transactional注解" class="headerlink" title="@Transactional注解"></a>@Transactional注解</h4><ul><li>isolation：事务隔离级别</li><li>propagation：事务传播机制<ul><li>REQUIRED：支持当前事务（外部事务），如果不存在则创建新事物</li><li>REQUIRES_NEW：创建一个新事务，并且暂停当前事务</li><li>NESTED：如果当前存在事务，则嵌套在该事务中执行，否则同REQUIRED</li></ul></li></ul><h4 id="TransactionTemplate类"><a href="#TransactionTemplate类" class="headerlink" title="TransactionTemplate类"></a>TransactionTemplate类</h4><ul><li>.setIsolationLevel(TransactionDefinition.)：设置隔离级别</li><li>.setPropagationBehavior(TransactionDefinition.)：设置传播机制</li><li>.execute(new TransactionCallback<Object>())：提交事务，实现接口的doInTransaction方法</Object></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="框架" scheme="http://yoursite.com/categories/%E6%A1%86%E6%9E%B6/"/>
+    
+      <category term="Spring" scheme="http://yoursite.com/categories/%E6%A1%86%E6%9E%B6/Spring/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>敏感词过滤</title>
+    <link href="http://yoursite.com/2022/03/29/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E6%95%8F%E6%84%9F%E8%AF%8D%E8%BF%87%E6%BB%A4/"/>
+    <id>http://yoursite.com/2022/03/29/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E6%95%8F%E6%84%9F%E8%AF%8D%E8%BF%87%E6%BB%A4/</id>
+    <published>2022-03-29T06:55:12.000Z</published>
+    <updated>2022-03-30T11:42:29.731Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="简单的敏感词过滤器"><a href="#简单的敏感词过滤器" class="headerlink" title="简单的敏感词过滤器"></a>简单的敏感词过滤器</h4><ul><li>定义字典树</li><li>根据敏感词文件初始化字典树</li><li>编写敏感词过滤的方法</li></ul><h4 id="一些技巧"><a href="#一些技巧" class="headerlink" title="一些技巧"></a>一些技巧</h4><ul><li>判断特殊符号</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isSymbol</span><span class="params">(Character c)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> !CharUtils.isAsciiAlphanumeric(c) &amp;&amp; (c &lt; <span class="number">0x2E80</span> || c &gt; <span class="number">0x9FFF</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li>获取文件缓冲流</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">InputStream is = <span class="keyword">this</span>.getClass().getClassLoader().getResourceAsStream(<span class="string">"sensitive-words.txt"</span>);</span><br><span class="line">BufferedReader reader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(is));</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="牛客讨论区项目" scheme="http://yoursite.com/categories/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Interceptor拦截器</title>
@@ -306,204 +502,6 @@
     
     
       <category term="框架" scheme="http://yoursite.com/categories/%E6%A1%86%E6%9E%B6/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Session会话跟踪</title>
-    <link href="http://yoursite.com/2022/02/27/Web/Session%E4%BC%9A%E8%AF%9D%E8%B7%9F%E8%B8%AA/"/>
-    <id>http://yoursite.com/2022/02/27/Web/Session%E4%BC%9A%E8%AF%9D%E8%B7%9F%E8%B8%AA/</id>
-    <published>2022-02-27T13:39:38.000Z</published>
-    <updated>2022-02-28T04:56:13.702Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="HTTP是无状态的"><a href="#HTTP是无状态的" class="headerlink" title="HTTP是无状态的"></a>HTTP是无状态的</h4><ul><li>服务器无法判断这两次请求是否为同一个客户端发出</li><li>通过会话跟踪技术解决无状态问题</li></ul><p><img src="/images/session1.png"></p><h5 id="输出sessionID"><a href="#输出sessionID" class="headerlink" title="输出sessionID"></a>输出sessionID</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"get.."</span>);</span><br><span class="line">    HttpSession session = req.getSession(); <span class="comment">//若参数为false，没有会返回null，不创建新的会话</span></span><br><span class="line">    System.out.println(<span class="string">"sessionID:"</span> + session.getId());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h5 id="最大闲置时间"><a href="#最大闲置时间" class="headerlink" title="最大闲置时间"></a>最大闲置时间</h5><p>默认：1800秒</p><p><img src="/images/session2.png"></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取默认的最大闲置时间</span></span><br><span class="line"><span class="keyword">int</span> maxInactiveIntervalSecond = session.getMaxInactiveInterval(); <span class="comment">//非激活间隔时长</span></span><br><span class="line">System.out.println(<span class="string">"maxInactiveIntervalSecond = "</span> + maxInactiveIntervalSecond);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置默认的最大闲置时间</span></span><br><span class="line">session.setMaxInactiveInterval(<span class="number">15</span>);</span><br><span class="line"></span><br><span class="line">session.invalidate(); <span class="comment">//强制失效</span></span><br></pre></td></tr></table></figure><h4 id="Session保存作用域"><a href="#Session保存作用域" class="headerlink" title="Session保存作用域"></a>Session保存作用域</h4><ul><li>是和具体的某一个session唯一对应的</li><li>常用API</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HttpSession session = req.getSession();</span><br><span class="line">session.setAttribute(<span class="string">"username"</span>, <span class="string">"Bob"</span>); <span class="comment">//向当前session保存作用域保存一个数据</span></span><br><span class="line">session.getAttribute(<span class="string">"username"</span>); <span class="comment">//从当前session保存作用域获取指定key对应的value</span></span><br><span class="line">session.removeAttribute(<span class="string">"username"</span>);</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-      <category term="Web" scheme="http://yoursite.com/categories/Web/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>MyBatis的各种查询功能</title>
-    <link href="http://yoursite.com/2022/02/27/%E6%A1%86%E6%9E%B6/MyBatis/MyBatis%E7%9A%84%E5%90%84%E7%A7%8D%E6%9F%A5%E8%AF%A2%E5%8A%9F%E8%83%BD/"/>
-    <id>http://yoursite.com/2022/02/27/%E6%A1%86%E6%9E%B6/MyBatis/MyBatis%E7%9A%84%E5%90%84%E7%A7%8D%E6%9F%A5%E8%AF%A2%E5%8A%9F%E8%83%BD/</id>
-    <published>2022-02-27T06:58:13.000Z</published>
-    <updated>2022-02-27T09:29:23.916Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><ul><li>查询一个实体类对象</li><li>查询一个list集合</li><li>查询单个数据</li><li>查询一条数据为map的集合</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testMybatis</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    SqlSession sqlSession = SqlSessionUtils.getSqlSession();</span><br><span class="line">    ParameterMapper parameterMapper = sqlSession.getMapper(ParameterMapper<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    Map&lt;String, Object&gt; result = parameterMapper. getUserByIdToMap(<span class="number">2</span>);</span><br><span class="line">    System.out.println(result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--Map&lt;String, Object&gt; getUserByIdToMap(@Param("id") int id)--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getUserByIdToMap"</span> <span class="attr">resultType</span>=<span class="string">"java.util.Map"</span>&gt;</span></span><br><span class="line">    select * from t_user where id = #&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure><ul><li>查询多条数据为map的集合</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testMybatis</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    SqlSession sqlSession = SqlSessionUtils.getSqlSession();</span><br><span class="line">    ParameterMapper parameterMapper = sqlSession.getMapper(ParameterMapper<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    List&lt;Map&lt;String, Object&gt;&gt; result = parameterMapper. getUserByIdToMap();</span><br><span class="line">    result.forEach(mp -&gt; System.out.println(mp));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--List&lt;Map&lt;String, Object&gt;&gt; getUserByIdToMap()--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getUserByIdToMap"</span> <span class="attr">resultType</span>=<span class="string">"Map"</span>&gt;</span></span><br><span class="line">    select * from t_user</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure><h5 id="使用-MapKey注解，定义唯一键，将每条数据转换的map集合作为值"><a href="#使用-MapKey注解，定义唯一键，将每条数据转换的map集合作为值" class="headerlink" title="使用@MapKey注解，定义唯一键，将每条数据转换的map集合作为值"></a>使用@MapKey注解，定义唯一键，将每条数据转换的map集合作为值</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testMybatis</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    SqlSession sqlSession = SqlSessionUtils.getSqlSession();</span><br><span class="line">    ParameterMapper parameterMapper = sqlSession.getMapper(ParameterMapper<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    Map&lt;Integer, Object&gt; result = parameterMapper. getUserByIdToMap();</span><br><span class="line">    result.forEach((id, obj) -&gt; System.out.println(obj));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@MapKey</span>(<span class="string">"id"</span>)</span><br><span class="line"><span class="function">Map&lt;Integer, Object&gt; <span class="title">getUserByIdToMap</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--Map&lt;Integer, Object&gt; getUserByIdToMap()--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getUserByIdToMap"</span> <span class="attr">resultType</span>=<span class="string">"Map"</span>&gt;</span></span><br><span class="line">    select * from t_user</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-      <category term="框架" scheme="http://yoursite.com/categories/%E6%A1%86%E6%9E%B6/"/>
-    
-      <category term="MyBatis" scheme="http://yoursite.com/categories/%E6%A1%86%E6%9E%B6/MyBatis/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>MyBatis获取参数值方式</title>
-    <link href="http://yoursite.com/2022/02/27/%E6%A1%86%E6%9E%B6/MyBatis/MyBatis%E8%8E%B7%E5%8F%96%E5%8F%82%E6%95%B0%E5%80%BC%E6%96%B9%E5%BC%8F/"/>
-    <id>http://yoursite.com/2022/02/27/%E6%A1%86%E6%9E%B6/MyBatis/MyBatis%E8%8E%B7%E5%8F%96%E5%8F%82%E6%95%B0%E5%80%BC%E6%96%B9%E5%BC%8F/</id>
-    <published>2022-02-27T03:22:45.000Z</published>
-    <updated>2022-02-27T09:30:05.237Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">MyBatis获取参数值的两种方式：$&#123;&#125;与#&#123;&#125;</span><br><span class="line"></span><br><span class="line">$&#123;&#125;的本质就是字符串拼接，#&#123;&#125;的本质就是占位符赋值 </span><br><span class="line"></span><br><span class="line">$&#123;&#125;使用字符串拼接的方式拼接sql，若为字符串类型或日期类型的字段进行赋值时，需要手动加单引号；</span><br><span class="line">但是#&#123;&#125;使用占位符赋值的方式拼接sql，此时为字符串类型或日期类型的字段进行赋值时，可以自动添加单引号</span><br></pre></td></tr></table></figure><h4 id="情况一：mapper接口方法参数为单个字面量类型"><a href="#情况一：mapper接口方法参数为单个字面量类型" class="headerlink" title="情况一：mapper接口方法参数为单个字面量类型"></a>情况一：mapper接口方法参数为单个字面量类型</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testMybatis</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    SqlSession sqlSession = SqlSessionUtils.getSqlSession();</span><br><span class="line">    ParameterMapper parameterMapper = sqlSession.getMapper(ParameterMapper<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    List&lt;User&gt; result = parameterMapper.getUserByUsername(<span class="string">"张三"</span>);</span><br><span class="line">    result.forEach(user -&gt; System.out.println(user));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--User getUserByUsername(String username);--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getUserByUsername"</span> <span class="attr">resultType</span>=<span class="string">"User"</span>&gt;</span></span><br><span class="line">select * from t_user where username = #&#123;username&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure><h4 id="情况二：mapper接口方法参数为多个"><a href="#情况二：mapper接口方法参数为多个" class="headerlink" title="情况二：mapper接口方法参数为多个"></a>情况二：mapper接口方法参数为多个</h4><ul><li>使用arg0，arg1，……  或 param1，param2，…… 为键，参数为值</li><li>只需通过#{}或${}以键的方式访问值即可</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testMybatis</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    SqlSession sqlSession = SqlSessionUtils.getSqlSession();</span><br><span class="line">    ParameterMapper parameterMapper = sqlSession.getMapper(ParameterMapper<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    List&lt;User&gt; result = parameterMapper.checkLogin(<span class="string">"张三"</span>, <span class="string">"123456"</span>);</span><br><span class="line">    result.forEach(user -&gt; System.out.println(user));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--User checkLogin(String username, String password)--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"checkLogin"</span> <span class="attr">resultType</span>=<span class="string">"User"</span>&gt;</span></span><br><span class="line">    select * from t_user where username = #&#123;arg0&#125; and password = #&#123;arg1&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure><h4 id="情况三：mapper接口方法参数有多个，可以手动放在一个map中存储"><a href="#情况三：mapper接口方法参数有多个，可以手动放在一个map中存储" class="headerlink" title="情况三：mapper接口方法参数有多个，可以手动放在一个map中存储"></a>情况三：mapper接口方法参数有多个，可以手动放在一个map中存储</h4><ul><li>只需通过#{}或${}以键的方式访问值即可</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testMybatis</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    SqlSession sqlSession = SqlSessionUtils.getSqlSession();</span><br><span class="line">    ParameterMapper parameterMapper = sqlSession.getMapper(ParameterMapper<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    Map&lt;String, Object&gt; mp = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    mp.put(<span class="string">"username"</span>, <span class="string">"张三"</span>);</span><br><span class="line">    mp.put(<span class="string">"password"</span>, <span class="string">"123456"</span>);</span><br><span class="line">    List&lt;User&gt; result = parameterMapper.checkLoginByMap(mp);</span><br><span class="line">    result.forEach(user -&gt; System.out.println(user));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--List&lt;User&gt; checkLoginByMap(Map&lt;String, Object&gt; mp)--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"checkLoginByMap"</span> <span class="attr">resultType</span>=<span class="string">"User"</span>&gt;</span></span><br><span class="line">    select * from t_user where username = #&#123;username&#125; and password = #&#123;password&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure><h4 id="情况四：参数是一个实体类类型"><a href="#情况四：参数是一个实体类类型" class="headerlink" title="情况四：参数是一个实体类类型"></a>情况四：参数是一个实体类类型</h4><ul><li>直接通过属性名访问属性值</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testMybatis</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    SqlSession sqlSession = SqlSessionUtils.getSqlSession();</span><br><span class="line">    ParameterMapper parameterMapper = sqlSession.getMapper(ParameterMapper<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    User user = <span class="keyword">new</span> User(<span class="string">"Alice"</span>, <span class="string">"666666"</span>, <span class="number">22</span>, <span class="string">"女"</span>, <span class="string">"666@163.com"</span>);</span><br><span class="line">    <span class="keyword">int</span> result = parameterMapper.insertUser(user);</span><br><span class="line">    System.out.println(result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--int insertUser(User user)--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"insertUser"</span>&gt;</span></span><br><span class="line">    insert into t_user values(null, #&#123;username&#125;, #&#123;password&#125;, #&#123;age&#125;, #&#123;sex&#125;, #&#123;email&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure><h4 id="情况五：通过-param命名参数"><a href="#情况五：通过-param命名参数" class="headerlink" title="情况五：通过@param命名参数"></a>情况五：通过@param命名参数</h4><ul><li>以@param注解的值 或 param1，param2，……为键，以参数为值</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testMybatis</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    SqlSession sqlSession = SqlSessionUtils.getSqlSession();</span><br><span class="line">    ParameterMapper parameterMapper = sqlSession.getMapper(ParameterMapper<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    List&lt;User&gt; result = parameterMapper.checkLoginByParam(<span class="string">"Alice"</span>, <span class="string">"666666"</span>);</span><br><span class="line">    result.forEach(User -&gt; System.out.println(User));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--List&lt;User&gt; checkLoginByParam(@Param("username") String username, @Param("password") String password)--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"checkLoginByParam"</span> <span class="attr">resultType</span>=<span class="string">"User"</span>&gt;</span></span><br><span class="line">    select * from t_user where username = #&#123;username&#125; and password = #&#123;password&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure><h4 id="建议整合为两种情况"><a href="#建议整合为两种情况" class="headerlink" title="建议整合为两种情况"></a>建议整合为两种情况</h4><ul><li>参数是实体类对象</li><li>否则全都用@param</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-      <category term="框架" scheme="http://yoursite.com/categories/%E6%A1%86%E6%9E%B6/"/>
-    
-      <category term="MyBatis" scheme="http://yoursite.com/categories/%E6%A1%86%E6%9E%B6/MyBatis/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>测试MyBatis功能</title>
-    <link href="http://yoursite.com/2022/02/26/%E6%A1%86%E6%9E%B6/MyBatis/%E6%B5%8B%E8%AF%95MyBatis%E5%8A%9F%E8%83%BD/"/>
-    <id>http://yoursite.com/2022/02/26/%E6%A1%86%E6%9E%B6/MyBatis/%E6%B5%8B%E8%AF%95MyBatis%E5%8A%9F%E8%83%BD/</id>
-    <published>2022-02-26T12:18:30.000Z</published>
-    <updated>2022-02-27T03:18:41.834Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="测试添加功能"><a href="#测试添加功能" class="headerlink" title="测试添加功能"></a>测试添加功能</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.mybatis.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.sympa.mybatis.mapper.UserMapper;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.io.Resources;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSession;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactory;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactoryBuilder;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MybatisTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testMybatis</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">//加载核心配置文件</span></span><br><span class="line">        InputStream is = Resources.getResourceAsStream(<span class="string">"mybatis.config.xml"</span>);</span><br><span class="line">        <span class="comment">//获取sqlSessionFactoryBuilder</span></span><br><span class="line">        SqlSessionFactoryBuilder sqlSessionFactoryBuilder = <span class="keyword">new</span> SqlSessionFactoryBuilder();</span><br><span class="line">        <span class="comment">//通过核心配置文件所对应的字节输入流创建工厂类SqlSessionFactory，生产SqlSession对象</span></span><br><span class="line">        SqlSessionFactory sqlSessionFactory = sqlSessionFactoryBuilder.build(is);</span><br><span class="line">        <span class="comment">//创建SqlSession对象，此时通过SqlSession对象所操作的sql都必须手动提交或回滚事务</span></span><br><span class="line">        SqlSession sqlSession = sqlSessionFactory.openSession();</span><br><span class="line">        <span class="comment">//创建SqlSession对象，此时通过SqlSession对象所操作的sql都会自动提交</span></span><br><span class="line">        <span class="comment">//SqlSession sqlSession = sqlSessionFactory.openSession(true);</span></span><br><span class="line">        <span class="comment">//通过代理模式创建UserMapper接口的代理实现类对象</span></span><br><span class="line">        UserMapper userMapper = sqlSession.getMapper(UserMapper<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        <span class="comment">//调用UserMapper接口中的方法，就可以根据UserMapper的全类名匹配元素文件，通过调用的方法名匹配映射文件中的SQL标签，并执行标签中的SQL语句</span></span><br><span class="line">        <span class="comment">//测试添加功能</span></span><br><span class="line">        <span class="keyword">int</span> result = userMapper.insertUser();</span><br><span class="line">        System.out.println(<span class="string">"result:"</span> + result);</span><br><span class="line">        <span class="comment">//提交事务</span></span><br><span class="line">        sqlSession.commit();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"insertUser"</span>&gt;</span></span><br><span class="line">    insert into t_user values(null, '张三', '123456', 18, '男', '123@qq.com')</span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br></pre></td></tr></table></figure><h4 id="测试查询功能"><a href="#测试查询功能" class="headerlink" title="测试查询功能"></a>测试查询功能</h4><p>查询功能标签必须设置resultType或resultMap</p><ul><li>resultType：设置默认映射关系</li><li>resultMap：设置自定义的映射关系</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.mybatis.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.sympa.mybatis.mapper.UserMapper;</span><br><span class="line"><span class="keyword">import</span> com.sympa.mybatis.pojo.User;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.io.Resources;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSession;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactory;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactoryBuilder;</span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MybatisTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testMybatis</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        InputStream is = Resources.getResourceAsStream(<span class="string">"mybatis.config.xml"</span>);</span><br><span class="line"></span><br><span class="line">        SqlSessionFactoryBuilder sqlSessionFactoryBuilder = <span class="keyword">new</span> SqlSessionFactoryBuilder();</span><br><span class="line">        SqlSessionFactory sqlSessionFactory = sqlSessionFactoryBuilder.build(is);</span><br><span class="line">        SqlSession sqlSession = sqlSessionFactory.openSession(<span class="keyword">true</span>);</span><br><span class="line">        UserMapper userMapper = sqlSession.getMapper(UserMapper<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        List&lt;User&gt; result = userMapper.getUserById();</span><br><span class="line">        result.forEach(user -&gt; System.out.println(user));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h5 id="设置结果映射"><a href="#设置结果映射" class="headerlink" title="设置结果映射"></a>设置结果映射</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--User getUserById();--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"getUserById"</span> <span class="attr">resultType</span>=<span class="string">"com.sympa.mybatis.pojo.User"</span>&gt;</span></span><br><span class="line">    select * from t_user</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure><h4 id="封装SqlSessionUtils工具类，获取SqlSession对象"><a href="#封装SqlSessionUtils工具类，获取SqlSession对象" class="headerlink" title="封装SqlSessionUtils工具类，获取SqlSession对象"></a>封装SqlSessionUtils工具类，获取SqlSession对象</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.mybatis.utils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.io.Resources;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSession;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactory;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactoryBuilder;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SqlSessionUtils</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SqlSession <span class="title">getSqlSession</span><span class="params">()</span></span>&#123;</span><br><span class="line">        InputStream is = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            is = Resources.getResourceAsStream(<span class="string">"mybatis.config.xml"</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        SqlSessionFactory sqlSessionFactory = <span class="keyword">new</span> SqlSessionFactoryBuilder().build(is);</span><br><span class="line">        SqlSession sqlSession = sqlSessionFactory.openSession(<span class="keyword">true</span>);</span><br><span class="line">        <span class="keyword">return</span> sqlSession;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-      <category term="框架" scheme="http://yoursite.com/categories/%E6%A1%86%E6%9E%B6/"/>
-    
-      <category term="MyBatis" scheme="http://yoursite.com/categories/%E6%A1%86%E6%9E%B6/MyBatis/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Request对象</title>
-    <link href="http://yoursite.com/2022/02/25/Web/Request%E5%AF%B9%E8%B1%A1%20/"/>
-    <id>http://yoursite.com/2022/02/25/Web/Request%E5%AF%B9%E8%B1%A1%20/</id>
-    <published>2022-02-25T14:53:09.000Z</published>
-    <updated>2022-03-08T12:21:30.514Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="Request继承体系"><a href="#Request继承体系" class="headerlink" title="Request继承体系"></a>Request继承体系</h4><ul><li>ServletRequest：Java提供的请求对象根接口</li><li>HttpServletRequest：Java提供的对Http协议封装的请求对象接口</li><li>RequestFacade：Tomcat定义的实现类</li></ul><h4 id="Request获取请求数据"><a href="#Request获取请求数据" class="headerlink" title="Request获取请求数据"></a>Request获取请求数据</h4><ul><li><h5 id="请求行：GET-request-demo-req1-username-zhangsan-HTTP-1-1"><a href="#请求行：GET-request-demo-req1-username-zhangsan-HTTP-1-1" class="headerlink" title="请求行：GET /request-demo/req1?username=zhangsan HTTP/1.1"></a>请求行：GET /request-demo/req1?username=zhangsan HTTP/1.1</h5><ul><li>String getMethod()：获取请求方式，GET</li><li>String getContextPath()：获取虚拟目录（项目访问路径），/request-demo</li><li>StringBuffer getRequestURL()：获取URL（统一资源定位符）</li><li>String getRequestURI()：获取URI（统一资源标识符），/request-demo/req1</li><li>String getQueryString()：获取请求参数，username=zhangsan&amp;password=123</li></ul></li><li><h5 id="请求头"><a href="#请求头" class="headerlink" title="请求头"></a>请求头</h5><ul><li>String getHeader(String name)：根据请求头名称，获取值</li></ul></li><li><h5 id="请求体"><a href="#请求体" class="headerlink" title="请求体"></a>请求体</h5><ul><li>ServletInputStream getInputSteam()：获取字节输入流</li><li>BufferedReader getReader()：获取字符输入流</li></ul></li></ul><h4 id="Request通用方式获取参数"><a href="#Request通用方式获取参数" class="headerlink" title="Request通用方式获取参数"></a>Request通用方式获取参数</h4><ul><li>Map<String, string[]> getParameterMap()：获取所有参数Map集合</String,></li><li>String[] getParameterValues(String name)：根据名称获取参数值（数组）</li><li>String getParameter(String name)：根据名称获取参数值（单个值）</li></ul><h4 id="POST请求参数中文乱码解决"><a href="#POST请求参数中文乱码解决" class="headerlink" title="POST请求参数中文乱码解决"></a>POST请求参数中文乱码解决</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">req.setCharacterEncoding(<span class="string">"UTF-8"</span>); <span class="comment">//设置输入流编码</span></span><br></pre></td></tr></table></figure><h4 id="Tomcat8-0版本前，GET请求参数中文乱码解决-POST通用"><a href="#Tomcat8-0版本前，GET请求参数中文乱码解决-POST通用" class="headerlink" title="Tomcat8.0版本前，GET请求参数中文乱码解决(POST通用)"></a>Tomcat8.0版本前，GET请求参数中文乱码解决(POST通用)</h4><ul><li>本质是URL字符集的编解码</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">"get.."</span>);</span><br><span class="line">    StringBuffer url = req.getRequestURL();</span><br><span class="line">    System.out.println(url);</span><br><span class="line">    String username = req.getParameter(<span class="string">"username"</span>);</span><br><span class="line">    <span class="keyword">byte</span>[] bytes = username.getBytes(StandardCharsets.ISO_8859_1);</span><br><span class="line">    username = <span class="keyword">new</span> String(bytes, StandardCharsets.UTF_8);</span><br><span class="line">    System.out.println(username);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="请求转发"><a href="#请求转发" class="headerlink" title="请求转发"></a>请求转发</h4><ul><li>一种在服务器内部的资源跳转方式</li><li>实现方式</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">req.getRequestDisptcher(<span class="string">"资源B路径"</span>).forward(req, resp);</span><br></pre></td></tr></table></figure><ul><li>请求转发资源间共享数据，使用Request对象</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setAttribute</span><span class="params">(String name, Object o)</span> <span class="comment">//存储数据到request域中</span></span></span><br><span class="line"><span class="function">Object <span class="title">getAttribute</span><span class="params">(String name)</span> <span class="comment">//根据key，获取值</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">removeAttribute</span><span class="params">(String name)</span> <span class="comment">//根据key，删除该键值对</span></span></span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-      <category term="Web" scheme="http://yoursite.com/categories/Web/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Servlet</title>
-    <link href="http://yoursite.com/2022/02/23/Web/Servlet/"/>
-    <id>http://yoursite.com/2022/02/23/Web/Servlet/</id>
-    <published>2022-02-23T10:33:46.000Z</published>
-    <updated>2022-02-23T14:36:48.012Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="Maven中Servlet的配置"><a href="#Maven中Servlet的配置" class="headerlink" title="Maven中Servlet的配置"></a>Maven中Servlet的配置</h4><p>1.创建web项目，导入Servlet依赖坐标</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javax.servlet-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure><p>2.创建：定义一个类，实现Servlet接口，并重写接口中的所有方法，并在service方法中输出一句话</p><p>3.再类上使用@WebServlet注解，配置该Servlet的访问路径</p><p>4.访问：启动Tomcat，浏览器输入URL访问该Servlet</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.web;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.*;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.annotation.WebServlet;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="meta">@WebServlet</span>(<span class="string">"/demo1"</span>)</span><br><span class="line"><span class="comment">//浏览器输入http://localhost:8080/demo1</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServletDemo1</span> <span class="keyword">implements</span> <span class="title">Servlet</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(ServletConfig servletConfig)</span> <span class="keyword">throws</span> ServletException </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ServletConfig <span class="title">getServletConfig</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">service</span><span class="params">(ServletRequest servletRequest, ServletResponse servletResponse)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"servlet hello world!!!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getServletInfo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="Servlet的生命周期"><a href="#Servlet的生命周期" class="headerlink" title="Servlet的生命周期"></a>Servlet的生命周期</h4><ol><li>加载和实例化：默认情况下，当Servlet第一次被访问时，由容器创建Servlet对象</li><li>初始化：在Servlet实例化后，容器将调用Servlet的init()方法初始化这个对象，完成一些如加载配置文件、创建连接等初始化的工作。该方法只调用一次</li><li>请求处理：每次请求Servlet时，Servlet容器都会调用Servlet的service()方法对请求进行处理</li><li>服务终止：当需要释放内存或者容器关闭时，容器就会调用Servlet实例的destroy()方法完成资源的释放。在destroy()方法调用之后，容器就会释放Servlet实例，该实例随后会被Java的垃圾收集器回收</li></ol><h4 id="Servlet的体系结构"><a href="#Servlet的体系结构" class="headerlink" title="Servlet的体系结构"></a>Servlet的体系结构</h4><ul><li>Servlet：Servlet体系根接口</li><li>GenericServlet：Servlet抽象实现类（实现了Servlet接口）</li><li>HttpServlet：对HTTP协议封装的Servlet实现类（继承于GenericServlet抽象类）<ul><li>重写doGet和doPost方法</li></ul></li></ul><h4 id="Servlet-urlPattern配置"><a href="#Servlet-urlPattern配置" class="headerlink" title="Servlet urlPattern配置"></a>Servlet urlPattern配置</h4><ul><li>Servlet想要被访问，必须配置其访问路径</li><li>一个Servlet，可以配置多个访问路径<ul><li>@WebServlet(urlPatterns = {“/demo1”, “/demo2”})</li></ul></li><li>urlPattern四种配置规则（按优先级）<ul><li>精确匹配：/xxx/xxx</li><li>目录匹配：/xxx/*</li><li>扩展名匹配：*.xxx</li><li>任意匹配： /</li></ul></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-      <category term="Web" scheme="http://yoursite.com/categories/Web/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Response对象</title>
-    <link href="http://yoursite.com/2022/02/23/Web/Response%E5%AF%B9%E8%B1%A1/"/>
-    <id>http://yoursite.com/2022/02/23/Web/Response%E5%AF%B9%E8%B1%A1/</id>
-    <published>2022-02-22T16:10:27.000Z</published>
-    <updated>2022-03-08T12:18:53.029Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="Response继承体系"><a href="#Response继承体系" class="headerlink" title="Response继承体系"></a>Response继承体系</h4><ul><li>ServletResponse：Java提供的请求对象根接口</li><li>HttpServletResponse：Java提供的对Http协议封装的请求对象接口</li><li>ResponseFacade：Tomcat定义的实现类</li></ul><h4 id="Response获取请求数据"><a href="#Response获取请求数据" class="headerlink" title="Response获取请求数据"></a>Response获取请求数据</h4><ul><li><h5 id="响应行：HTTP-1-1-200-OK"><a href="#响应行：HTTP-1-1-200-OK" class="headerlink" title="响应行：HTTP/1.1 200 OK"></a>响应行：HTTP/1.1 200 OK</h5><ul><li>void setStatus(int sc)：设置响应状态码</li></ul></li><li><h5 id="响应头：Content-Type-text-html"><a href="#响应头：Content-Type-text-html" class="headerlink" title="响应头：Content-Type: text/html"></a>响应头：Content-Type: text/html</h5><ul><li>void setHeader(String name, String value)：设置响应头键值对</li></ul></li><li><h5 id="响应体"><a href="#响应体" class="headerlink" title="响应体"></a>响应体</h5><ul><li>ServletOutputStream getOutputSteam()：获取字节输出流</li><li>PrintWriter getWriter()：获取字符输出流</li></ul></li></ul><h4 id="Response完成重定向"><a href="#Response完成重定向" class="headerlink" title="Response完成重定向"></a>Response完成重定向</h4><ul><li>重定向：一种资源跳转方式</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.sendRedirect(<span class="string">"虚拟路径"</span>);</span><br></pre></td></tr></table></figure><ul><li><p>动态获取虚拟路径</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String contextPath = request.getContextPath();</span><br><span class="line">response.sendRedirect(contextPath + <span class="string">"/demo1"</span>);</span><br></pre></td></tr></table></figure></li></ul><h4 id="Response响应字符数据"><a href="#Response响应字符数据" class="headerlink" title="Response响应字符数据"></a>Response响应字符数据</h4><ul><li><p>使用</p><ul><li>通过Response对象获取字符输出流</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PrintWriter writer = resp.getWriter();</span><br></pre></td></tr></table></figure><ul><li>写数据</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">writer.write(<span class="string">"aaa"</span>);</span><br></pre></td></tr></table></figure><ul><li>响应头设置响应体解析格式与编码</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.setContentType(<span class="string">"text/html;charset=utf-8"</span>);</span><br></pre></td></tr></table></figure><p><strong>流不需要关闭</strong></p></li></ul><h4 id="Response响应字节数据"><a href="#Response响应字节数据" class="headerlink" title="Response响应字节数据"></a>Response响应字节数据</h4><ul><li><p>使用</p><ul><li>通过Response对象获取字节输出流</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ServletOutputStream outputStream = resp.getOutputStream();</span><br></pre></td></tr></table></figure><ul><li><p>写数据</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">outputStream.write(字节数据);</span><br></pre></td></tr></table></figure></li><li><p>文件copy工具类(在pom.xml中引入commons-io工具包)</p></li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IOUtils.copy(fis, os);</span><br></pre></td></tr></table></figure></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-      <category term="Web" scheme="http://yoursite.com/categories/Web/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>JavaWeb概念</title>
-    <link href="http://yoursite.com/2022/02/22/Web/JavaWeb%E6%A6%82%E5%BF%B5/"/>
-    <id>http://yoursite.com/2022/02/22/Web/JavaWeb%E6%A6%82%E5%BF%B5/</id>
-    <published>2022-02-22T14:58:14.000Z</published>
-    <updated>2022-02-22T16:49:50.057Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="Web基本概念"><a href="#Web基本概念" class="headerlink" title="Web基本概念"></a>Web基本概念</h4><ul><li>web，网页的意思</li><li>静态web<ul><li>html，css</li><li>提供给所有人看的数据始终不变</li></ul></li><li>动态web<ul><li>Servlet/JSP，ASP，PHP</li><li>提供给所有人看的数据始终变化</li></ul></li><li>在Java中，动态web资源开发的技术统称为JavaWeb</li></ul><h4 id="Web应用程序"><a href="#Web应用程序" class="headerlink" title="Web应用程序"></a>Web应用程序</h4><ul><li>可以提供浏览器访问的程序</li><li>一个web应用由多部份组成<ul><li>html，css，js</li><li>jsp，servlet</li><li>java程序</li><li>jar包</li><li>配置文件（Properties）</li></ul></li><li>若想提供给外界访问，需要一个服务器统一管理</li></ul><h4 id="Web服务器"><a href="#Web服务器" class="headerlink" title="Web服务器"></a>Web服务器</h4><ul><li>服务器是一种被动操作，用来处理用户的一些请求和给用户一些相应信息</li><li>IIS，Tomcat</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
-      
-    
-    </summary>
-    
-    
-      <category term="Web" scheme="http://yoursite.com/categories/Web/"/>
     
     
   </entry>
