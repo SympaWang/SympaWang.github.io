@@ -180,6 +180,737 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/04/SQL%E8%BF%9B%E9%98%B6/%E7%AC%AC%E4%B8%80%E4%B8%AAJDBC%E7%A8%8B%E5%BA%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/04/SQL%E8%BF%9B%E9%98%B6/%E7%AC%AC%E4%B8%80%E4%B8%AAJDBC%E7%A8%8B%E5%BA%8F/" class="post-title-link" itemprop="url">第一个JDBC程序</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-04 00:04:10 / 修改时间：01:14:53" itemprop="dateCreated datePublished" datetime="2022-02-04T00:04:10+08:00">2022-02-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.sql.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">//我的第一个JDBC程序</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JdbcFirstDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException, SQLException </span>&#123;</span><br><span class="line">        <span class="comment">//1.加载驱动</span></span><br><span class="line">        <span class="comment">// DriverManager.registerDriver(new com.mysql.jdbc.Driver());</span></span><br><span class="line">        Class.forName(<span class="string">"com.mysql.cj.jdbc.Driver"</span>); <span class="comment">//固定写法，加载驱动</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">//2.用户信息和url</span></span><br><span class="line">        <span class="comment">// jdbc:mysql://主机地址:端口号(mysql默认3306)/数据库名?参数1&amp;参数2&amp;....</span></span><br><span class="line">        String url = <span class="string">"jdbc:mysql://127.0.0.1:3306/jdbcstudy?serverTimezone=UTC&amp;userUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false"</span>;</span><br><span class="line">        String username = <span class="string">"root"</span>;</span><br><span class="line">        String password = <span class="string">""</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//3.连接成功，数据库对象 Connection 代表数据库</span></span><br><span class="line">        <span class="comment">//数据库级别操作 设置自动提交，事务提交，事务回滚</span></span><br><span class="line">        <span class="comment">//rollback() commit() setAutoCommit()</span></span><br><span class="line">        Connection connection = DriverManager.getConnection(url, username, password);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//4.执行SQL的对象</span></span><br><span class="line">        <span class="comment">//查询返回结果集 .executeQuery()</span></span><br><span class="line">        <span class="comment">//更新插入删除，返回影响行数 .executeUpdate()</span></span><br><span class="line">        <span class="comment">//任何SQL .execute()</span></span><br><span class="line">        Statement statement = connection.createStatement();</span><br><span class="line"></span><br><span class="line">        String sql = <span class="string">"select * from users"</span>;</span><br><span class="line">        ResultSet resultSet = statement.executeQuery(sql); <span class="comment">//返回的结果集</span></span><br><span class="line">        <span class="comment">//获得指定数据类型</span></span><br><span class="line">        <span class="comment">//不知道列类型.getObject() 知道列类型.getInt()等</span></span><br><span class="line">        <span class="keyword">while</span>(resultSet.next())&#123;</span><br><span class="line">            System.out.println(<span class="string">"id="</span> + resultSet.getObject(<span class="string">"id"</span>));</span><br><span class="line">            System.out.println(<span class="string">"name="</span> + resultSet.getObject(<span class="string">"name"</span>));</span><br><span class="line">            System.out.println(<span class="string">"password="</span> + resultSet.getObject(<span class="string">"password"</span>));</span><br><span class="line">            System.out.println(<span class="string">"email="</span> + resultSet.getObject(<span class="string">"email"</span>));</span><br><span class="line">            System.out.println(<span class="string">"birthday="</span> + resultSet.getObject(<span class="string">"birthday"</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//5.释放连接</span></span><br><span class="line">        resultSet.close();</span><br><span class="line">        statement.close();</span><br><span class="line">        connection.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/25/SQL%E8%BF%9B%E9%98%B6/SQL%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E5%92%8C%E5%A4%87%E4%BB%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/25/SQL%E8%BF%9B%E9%98%B6/SQL%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E5%92%8C%E5%A4%87%E4%BB%BD/" class="post-title-link" itemprop="url">SQL权限管理和备份</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-01-25 20:21:50 / 修改时间：21:47:00" itemprop="dateCreated datePublished" datetime="2022-01-25T20:21:50+08:00">2022-01-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h3><ul>
+<li><h4 id="SQL可视化管理"><a href="#SQL可视化管理" class="headerlink" title="SQL可视化管理"></a>SQL可视化管理</h4></li>
+<li><h4 id="SQL命令操作"><a href="#SQL命令操作" class="headerlink" title="SQL命令操作"></a>SQL命令操作</h4><p>用户表：mysql.user</p>
+<p>本质：对用户表增删改查</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建用户</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> [用户名] <span class="keyword">identified</span> <span class="keyword">by</span> [密码]</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 修改密码（当前用户）</span></span><br><span class="line"><span class="keyword">set</span> <span class="keyword">password</span> = <span class="keyword">password</span>([])</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 修改密码（指定）</span></span><br><span class="line"><span class="keyword">set</span> <span class="keyword">password</span> <span class="keyword">for</span> [] = <span class="keyword">password</span>([])</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 重命名</span></span><br><span class="line"><span class="keyword">rename</span> <span class="keyword">user</span> [] <span class="keyword">to</span> []</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 用户授权(授予全部权限,除了给别的用户授权)</span></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">all</span> <span class="keyword">privileges</span> <span class="keyword">on</span> [库名].[表名] <span class="keyword">to</span> [用户名]</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询权限</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">grants</span> <span class="keyword">for</span> [用户]</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 撤销全部权限</span></span><br><span class="line"><span class="keyword">revoke</span> <span class="keyword">all</span> <span class="keyword">privileges</span> <span class="keyword">on</span> [库名].[表名] <span class="keyword">to</span> [用户名]</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 删除用户</span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">user</span> []</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="MySQL备份"><a href="#MySQL备份" class="headerlink" title="MySQL备份"></a>MySQL备份</h3><p>MySQL数据库备份方式</p>
+<ul>
+<li>拷贝物理文件</li>
+<li>在Sqlyog这种可视化工具中手动导出<ul>
+<li>在想要导出的表或者库中选择备份或导出</li>
+<li>导出后拉进来就行了</li>
+</ul>
+</li>
+<li>使用命令行 mysqldump<ul>
+<li>mysqldump -主机名 -用户名 -密码 表名 &gt;路径</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/24/SQL%E8%BF%9B%E9%98%B6/SQL_%E7%B4%A2%E5%BC%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/24/SQL%E8%BF%9B%E9%98%B6/SQL_%E7%B4%A2%E5%BC%95/" class="post-title-link" itemprop="url">SQL索引</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-24 17:40:50" itemprop="dateCreated datePublished" datetime="2022-01-24T17:40:50+08:00">2022-01-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-01-25 20:07:24" itemprop="dateModified" datetime="2022-01-25T20:07:24+08:00">2022-01-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="什么是索引？"><a href="#什么是索引？" class="headerlink" title="什么是索引？"></a>什么是索引？</h3><h4 id="索引（Index）是帮助MySQL高效获取数据的数据结构"><a href="#索引（Index）是帮助MySQL高效获取数据的数据结构" class="headerlink" title="索引（Index）是帮助MySQL高效获取数据的数据结构"></a>索引（Index）是帮助MySQL高效获取数据的数据结构</h4><h4 id="索引的分类"><a href="#索引的分类" class="headerlink" title="索引的分类"></a>索引的分类</h4><ul>
+<li>主键索引（primary key）<ul>
+<li>唯一的标识，主键不可重复，只能有一个列作为主键</li>
+</ul>
+</li>
+<li>唯一索引（unique key）<ul>
+<li>避免重复的列出现，唯一索引可以重复，多个列都可标识唯一索引</li>
+</ul>
+</li>
+<li>常规索引（key/index）<ul>
+<li>默认的，index。key关键字设置</li>
+</ul>
+</li>
+<li>全文索引（fulltext）<ul>
+<li>在特定数据库引擎下，MyISAM</li>
+<li>快速定位数据</li>
+</ul>
+</li>
+</ul>
+<h3 id="索引原则"><a href="#索引原则" class="headerlink" title="索引原则"></a>索引原则</h3><ul>
+<li>索引不是越多越好</li>
+<li>不要对进程变动数据加索引</li>
+<li>小数据量的表不需要加索引</li>
+<li>索引一般加在常用来查询的字段上</li>
+</ul>
+<h3 id="索引的数据结构"><a href="#索引的数据结构" class="headerlink" title="索引的数据结构"></a>索引的数据结构</h3><ul>
+<li>Btree：<a href="https://blog.csdn.net/wufuhuai/article/details/79631466" target="_blank" rel="noopener">InnoDB默认数据结构</a></li>
+<li>Hash类型</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/23/SQL%E8%BF%9B%E9%98%B6/SQL_%E4%BA%8B%E5%8A%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/23/SQL%E8%BF%9B%E9%98%B6/SQL_%E4%BA%8B%E5%8A%A1/" class="post-title-link" itemprop="url">SQL事务</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-01-23 20:44:30 / 修改时间：22:32:55" itemprop="dateCreated datePublished" datetime="2022-01-23T20:44:30+08:00">2022-01-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="什么是事务？"><a href="#什么是事务？" class="headerlink" title="什么是事务？"></a>什么是事务？</h3><p>要么都成功，要么都失败</p>
+<p>将一组SQL放在一个批次执行</p>
+<h4 id="事务原则：ACID原则"><a href="#事务原则：ACID原则" class="headerlink" title="事务原则：ACID原则"></a>事务原则：ACID原则</h4><h5 id="原子性，一致性，隔离性，持久性"><a href="#原子性，一致性，隔离性，持久性" class="headerlink" title="原子性，一致性，隔离性，持久性"></a>原子性，一致性，隔离性，持久性</h5><h4 id="原子性（Atomicity）"><a href="#原子性（Atomicity）" class="headerlink" title="原子性（Atomicity）"></a>原子性（Atomicity）</h4><p>原子性是指事务是一个不可分割的工作单位，事务中的操作要么都发生，要么都不发生。</p>
+<h4 id="一致性（Consistency）"><a href="#一致性（Consistency）" class="headerlink" title="一致性（Consistency）"></a>一致性（Consistency）</h4><p>事务前后数据的完整性必须保持一致。</p>
+<h4 id="隔离性（Isolation）"><a href="#隔离性（Isolation）" class="headerlink" title="隔离性（Isolation）"></a>隔离性（Isolation）</h4><p>事务的隔离性是多个用户并发访问数据库时，数据库为每一个用户开启的事务，不能被其他事务的操作数据所干扰，多个并发事务之间要相互隔离。</p>
+<h4 id="持久性（Durability）"><a href="#持久性（Durability）" class="headerlink" title="持久性（Durability）"></a>持久性（Durability）</h4><p><strong>事务提交不可逆</strong></p>
+<p>持久性是指一个事务一旦被提交，它对数据库中数据的改变就是永久性的，接下来即使数据库发生故障也不应该对其有任何影响</p>
+<h4 id="事务的隔离级别"><a href="#事务的隔离级别" class="headerlink" title="事务的隔离级别"></a>事务的隔离级别</h4><h4 id="脏读："><a href="#脏读：" class="headerlink" title="脏读："></a>脏读：</h4><p>指一个事务读取了另外一个事务未提交的数据</p>
+<h4 id="不可重复读："><a href="#不可重复读：" class="headerlink" title="不可重复读："></a>不可重复读：</h4><p>在一个事务内读取表中的某一行数据，多次读取结果不同。（这个不一定是错误，只是某些场合不对）</p>
+<h4 id="虚读-幻读-："><a href="#虚读-幻读-：" class="headerlink" title="虚读(幻读)："></a>虚读(幻读)：</h4><p>是指在一个事务内读取到了别的事务插入的数据，导致前后读取数量总量不一致。<br>（一般是行影响）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- mysql 是默认开启事务自动提交的</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">0</span> <span class="comment">-- 关闭</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">1</span> <span class="comment">-- 开启</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 手动处理事务</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">0</span> <span class="comment">-- 第一步 关闭自动提交</span></span><br><span class="line"><span class="comment">-- 事务开启</span></span><br><span class="line"><span class="keyword">start</span> <span class="keyword">transaction</span> <span class="comment">-- 标记一个事务开始，从这之后的sql都在一个事务内</span></span><br><span class="line"><span class="comment">-- 两种情况</span></span><br><span class="line"><span class="comment">-- 提交： 持久化（成功）</span></span><br><span class="line"><span class="keyword">commit</span></span><br><span class="line"><span class="comment">-- 回滚： 回到原来的样子（失败）</span></span><br><span class="line"><span class="keyword">rollback</span></span><br><span class="line"><span class="comment">-- 事务结束</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">1</span> <span class="comment">-- 开启自动提交</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">savepoint</span> 名称 <span class="comment">-- 设置事务保存点</span></span><br><span class="line"><span class="keyword">rollback</span> <span class="keyword">to</span> <span class="keyword">savepoint</span> 名称 <span class="comment">-- 回滚到保存点</span></span><br><span class="line"><span class="keyword">release</span> <span class="keyword">savepoint</span> 名称 <span class="comment">-- 撤销保存点</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/21/SQL%E5%9F%BA%E7%A1%80/SQL%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E4%B8%8E%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/21/SQL%E5%9F%BA%E7%A1%80/SQL%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E4%B8%8E%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">SQL常用函数与聚合函数,分组</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-01-21 20:57:20 / 修改时间：22:10:02" itemprop="dateCreated datePublished" datetime="2022-01-21T20:57:20+08:00">2022-01-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 时间日期函数</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">current_date</span>() <span class="comment">-- 获取当前日期</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">curdate</span>() <span class="comment">-- 获取当前日期</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">now</span>() <span class="comment">-- 获取当前日期时间</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">localtime</span>() <span class="comment">-- 获取本地时间</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">sysdate</span>() <span class="comment">-- 系统时间</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">year</span>(<span class="keyword">now</span>())</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">month</span>(<span class="keyword">now</span>())</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">day</span>(<span class="keyword">now</span>())</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">hour</span>(<span class="keyword">now</span>())</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">minute</span>(<span class="keyword">now</span>())</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">second</span>(<span class="keyword">now</span>())</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 聚合函数</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>([]) <span class="keyword">from</span> [] <span class="comment">-- 会忽略null</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">sum</span>() <span class="keyword">avg</span>() <span class="keyword">max</span>() <span class="keyword">min</span>()</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 分组</span></span><br><span class="line">group by [] <span class="comment">-- 通过什么字段分组</span></span><br><span class="line"><span class="comment">-- 过滤</span></span><br><span class="line">having <span class="comment">-- 分组后过滤</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/21/SQL%E5%9F%BA%E7%A1%80/SQL%E5%88%86%E9%A1%B5%E6%8E%92%E5%BA%8F%EF%BC%8C%E5%AD%90%E6%9F%A5%E8%AF%A2%E5%B5%8C%E5%A5%97%E6%9F%A5%E8%AF%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/21/SQL%E5%9F%BA%E7%A1%80/SQL%E5%88%86%E9%A1%B5%E6%8E%92%E5%BA%8F%EF%BC%8C%E5%AD%90%E6%9F%A5%E8%AF%A2%E5%B5%8C%E5%A5%97%E6%9F%A5%E8%AF%A2/" class="post-title-link" itemprop="url">SQL分页排序，子查询嵌套查询</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-01-21 19:04:20 / 修改时间：20:56:01" itemprop="dateCreated datePublished" datetime="2022-01-21T19:04:20+08:00">2022-01-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 排序 升序asc 降序desc</span></span><br><span class="line">order by [] &#123;asc || desc&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 分页 limit 想要第几页, 页面大小</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 嵌套查询</span></span><br><span class="line"><span class="keyword">select</span> [] <span class="keyword">from</span> []</span><br><span class="line"><span class="keyword">where</span> [] = (<span class="keyword">select</span> [] <span class="keyword">from</span> [] <span class="keyword">where</span> [])</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/20/SQL%E5%9F%BA%E7%A1%80/SQL%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2%EF%BC%8C%E8%81%94%E8%A1%A8%E6%9F%A5%E8%AF%A2JoinON/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/20/SQL%E5%9F%BA%E7%A1%80/SQL%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2%EF%BC%8C%E8%81%94%E8%A1%A8%E6%9F%A5%E8%AF%A2JoinON/" class="post-title-link" itemprop="url">SQL模糊查询，联表查询JoinON</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-20 15:05:10" itemprop="dateCreated datePublished" datetime="2022-01-20T15:05:10+08:00">2022-01-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-01-21 18:47:00" itemprop="dateModified" datetime="2022-01-21T18:47:00+08:00">2022-01-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 模糊查询</span></span><br><span class="line"><span class="comment">-- like结合 %(代表0到任意个字符) _(代表一个字符)</span></span><br><span class="line"><span class="keyword">select</span> [] <span class="keyword">from</span> [] <span class="keyword">where</span> xxx <span class="keyword">like</span> <span class="string">'刘%'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- in</span></span><br><span class="line"><span class="keyword">select</span> [] <span class="keyword">from</span> [] <span class="keyword">where</span> xxx <span class="keyword">in</span> (a, b, c);</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- join</span></span><br><span class="line"><span class="comment">-- join on 连接查询</span></span><br><span class="line"><span class="comment">-- where 等值查询</span></span><br><span class="line"><span class="keyword">select</span> A.a, b, c, d</span><br><span class="line"><span class="keyword">from</span> xxx <span class="keyword">as</span> A</span><br><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span> yyy <span class="keyword">as</span> B</span><br><span class="line"><span class="keyword">on</span> A.a = B.a</span><br></pre></td></tr></table></figure>
+<p><img src="/images/7种join.png"></p>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/20/SQL%E5%9F%BA%E7%A1%80/SQL_Select/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/20/SQL%E5%9F%BA%E7%A1%80/SQL_Select/" class="post-title-link" itemprop="url">SQL_Select</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-20 13:39:30" itemprop="dateCreated datePublished" datetime="2022-01-20T13:39:30+08:00">2022-01-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-01-21 19:10:18" itemprop="dateModified" datetime="2022-01-21T19:10:18+08:00">2022-01-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> [<span class="keyword">all</span> || <span class="keyword">distinct</span>]</span><br><span class="line">&#123;* | table.* | [table.field1[<span class="keyword">as</span> alias1][, table.field2[<span class="keyword">as</span> alias2]][,...]]&#125;</span><br><span class="line"><span class="keyword">from</span> table_name [<span class="keyword">as</span> table_alias]</span><br><span class="line">	[<span class="keyword">left</span> | <span class="keyword">right</span> | <span class="keyword">inner</span> <span class="keyword">join</span> table_name2] <span class="comment">-- 联合查询</span></span><br><span class="line">	[<span class="keyword">where</span> ...] <span class="comment">-- 指定结果需满足条件‘</span></span><br><span class="line">	[<span class="keyword">group</span> <span class="keyword">by</span> ...] <span class="comment">-- 指定结果按照哪几个字段分组</span></span><br><span class="line">	[<span class="keyword">having</span>] <span class="comment">-- 过滤分组的记录必须满足的次要条件</span></span><br><span class="line">	[<span class="keyword">order</span> <span class="keyword">by</span> ...] <span class="comment">-- 指定查询记录按一个或多个条件排序</span></span><br><span class="line">	[<span class="keyword">limit</span> &#123;[<span class="keyword">offset</span>,]<span class="keyword">row_count</span> | row_countOFFSET <span class="keyword">offset</span>&#125;];</span><br><span class="line">	</span><br><span class="line"><span class="comment">-- 查询所有字段</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> [表]</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询指定字段 </span></span><br><span class="line"><span class="keyword">select</span> [字段名], [字段名] <span class="keyword">from</span> [表]</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 别名，给结果起名</span></span><br><span class="line"><span class="keyword">select</span> [字段名] <span class="keyword">as</span> [别名] <span class="keyword">from</span> [表]</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 函数 concat(a, b) 拼接字符串</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">concat</span>(<span class="string">'姓名：'</span>, [字段名]) <span class="keyword">as</span> [别名] <span class="keyword">from</span> [表]</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 去重</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> [] <span class="keyword">from</span> []</span><br><span class="line"></span><br><span class="line"><span class="comment">-- select 其他用法</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">version</span>() <span class="comment">-- 查询系统版本</span></span><br><span class="line"><span class="keyword">select</span> [表达式] <span class="comment">-- 计算结果</span></span><br><span class="line"><span class="keyword">select</span> @@auto_increment_increment <span class="comment">-- 查询自增步长（变量）</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> [] + <span class="number">1</span> <span class="keyword">from</span> [] <span class="comment">-- 结果加一</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/19/SQL%E5%9F%BA%E7%A1%80/SQL_Update%E4%B8%8EDelete%E8%AF%AD%E5%8F%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/19/SQL%E5%9F%BA%E7%A1%80/SQL_Update%E4%B8%8EDelete%E8%AF%AD%E5%8F%A5/" class="post-title-link" itemprop="url">SQL_Update与Delete语句</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-19 23:48:30" itemprop="dateCreated datePublished" datetime="2022-01-19T23:48:30+08:00">2022-01-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-01-20 15:00:25" itemprop="dateModified" datetime="2022-01-20T15:00:25+08:00">2022-01-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- update 表名 set colnum_name = value, [colnum_name = value...] where [条件]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 条件 between...and... 在两者时间</span></span><br><span class="line"><span class="comment">-- AND &amp;&amp;</span></span><br><span class="line"><span class="comment">-- OR ||</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- delete from 表名 where [条件]</span></span><br></pre></td></tr></table></figure>
+<p>delete 与 truncate</p>
+<ul>
+<li>相同点：都能删除数据，都不会删表结构</li>
+<li>不同： truncate重新设置自增列，计数器会归零，在innodb中delete需要重启数据库才会归零，因为存在内存中。truncate不会影响事务</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/19/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/Map%E6%8E%A5%E5%8F%A3%E5%AE%B9%E5%99%A8%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -283,794 +1014,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/19/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/List%E6%8E%A5%E5%8F%A3%E5%AE%B9%E5%99%A8%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/19/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/List%E6%8E%A5%E5%8F%A3%E5%AE%B9%E5%99%A8%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">List接口容器源码分析</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-01-19 11:33:51" itemprop="dateCreated datePublished" datetime="2022-01-19T11:33:51+08:00">2022-01-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-19 20:25:31" itemprop="dateModified" datetime="2022-02-19T20:25:31+08:00">2022-02-19</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">集合框架</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h4><h5 id="JDK7"><a href="#JDK7" class="headerlink" title="JDK7"></a>JDK7</h5><ul>
-<li>无参：底层创建长度为10的Object[]数组<em>elementData</em></li>
-<li>扩容：扩容为原来的1.5倍</li>
-</ul>
-<h5 id="JDK8"><a href="#JDK8" class="headerlink" title="JDK8"></a>JDK8</h5><ul>
-<li>无参：空的Object[]数组<em>DEFAULTCAPACITY_EMPTY_ELEMENTDATA</em></li>
-<li>首次添加：<em>minCapacity</em> = min(10, 添加长度)</li>
-<li>扩容：扩容为原来的1.5倍</li>
-</ul>
-<hr>
-<h4 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h4><ul>
-<li>内部声明名为Node类型的first和last属性，值为null</li>
-<li>双向链表</li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/18/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E6%A6%82%E8%BF%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/18/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E6%A6%82%E8%BF%B0/" class="post-title-link" itemprop="url">集合框架概述</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-01-18 21:45:38" itemprop="dateCreated datePublished" datetime="2022-01-18T21:45:38+08:00">2022-01-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-20 01:31:32" itemprop="dateModified" datetime="2022-02-20T01:31:32+08:00">2022-02-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">集合框架</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li><strong>Collection接口</strong><ul>
-<li><strong>List接口</strong>：存储有序的，可重复的数据<ul>
-<li>ArrayList：作为List接口的主要实现类，线程不安全，效率高，底层使用Object[]</li>
-<li>LinkedList：底层使用双向链表，频繁插入删除</li>
-<li>Vector：作为List古老实现类，线程安全，效率低</li>
-</ul>
-</li>
-<li><strong>Set接口</strong><ul>
-<li>HashSet：作为Set接口主要实现类，线程不安全，可以存null值</li>
-<li>LinkedHashSet：HashSet的子类，遍历按添加顺序，用于频繁遍历</li>
-<li>TreeSet：红黑树实现，数据要是同一个类，可以按指定属性排序</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>Map接口</strong><ul>
-<li>HashMap：Map的主要实现类，线程不安全，效率高，可以存null的key和value</li>
-<li>LinkedHashMap：HashMap的子类，遍历按添加顺序，用于频繁遍历</li>
-<li>TreeMap：按照添加的key-value排序，实现排序遍历，此时考虑key的排序，底层使用红黑树</li>
-<li>Hashtable：古老实现类，线程安全，效率低，不能存null</li>
-<li>Properties：Hashtable子类，key和value都是String，常用来处理配置文件</li>
-</ul>
-</li>
-</ul>
-<h4 id="使用Iterator接口遍历Collection"><a href="#使用Iterator接口遍历Collection" class="headerlink" title="使用Iterator接口遍历Collection"></a>使用Iterator接口遍历Collection</h4>
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/12/30/%E5%B7%A5%E5%85%B7/Git/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/30/%E5%B7%A5%E5%85%B7/Git/" class="post-title-link" itemprop="url">Git</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-12-30 22:15:20" itemprop="dateCreated datePublished" datetime="2021-12-30T22:15:20+08:00">2021-12-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-02 22:47:05" itemprop="dateModified" datetime="2022-03-02T22:47:05+08:00">2022-03-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="创建本地仓库与添加文件"><a href="#创建本地仓库与添加文件" class="headerlink" title="创建本地仓库与添加文件"></a>创建本地仓库与添加文件</h4><ul>
-<li>转到需要创建仓库的目录下</li>
-<li>git init创建.git隐藏目录</li>
-<li>git status查看文件管理状态</li>
-<li>git add * 添加目录下所有文件到本地仓库，还未提交</li>
-<li>git commit -m ‘备注’  提交到仓库</li>
-</ul>
-<h4 id="上传远程仓库"><a href="#上传远程仓库" class="headerlink" title="上传远程仓库"></a>上传远程仓库</h4><ul>
-<li>ssh-keygen -t rsa -C “邮箱” 创建密钥(若有可忽略)</li>
-<li>git remote add origin xxxx.git</li>
-<li>git push -u origin master</li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/12/15/SQL%E5%9F%BA%E7%A1%80/SQL_Insert%E8%AF%AD%E5%8F%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/15/SQL%E5%9F%BA%E7%A1%80/SQL_Insert%E8%AF%AD%E5%8F%A5/" class="post-title-link" itemprop="url">SQL_Insert语句</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-12-15 22:05:30 / 修改时间：22:32:46" itemprop="dateCreated datePublished" datetime="2021-12-15T22:05:30+08:00">2021-12-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 插入语句</span></span><br><span class="line"><span class="comment">-- insert into 表名 (字段名1， 字段名2， ...) values(值1.1,值1.2,...)， (数据2)， ...</span></span><br><span class="line"><span class="comment">-- 主键自增可以忽略</span></span><br><span class="line"><span class="comment">-- 不写表字段就会一一匹配</span></span><br><span class="line"><span class="comment">-- 一般写插入语句， 一定要数据和字段一一对应</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/12/15/SQL%E5%9F%BA%E7%A1%80/SQL%E5%A4%96%E9%94%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/15/SQL%E5%9F%BA%E7%A1%80/SQL%E5%A4%96%E9%94%AE/" class="post-title-link" itemprop="url">SQL数据库级别外键</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-12-15 19:52:00 / 修改时间：21:25:09" itemprop="dateCreated datePublished" datetime="2021-12-15T19:52:00+08:00">2021-12-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 学生表(从表)的gradeid字段 要去引用年级表(主表)的gradeid</span></span><br><span class="line"><span class="comment">-- 定义外键key</span></span><br><span class="line"><span class="comment">-- 给这个外键添加约束 （执行引用） references</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 创建表时</span></span><br><span class="line">KEY `FK_gradeid` (`gradeid`),</span><br><span class="line">CONSTRAINT `FK_gradeid` FOREIGN KEY (`gradeid`) REFERENCES `grade` (`gradeid`)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 修改表</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`student`</span></span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> <span class="string">`FK_gradeid`</span> <span class="keyword">FOREIGN</span> <span class="keyword">KEY</span>(<span class="string">`gradeid`</span>) <span class="keyword">REFERENCES</span> <span class="string">`grade`</span> (<span class="string">`gradeid`</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 以上操作都是物理外键， 数据库级别外键， 不建议使用， 避免数据库过多造成困扰</span></span><br><span class="line"><span class="comment">-- 最佳实践：</span></span><br><span class="line"><span class="comment">-- 数据库就是单纯的表，只用来存数据，只有行和列</span></span><br><span class="line"><span class="comment">-- 我们想使用多张表的数据，想使用外键，用程序实现</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/12/14/SQL%E5%9F%BA%E7%A1%80/MySQL%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/14/SQL%E5%9F%BA%E7%A1%80/MySQL%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">MySQL常用命令/数据表类型</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-12-14 19:10:00" itemprop="dateCreated datePublished" datetime="2021-12-14T19:10:00+08:00">2021-12-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-15 19:13:28" itemprop="dateModified" datetime="2021-12-15T19:13:28+08:00">2021-12-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> school <span class="comment">-- 查看创建数据库语句</span></span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> student <span class="comment">-- 查看student数据表的定义语句</span></span><br><span class="line"><span class="keyword">DESC</span> student <span class="comment">-- 显示表结构</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/15/SQL%E5%9F%BA%E7%A1%80/SQL%E4%BF%AE%E6%94%B9%E5%88%A0%E9%99%A4%E8%A1%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/15/SQL%E5%9F%BA%E7%A1%80/SQL%E4%BF%AE%E6%94%B9%E5%88%A0%E9%99%A4%E8%A1%A8/" class="post-title-link" itemprop="url">SQL修改删除表</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-09-15 00:05:30 / 修改时间：00:51:02" itemprop="dateCreated datePublished" datetime="2021-09-15T00:05:30+08:00">2021-09-15</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="1、修改"><a href="#1、修改" class="headerlink" title="1、修改"></a>1、修改</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`XXX`</span> <span class="keyword">RENAME</span> <span class="keyword">AS</span> <span class="string">`YYY`</span>(修改表名)</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`XXX`</span> <span class="keyword">ADD</span> <span class="string">`YYY`</span> <span class="built_in">INT</span>(<span class="number">10</span>)(增加字段)</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`XXX`</span> <span class="keyword">MODIFY</span> <span class="string">'YYY'</span> <span class="built_in">VARCHAR</span>(<span class="number">10</span>)(修改约束)</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`XXX`</span> <span class="keyword">CHANGE</span> <span class="string">`YYY`</span> <span class="string">`ZZZ`</span> <span class="built_in">INT</span>(<span class="number">10</span>)(字段重命名)</span><br><span class="line"><span class="comment">--MODIFY 和 CHANGE 的区别？</span></span><br></pre></td></tr></table></figure>
-<h3 id="2、删除"><a href="#2、删除" class="headerlink" title="2、删除"></a>2、删除</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="string">`XXX`</span> <span class="keyword">DROP</span> <span class="string">`YYY`</span>(删除表字段)</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> [<span class="keyword">IF</span> <span class="keyword">EXISTS</span>] <span class="string">`XXX`</span>(删除表)</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%B1%BB%E5%9E%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%B1%BB%E5%9E%8B/" class="post-title-link" itemprop="url">数据表类型(MYISAM与INNODB)</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-09-14 23:24:00" itemprop="dateCreated datePublished" datetime="2021-09-14T23:24:00+08:00">2021-09-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-15 00:02:36" itemprop="dateModified" datetime="2021-09-15T00:02:36+08:00">2021-09-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <div class="table-container">
-<table>
-<thead>
-<tr>
-<th></th>
-<th>MYISAM</th>
-<th>INNODB</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>事务支持</td>
-<td>不支持</td>
-<td>支持</td>
-</tr>
-<tr>
-<td>数据行锁定</td>
-<td>不支持</td>
-<td>支持</td>
-</tr>
-<tr>
-<td>外键约束</td>
-<td>不支持</td>
-<td>支持</td>
-</tr>
-<tr>
-<td>全文索引</td>
-<td>支持</td>
-<td>不支持</td>
-</tr>
-<tr>
-<td>表空间大小</td>
-<td>较小</td>
-<td>较大，约为MYISAM两倍</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>常规使用操作：</p>
-<ul>
-<li>MYISAM节约空间，速度较快</li>
-<li>INNODB安全性高，支持事务处理，多表多用户操作</li>
-</ul>
-<h3 id="物理空间位置"><a href="#物理空间位置" class="headerlink" title="物理空间位置"></a>物理空间位置</h3><p>所有数据库文件都存在data目录，一个文件夹一个数据库</p>
-<p>本质是文件存储</p>
-<h4 id="MySQL引擎在物理文件区别"><a href="#MySQL引擎在物理文件区别" class="headerlink" title="MySQL引擎在物理文件区别"></a>MySQL引擎在物理文件区别</h4><ul>
-<li><p>INNODB在数据库表中只有一个*.frm文件，以及上级目录下的ibdata1文件</p>
-</li>
-<li><p>MYISAM对应文件</p>
-<ul>
-<li>*.frm 表结构定义文件</li>
-<li>*.MYD 数据文件(Data)</li>
-<li>*.MYI  索引文件(Index)</li>
-</ul>
-</li>
-</ul>
-<h3 id="设置数据库表的字符集编码"><a href="#设置数据库表的字符集编码" class="headerlink" title="设置数据库表的字符集编码"></a>设置数据库表的字符集编码</h3><p><strong>CHARSET=UTF8</strong></p>
-<p>不设置会是mysql默认字符集编码，不支持中文</p>
-<h4 id="在my-ini中配置默认编码"><a href="#在my-ini中配置默认编码" class="headerlink" title="在my.ini中配置默认编码"></a>在my.ini中配置默认编码</h4><p><strong>character-set-server=utf8</strong></p>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/14/SQL%E5%9F%BA%E7%A1%80/SQL%E5%88%9B%E5%BB%BA%E8%A1%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/14/SQL%E5%9F%BA%E7%A1%80/SQL%E5%88%9B%E5%BB%BA%E8%A1%A8/" class="post-title-link" itemprop="url">SQL创建表</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-09-14 16:48:08 / 修改时间：23:23:23" itemprop="dateCreated datePublished" datetime="2021-09-14T16:48:08+08:00">2021-09-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`XXX`</span>  <span class="comment">--查看某张表的创建语句</span></span><br><span class="line"><span class="comment">--尽量表名字段使用``</span></span><br><span class="line"><span class="comment">--字符串使用''</span></span><br><span class="line"><span class="comment">--所有语句后加, 最后一个不用加</span></span><br><span class="line"><span class="comment">--主键最好加最后，一般一个表唯一</span></span><br><span class="line"><span class="comment">--注意顺序 [属性][索引][注释]</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> [<span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>] <span class="string">`XXX`</span> (</span><br><span class="line">	<span class="string">`列名`</span> <span class="built_in">INT</span>(<span class="number">4</span>)(类型) [<span class="keyword">NOT</span> <span class="literal">NULL</span>(非空) AUTO_INCREMENT(自增) <span class="keyword">COMMENT</span>(注释) <span class="string">'注释'</span>],</span><br><span class="line">    <span class="string">`列名`</span> <span class="built_in">VARCHAR</span>(<span class="number">30</span>) [<span class="keyword">DEFAULT</span> <span class="literal">NULL</span>(默认为空) <span class="keyword">COMMENT</span> <span class="string">''</span>],</span><br><span class="line">     …………,</span><br><span class="line">    PRIMARY <span class="keyword">KEY</span> (<span class="string">`列名`</span>)</span><br><span class="line">)[<span class="keyword">ENGINE</span> = <span class="keyword">INNODB</span>(引擎/类型) <span class="keyword">DEFAULT</span> = UFT8(编码)]</span><br><span class="line"></span><br><span class="line"><span class="keyword">DESC</span> <span class="string">`XXX`</span> <span class="comment">--查看表结构</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1138,20 +1085,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">95</span>
+          <span class="site-state-item-count">104</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1234,7 +1181,7 @@ $(document).ready(function() {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共29k字</span>
+  <span class="post-count">博客全站共30.5k字</span>
 </div>
         
 <div class="busuanzi-count">
