@@ -180,7 +180,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/04/SQL%E8%BF%9B%E9%98%B6/%E7%AC%AC%E4%B8%80%E4%B8%AAJDBC%E7%A8%8B%E5%BA%8F/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/20/Java/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/URL%E7%BC%96%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -194,7 +194,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/02/04/SQL%E8%BF%9B%E9%98%B6/%E7%AC%AC%E4%B8%80%E4%B8%AAJDBC%E7%A8%8B%E5%BA%8F/" class="post-title-link" itemprop="url">第一个JDBC程序</a>
+            <a href="/2022/02/20/Java/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/URL%E7%BC%96%E7%A8%8B/" class="post-title-link" itemprop="url">URL网络编程</a>
         </h2>
 
         <div class="post-meta">
@@ -207,745 +207,8 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-02-04 00:04:10 / 修改时间：01:14:53" itemprop="dateCreated datePublished" datetime="2022-02-04T00:04:10+08:00">2022-02-04</time>
+              <time title="创建时间：2022-02-20 23:19:12 / 修改时间：23:53:42" itemprop="dateCreated datePublished" datetime="2022-02-20T23:19:12+08:00">2022-02-20</time>
             </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.sql.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">//我的第一个JDBC程序</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JdbcFirstDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException, SQLException </span>&#123;</span><br><span class="line">        <span class="comment">//1.加载驱动</span></span><br><span class="line">        <span class="comment">// DriverManager.registerDriver(new com.mysql.jdbc.Driver());</span></span><br><span class="line">        Class.forName(<span class="string">"com.mysql.cj.jdbc.Driver"</span>); <span class="comment">//固定写法，加载驱动</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">//2.用户信息和url</span></span><br><span class="line">        <span class="comment">// jdbc:mysql://主机地址:端口号(mysql默认3306)/数据库名?参数1&amp;参数2&amp;....</span></span><br><span class="line">        String url = <span class="string">"jdbc:mysql://127.0.0.1:3306/jdbcstudy?serverTimezone=UTC&amp;userUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false"</span>;</span><br><span class="line">        String username = <span class="string">"root"</span>;</span><br><span class="line">        String password = <span class="string">""</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//3.连接成功，数据库对象 Connection 代表数据库</span></span><br><span class="line">        <span class="comment">//数据库级别操作 设置自动提交，事务提交，事务回滚</span></span><br><span class="line">        <span class="comment">//rollback() commit() setAutoCommit()</span></span><br><span class="line">        Connection connection = DriverManager.getConnection(url, username, password);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//4.执行SQL的对象</span></span><br><span class="line">        <span class="comment">//查询返回结果集 .executeQuery()</span></span><br><span class="line">        <span class="comment">//更新插入删除，返回影响行数 .executeUpdate()</span></span><br><span class="line">        <span class="comment">//任何SQL .execute()</span></span><br><span class="line">        Statement statement = connection.createStatement();</span><br><span class="line"></span><br><span class="line">        String sql = <span class="string">"select * from users"</span>;</span><br><span class="line">        ResultSet resultSet = statement.executeQuery(sql); <span class="comment">//返回的结果集</span></span><br><span class="line">        <span class="comment">//获得指定数据类型</span></span><br><span class="line">        <span class="comment">//不知道列类型.getObject() 知道列类型.getInt()等</span></span><br><span class="line">        <span class="keyword">while</span>(resultSet.next())&#123;</span><br><span class="line">            System.out.println(<span class="string">"id="</span> + resultSet.getObject(<span class="string">"id"</span>));</span><br><span class="line">            System.out.println(<span class="string">"name="</span> + resultSet.getObject(<span class="string">"name"</span>));</span><br><span class="line">            System.out.println(<span class="string">"password="</span> + resultSet.getObject(<span class="string">"password"</span>));</span><br><span class="line">            System.out.println(<span class="string">"email="</span> + resultSet.getObject(<span class="string">"email"</span>));</span><br><span class="line">            System.out.println(<span class="string">"birthday="</span> + resultSet.getObject(<span class="string">"birthday"</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//5.释放连接</span></span><br><span class="line">        resultSet.close();</span><br><span class="line">        statement.close();</span><br><span class="line">        connection.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/25/SQL%E8%BF%9B%E9%98%B6/SQL%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E5%92%8C%E5%A4%87%E4%BB%BD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/25/SQL%E8%BF%9B%E9%98%B6/SQL%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E5%92%8C%E5%A4%87%E4%BB%BD/" class="post-title-link" itemprop="url">SQL权限管理和备份</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-01-25 20:21:50 / 修改时间：21:47:00" itemprop="dateCreated datePublished" datetime="2022-01-25T20:21:50+08:00">2022-01-25</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h3><ul>
-<li><h4 id="SQL可视化管理"><a href="#SQL可视化管理" class="headerlink" title="SQL可视化管理"></a>SQL可视化管理</h4></li>
-<li><h4 id="SQL命令操作"><a href="#SQL命令操作" class="headerlink" title="SQL命令操作"></a>SQL命令操作</h4><p>用户表：mysql.user</p>
-<p>本质：对用户表增删改查</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 创建用户</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> [用户名] <span class="keyword">identified</span> <span class="keyword">by</span> [密码]</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 修改密码（当前用户）</span></span><br><span class="line"><span class="keyword">set</span> <span class="keyword">password</span> = <span class="keyword">password</span>([])</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 修改密码（指定）</span></span><br><span class="line"><span class="keyword">set</span> <span class="keyword">password</span> <span class="keyword">for</span> [] = <span class="keyword">password</span>([])</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 重命名</span></span><br><span class="line"><span class="keyword">rename</span> <span class="keyword">user</span> [] <span class="keyword">to</span> []</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 用户授权(授予全部权限,除了给别的用户授权)</span></span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">all</span> <span class="keyword">privileges</span> <span class="keyword">on</span> [库名].[表名] <span class="keyword">to</span> [用户名]</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询权限</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">grants</span> <span class="keyword">for</span> [用户]</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 撤销全部权限</span></span><br><span class="line"><span class="keyword">revoke</span> <span class="keyword">all</span> <span class="keyword">privileges</span> <span class="keyword">on</span> [库名].[表名] <span class="keyword">to</span> [用户名]</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 删除用户</span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">user</span> []</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="MySQL备份"><a href="#MySQL备份" class="headerlink" title="MySQL备份"></a>MySQL备份</h3><p>MySQL数据库备份方式</p>
-<ul>
-<li>拷贝物理文件</li>
-<li>在Sqlyog这种可视化工具中手动导出<ul>
-<li>在想要导出的表或者库中选择备份或导出</li>
-<li>导出后拉进来就行了</li>
-</ul>
-</li>
-<li>使用命令行 mysqldump<ul>
-<li>mysqldump -主机名 -用户名 -密码 表名 &gt;路径</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/24/SQL%E8%BF%9B%E9%98%B6/SQL_%E7%B4%A2%E5%BC%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/24/SQL%E8%BF%9B%E9%98%B6/SQL_%E7%B4%A2%E5%BC%95/" class="post-title-link" itemprop="url">SQL索引</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-01-24 17:40:50" itemprop="dateCreated datePublished" datetime="2022-01-24T17:40:50+08:00">2022-01-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-01-25 20:07:24" itemprop="dateModified" datetime="2022-01-25T20:07:24+08:00">2022-01-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="什么是索引？"><a href="#什么是索引？" class="headerlink" title="什么是索引？"></a>什么是索引？</h3><h4 id="索引（Index）是帮助MySQL高效获取数据的数据结构"><a href="#索引（Index）是帮助MySQL高效获取数据的数据结构" class="headerlink" title="索引（Index）是帮助MySQL高效获取数据的数据结构"></a>索引（Index）是帮助MySQL高效获取数据的数据结构</h4><h4 id="索引的分类"><a href="#索引的分类" class="headerlink" title="索引的分类"></a>索引的分类</h4><ul>
-<li>主键索引（primary key）<ul>
-<li>唯一的标识，主键不可重复，只能有一个列作为主键</li>
-</ul>
-</li>
-<li>唯一索引（unique key）<ul>
-<li>避免重复的列出现，唯一索引可以重复，多个列都可标识唯一索引</li>
-</ul>
-</li>
-<li>常规索引（key/index）<ul>
-<li>默认的，index。key关键字设置</li>
-</ul>
-</li>
-<li>全文索引（fulltext）<ul>
-<li>在特定数据库引擎下，MyISAM</li>
-<li>快速定位数据</li>
-</ul>
-</li>
-</ul>
-<h3 id="索引原则"><a href="#索引原则" class="headerlink" title="索引原则"></a>索引原则</h3><ul>
-<li>索引不是越多越好</li>
-<li>不要对进程变动数据加索引</li>
-<li>小数据量的表不需要加索引</li>
-<li>索引一般加在常用来查询的字段上</li>
-</ul>
-<h3 id="索引的数据结构"><a href="#索引的数据结构" class="headerlink" title="索引的数据结构"></a>索引的数据结构</h3><ul>
-<li>Btree：<a href="https://blog.csdn.net/wufuhuai/article/details/79631466" target="_blank" rel="noopener">InnoDB默认数据结构</a></li>
-<li>Hash类型</li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/23/SQL%E8%BF%9B%E9%98%B6/SQL_%E4%BA%8B%E5%8A%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/23/SQL%E8%BF%9B%E9%98%B6/SQL_%E4%BA%8B%E5%8A%A1/" class="post-title-link" itemprop="url">SQL事务</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-01-23 20:44:30 / 修改时间：22:32:55" itemprop="dateCreated datePublished" datetime="2022-01-23T20:44:30+08:00">2022-01-23</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="什么是事务？"><a href="#什么是事务？" class="headerlink" title="什么是事务？"></a>什么是事务？</h3><p>要么都成功，要么都失败</p>
-<p>将一组SQL放在一个批次执行</p>
-<h4 id="事务原则：ACID原则"><a href="#事务原则：ACID原则" class="headerlink" title="事务原则：ACID原则"></a>事务原则：ACID原则</h4><h5 id="原子性，一致性，隔离性，持久性"><a href="#原子性，一致性，隔离性，持久性" class="headerlink" title="原子性，一致性，隔离性，持久性"></a>原子性，一致性，隔离性，持久性</h5><h4 id="原子性（Atomicity）"><a href="#原子性（Atomicity）" class="headerlink" title="原子性（Atomicity）"></a>原子性（Atomicity）</h4><p>原子性是指事务是一个不可分割的工作单位，事务中的操作要么都发生，要么都不发生。</p>
-<h4 id="一致性（Consistency）"><a href="#一致性（Consistency）" class="headerlink" title="一致性（Consistency）"></a>一致性（Consistency）</h4><p>事务前后数据的完整性必须保持一致。</p>
-<h4 id="隔离性（Isolation）"><a href="#隔离性（Isolation）" class="headerlink" title="隔离性（Isolation）"></a>隔离性（Isolation）</h4><p>事务的隔离性是多个用户并发访问数据库时，数据库为每一个用户开启的事务，不能被其他事务的操作数据所干扰，多个并发事务之间要相互隔离。</p>
-<h4 id="持久性（Durability）"><a href="#持久性（Durability）" class="headerlink" title="持久性（Durability）"></a>持久性（Durability）</h4><p><strong>事务提交不可逆</strong></p>
-<p>持久性是指一个事务一旦被提交，它对数据库中数据的改变就是永久性的，接下来即使数据库发生故障也不应该对其有任何影响</p>
-<h4 id="事务的隔离级别"><a href="#事务的隔离级别" class="headerlink" title="事务的隔离级别"></a>事务的隔离级别</h4><h4 id="脏读："><a href="#脏读：" class="headerlink" title="脏读："></a>脏读：</h4><p>指一个事务读取了另外一个事务未提交的数据</p>
-<h4 id="不可重复读："><a href="#不可重复读：" class="headerlink" title="不可重复读："></a>不可重复读：</h4><p>在一个事务内读取表中的某一行数据，多次读取结果不同。（这个不一定是错误，只是某些场合不对）</p>
-<h4 id="虚读-幻读-："><a href="#虚读-幻读-：" class="headerlink" title="虚读(幻读)："></a>虚读(幻读)：</h4><p>是指在一个事务内读取到了别的事务插入的数据，导致前后读取数量总量不一致。<br>（一般是行影响）</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- mysql 是默认开启事务自动提交的</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">0</span> <span class="comment">-- 关闭</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">1</span> <span class="comment">-- 开启</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 手动处理事务</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">0</span> <span class="comment">-- 第一步 关闭自动提交</span></span><br><span class="line"><span class="comment">-- 事务开启</span></span><br><span class="line"><span class="keyword">start</span> <span class="keyword">transaction</span> <span class="comment">-- 标记一个事务开始，从这之后的sql都在一个事务内</span></span><br><span class="line"><span class="comment">-- 两种情况</span></span><br><span class="line"><span class="comment">-- 提交： 持久化（成功）</span></span><br><span class="line"><span class="keyword">commit</span></span><br><span class="line"><span class="comment">-- 回滚： 回到原来的样子（失败）</span></span><br><span class="line"><span class="keyword">rollback</span></span><br><span class="line"><span class="comment">-- 事务结束</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">1</span> <span class="comment">-- 开启自动提交</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">savepoint</span> 名称 <span class="comment">-- 设置事务保存点</span></span><br><span class="line"><span class="keyword">rollback</span> <span class="keyword">to</span> <span class="keyword">savepoint</span> 名称 <span class="comment">-- 回滚到保存点</span></span><br><span class="line"><span class="keyword">release</span> <span class="keyword">savepoint</span> 名称 <span class="comment">-- 撤销保存点</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/21/SQL%E5%9F%BA%E7%A1%80/SQL%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E4%B8%8E%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/21/SQL%E5%9F%BA%E7%A1%80/SQL%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E4%B8%8E%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">SQL常用函数与聚合函数,分组</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-01-21 20:57:20 / 修改时间：22:10:02" itemprop="dateCreated datePublished" datetime="2022-01-21T20:57:20+08:00">2022-01-21</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 时间日期函数</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">current_date</span>() <span class="comment">-- 获取当前日期</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">curdate</span>() <span class="comment">-- 获取当前日期</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">now</span>() <span class="comment">-- 获取当前日期时间</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">localtime</span>() <span class="comment">-- 获取本地时间</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">sysdate</span>() <span class="comment">-- 系统时间</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">year</span>(<span class="keyword">now</span>())</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">month</span>(<span class="keyword">now</span>())</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">day</span>(<span class="keyword">now</span>())</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">hour</span>(<span class="keyword">now</span>())</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">minute</span>(<span class="keyword">now</span>())</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">second</span>(<span class="keyword">now</span>())</span><br></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 聚合函数</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>([]) <span class="keyword">from</span> [] <span class="comment">-- 会忽略null</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">sum</span>() <span class="keyword">avg</span>() <span class="keyword">max</span>() <span class="keyword">min</span>()</span><br></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 分组</span></span><br><span class="line">group by [] <span class="comment">-- 通过什么字段分组</span></span><br><span class="line"><span class="comment">-- 过滤</span></span><br><span class="line">having <span class="comment">-- 分组后过滤</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/21/SQL%E5%9F%BA%E7%A1%80/SQL%E5%88%86%E9%A1%B5%E6%8E%92%E5%BA%8F%EF%BC%8C%E5%AD%90%E6%9F%A5%E8%AF%A2%E5%B5%8C%E5%A5%97%E6%9F%A5%E8%AF%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/21/SQL%E5%9F%BA%E7%A1%80/SQL%E5%88%86%E9%A1%B5%E6%8E%92%E5%BA%8F%EF%BC%8C%E5%AD%90%E6%9F%A5%E8%AF%A2%E5%B5%8C%E5%A5%97%E6%9F%A5%E8%AF%A2/" class="post-title-link" itemprop="url">SQL分页排序，子查询嵌套查询</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-01-21 19:04:20 / 修改时间：20:56:01" itemprop="dateCreated datePublished" datetime="2022-01-21T19:04:20+08:00">2022-01-21</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 排序 升序asc 降序desc</span></span><br><span class="line">order by [] &#123;asc || desc&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 分页 limit 想要第几页, 页面大小</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 嵌套查询</span></span><br><span class="line"><span class="keyword">select</span> [] <span class="keyword">from</span> []</span><br><span class="line"><span class="keyword">where</span> [] = (<span class="keyword">select</span> [] <span class="keyword">from</span> [] <span class="keyword">where</span> [])</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/20/SQL%E5%9F%BA%E7%A1%80/SQL%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2%EF%BC%8C%E8%81%94%E8%A1%A8%E6%9F%A5%E8%AF%A2JoinON/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/20/SQL%E5%9F%BA%E7%A1%80/SQL%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2%EF%BC%8C%E8%81%94%E8%A1%A8%E6%9F%A5%E8%AF%A2JoinON/" class="post-title-link" itemprop="url">SQL模糊查询，联表查询JoinON</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-01-20 15:05:10" itemprop="dateCreated datePublished" datetime="2022-01-20T15:05:10+08:00">2022-01-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-01-21 18:47:00" itemprop="dateModified" datetime="2022-01-21T18:47:00+08:00">2022-01-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 模糊查询</span></span><br><span class="line"><span class="comment">-- like结合 %(代表0到任意个字符) _(代表一个字符)</span></span><br><span class="line"><span class="keyword">select</span> [] <span class="keyword">from</span> [] <span class="keyword">where</span> xxx <span class="keyword">like</span> <span class="string">'刘%'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- in</span></span><br><span class="line"><span class="keyword">select</span> [] <span class="keyword">from</span> [] <span class="keyword">where</span> xxx <span class="keyword">in</span> (a, b, c);</span><br></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- join</span></span><br><span class="line"><span class="comment">-- join on 连接查询</span></span><br><span class="line"><span class="comment">-- where 等值查询</span></span><br><span class="line"><span class="keyword">select</span> A.a, b, c, d</span><br><span class="line"><span class="keyword">from</span> xxx <span class="keyword">as</span> A</span><br><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span> yyy <span class="keyword">as</span> B</span><br><span class="line"><span class="keyword">on</span> A.a = B.a</span><br></pre></td></tr></table></figure>
-<p><img src="/images/7种join.png"></p>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/20/SQL%E5%9F%BA%E7%A1%80/SQL_Select/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/20/SQL%E5%9F%BA%E7%A1%80/SQL_Select/" class="post-title-link" itemprop="url">SQL_Select</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-01-20 13:39:30" itemprop="dateCreated datePublished" datetime="2022-01-20T13:39:30+08:00">2022-01-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-01-21 19:10:18" itemprop="dateModified" datetime="2022-01-21T19:10:18+08:00">2022-01-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> [<span class="keyword">all</span> || <span class="keyword">distinct</span>]</span><br><span class="line">&#123;* | table.* | [table.field1[<span class="keyword">as</span> alias1][, table.field2[<span class="keyword">as</span> alias2]][,...]]&#125;</span><br><span class="line"><span class="keyword">from</span> table_name [<span class="keyword">as</span> table_alias]</span><br><span class="line">	[<span class="keyword">left</span> | <span class="keyword">right</span> | <span class="keyword">inner</span> <span class="keyword">join</span> table_name2] <span class="comment">-- 联合查询</span></span><br><span class="line">	[<span class="keyword">where</span> ...] <span class="comment">-- 指定结果需满足条件‘</span></span><br><span class="line">	[<span class="keyword">group</span> <span class="keyword">by</span> ...] <span class="comment">-- 指定结果按照哪几个字段分组</span></span><br><span class="line">	[<span class="keyword">having</span>] <span class="comment">-- 过滤分组的记录必须满足的次要条件</span></span><br><span class="line">	[<span class="keyword">order</span> <span class="keyword">by</span> ...] <span class="comment">-- 指定查询记录按一个或多个条件排序</span></span><br><span class="line">	[<span class="keyword">limit</span> &#123;[<span class="keyword">offset</span>,]<span class="keyword">row_count</span> | row_countOFFSET <span class="keyword">offset</span>&#125;];</span><br><span class="line">	</span><br><span class="line"><span class="comment">-- 查询所有字段</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> [表]</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询指定字段 </span></span><br><span class="line"><span class="keyword">select</span> [字段名], [字段名] <span class="keyword">from</span> [表]</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 别名，给结果起名</span></span><br><span class="line"><span class="keyword">select</span> [字段名] <span class="keyword">as</span> [别名] <span class="keyword">from</span> [表]</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 函数 concat(a, b) 拼接字符串</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">concat</span>(<span class="string">'姓名：'</span>, [字段名]) <span class="keyword">as</span> [别名] <span class="keyword">from</span> [表]</span><br></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 去重</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> [] <span class="keyword">from</span> []</span><br><span class="line"></span><br><span class="line"><span class="comment">-- select 其他用法</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">version</span>() <span class="comment">-- 查询系统版本</span></span><br><span class="line"><span class="keyword">select</span> [表达式] <span class="comment">-- 计算结果</span></span><br><span class="line"><span class="keyword">select</span> @@auto_increment_increment <span class="comment">-- 查询自增步长（变量）</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> [] + <span class="number">1</span> <span class="keyword">from</span> [] <span class="comment">-- 结果加一</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/19/SQL%E5%9F%BA%E7%A1%80/SQL_Update%E4%B8%8EDelete%E8%AF%AD%E5%8F%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/19/SQL%E5%9F%BA%E7%A1%80/SQL_Update%E4%B8%8EDelete%E8%AF%AD%E5%8F%A5/" class="post-title-link" itemprop="url">SQL_Update与Delete语句</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-01-19 23:48:30" itemprop="dateCreated datePublished" datetime="2022-01-19T23:48:30+08:00">2022-01-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-01-20 15:00:25" itemprop="dateModified" datetime="2022-01-20T15:00:25+08:00">2022-01-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- update 表名 set colnum_name = value, [colnum_name = value...] where [条件]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 条件 between...and... 在两者时间</span></span><br><span class="line"><span class="comment">-- AND &amp;&amp;</span></span><br><span class="line"><span class="comment">-- OR ||</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- delete from 表名 where [条件]</span></span><br></pre></td></tr></table></figure>
-<p>delete 与 truncate</p>
-<ul>
-<li>相同点：都能删除数据，都不会删表结构</li>
-<li>不同： truncate重新设置自增列，计数器会归零，在innodb中delete需要重启数据库才会归零，因为存在内存中。truncate不会影响事务</li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/19/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/Map%E6%8E%A5%E5%8F%A3%E5%AE%B9%E5%99%A8%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/19/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/Map%E6%8E%A5%E5%8F%A3%E5%AE%B9%E5%99%A8%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">Map接口容器源码分析</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-01-19 21:13:11" itemprop="dateCreated datePublished" datetime="2022-01-19T21:13:11+08:00">2022-01-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-20 11:08:02" itemprop="dateModified" datetime="2022-02-20T11:08:02+08:00">2022-02-20</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -956,7 +219,7 @@
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">集合框架</span></a>
+                  <a href="/categories/Java/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">网络编程</span></a>
                 </span>
             </span>
 
@@ -972,31 +235,856 @@
 
       
           <ul>
-<li>Map中的key：无序，不可重复，使用Set存储</li>
-<li>Map中的value：无序，可重复，使用Collection存储</li>
-<li>一个key-value键值对构成一个Entry对象(JDK7)，Node(JDK8)</li>
-<li>键值对无序，不可重复，使用Set存储</li>
+<li><p>URL：统一资源定位符，标识Internet上某一资源地址</p>
+</li>
+<li><p>是一种具体的URI，即URL可以用来标识一个资源，而且还指明了如何locate这个资源</p>
+</li>
+<li><p>URL基本结构由5部分组成：</p>
+<p>&lt;传输协议&gt;://&lt;主机名&gt;:&lt;端口号&gt;/&lt;文件名&gt;#片段名?参数列表</p>
+</li>
+<li><h1 id="片段名：即锚点，例如看小说，直接定位到章节"><a href="#片段名：即锚点，例如看小说，直接定位到章节" class="headerlink" title="片段名：即锚点，例如看小说，直接定位到章节"></a>片段名：即锚点，例如看小说，直接定位到章节</h1></li>
+<li><p>参数列表格式：参数名=参数值&amp;参数名=参数值……</p>
+</li>
 </ul>
-<h4 id="HashMap底层实现"><a href="#HashMap底层实现" class="headerlink" title="HashMap底层实现"></a>HashMap底层实现</h4><h5 id="JDK8相较于JDK7在底层实现方面不同"><a href="#JDK8相较于JDK7在底层实现方面不同" class="headerlink" title="JDK8相较于JDK7在底层实现方面不同"></a>JDK8相较于JDK7在底层实现方面不同</h5><ul>
-<li>new HashMap()：底层没有创建一个长度为16的数组</li>
-<li>jdk8底层数组是：Node[]</li>
-<li>首次使用put()，创建长度为16数组</li>
-<li>数组+链表+红黑树</li>
-<li>当数组中某一索引位置元素以链表形式存在的数据个数 &gt; 8，且当前数据长度 &gt; 64时，此索引位置上改为红黑树存储</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.net.URL;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">URLTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            URL url = <span class="keyword">new</span> URL(<span class="string">"file:///F:/jdbc/02.jpg"</span>);</span><br><span class="line">            System.out.println(url.getProtocol()); <span class="comment">//获取URL的协议名</span></span><br><span class="line">            System.out.println(url.getHost()); <span class="comment">//获取URL的主机名</span></span><br><span class="line">            System.out.println(url.getPort()); <span class="comment">//获取URL的端口号</span></span><br><span class="line">            System.out.println(url.getPath()); <span class="comment">//获取URL的文件路径</span></span><br><span class="line">            System.out.println(url.getFile()); <span class="comment">//获取URL的文件名</span></span><br><span class="line">            System.out.println(url.getQuery()); <span class="comment">//获取URL的查询名</span></span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/20/Java/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/UDP%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/20/Java/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/UDP%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="post-title-link" itemprop="url">TCP网络编程</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-20 21:10:44 / 修改时间：23:19:40" itemprop="dateCreated datePublished" datetime="2022-02-20T21:10:44+08:00">2022-02-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">网络编程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>类DatagramSocket 和 DatagramPacket 实现了基于UDP协议网络程序</li>
+<li>UDP数据报通过数据报套接字DatagramSocket发送和接收，系统不保证UDP数据报一定能够安全送到目的地，也不能确定什么时候可以抵达</li>
+<li>DatagramPacket对象封装了UDP数据报，在数据报中包含了发送端的IP地址和端口号以及接收端的IP地址和端口号</li>
+<li>UDP协议中每个数据报都给出了完整的地址信息，因此无需建立发送方和接收方的连接</li>
 </ul>
-<h5 id="HashMap源码中重要常量"><a href="#HashMap源码中重要常量" class="headerlink" title="HashMap源码中重要常量"></a>HashMap源码中重要常量</h5><ul>
-<li>DEFAULT_INITIAL_CAPACITY：HashMap的默认容量，16</li>
-<li>MAXIMUM_CAPACITY：HashMap的最大支持容量，2^30</li>
-<li>DEFAULT_LOAD_FACTOR：HashMap的默认加载因子，0.75</li>
-<li>TREEIFY_THRESHOLD：Bucket中链表长度大于该默认值，转化为红黑树</li>
-<li>UNTREEIFY_THRESHOLD：Bucket中红黑树存储的Node小于该默认值，转化为链表</li>
-<li>MIN_TREEIFY_CAPACITY：桶中的Node被树化时最小的hash表容量（当桶中Node的数量大到需要变红黑树时，若hash表容量小于MIN_TREEIFY_CAPACITY时，此时应执行resize扩容操作，这个MIN_TREEIFY_CAPACITY的值至少是TREEIFY_THRESHOLD的4倍）</li>
-<li>table：存储元素的数组，总是2的n次幂</li>
-<li>entrySet：存储具体元素的集</li>
-<li>size：HashMap中存储键值对的数量</li>
-<li>modCount：HashMap扩容和结构改变次数</li>
-<li>threshold：扩容临界值 = 容量 * 填充因子</li>
-<li>loadFactor：填充因子</li>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.net.*;</span><br><span class="line"><span class="keyword">import</span> java.nio.charset.StandardCharsets;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UDPTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sender</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            DatagramSocket socket = <span class="keyword">new</span> DatagramSocket();</span><br><span class="line">            String str = <span class="string">"UDP消息发送"</span>;</span><br><span class="line">            <span class="keyword">byte</span>[] data = str.getBytes(StandardCharsets.UTF_8);</span><br><span class="line">            DatagramPacket packet = <span class="keyword">new</span> DatagramPacket(data, <span class="number">0</span>, data.length, InetAddress.getLocalHost(), <span class="number">8888</span>);</span><br><span class="line"></span><br><span class="line">            socket.send(packet);</span><br><span class="line">            socket.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">receiver</span><span class="params">()</span></span>&#123;</span><br><span class="line">        DatagramSocket socket = <span class="keyword">null</span>;</span><br><span class="line">        DatagramPacket packet = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            socket = <span class="keyword">new</span> DatagramSocket(<span class="number">8888</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">byte</span>[] data = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">100</span>];</span><br><span class="line">            packet = <span class="keyword">new</span> DatagramPacket(data, <span class="number">0</span>, data.length);</span><br><span class="line">            socket.receive(packet);</span><br><span class="line">            System.out.println(<span class="keyword">new</span> String(packet.getData(), <span class="number">0</span>, packet.getLength()));</span><br><span class="line">            socket.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/20/Java/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/TCP%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/20/Java/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/TCP%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="post-title-link" itemprop="url">TCP网络编程</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-20 15:13:24 / 修改时间：23:19:46" itemprop="dateCreated datePublished" datetime="2022-02-20T15:13:24+08:00">2022-02-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">网络编程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.net.InetAddress;</span><br><span class="line"><span class="keyword">import</span> java.net.ServerSocket;</span><br><span class="line"><span class="keyword">import</span> java.net.Socket;</span><br><span class="line"><span class="keyword">import</span> java.nio.charset.StandardCharsets;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InetAddressTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">client</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Socket socket = <span class="keyword">null</span>;</span><br><span class="line">        OutputStream os = <span class="keyword">null</span>;</span><br><span class="line">        FileInputStream fis = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="comment">//1. 创建Socket对象，指明服务器端IP和端口号</span></span><br><span class="line">            InetAddress inet = InetAddress.getByName(<span class="string">"127.0.0.1"</span>);</span><br><span class="line">            socket = <span class="keyword">new</span> Socket(inet, <span class="number">8888</span>);</span><br><span class="line">            <span class="comment">//2.获取输出流，用于输出数据</span></span><br><span class="line">            os = socket.getOutputStream();</span><br><span class="line">            fis = <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(<span class="string">"F:\\jdbc\\src\\com\\sympa\\lesson01\\01.jpg"</span>));</span><br><span class="line">            <span class="keyword">byte</span>[] car = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">            <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">            <span class="comment">//3.写出数据</span></span><br><span class="line">            <span class="keyword">while</span>((len = fis.read(car)) != -<span class="number">1</span>)&#123;</span><br><span class="line">                os.write(car, <span class="number">0</span>, len);</span><br><span class="line">            &#125;</span><br><span class="line">            socket.shutdownOutput();</span><br><span class="line"></span><br><span class="line">            InputStream is = socket.getInputStream();</span><br><span class="line">            ByteArrayOutputStream baos = <span class="keyword">new</span> ByteArrayOutputStream();</span><br><span class="line">            <span class="keyword">byte</span>[] car1 = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">20</span>];</span><br><span class="line">            <span class="keyword">while</span>((len = is.read(car1)) != -<span class="number">1</span>)&#123;</span><br><span class="line">                baos.write(car1, <span class="number">0</span>, len);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(baos.toString());</span><br><span class="line">        &#125; <span class="keyword">catch</span>(IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">try</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(socket != <span class="keyword">null</span>) socket.close();</span><br><span class="line">                <span class="keyword">if</span>(os != <span class="keyword">null</span>) os.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e)&#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">server</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ServerSocket ss = <span class="keyword">null</span>;</span><br><span class="line">        Socket socket = <span class="keyword">null</span>;</span><br><span class="line">        InputStream is = <span class="keyword">null</span>;</span><br><span class="line">        FileOutputStream fos = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="comment">//1.创建服务器端socket对象，指明自己端口号</span></span><br><span class="line">            ss = <span class="keyword">new</span> ServerSocket(<span class="number">8888</span>);</span><br><span class="line">            <span class="comment">//2.表明可以接受来自于客户端的socket</span></span><br><span class="line">            socket = ss.accept();</span><br><span class="line">            <span class="comment">//3.获取输入流</span></span><br><span class="line">            is = socket.getInputStream();</span><br><span class="line">            fos = <span class="keyword">new</span> FileOutputStream(<span class="string">"04.jpg"</span>);</span><br><span class="line">            <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">            <span class="keyword">int</span> len;</span><br><span class="line">            <span class="comment">//4.读取输入流数据</span></span><br><span class="line">            <span class="keyword">while</span>((len = is.read(buffer)) != -<span class="number">1</span>)&#123;</span><br><span class="line">                fos.write(buffer, <span class="number">0</span>, len);</span><br><span class="line">            &#125;</span><br><span class="line">            socket.shutdownInput();</span><br><span class="line">            System.out.println(<span class="string">"收到了来自于"</span> + socket.getInetAddress().getHostAddress() + <span class="string">"的消息"</span>);</span><br><span class="line"></span><br><span class="line">            OutputStream os = socket.getOutputStream();</span><br><span class="line">            os.write(<span class="string">"收到"</span>.getBytes(StandardCharsets.UTF_8));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">try</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(fos != <span class="keyword">null</span>) fos.close();</span><br><span class="line">                <span class="keyword">if</span>(is != <span class="keyword">null</span>) is.close();</span><br><span class="line">                <span class="keyword">if</span>(socket != <span class="keyword">null</span>) socket.close();</span><br><span class="line">                <span class="keyword">if</span>(ss != <span class="keyword">null</span>) ss.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e)&#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/20/Java/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/InetAddress%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/20/Java/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/InetAddress%E7%B1%BB/" class="post-title-link" itemprop="url">InetAddress类</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-20 14:33:30 / 修改时间：23:19:51" itemprop="dateCreated datePublished" datetime="2022-02-20T14:33:30+08:00">2022-02-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">网络编程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="实例化InetAddress类的方法"><a href="#实例化InetAddress类的方法" class="headerlink" title="实例化InetAddress类的方法"></a>实例化InetAddress类的方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.net.InetAddress;</span><br><span class="line"><span class="keyword">import</span> java.net.UnknownHostException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InetAddressTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//获取本机IP</span></span><br><span class="line">            InetAddress inet1 = InetAddress.getLocalHost();</span><br><span class="line">            System.out.println(inet1);</span><br><span class="line">            </span><br><span class="line">			<span class="comment">//获取指定域名IP</span></span><br><span class="line">            InetAddress inet2 = InetAddress.getByName(<span class="string">"baidu.com"</span>);</span><br><span class="line">            System.out.println(inet2.getHostAddress());</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span>(UnknownHostException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/20/Java/%E6%B3%9B%E5%9E%8B/%E6%B3%9B%E5%9E%8B%E6%A6%82%E8%BF%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/20/Java/%E6%B3%9B%E5%9E%8B/%E6%B3%9B%E5%9E%8B%E6%A6%82%E8%BF%B0/" class="post-title-link" itemprop="url">泛型概述</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-20 12:36:10 / 修改时间：14:08:07" itemprop="dateCreated datePublished" datetime="2022-02-20T12:36:10+08:00">2022-02-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/%E6%B3%9B%E5%9E%8B/" itemprop="url" rel="index"><span itemprop="name">泛型</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>所谓泛型，就是允许在定义类、接口时通过一个标识表示类中某个属性的类型或者是某个方法的返回值及参数类型。这个类型参数将在使用时（例如，继承或实现这个接口，用这个类型声明变量、创建对象时）确定（即传入实际的类型参数，也称为类型实参）</li>
+<li>从JDK1.5以后，Java引入了“参数化类型（Parameterized type）”的概念，允许我们在创建集合时再指定集合元素的类型，正如：List<String>，这表明该List只能保存字符串类型的对象</String></li>
+<li>JDK1.5改写了集合框架中的全部接口和类，为这些接口、类增加了泛型支持，从而可以在声明集合变量、创建集合对象时传入类型实参</li>
+<li><strong>泛型类型不能是基本数据类型</strong></li>
+<li>静态方法不能使用类的泛型，因为静态方法早于类的创建</li>
+<li>异常类不能是泛型的</li>
+<li>不可以T[] arr = new T[]，可以T[] arr = (T[]) new Object[]，因为T不是实际的类</li>
+</ul>
+<h4 id="自定义泛型结构"><a href="#自定义泛型结构" class="headerlink" title="自定义泛型结构"></a>自定义泛型结构</h4><p>泛型类，泛型接口，泛型方法</p>
+<ul>
+<li>如果定义了类是带泛型，建议在实例化时要指明泛型类型</li>
+<li>泛型方法：在方法中出现了泛型的结构，泛型参数与类的泛型参数没有任何关系</li>
+<li>泛型方法在返回值前加<E>，否则会被误认为是确定的类</E></li>
+</ul>
+<h4 id="通过通配符定义泛型对象公共父类"><a href="#通过通配符定义泛型对象公共父类" class="headerlink" title="通过通配符定义泛型对象公共父类"></a>通过通配符定义泛型对象公共父类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; list1 = <span class="keyword">null</span>;</span><br><span class="line">List&lt;String&gt; list2 = <span class="keyword">null</span>;</span><br><span class="line">List&lt;?&gt; list = <span class="keyword">null</span>;</span><br><span class="line">list = list1;</span><br><span class="line">list = list2;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>对于List&lt;?&gt;，不能向其内部添加数据，除了添加null</li>
+<li>可以使用Object类型读取</li>
+</ul>
+<h5 id="有限制条件的通配符"><a href="#有限制条件的通配符" class="headerlink" title="有限制条件的通配符"></a>有限制条件的通配符</h5><ul>
+<li><p>通配符指定上限</p>
+<p>上限extends：使用时指定的类型必须是继承某个类，或者实现某个接口</p>
+</li>
+<li><p>通配符指定下限</p>
+<p>下限super：使用时指定的类型不能小于操作的类</p>
+</li>
+<li><p>举例</p>
+<ul>
+<li><p>&lt;? extends Number&gt;  (无穷小, Number]</p>
+<p>只允许泛型为Number及Number子类的引用调用</p>
+</li>
+<li><p>&lt;? super Number&gt; [Number, 无穷大)</p>
+<p>只允许泛型为Number及Number父类的引用调用</p>
+</li>
+<li><p>&lt;? extends Comparable&gt;</p>
+<p>只允许泛型为实现Comparable接口的实现类引用调用</p>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/18/Java/%E6%B3%A8%E8%A7%A3/%E5%85%83%E6%B3%A8%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/18/Java/%E6%B3%A8%E8%A7%A3/%E5%85%83%E6%B3%A8%E8%A7%A3/" class="post-title-link" itemprop="url">元注解</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-18 17:50:20 / 修改时间：18:19:49" itemprop="dateCreated datePublished" datetime="2022-02-18T17:50:20+08:00">2022-02-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/%E6%B3%A8%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">注解</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>JDK的元Annotation用于修饰其他Annotation定义</li>
+<li>JDK5.0提供了4个标准的meta-annotation类型，分别是：<ul>
+<li>Retention</li>
+<li>Target</li>
+<li>Documented</li>
+<li>Inherited</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>@Retention</strong>：只能用于修饰一个Annotation定义，用于指定该Annotation的生命周期，@Rentention包含一个RetentionPolicy类型的成员变量，使用@Rentention时必须为该value成员变量指定值：<ul>
+<li>RetentionPolicy.SOURCE：在源文件中有效</li>
+<li>RetentionPolicy.CLASS：在class文件中有效（默认）</li>
+<li>RetentionPolicy.RUNTIME：在运行时有效，能通过反射获取</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>@Target</strong>：用于修饰Annotation定义，用于指定被修饰的Annotation能用于修饰哪些元素，@Target也包含一个名为value的成员变量</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>取值</th>
+<th></th>
+<th>取值</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CONSTRUCTOR</td>
+<td>用于描述构造器</td>
+<td>PACKAGE</td>
+<td>用于描述包</td>
+</tr>
+<tr>
+<td>FIELD</td>
+<td>用于描述域</td>
+<td>PARAMETER</td>
+<td>用于描述参数</td>
+</tr>
+<tr>
+<td>LOCAL_VARIABLE</td>
+<td>用于描述局部变量</td>
+<td>TYPE</td>
+<td>用于描述类，接口或enum声明</td>
+</tr>
+<tr>
+<td>METHOD</td>
+<td>用于描述方法</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>@Documented：用于指定被该元Annotation修饰的Annotation类将被javadoc工具提取成文档。默认情况下，javadoc是不包括注解的</li>
+<li>定义为Documented的注解必须设置Retention值为RUNTIME</li>
+</ul>
+<ul>
+<li>@Inherited：被它修饰的Annotation将具有继承性，子类将自动具有该注解</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/18/Java/%E6%B3%A8%E8%A7%A3/%E6%B3%A8%E8%A7%A3%EF%BC%88Annotation%EF%BC%89%E7%AE%80%E4%BB%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/18/Java/%E6%B3%A8%E8%A7%A3/%E6%B3%A8%E8%A7%A3%EF%BC%88Annotation%EF%BC%89%E7%AE%80%E4%BB%8B/" class="post-title-link" itemprop="url">注解（Annotation）简介</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-18 14:51:30 / 修改时间：17:50:29" itemprop="dateCreated datePublished" datetime="2022-02-18T14:51:30+08:00">2022-02-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/%E6%B3%A8%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">注解</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>JDK5.0开始，Java增加了对元数据（MetaData）的支持，也就是注解</li>
+<li>Annotation其实就是代码里的特殊标记，这些标记可以在编译，类加载，运行时被读取，并执行相应的处理。通过使用Annotation，程序员可以在不改变原有逻辑的情况下，在源文件中嵌入补充信息。代码分析工具，开发工具和部署工具可以通过这些补充信息进行验证或部署</li>
+<li>Annotation可以像修饰符一样被使用，可用于<strong>修饰包，类，构造器，方法，成员变量，参数，局部变量的声明</strong></li>
+<li>在JavaSE中，注解使用目的较为简单，例如标记过时功能，忽略警告等。在JavaEE/Android中注解占据了更重要的角色，例如用来配置应用程序的任何界面，代替JavaEE旧版中所遗留的繁冗代码和XML配置等</li>
+<li>未来的开发模式都是基于注解的，一定程度上：框架 = 注解 + 反射 + 设计模式。</li>
+</ul>
+<h4 id="常见Annotation"><a href="#常见Annotation" class="headerlink" title="常见Annotation"></a>常见Annotation</h4><ul>
+<li>生成文档相关注解<ul>
+<li>@author 标明开发该类模块的作者，多个作者直接使用,分隔</li>
+<li>@version 标明该类模块的版本</li>
+<li>@see 参考转向，也就是相关主题</li>
+<li>@since 从哪个版本开始增加的</li>
+<li>@param 对方法中某参数的说明，如果没有参数就不能写。格式：@param 形参名 形参类型 形参说明</li>
+<li>@return 对方法返回值说明。格式：@return 返回值类型 返回值说明</li>
+<li>@exception 对方法可能抛出异常说明，没有throws显式抛出异常就不能写。格式：@exception 异常类型 异常说明</li>
+</ul>
+</li>
+<li>在编译时进行格式检查（JDK内置三个基本注解）<ul>
+<li>@Override：限定重写父类方法</li>
+<li>@Deprecated：表示所修饰的元素已过时</li>
+<li>@SuppressWarnings：抑制编译器警告</li>
+</ul>
+</li>
+<li>跟踪代码依赖性，实现替代配置文件功能</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/18/Java/%E5%B8%B8%E7%94%A8%E7%B1%BB/%E6%9E%9A%E4%B8%BE%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/18/Java/%E5%B8%B8%E7%94%A8%E7%B1%BB/%E6%9E%9A%E4%B8%BE%E7%B1%BB/" class="post-title-link" itemprop="url">Java枚举类</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-18 14:21:11 / 修改时间：14:49:17" itemprop="dateCreated datePublished" datetime="2022-02-18T14:21:11+08:00">2022-02-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/%E5%B8%B8%E7%94%A8%E7%B1%BB/" itemprop="url" rel="index"><span itemprop="name">常用类</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="如何定义枚举类"><a href="#如何定义枚举类" class="headerlink" title="如何定义枚举类"></a>如何定义枚举类</h4><ul>
+<li>jdk5.0之前，自定义枚举类</li>
+<li>之后，可以使用enum关键字</li>
+</ul>
+<h4 id="自定义枚举类"><a href="#自定义枚举类" class="headerlink" title="自定义枚举类"></a>自定义枚举类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Season</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String seasonName;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String seasonDesc;</span><br><span class="line">    <span class="comment">//1.私有化类的构造器</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Season</span><span class="params">(String seasonName, String seasonDesc)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.seasonName = seasonName;</span><br><span class="line">        <span class="keyword">this</span>.seasonDesc = seasonDesc;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//2.提供当前枚举类多个对象</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Season SPRING = <span class="keyword">new</span> Season(<span class="string">"春天"</span>, <span class="string">"春暖花开"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//3.其他诉求1：获取枚举类对象属性</span></span><br><span class="line">	<span class="comment">//4。其他诉求2：提供toString()</span></span><br></pre></td></tr></table></figure>
+<h4 id="enum关键字（默认继承于Enum类）"><a href="#enum关键字（默认继承于Enum类）" class="headerlink" title="enum关键字（默认继承于Enum类）"></a>enum关键字（默认继承于Enum类）</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> Season&#123;</span><br><span class="line">    <span class="comment">//多个之间用,分隔</span></span><br><span class="line">    SPRING(<span class="string">"春天"</span>, <span class="string">"春暖花开"</span>);</span><br><span class="line">    <span class="comment">//toString返回对象名</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="使用enum关键字定义枚举类实现接口"><a href="#使用enum关键字定义枚举类实现接口" class="headerlink" title="使用enum关键字定义枚举类实现接口"></a>使用enum关键字定义枚举类实现接口</h4><ul>
+<li>情况一：在enum枚举类中实现抽象方法</li>
+<li>情况二：在每个对象后添加代码块实现方法</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/18/Java/%E5%B8%B8%E7%94%A8%E7%B1%BB/%E6%AF%94%E8%BE%83%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/18/Java/%E5%B8%B8%E7%94%A8%E7%B1%BB/%E6%AF%94%E8%BE%83%E5%99%A8/" class="post-title-link" itemprop="url">Java比较器</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-18 13:31:23 / 修改时间：14:07:13" itemprop="dateCreated datePublished" datetime="2022-02-18T13:31:23+08:00">2022-02-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/%E5%B8%B8%E7%94%A8%E7%B1%BB/" itemprop="url" rel="index"><span itemprop="name">常用类</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Java实现对象排序方式</p>
+<ul>
+<li>自然排序：java.lang.Comparable</li>
+<li>定制排序：java.util.Comparator</li>
+</ul>
+<h4 id="Comparable接口（自然排序）"><a href="#Comparable接口（自然排序）" class="headerlink" title="Comparable接口（自然排序）"></a>Comparable接口（自然排序）</h4><ul>
+<li>重写compareTo(obj)方法</li>
+<li>当前对象this大于形参对象obj，返回正整数，反之。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(o <span class="keyword">instanceof</span> Goods)&#123;</span><br><span class="line">        Goods goods = (Goods)o;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.price == goods.price)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.price &lt; goods.price;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"数据类型不一致！"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Comparator接口（定制排序）"><a href="#Comparator接口（定制排序）" class="headerlink" title="Comparator接口（定制排序）"></a>Comparator接口（定制排序）</h4><ul>
+<li>重写compare(Object o1, Object o2)方法</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/18/Java/%E5%B8%B8%E7%94%A8%E7%B1%BB/StringBufferBuilder/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/18/Java/%E5%B8%B8%E7%94%A8%E7%B1%BB/StringBufferBuilder/" class="post-title-link" itemprop="url">StringBufferBuilder</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-18 12:34:11 / 修改时间：14:14:48" itemprop="dateCreated datePublished" datetime="2022-02-18T12:34:11+08:00">2022-02-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/%E5%B8%B8%E7%94%A8%E7%B1%BB/" itemprop="url" rel="index"><span itemprop="name">常用类</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>String(JDK1.0)：不可变字符序列</li>
+<li>StringBuffer(JDK1.0)：可变字符序列，效率低，线程安全</li>
+<li>StringBuilder(JDK5.0)：可变字符序列，效率高，线程不安全</li>
+</ul>
+<h4 id="可变字符序列"><a href="#可变字符序列" class="headerlink" title="可变字符序列"></a>可变字符序列</h4><ul>
+<li>创建时默认char[16]（无参），可以指定容量（带参）</li>
+<li>扩容：2倍 + 2，还不够直接扩容增加的长度</li>
 </ul>
 
       
@@ -1017,7 +1105,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1085,20 +1173,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">104</span>
+          <span class="site-state-item-count">127</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1181,7 +1269,7 @@ $(document).ready(function() {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共30.5k字</span>
+  <span class="post-count">博客全站共38.7k字</span>
 </div>
         
 <div class="busuanzi-count">

@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"/>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Get busy living,or get busy dying.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="避风港">
+<meta property="og:url" content="http://yoursite.com/page/12/index.html">
+<meta property="og:site_name" content="避风港">
+<meta property="og:description" content="Get busy living,or get busy dying.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Sympa">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/page/12/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>避风港</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="避风港" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+<script src="https://sympawang.github.io/live2d/autoload.js"></script>
+  <div class="container use-motion">
+    <div class="headband"></div>
+<a href="https://github.com/sympawang" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">避风港</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-playlist">
+
+    <a href="/playlist/" rel="section"><i class="fa fa-music fa-fw"></i>歌单</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%B1%BB%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%B1%BB%E5%9E%8B/" class="post-title-link" itemprop="url">数据表类型(MYISAM与INNODB)</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-09-14 23:24:00" itemprop="dateCreated datePublished" datetime="2021-09-14T23:24:00+08:00">2021-09-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-09-15 00:02:36" itemprop="dateModified" datetime="2021-09-15T00:02:36+08:00">2021-09-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>MYISAM</th>
+<th>INNODB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>事务支持</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>数据行锁定</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>外键约束</td>
+<td>不支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>全文索引</td>
+<td>支持</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>表空间大小</td>
+<td>较小</td>
+<td>较大，约为MYISAM两倍</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>常规使用操作：</p>
+<ul>
+<li>MYISAM节约空间，速度较快</li>
+<li>INNODB安全性高，支持事务处理，多表多用户操作</li>
+</ul>
+<h3 id="物理空间位置"><a href="#物理空间位置" class="headerlink" title="物理空间位置"></a>物理空间位置</h3><p>所有数据库文件都存在data目录，一个文件夹一个数据库</p>
+<p>本质是文件存储</p>
+<h4 id="MySQL引擎在物理文件区别"><a href="#MySQL引擎在物理文件区别" class="headerlink" title="MySQL引擎在物理文件区别"></a>MySQL引擎在物理文件区别</h4><ul>
+<li><p>INNODB在数据库表中只有一个*.frm文件，以及上级目录下的ibdata1文件</p>
+</li>
+<li><p>MYISAM对应文件</p>
+<ul>
+<li>*.frm 表结构定义文件</li>
+<li>*.MYD 数据文件(Data)</li>
+<li>*.MYI  索引文件(Index)</li>
+</ul>
+</li>
+</ul>
+<h3 id="设置数据库表的字符集编码"><a href="#设置数据库表的字符集编码" class="headerlink" title="设置数据库表的字符集编码"></a>设置数据库表的字符集编码</h3><p><strong>CHARSET=UTF8</strong></p>
+<p>不设置会是mysql默认字符集编码，不支持中文</p>
+<h4 id="在my-ini中配置默认编码"><a href="#在my-ini中配置默认编码" class="headerlink" title="在my.ini中配置默认编码"></a>在my.ini中配置默认编码</h4><p><strong>character-set-server=utf8</strong></p>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/14/SQL%E5%9F%BA%E7%A1%80/SQL%E5%88%9B%E5%BB%BA%E8%A1%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/14/SQL%E5%9F%BA%E7%A1%80/SQL%E5%88%9B%E5%BB%BA%E8%A1%A8/" class="post-title-link" itemprop="url">SQL创建表</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-09-14 16:48:08 / 修改时间：23:23:23" itemprop="dateCreated datePublished" datetime="2021-09-14T16:48:08+08:00">2021-09-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`XXX`</span>  <span class="comment">--查看某张表的创建语句</span></span><br><span class="line"><span class="comment">--尽量表名字段使用``</span></span><br><span class="line"><span class="comment">--字符串使用''</span></span><br><span class="line"><span class="comment">--所有语句后加, 最后一个不用加</span></span><br><span class="line"><span class="comment">--主键最好加最后，一般一个表唯一</span></span><br><span class="line"><span class="comment">--注意顺序 [属性][索引][注释]</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> [<span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>] <span class="string">`XXX`</span> (</span><br><span class="line">	<span class="string">`列名`</span> <span class="built_in">INT</span>(<span class="number">4</span>)(类型) [<span class="keyword">NOT</span> <span class="literal">NULL</span>(非空) AUTO_INCREMENT(自增) <span class="keyword">COMMENT</span>(注释) <span class="string">'注释'</span>],</span><br><span class="line">    <span class="string">`列名`</span> <span class="built_in">VARCHAR</span>(<span class="number">30</span>) [<span class="keyword">DEFAULT</span> <span class="literal">NULL</span>(默认为空) <span class="keyword">COMMENT</span> <span class="string">''</span>],</span><br><span class="line">     …………,</span><br><span class="line">    PRIMARY <span class="keyword">KEY</span> (<span class="string">`列名`</span>)</span><br><span class="line">)[<span class="keyword">ENGINE</span> = <span class="keyword">INNODB</span>(引擎/类型) <span class="keyword">DEFAULT</span> = UFT8(编码)]</span><br><span class="line"></span><br><span class="line"><span class="keyword">DESC</span> <span class="string">`XXX`</span> <span class="comment">--查看表结构</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%97%E6%AE%B5%E5%B1%9E%E6%80%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%97%E6%AE%B5%E5%B1%9E%E6%80%A7/" class="post-title-link" itemprop="url">数据库字段属性</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-09-14 16:03:06 / 修改时间：16:21:48" itemprop="dateCreated datePublished" datetime="2021-09-14T16:03:06+08:00">2021-09-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="1、Unsigned"><a href="#1、Unsigned" class="headerlink" title="1、Unsigned"></a>1、Unsigned</h3><ol>
+<li>表示无符号整数</li>
+<li>当前列无法被声明为负数</li>
+</ol>
+<h3 id="2、zerofill"><a href="#2、zerofill" class="headerlink" title="2、zerofill"></a>2、zerofill</h3><ol>
+<li>0填充</li>
+<li>不足的位数，使用0填充</li>
+<li>5 —&gt; 005</li>
+</ol>
+<h3 id="3、自增"><a href="#3、自增" class="headerlink" title="3、自增"></a>3、自增</h3><ol>
+<li>自动在上一条记录的基础+1</li>
+<li>通常用来设计唯一主键，必须是整数类型</li>
+<li>可以自定义增量</li>
+</ol>
+<h3 id="4、非空-null-OR-not-null"><a href="#4、非空-null-OR-not-null" class="headerlink" title="4、非空(null OR not null)"></a>4、非空(null OR not null)</h3><ol>
+<li>如为非空，必须赋值</li>
+<li>否则若不赋值，默认是null(字符串除外)</li>
+<li><strong>空字符串不是null</strong></li>
+</ol>
+<h3 id="5、默认-default"><a href="#5、默认-default" class="headerlink" title="5、默认(default)"></a>5、默认(default)</h3><p>如果不指定该列值，则值变为默认值</p>
+<h2 id="以下5个字段每个表必须存在，表示一个记录存在的意义-项目用"><a href="#以下5个字段每个表必须存在，表示一个记录存在的意义-项目用" class="headerlink" title="以下5个字段每个表必须存在，表示一个记录存在的意义(项目用)"></a>以下5个字段每个表必须存在，表示一个记录存在的意义(项目用)</h2><h3 id="6、version（版本-乐观锁）"><a href="#6、version（版本-乐观锁）" class="headerlink" title="6、version（版本 乐观锁）"></a>6、version（版本 乐观锁）</h3><h3 id="7、is-delete-伪删除-存在但不可查询"><a href="#7、is-delete-伪删除-存在但不可查询" class="headerlink" title="7、is_delete (伪删除 存在但不可查询)"></a>7、is_delete (伪删除 存在但不可查询)</h3><h3 id="8、gmt-create-创建时间"><a href="#8、gmt-create-创建时间" class="headerlink" title="8、gmt_create (创建时间)"></a>8、gmt_create (创建时间)</h3><h3 id="9、gmt-update-修改时间"><a href="#9、gmt-update-修改时间" class="headerlink" title="9、gmt_update (修改时间)"></a>9、gmt_update (修改时间)</h3><h3 id="10、id-主键"><a href="#10、id-主键" class="headerlink" title="10、id (主键)"></a>10、id (主键)</h3>
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%97%E7%B1%BB%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/14/SQL%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%97%E7%B1%BB%E5%9E%8B/" class="post-title-link" itemprop="url">数据库列类型</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-09-14 15:47:08 / 修改时间：16:02:22" itemprop="dateCreated datePublished" datetime="2021-09-14T15:47:08+08:00">2021-09-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="1、数值类型"><a href="#1、数值类型" class="headerlink" title="1、数值类型"></a>1、数值类型</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tinyint</td>
+<td>1个字节的整数</td>
+</tr>
+<tr>
+<td>smallint</td>
+<td>2个字节的整数</td>
+</tr>
+<tr>
+<td>mediumuint</td>
+<td>3个字节的整数</td>
+</tr>
+<tr>
+<td><strong>int</strong></td>
+<td><strong>4个字节的整数</strong></td>
+</tr>
+<tr>
+<td>bigint</td>
+<td>8个字节的整数</td>
+</tr>
+<tr>
+<td>float</td>
+<td>4个字节的浮点数</td>
+</tr>
+<tr>
+<td><strong>double</strong></td>
+<td><strong>8个字节的浮点数</strong></td>
+</tr>
+<tr>
+<td>decimal</td>
+<td>字符串浮点数(金融计算)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="2、字符串类型"><a href="#2、字符串类型" class="headerlink" title="2、字符串类型"></a>2、字符串类型</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>char</td>
+<td>固定长度字符串(0 ~ 255)</td>
+</tr>
+<tr>
+<td><strong>varchar</strong></td>
+<td><strong>可变长字符串(0 ~ 65535)</strong></td>
+</tr>
+<tr>
+<td>tinytext</td>
+<td>微型文本 (0 ~ 2^8 - 1)</td>
+</tr>
+<tr>
+<td>text</td>
+<td>大文本(0 ~ 2^16 - 1)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="3、时间日期类型"><a href="#3、时间日期类型" class="headerlink" title="3、时间日期类型"></a>3、时间日期类型</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>date</td>
+<td>YYYY - MM - DD 日期</td>
+</tr>
+<tr>
+<td>time</td>
+<td>hh : mm : ss 时间</td>
+</tr>
+<tr>
+<td><strong>datetime</strong></td>
+<td><strong>YYYY - MM - DD hh : mm : ss 日期+时间</strong></td>
+</tr>
+<tr>
+<td><strong>timestamp</strong></td>
+<td><strong>时间戳 1970.1.1到现在的毫秒数</strong></td>
+</tr>
+<tr>
+<td>year</td>
+<td>年份</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="4、null类型"><a href="#4、null类型" class="headerlink" title="4、null类型"></a>4、null类型</h3><p>表示未知数据</p>
+<p>使用null运算，结果为null</p>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/14/SQL%E5%9F%BA%E7%A1%80/SQL%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/14/SQL%E5%9F%BA%E7%A1%80/SQL%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-title-link" itemprop="url">SQL操作数据库</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-09-14 15:32:33 / 修改时间：15:46:40" itemprop="dateCreated datePublished" datetime="2021-09-14T15:32:33+08:00">2021-09-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="1、创建数据库"><a href="#1、创建数据库" class="headerlink" title="1、创建数据库"></a>1、创建数据库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> [<span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>] XXX</span><br></pre></td></tr></table></figure>
+<h3 id="2、删除数据库"><a href="#2、删除数据库" class="headerlink" title="2、删除数据库"></a>2、删除数据库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">DATABASE</span> [<span class="keyword">IF</span> <span class="keyword">EXISTS</span>] XXX</span><br></pre></td></tr></table></figure>
+<h3 id="3、切换数据库"><a href="#3、切换数据库" class="headerlink" title="3、切换数据库"></a>3、切换数据库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">USE</span> XXX</span><br><span class="line"><span class="comment">--如果字段名是特殊字符，需要用`XXX`</span></span><br></pre></td></tr></table></figure>
+<h3 id="4、查看所有数据库"><a href="#4、查看所有数据库" class="headerlink" title="4、查看所有数据库"></a>4、查看所有数据库</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">DATABASE</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/12/SQL%E5%9F%BA%E7%A1%80/MySQL%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/12/SQL%E5%9F%BA%E7%A1%80/MySQL%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">MySQL基本操作和概念</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-09-12 00:43:14 / 修改时间：01:17:11" itemprop="dateCreated datePublished" datetime="2021-09-12T00:43:14+08:00">2021-09-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="一、创建数据库"><a href="#一、创建数据库" class="headerlink" title="一、创建数据库"></a>一、创建数据库</h2><p><img src="/images/创建数据库.PNG"></p>
+<p><strong>CREATE DATABASE <em>xxx</em> CHARACTER SET utf8 COLLATE utf8_general_ci; </strong></p>
+<h2 id="二、创建表"><a href="#二、创建表" class="headerlink" title="二、创建表"></a>二、创建表</h2><p><img src="/images/新建表.PNG"></p>
+<h2 id="三、命令行操作"><a href="#三、命令行操作" class="headerlink" title="三、命令行操作"></a>三、命令行操作</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p  <span class="comment">--连接数据库</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">databases</span>; <span class="comment">--查看所有数据库</span></span><br><span class="line"><span class="keyword">use</span> xxx <span class="comment">--切换数据库</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">tables</span>； <span class="comment">--查看所有表</span></span><br><span class="line"><span class="keyword">describe</span> xxx; <span class="comment">--显示表中所有信息</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> xxx; <span class="comment">--创建数据库</span></span><br><span class="line">exit; <span class="comment">--连接退出</span></span><br><span class="line"><span class="comment">--单行注释</span></span><br><span class="line"><span class="comment">/* 多行注释 */</span></span><br></pre></td></tr></table></figure>
+<h2 id="四、语言概念"><a href="#四、语言概念" class="headerlink" title="四、语言概念"></a>四、语言概念</h2><p><strong>DDL 数据库定义语言</strong></p>
+<p><strong>DML 数据库操作语言</strong></p>
+<p><strong>DQL 数据库查询语言</strong></p>
+<p><strong>DCL 数据库控制语言</strong></p>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/09/ACM/DAG%E5%9B%BE%E4%B8%8A%E7%9A%84%E7%81%AD%E7%BB%9D%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/09/ACM/DAG%E5%9B%BE%E4%B8%8A%E7%9A%84%E7%81%AD%E7%BB%9D%E6%A0%91/" class="post-title-link" itemprop="url">DAG图上的灭绝树</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-09-09 22:16:19 / 修改时间：22:16:42" itemprop="dateCreated datePublished" datetime="2021-09-09T22:16:19+08:00">2021-09-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%BE%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">图论</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="DAG图上的灭绝树"><a href="#DAG图上的灭绝树" class="headerlink" title="DAG图上的灭绝树"></a>DAG图上的灭绝树</h2><p>例题P2597</p>
+<h4 id="难点：DAG图上求LCA"><a href="#难点：DAG图上求LCA" class="headerlink" title="难点：DAG图上求LCA"></a>难点：DAG图上求LCA</h4><p><strong>其思路是：给每个数多维护一个值dad,用来表示如果此时它要被连入灭绝树中，它应该是哪个点的儿子。一开始将dad清为-1，将开始入度为0的点 pi的dad设为0（太阳）。在拓扑排序取出一个点i的时候连接边 dad[i]-&gt;i(此时i的父亲（根节点的父亲前面已经确定）都已经被处理过了，所以dad[i]已经确定（怎么确定的马上会说））。然后更新点i相对应的深度和倍增数组（因为i的祖先们已经在i之前被确定，所以此时的深度和其倍增数组可以唯一确定），接着遍历i的儿子们，如果它的儿子p的父亲dad[p]为0，说明它的父亲还没有被更新过，此时把dad[p]更新为i。否则就将dad[p]更新为LCA（dad[p],i）。这样，在遍历到p的时候它的父节点就被确定下来了。</strong></p>
+<h4 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> in[<span class="number">100010</span>];</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;v1[<span class="number">100010</span>];</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;v2[<span class="number">100010</span>];</span><br><span class="line"><span class="keyword">int</span> f[<span class="number">100010</span>][<span class="number">30</span>], d[<span class="number">100010</span>];</span><br><span class="line"><span class="keyword">int</span> sz[<span class="number">100010</span>];</span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;q;</span><br><span class="line"><span class="keyword">int</span> t;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lca</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (d[x] &gt; d[y])swap(x, y);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = t; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">		<span class="keyword">if</span> (f[y][i] == <span class="number">-1</span>)<span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">if</span> (d[f[y][i]] &gt;= d[x])y = f[y][i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (x == y)<span class="keyword">return</span> x;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = t; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">		<span class="keyword">if</span> (f[x][i] == <span class="number">-1</span> || f[y][i] == <span class="number">-1</span>)<span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">if</span> (f[x][i] != f[y][i])x = f[x][i], y = f[y][i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> f[x][<span class="number">0</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bfs</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">while</span> (!q.empty()) &#123;</span><br><span class="line">		<span class="keyword">int</span> x = q.front(); q.pop();</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; v1[x].<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">			<span class="keyword">int</span> k = v1[x][i];</span><br><span class="line">			in[k]--;</span><br><span class="line">			<span class="keyword">if</span> (f[k][<span class="number">0</span>] == <span class="number">-1</span>)f[k][<span class="number">0</span>] = x;</span><br><span class="line">			<span class="keyword">else</span> f[k][<span class="number">0</span>] = lca(f[k][<span class="number">0</span>], x);</span><br><span class="line">			d[k] = d[f[k][<span class="number">0</span>]] + <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= t; j++)f[k][j] = f[f[k][j - <span class="number">1</span>]][j - <span class="number">1</span>];</span><br><span class="line">			<span class="keyword">if</span> (!in[k]) &#123;</span><br><span class="line">				q.push(k);</span><br><span class="line">				v2[f[k][<span class="number">0</span>]].push_back(k);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">	sz[x] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; v2[x].<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">		dfs(v2[x][i]);</span><br><span class="line">		sz[x] += sz[v2[x][i]];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">	<span class="built_in">memset</span>(f, <span class="number">-1</span>, <span class="keyword">sizeof</span>(f));</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">	t = <span class="built_in">log</span>(n + <span class="number">1</span>) / <span class="built_in">log</span>(<span class="number">2</span>) + <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">			<span class="keyword">int</span> k;</span><br><span class="line">			<span class="built_in">cin</span> &gt;&gt; k;</span><br><span class="line">			<span class="keyword">if</span> (!k)<span class="keyword">break</span>;</span><br><span class="line">			v1[k].push_back(i);</span><br><span class="line">			in[i]++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!in[i]) &#123;</span><br><span class="line">			d[i] = <span class="number">1</span>;</span><br><span class="line">			f[i][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">			q.push(i);</span><br><span class="line">			v2[<span class="number">0</span>].push_back(i);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	bfs();</span><br><span class="line">	dfs(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; sz[i] - <span class="number">1</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/09/ACM/%E4%B8%80%E8%88%AC%E5%9B%BE%E5%8C%B9%E9%85%8D(%E5%B8%A6%E8%8A%B1%E6%A0%91)%E6%A8%A1%E6%9D%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/09/ACM/%E4%B8%80%E8%88%AC%E5%9B%BE%E5%8C%B9%E9%85%8D(%E5%B8%A6%E8%8A%B1%E6%A0%91)%E6%A8%A1%E6%9D%BF/" class="post-title-link" itemprop="url">一般图最大匹配(带花树)模板</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-09-09 22:16:19 / 修改时间：22:16:30" itemprop="dateCreated datePublished" datetime="2021-09-09T22:16:19+08:00">2021-09-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%BE%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">图论</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="一般图最大匹配-带花树-模板"><a href="#一般图最大匹配-带花树-模板" class="headerlink" title="一般图最大匹配(带花树)模板"></a>一般图最大匹配(带花树)模板</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1005</span>;</span><br><span class="line"><span class="keyword">int</span> T,n,m,e,cnt,tot,ans,hd[N],p[N],match[N],pre[N],vst[N],dfn[N];</span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;q;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span>&#123;</span><span class="keyword">int</span> t,nxt;&#125;es[N*N];</span><br><span class="line"><span class="keyword">char</span> ss[<span class="number">1</span>&lt;&lt;<span class="number">17</span>],*A=ss,*B=ss;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">char</span> <span class="title">gc</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> A==B&amp;&amp;(B=(A=ss)+fread(ss,<span class="number">1</span>,<span class="number">1</span>&lt;&lt;<span class="number">17</span>,<span class="built_in">stdin</span>),A==B)?<span class="number">-1</span>:*A++;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(<span class="keyword">register</span> <span class="keyword">int</span>&amp;x)</span></span>&#123;</span><br><span class="line">    x=<span class="number">0</span>;<span class="keyword">int</span> s=gc();</span><br><span class="line">    <span class="keyword">while</span>(!<span class="built_in">isdigit</span>(s))s=gc();</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">isdigit</span>(s))x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+s-<span class="string">'0'</span>,s=gc();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">register</span> <span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x&gt;<span class="number">9</span>)<span class="built_in">print</span>(x/<span class="number">10</span>);</span><br><span class="line">    <span class="built_in">putchar</span>(x%<span class="number">10</span>+<span class="string">'0'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Add</span><span class="params">(<span class="keyword">register</span> <span class="keyword">int</span> u,<span class="keyword">register</span> <span class="keyword">int</span> v)</span></span>&#123;es[++tot]=(edge)&#123;v,hd[u]&#125;;hd[u]=tot;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">register</span> <span class="keyword">int</span> u,<span class="keyword">register</span> <span class="keyword">int</span> v)</span></span>&#123;Add(u,v),Add(v,u);&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">register</span> <span class="keyword">int</span> x)</span></span>&#123;<span class="keyword">return</span> x==p[x]?x:p[x]=<span class="built_in">find</span>(p[x]);&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">lca</span><span class="params">(<span class="keyword">register</span> <span class="keyword">int</span> u,<span class="keyword">register</span> <span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(++cnt,u=<span class="built_in">find</span>(u),v=<span class="built_in">find</span>(v);dfn[u]!=cnt;)&#123;</span><br><span class="line">		dfn[u]=cnt;</span><br><span class="line">		u=<span class="built_in">find</span>(pre[match[u]]);</span><br><span class="line">		<span class="keyword">if</span>(v)swap(u,v);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> u;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">blossom</span><span class="params">(<span class="keyword">register</span> <span class="keyword">int</span> x,<span class="keyword">register</span> <span class="keyword">int</span> y,<span class="keyword">register</span> <span class="keyword">int</span> w)</span></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">find</span>(x)!=w)&#123;</span><br><span class="line">		pre[x]=y,y=match[x];</span><br><span class="line">		<span class="keyword">if</span>(vst[y]==<span class="number">2</span>)vst[y]=<span class="number">1</span>,q.push(y);</span><br><span class="line">		<span class="keyword">if</span>(<span class="built_in">find</span>(x)==x)p[x]=w;</span><br><span class="line">		<span class="keyword">if</span>(<span class="built_in">find</span>(y)==y)p[y]=w;</span><br><span class="line">		x=pre[y];</span><br><span class="line">	&#125; </span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">aug</span><span class="params">(<span class="keyword">register</span> <span class="keyword">int</span> s)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>((ans+<span class="number">1</span>)*<span class="number">2</span>&gt;n)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;++i)p[i]=i,vst[i]=pre[i]=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(!q.empty())q.pop();</span><br><span class="line">	<span class="keyword">for</span>(q.push(s),vst[s]=<span class="number">1</span>;!q.empty();q.pop()) </span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> u(q.front()),i(hd[u]),v,w;i;i=es[i].nxt)&#123;</span><br><span class="line">			<span class="keyword">if</span>(<span class="built_in">find</span>(u)==<span class="built_in">find</span>(v=es[i].t)||vst[v]==<span class="number">2</span>)<span class="keyword">continue</span>;</span><br><span class="line">			<span class="keyword">if</span>(!vst[v])&#123;</span><br><span class="line">				vst[v]=<span class="number">2</span>;pre[v]=u;</span><br><span class="line">				<span class="keyword">if</span>(!match[v])&#123;</span><br><span class="line">					<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> x=v,lst;x;x=lst)lst=match[pre[x]],match[x]=pre[x],match[pre[x]]=x;</span><br><span class="line">					<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				vst[match[v]]=<span class="number">1</span>,q.push(match[v]);</span><br><span class="line">			&#125;<span class="keyword">else</span> blossom(u,v,w=lca(u,v)),blossom(v,u,w);</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">read</span>(n),<span class="built_in">read</span>(m);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>,u,v;i&lt;=m;i++)<span class="built_in">read</span>(u),<span class="built_in">read</span>(v),add(u,v),add(v,u);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=n;i;--i)<span class="keyword">if</span>(!match[i])ans+=aug(i);</span><br><span class="line">	<span class="built_in">print</span>(ans),<span class="built_in">putchar</span>(<span class="string">'\n'</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">print</span>(match[i]),<span class="built_in">putchar</span>(<span class="string">' '</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>复杂度同匈牙利算法，常数略大。</p>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/09/ACM/%E8%99%9A%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/09/ACM/%E8%99%9A%E6%A0%91/" class="post-title-link" itemprop="url">虚树</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-09-09 22:15:19 / 修改时间：22:28:06" itemprop="dateCreated datePublished" datetime="2021-09-09T22:15:19+08:00">2021-09-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%BE%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">图论</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="虚树"><a href="#虚树" class="headerlink" title="虚树"></a>虚树</h2><h3 id="什么是虚树"><a href="#什么是虚树" class="headerlink" title="什么是虚树"></a>什么是虚树</h3><p><strong>虚树常常被使用在树形dp中，就比如这题。当一次询问仅仅涉及到整颗树中少量结点时，为每次询问都对整棵树进行dp在时间上是不可接受的。此时，我们建立一颗仅仅包含部分关键结点的虚树，将非关键点构成的链简化成边或是剪去，在虚树上进行dp。</strong></p>
+<p><strong>虚树包含所有的询问点及它们之间的LCA。显然虚树的叶子节点必然是询问点，因此对于某次含有k个点的询问，虚树最多有K个叶子结点，从而整颗虚树最多只有2k-1个结点（这会在虚树变成二叉树形态时达到）。</strong></p>
+<h3 id="建立虚树之前"><a href="#建立虚树之前" class="headerlink" title="建立虚树之前"></a>建立虚树之前</h3><p><strong>我们需要：</strong></p>
+<p><strong>预处理出原树的dfs序以及dp可能用到的一些其他东西。</strong></p>
+<p><strong>高效的在线LCA算法，单次询问O(logn)的倍增和树剖，O(1)的RMQ−ST皆可。</strong></p>
+<p><strong>将询问点按dfs序排序。</strong></p>
+<h3 id="如何建立虚树"><a href="#如何建立虚树" class="headerlink" title="如何建立虚树"></a>如何建立虚树</h3><p><strong>最右链是虚树构建的一条分界线，表明其左侧部分的虚树已经完成构建。我们使用栈stak来维护所谓的最右链，top为栈顶位置。值得注意的是，最右链上的边并没有被加入虚树，这是因为在接下来的过程中随时会有某个lca插到最右链中。</strong></p>
+<p><strong>初始无条件将第一个询问点加入栈stak中。</strong></p>
+<p><strong>将接下来的所有询问点顺次加入，假设该询问点为now，lc为该点和栈顶点的最近公共祖先即lc=lca(stak[top],now)。</strong></p>
+<p><strong>由于lc是stak[top]的祖先，lc必然在我们维护的最右链上。</strong></p>
+<p><strong>考虑lc和stak[top]及栈中第二个元素stak[top-1]的关系。</strong></p>
+<h4 id="情况一"><a href="#情况一" class="headerlink" title="情况一"></a>情况一</h4><p><strong>lc = stak[top]，也就是说，now在stak[top]的子树中</strong></p>
+<p><img src="/images/虚树1.PNG"></p>
+<p><strong>这时候，我们只需把now入栈，即把它加到最右链的末端即可。</strong></p>
+<h3 id="情况二"><a href="#情况二" class="headerlink" title="情况二"></a>情况二</h3><p><strong>lc在stak[top]和stak[top-1]之间。</strong></p>
+<p><img src="/images/虚树2.PNG"></p>
+<p><strong>显然，此时最右链的末端从stak[top-1]-&gt;stak[top]变成了stak[top-1]-&gt;lc-&gt;stak[top]，我们需要做的，首先是把边lc-stak[top]加入虚树，然后，把stak[top]出栈，把lc和now入栈。</strong></p>
+<h3 id="情况三"><a href="#情况三" class="headerlink" title="情况三"></a>情况三</h3><p><strong>lc=stak[top−1]。</strong></p>
+<p><img src="/images/虚树3.PNG"></p>
+<p><strong>这种情况和第二种情况大同小异，唯一的区别就是lc不用入栈了。</strong></p>
+<h3 id="情况四"><a href="#情况四" class="headerlink" title="情况四"></a>情况四</h3><p><strong>此时有dep[lc]&lt;dep[stak[top-1]]。lc已经不在stak[top-1]的子树中了，甚至也未必在stak[top-2],stak[top-3]……的子树中。</strong></p>
+<p><img src="/images/虚树4.PNG"></p>
+<p><strong>以图中为例，最右链从stak[top-3]-&gt;stak[top-2]-&gt;stak[top-1]-&gt;stak[top]变成了stak[top-3]-&gt;lc-&gt;now。我们需要循环依次将最右链的末端剪下，将被剪下的边加入虚树，直到不再是情况四。</strong></p>
+<p><strong>就上图而言，循环会持续两轮，将stak[top],stak[top-1]依次出栈，并且把边stak[top-1]-stak[top],stak[top-2]-stak[top-1]加入虚树中。随后通过情况二完成构建。</strong></p>
+<p>当最后一个询问点加入之后，再将最右链加入虚树，即可完成构建。</p>
+<h3 id="另一种虚树构建方法：欧拉序"><a href="#另一种虚树构建方法：欧拉序" class="headerlink" title="另一种虚树构建方法：欧拉序"></a>另一种虚树构建方法：欧拉序</h3><h4 id="什么是欧拉序"><a href="#什么是欧拉序" class="headerlink" title="什么是欧拉序"></a>什么是欧拉序</h4><p><strong>正常的dfs序仅在入栈的时候计算一次，而欧拉序，不仅在入栈的时候计算一次，还在出栈的时候计算一次，也就是说一个点有两次出现机会压栈为+，弹栈为-，欧拉序记录了dfs的全部信息，只要有了这个树的欧拉序，就算没有树，给我们一个栈，照样可以在树上跑dfs。</strong></p>
+<p><strong>我们发现，抽出来的那只树，它的欧拉序大小关系和原来的树的欧拉序是一样的，所以只需要把所有点的复制一个弹出点，然后把压栈点和弹栈点按原来树上的欧拉序排一波序，就是新树中的点按欧拉序排序的结果，然后欧拉序我们有了，直接不建树跑dfs即可</strong></p>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/09/ACM/2020CCPC%E5%A8%81%E6%B5%B7%E7%AB%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/09/ACM/2020CCPC%E5%A8%81%E6%B5%B7%E7%AB%99/" class="post-title-link" itemprop="url">2020CCPC威海站</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-09-09 16:35:19 / 修改时间：22:12:47" itemprop="dateCreated datePublished" datetime="2021-09-09T16:35:19+08:00">2021-09-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%A1%A5%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">补题</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="2020CCPC威海站"><a href="#2020CCPC威海站" class="headerlink" title="2020CCPC威海站"></a>2020CCPC威海站</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>⚫</td>
+<td>▲</td>
+<td>⚫</td>
+<td>⚫</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>思维</td>
+<td>BFS</td>
+<td>图上计数</td>
+<td>数学</td>
+<td>概率DP</td>
+<td>？</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>G</th>
+<th>H</th>
+<th>I</th>
+<th>J</th>
+<th>K</th>
+<th>L</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>▲</td>
+<td>⚫</td>
+<td></td>
+<td>△</td>
+<td></td>
+<td>⚫</td>
+</tr>
+<tr>
+<td>哈希+线段树</td>
+<td>差分（线段树）</td>
+<td>？</td>
+<td>博弈论+计数</td>
+<td>？</td>
+<td>数学+背包</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="B-Labyrinth"><a href="#B-Labyrinth" class="headerlink" title="B Labyrinth"></a>B <a href="https://vjudge.net/problem/Gym-102798B" target="_blank" rel="noopener">Labyrinth</a></h3><h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p><strong>一个n*m的矩阵，其中有一些不能走的黑洞。询问q次，每次给起点终点，问最短距离。</strong></p>
+<h4 id="做法："><a href="#做法：" class="headerlink" title="做法："></a>做法：</h4><p><strong>1.如果起点终点之间没有黑洞，那么最短距离就是两点的曼哈顿距离。</strong></p>
+<p><strong>2.如果起点终点之间有黑洞，那么最短距离一定经过某个黑洞四周的一个点。</strong></p>
+<p><strong>因为黑洞最多只有42个，所以首先预处理出每个黑洞四周的每个点到任一点的最短距离。</strong></p>
+<p><strong>处理询问时，只需要枚举这些点，答案就是这个点到起点距离+这个点到终点距离。</strong></p>
+<p><strong>代码：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> dis[<span class="number">210</span>][<span class="number">200010</span>];</span><br><span class="line"><span class="keyword">int</span> dis_pos[<span class="number">210</span>];</span><br><span class="line"><span class="keyword">int</span> bk[<span class="number">45</span>];</span><br><span class="line"><span class="keyword">int</span> c[<span class="number">200010</span>];</span><br><span class="line"><span class="keyword">int</span> xp[<span class="number">4</span>] = &#123; <span class="number">0</span>, <span class="number">0</span>, <span class="number">-1</span>, <span class="number">1</span> &#125;, yp[<span class="number">4</span>] = &#123; <span class="number">-1</span>, <span class="number">1</span>, <span class="number">0</span> , <span class="number">0</span> &#125;;</span><br><span class="line"><span class="keyword">int</span> n, m, k, q;</span><br><span class="line"><span class="keyword">int</span> tot = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pos</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (x - <span class="number">1</span>) * m + y;</span><br><span class="line">&#125;</span><br><span class="line">pair&lt;int, int&gt; apos(int p) &#123;</span><br><span class="line">	<span class="keyword">return</span> make_pair((p - <span class="number">1</span>) / m + <span class="number">1</span>, (p - <span class="number">1</span>) % m + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (x &gt;= <span class="number">1</span> &amp;&amp; x &lt;= n &amp;&amp; y &gt;= <span class="number">1</span> &amp;&amp; y &lt;= m)<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> mp[<span class="number">200010</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bfs</span><span class="params">(<span class="keyword">int</span> num, <span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">	c[pos(x, y)] = <span class="number">1</span>;</span><br><span class="line">	<span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;q;</span><br><span class="line">	dis[num][pos(x, y)] = <span class="number">0</span>;</span><br><span class="line">	q.push(pos(x, y));</span><br><span class="line">	<span class="keyword">while</span> (!q.empty()) &#123;</span><br><span class="line">		<span class="keyword">int</span> top1 = q.front();</span><br><span class="line">		q.pop();</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">			<span class="keyword">auto</span> p = apos(top1);</span><br><span class="line">			p.first += xp[i], p.second += yp[i];</span><br><span class="line">			<span class="keyword">if</span> (!check(p.first, p.second))<span class="keyword">continue</span>;</span><br><span class="line">			<span class="keyword">if</span> (c[pos(p.first, p.second)])<span class="keyword">continue</span>;</span><br><span class="line">			<span class="keyword">if</span> (mp[pos(p.first, p.second)])<span class="keyword">continue</span>;</span><br><span class="line">			c[pos(p.first, p.second)] = <span class="number">1</span>;</span><br><span class="line">			dis[num][pos(p.first, p.second)] = dis[num][top1] + <span class="number">1</span>;</span><br><span class="line">			q.push(pos(p.first, p.second));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(dis, <span class="number">-1</span>, <span class="keyword">sizeof</span>(dis));</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d%d%d"</span>, &amp;n, &amp;m, &amp;k, &amp;q);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= k; i++) &#123;</span><br><span class="line">		<span class="keyword">int</span> x, y;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;x, &amp;y);</span><br><span class="line">		bk[i] = pos(x, y);</span><br><span class="line">		mp[pos(x, y)] = <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= k; i++) &#123;</span><br><span class="line">		<span class="keyword">int</span> x = apos(bk[i]).first, y = apos(bk[i]).second;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">4</span>; j++) &#123;</span><br><span class="line">			<span class="keyword">int</span> xn = x + xp[j], yn = y + yp[j];</span><br><span class="line">			<span class="keyword">if</span> (!check(xn, yn))<span class="keyword">continue</span>;</span><br><span class="line">			<span class="keyword">if</span> (mp[pos(xn, yn)])<span class="keyword">continue</span>;</span><br><span class="line">			dis_pos[++tot] = pos(xn, yn);</span><br><span class="line">			<span class="built_in">memset</span>(c, <span class="number">0</span>, <span class="keyword">sizeof</span>(c));</span><br><span class="line">			bfs(tot, xn, yn);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (q--) &#123;</span><br><span class="line">		<span class="keyword">int</span> xl, yl, xr, yr;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%d%d"</span>, &amp;xl, &amp;yl, &amp;xr, &amp;yr);</span><br><span class="line">		<span class="keyword">if</span> (mp[pos(xl, yl)] || mp[pos(xr, yr)]) &#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"-1\n"</span>);</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> ff = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= k; i++) &#123;</span><br><span class="line">			<span class="keyword">auto</span> p = apos(bk[i]);</span><br><span class="line">			<span class="keyword">if</span> (p.first &gt;= <span class="built_in">min</span>(xl, xr) &amp;&amp; p.first &lt;= <span class="built_in">max</span>(xl, xr) &amp;&amp; p.second &gt;= <span class="built_in">min</span>(yl, yr) &amp;&amp; p.second &lt;= <span class="built_in">max</span>(yl, yr)) &#123;</span><br><span class="line">				ff = <span class="number">1</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (!ff) &#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, <span class="built_in">abs</span>(xl - xr) + <span class="built_in">abs</span>(yl - yr));</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> mmin = <span class="number">1e9</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= tot; i++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (dis[i][pos(xl, yl)] == <span class="number">-1</span> || dis[i][pos(xr, yr)] == <span class="number">-1</span>)<span class="keyword">continue</span>;</span><br><span class="line">			mmin = <span class="built_in">min</span>(mmin, dis[i][pos(xl, yl)] + dis[i][pos(xr, yr)]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (mmin == <span class="number">1e9</span>)<span class="built_in">printf</span>(<span class="string">"-1\n"</span>);</span><br><span class="line">		<span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, mmin);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/11/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/13/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sympa"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Sympa</p>
+  <div class="site-description" itemprop="description">Get busy living,or get busy dying.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">127</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sympawang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sympawang" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2813086010@qq.com" title="E-Mail → mailto:2813086010@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://codeforces.com/profile/Sympa" title="codeforces → https:&#x2F;&#x2F;codeforces.com&#x2F;profile&#x2F;Sympa" rel="noopener" target="_blank"><i class="fa fa-space-shuttle fa-fw"></i>codeforces</a>
+      </span>
+  </div>
+
+
+
+      </div>
+<link rel="stylesheet" href="/dist/APlayer.min.css">
+<div id="aplayer"></div>
+<script type="text/javascript" src="/dist/APlayer.min.js"></script>
+<script type="text/javascript" src="/dist/music.js"></script>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sympa</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       	
+});
+</script> 
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共38.7k字</span>
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=[object Object]&web_id=[object Object]"></script>
+  </div>
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>

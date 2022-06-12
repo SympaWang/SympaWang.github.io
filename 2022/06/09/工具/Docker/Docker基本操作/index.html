@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"/>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="镜像相关命令 镜像名称一般分两部分组成：[repository]:[tag]，例如：mysql:5.7。 创建镜像 从本地：从Dockerfile文件，利用docker build命令构建镜像 从镜像服务器：docker pull命令   查看镜像：docker images命令 删除镜像：docker rmi命令 推送镜像 docker push命令，推送到服务 docker save命令，保存">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker基本操作">
+<meta property="og:url" content="http://yoursite.com/2022/06/09/%E5%B7%A5%E5%85%B7/Docker/Docker%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="避风港">
+<meta property="og:description" content="镜像相关命令 镜像名称一般分两部分组成：[repository]:[tag]，例如：mysql:5.7。 创建镜像 从本地：从Dockerfile文件，利用docker build命令构建镜像 从镜像服务器：docker pull命令   查看镜像：docker images命令 删除镜像：docker rmi命令 推送镜像 docker push命令，推送到服务 docker save命令，保存">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-06-09T07:59:11.000Z">
+<meta property="article:modified_time" content="2022-06-11T08:51:49.362Z">
+<meta property="article:author" content="Sympa">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2022/06/09/%E5%B7%A5%E5%85%B7/Docker/Docker%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Docker基本操作 | 避风港</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="避风港" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+<script src="https://sympawang.github.io/live2d/autoload.js"></script>
+  <div class="container use-motion">
+    <div class="headband"></div>
+<a href="https://github.com/sympawang" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">避风港</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-playlist">
+
+    <a href="/playlist/" rel="section"><i class="fa fa-music fa-fw"></i>歌单</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/06/09/%E5%B7%A5%E5%85%B7/Docker/Docker%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Docker基本操作
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-09 15:59:11" itemprop="dateCreated datePublished" datetime="2022-06-09T15:59:11+08:00">2022-06-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-06-11 16:51:49" itemprop="dateModified" datetime="2022-06-11T16:51:49+08:00">2022-06-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="镜像相关命令"><a href="#镜像相关命令" class="headerlink" title="镜像相关命令"></a>镜像相关命令</h3><ul>
+<li>镜像名称一般分两部分组成：[repository]:[tag]，例如：mysql:5.7。</li>
+<li>创建镜像<ul>
+<li>从本地：从Dockerfile文件，利用docker build命令构建镜像</li>
+<li>从镜像服务器：docker pull命令</li>
+</ul>
+</li>
+<li>查看镜像：docker images命令</li>
+<li>删除镜像：docker rmi命令</li>
+<li>推送镜像<ul>
+<li>docker push命令，推送到服务</li>
+<li>docker save命令，保存为一个压缩包，可以用docker load命令加载</li>
+</ul>
+</li>
+</ul>
+<h4 id="案例1"><a href="#案例1" class="headerlink" title="案例1"></a>案例1</h4><ul>
+<li>前往doker hub</li>
+<li>查找Nginx镜像pull命令</li>
+<li>使用docker images查看镜像</li>
+</ul>
+<h4 id="案例2"><a href="#案例2" class="headerlink" title="案例2"></a>案例2</h4><ul>
+<li>利用docker xx —help命令查看docker save和docker load语法</li>
+<li>使用docker tag 创建新镜像mynginx1.0</li>
+<li>使用docker save导出镜像到磁盘</li>
+<li>导出：docker save -o nginx.tar nginx:latest，使用ll命令查看</li>
+<li>删除当前镜像：docker rmi nginx:latest</li>
+<li>导入： docker load -i nginx.tar</li>
+</ul>
+<h3 id="容器相关命令"><a href="#容器相关命令" class="headerlink" title="容器相关命令"></a>容器相关命令</h3><ul>
+<li>查看所有运行的容器及状态：docker ps</li>
+<li>查看容器运行日志：docker logs</li>
+<li>进入容器执行命令：docker exec</li>
+<li>状态切换<ul>
+<li>运行 → 暂停：docker pause</li>
+<li>暂停 → 运行： docker unpause</li>
+<li>运行 → 停止：docker stop</li>
+<li>停止 → 运行： docker start</li>
+</ul>
+</li>
+<li>删除指定容器：docker rm</li>
+</ul>
+<h4 id="案例1：运行一个Nginx容器"><a href="#案例1：运行一个Nginx容器" class="headerlink" title="案例1：运行一个Nginx容器"></a>案例1：运行一个Nginx容器</h4><ul>
+<li>在docker hub查看Nginx的容器运行命令</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name containerName -p 80:80 -d nginx</span><br></pre></td></tr></table></figure>
+<ul>
+<li>命令解读：<ul>
+<li>docker run：创建并运行一个容器</li>
+<li>—name：给容器起一个名字，必须唯一</li>
+<li>-p：将宿主机端口与容器端口映射，左边是宿主机端口，右边是容器端口</li>
+<li>-d：后台运行容器</li>
+<li>nginx：镜像名称</li>
+</ul>
+</li>
+<li>查看日志：docker logs mn</li>
+</ul>
+<h4 id="案例2：进入Nginx容器，修改HTML文件内容（不推荐使用）"><a href="#案例2：进入Nginx容器，修改HTML文件内容（不推荐使用）" class="headerlink" title="案例2：进入Nginx容器，修改HTML文件内容（不推荐使用）"></a>案例2：进入Nginx容器，修改HTML文件内容（不推荐使用）</h4><ul>
+<li>进入容器</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it mn &#x2F;bin&#x2F;bash</span><br></pre></td></tr></table></figure>
+<ul>
+<li>命令解读<ul>
+<li>docker exec：进入容器内部，执行一个命令</li>
+<li>-it：给当前进入的容器创建一个标准输入输出终端，允许交互</li>
+<li>mn：容器名称</li>
+<li>/bin/bash：进入后执行的命令，bash是一个linux终端交互命令</li>
+</ul>
+</li>
+<li>进入指定路径：cd /usr/share/nginx/html</li>
+<li>替换内容</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i &#39;s#Welcome to nginx#Hello world!#g&#39; index.html</span><br></pre></td></tr></table></figure>
+<h3 id="数据卷操作"><a href="#数据卷操作" class="headerlink" title="数据卷操作"></a>数据卷操作</h3><h4 id="容器与数据耦合的问题"><a href="#容器与数据耦合的问题" class="headerlink" title="容器与数据耦合的问题"></a>容器与数据耦合的问题</h4><ul>
+<li>不便于修改</li>
+<li>数据不可复用</li>
+</ul>
+<h4 id="数据卷-volume"><a href="#数据卷-volume" class="headerlink" title="数据卷(volume)"></a>数据卷(volume)</h4><p>是一个虚拟目录，指向宿主机文件系统中的某个目录。</p>
+<h4 id="操作数据卷"><a href="#操作数据卷" class="headerlink" title="操作数据卷"></a>操作数据卷</h4><ul>
+<li>数据卷操作的基本语法如下：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker volume [COMMAND]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>docker volume命令是数据卷操作，根据命令后跟随的command来确定下一步操作：<ul>
+<li>create：创建一个volume</li>
+<li>inspect：显示一个或多个volume信息</li>
+<li>ls：列出所有volume</li>
+<li>prune：删除未使用的volume</li>
+<li>rm：删除一个或多个volume</li>
+</ul>
+</li>
+</ul>
+<h4 id="挂载数据卷"><a href="#挂载数据卷" class="headerlink" title="挂载数据卷"></a>挂载数据卷</h4><p>我们在创建容器时，可以通过-v参数来挂载一个数据卷到某个容器目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line"> --name mn \ </span><br><span class="line"> -v hrml:&#x2F;root&#x2F;html \   把html数据卷挂载到容器内部的&#x2F;root&#x2F;html目录中</span><br><span class="line"> -p 8080:80</span><br><span class="line"> nginx \</span><br></pre></td></tr></table></figure>
+<h4 id="案例1：创建一个nginx容器，修改容器内的html目录内index-html内容"><a href="#案例1：创建一个nginx容器，修改容器内的html目录内index-html内容" class="headerlink" title="案例1：创建一个nginx容器，修改容器内的html目录内index.html内容"></a>案例1：创建一个nginx容器，修改容器内的html目录内index.html内容</h4><ul>
+<li><p>需求说明：把目录挂载到html数据卷上，方便操作其中内容</p>
+</li>
+<li><p>步骤：</p>
+<ul>
+<li>创建容器并挂载数据卷到容器内的HTML目录</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name mn -p 81:80 -v html:&#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html -d nginx</span><br></pre></td></tr></table></figure>
+<ul>
+<li>进入html数据卷所在位置，并修改HTML内容</li>
+</ul>
+</li>
+<li><p>若数据卷不存在，docker会自动创建</p>
+</li>
+</ul>
+<h4 id="案例2：创建并运行一个MySQL容器，将宿主机目录直接挂载到容器"><a href="#案例2：创建并运行一个MySQL容器，将宿主机目录直接挂载到容器" class="headerlink" title="案例2：创建并运行一个MySQL容器，将宿主机目录直接挂载到容器"></a>案例2：创建并运行一个MySQL容器，将宿主机目录直接挂载到容器</h4><ul>
+<li>目录挂载语法<ul>
+<li>-v[宿主机目录]:[容器内目录]</li>
+<li>-v[宿主机文件]:[容器内文件]</li>
+</ul>
+</li>
+<li>上传压缩包，加载MySQL镜像</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker load -i &#x2F;mysql.tar</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建目录/tmp/myql/data</li>
+<li>创建目录/tmp/myql/conf，将配置文件上传</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line"> --name mysql \</span><br><span class="line"> -e MYSQL_ROOT_PASSWORD&#x3D;123456 \</span><br><span class="line"> -p 3306:3306 \</span><br><span class="line"> -v &#x2F;tmp&#x2F;mysql&#x2F;conf&#x2F;hmy.conf:&#x2F;etc&#x2F;mysql&#x2F;conf.d&#x2F;hmy.cnf \</span><br><span class="line"> -v &#x2F;tmp&#x2F;mysql&#x2F;data:&#x2F;var&#x2F;lib&#x2F;mysql \</span><br><span class="line"> -d \</span><br><span class="line"> mysql:5.7.25</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>挂载/tmp/myql/data到mysql容器内数据存储目录</p>
+</li>
+<li><p>挂载/tmp/myql/conf/hmy.cnf到mysql容器配置文件</p>
+</li>
+<li>设置MySQL密码</li>
+</ul>
+
+    </div>
+    
+    
+    
+
+ 
+      <div>
+          
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        ------ THE<i class="fa fa-paw"></i>END ------</div>
+    
+      </div>
+    
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/images/wechat_channel.jpg">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">WeChat</span>
+          </a>
+        </div>
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/06/07/%E5%B7%A5%E5%85%B7/Docker/%E5%88%9D%E8%AF%86Docker/" rel="prev" title="初识Docker">
+      <i class="fa fa-chevron-left"></i> 初识Docker
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/06/11/%E5%B7%A5%E5%85%B7/Docker/%E5%9F%BA%E4%BA%8EDockerfile%E8%87%AA%E5%AE%9A%E4%B9%89%E9%95%9C%E5%83%8F/" rel="next" title="基于Dockerfile自定义镜像">
+      基于Dockerfile自定义镜像 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC81MDM4Mi8yNjg3Mg=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#镜像相关命令"><span class="nav-number">1.</span> <span class="nav-text">镜像相关命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#案例1"><span class="nav-number">1.1.</span> <span class="nav-text">案例1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#案例2"><span class="nav-number">1.2.</span> <span class="nav-text">案例2</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容器相关命令"><span class="nav-number">2.</span> <span class="nav-text">容器相关命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#案例1：运行一个Nginx容器"><span class="nav-number">2.1.</span> <span class="nav-text">案例1：运行一个Nginx容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#案例2：进入Nginx容器，修改HTML文件内容（不推荐使用）"><span class="nav-number">2.2.</span> <span class="nav-text">案例2：进入Nginx容器，修改HTML文件内容（不推荐使用）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据卷操作"><span class="nav-number">3.</span> <span class="nav-text">数据卷操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#容器与数据耦合的问题"><span class="nav-number">3.1.</span> <span class="nav-text">容器与数据耦合的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据卷-volume"><span class="nav-number">3.2.</span> <span class="nav-text">数据卷(volume)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#操作数据卷"><span class="nav-number">3.3.</span> <span class="nav-text">操作数据卷</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#挂载数据卷"><span class="nav-number">3.4.</span> <span class="nav-text">挂载数据卷</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#案例1：创建一个nginx容器，修改容器内的html目录内index-html内容"><span class="nav-number">3.5.</span> <span class="nav-text">案例1：创建一个nginx容器，修改容器内的html目录内index.html内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#案例2：创建并运行一个MySQL容器，将宿主机目录直接挂载到容器"><span class="nav-number">3.6.</span> <span class="nav-text">案例2：创建并运行一个MySQL容器，将宿主机目录直接挂载到容器</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sympa"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Sympa</p>
+  <div class="site-description" itemprop="description">Get busy living,or get busy dying.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">127</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/sympawang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;sympawang" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:2813086010@qq.com" title="E-Mail → mailto:2813086010@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://codeforces.com/profile/Sympa" title="codeforces → https:&#x2F;&#x2F;codeforces.com&#x2F;profile&#x2F;Sympa" rel="noopener" target="_blank"><i class="fa fa-space-shuttle fa-fw"></i>codeforces</a>
+      </span>
+  </div>
+
+
+
+      </div>
+<link rel="stylesheet" href="/dist/APlayer.min.css">
+<div id="aplayer"></div>
+<script type="text/javascript" src="/dist/APlayer.min.js"></script>
+<script type="text/javascript" src="/dist/music.js"></script>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sympa</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">总访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    <span class="post-meta-divider">|</span>
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+$(document).ready(function() {
+
+    var int = setInterval(fixCount, 50);  // 50ms周期检测函数
+    var countOffset = 20000;  // 初始化首次数据
+
+    function fixCount() {            
+       if (document.getElementById("busuanzi_container_site_pv").style.display != "none")
+        {
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + countOffset); 
+            clearInterval(int);
+        }                  
+        if ($("#busuanzi_container_site_pv").css("display") != "none")
+        {
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + countOffset); // 加上初始数据 
+            clearInterval(int); // 停止检测
+        }  
+    }
+       	
+});
+</script> 
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共38.7k字</span>
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=[object Object]&web_id=[object Object]"></script>
+  </div>
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-wanko"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>

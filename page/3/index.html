@@ -180,7 +180,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/05/ACM/21%E7%BA%A7%E7%AC%AC%E4%BA%8C%E5%9C%BA%E6%8E%92%E4%BD%8D%E8%B5%9B%E9%A2%98%E8%A7%A3/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E8%AE%A4%E8%AF%86%E5%BE%AE%E6%9C%8D%E5%8A%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -194,7 +194,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/03/05/ACM/21%E7%BA%A7%E7%AC%AC%E4%BA%8C%E5%9C%BA%E6%8E%92%E4%BD%8D%E8%B5%9B%E9%A2%98%E8%A7%A3/" class="post-title-link" itemprop="url">21级第二场排位赛题解</a>
+            <a href="/2022/05/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E8%AE%A4%E8%AF%86%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="post-title-link" itemprop="url">认识微服务</a>
         </h2>
 
         <div class="post-meta">
@@ -207,7 +207,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-03-05 11:07:15 / 修改时间：15:16:53" itemprop="dateCreated datePublished" datetime="2022-03-05T11:07:15+08:00">2022-03-05</time>
+              <time title="创建时间：2022-05-13 16:15:23 / 修改时间：17:22:08" itemprop="dateCreated datePublished" datetime="2022-05-13T16:15:23+08:00">2022-05-13</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -215,7 +215,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">题解</span></a>
+                  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="name">微服务</span></a>
                 </span>
             </span>
 
@@ -230,812 +230,57 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="A-IP-Checking（LightOJ-1354）"><a href="#A-IP-Checking（LightOJ-1354）" class="headerlink" title="A. IP Checking（LightOJ - 1354）"></a>A. IP Checking（LightOJ - 1354）</h4><h5 id="送分题？"><a href="#送分题？" class="headerlink" title="送分题？"></a>送分题？</h5><ul>
-<li>不会有人连二进制转换都不会吧</li>
-</ul>
-<p>参考代码：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">StringSplit</span><span class="params">(<span class="built_in">string</span> str, <span class="keyword">char</span> split, <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; rst)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> tot = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">string</span> str1 = <span class="string">""</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; str.length(); i++) &#123;</span><br><span class="line">		<span class="keyword">char</span> c = str[i];</span><br><span class="line">		<span class="keyword">if</span>(c != <span class="string">'.'</span>) str1 += c;</span><br><span class="line">		<span class="keyword">if</span> (c == <span class="string">'.'</span> || i + <span class="number">1</span> == str.length()) &#123;</span><br><span class="line">			rst.push_back(str1);</span><br><span class="line">			str1 = <span class="string">""</span>;</span><br><span class="line">			tot++;</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="keyword">int</span> T;</span><br><span class="line">    <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; T;</span><br><span class="line">    <span class="keyword">while</span> (T--) &#123;</span><br><span class="line">        <span class="built_in">string</span> ipAddress;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; ipAddress;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; ipAddressSplit;</span><br><span class="line">        StringSplit(ipAddress, <span class="string">'.'</span>, ipAddressSplit);</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; ipAddressSplitBinary;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; ipAddress;</span><br><span class="line">        StringSplit(ipAddress, <span class="string">'.'</span>, ipAddressSplitBinary);</span><br><span class="line">        <span class="keyword">bool</span> flag = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> tot1 = ipAddressSplit[i].length() - <span class="number">1</span>, tot2 = <span class="number">7</span>;</span><br><span class="line">            <span class="keyword">int</span> num1 = <span class="number">0</span>, num2 = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">char</span> c : ipAddressSplit[i]) &#123;</span><br><span class="line">                num1 += (c - <span class="string">'0'</span>) * <span class="built_in">pow</span>(<span class="number">10</span>, tot1--);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">char</span> c : ipAddressSplitBinary[i]) &#123;</span><br><span class="line">                num2 += (c - <span class="string">'0'</span>) * (<span class="number">1</span> &lt;&lt; tot2--);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (num1 != num2) &#123;</span><br><span class="line">                flag = <span class="literal">false</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Case "</span> &lt;&lt; ++cnt &lt;&lt; <span class="string">": "</span>;</span><br><span class="line">        <span class="keyword">if</span> (flag) <span class="built_in">cout</span> &lt;&lt; <span class="string">"Yes"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">cout</span> &lt;&lt; <span class="string">"No"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h4 id="B-Alexey-and-Train（Codeforces-1501A）"><a href="#B-Alexey-and-Train（Codeforces-1501A）" class="headerlink" title="B. Alexey and Train（Codeforces - 1501A）"></a>B. Alexey and Train（Codeforces - 1501A）</h4><h5 id="阅读理解签到题"><a href="#阅读理解签到题" class="headerlink" title="阅读理解签到题"></a>阅读理解签到题</h5><ul>
-<li>每次都是 $2$ 选 $1$，要不等到 $b_i$ ，要不就等待  $ \lceil \dfrac{b_i-a_i}{2} \rceil$ 的时间</li>
-</ul>
-<p>参考代码：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> a[<span class="number">110</span>], b[<span class="number">110</span>], t[<span class="number">110</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="keyword">int</span> T;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; T;</span><br><span class="line">    <span class="keyword">while</span> (T--) &#123;</span><br><span class="line">        <span class="keyword">int</span> n;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; a[i] &gt;&gt; b[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; t[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            ans += a[i] - b[i - <span class="number">1</span>] + t[i];</span><br><span class="line">            <span class="keyword">if</span> (i != n)ans += (b[i] - a[i] + <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (i != n &amp;&amp; ans &lt; b[i]) ans = b[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h4 id="C-C-（Codeforces-1368A）"><a href="#C-C-（Codeforces-1368A）" class="headerlink" title="C. C+=（Codeforces - 1368A）"></a>C. C+=（Codeforces - 1368A）</h4><h5 id="签到题"><a href="#签到题" class="headerlink" title="签到题"></a>签到题</h5><ul>
-<li><p>每次将小的加上大的，易证这样操作一定是最优的</p>
-</li>
-<li><p>每次一个数一定至少会翻倍，所以暴力模拟的复杂度为 $\log n$，直接模拟即可</p>
-</li>
-</ul>
-<p>参考代码：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="keyword">int</span> T;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; T;</span><br><span class="line">    <span class="keyword">while</span> (T--) &#123;</span><br><span class="line">        <span class="keyword">int</span> a, b, n;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; a &gt;&gt; b &gt;&gt; n;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (a &lt;= n &amp;&amp; b &lt;= n) &#123;</span><br><span class="line">            ans++;</span><br><span class="line">            a &gt;= b ? b += a : a += b;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h4 id="D-Max-and-Mex（Codeforces-1496B）"><a href="#D-Max-and-Mex（Codeforces-1496B）" class="headerlink" title="D. Max and Mex（Codeforces - 1496B）"></a>D. Max and Mex（Codeforces - 1496B）</h4><h5 id="分类讨论"><a href="#分类讨论" class="headerlink" title="分类讨论"></a>分类讨论</h5><ul>
-<li>如果 $mex(a)&gt;max(a)$，那么每一次都会添加一个 $mex(a)$，之后 $mex(a)$ 和 $max(a)$ 都会加1，所以答案是 $ n+k$ 。</li>
-<li>否则$mex(a)$ 和 $max(a)$ 永远不变，答案最多只会加$1$。</li>
-</ul>
-<p>参考代码：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> a[<span class="number">100010</span>];</span><br><span class="line"><span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;mp;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="keyword">int</span> T;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; T;</span><br><span class="line">    <span class="keyword">while</span> (T--) &#123;</span><br><span class="line">        mp.<span class="built_in">clear</span>();</span><br><span class="line">        <span class="keyword">int</span> n, k;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; k;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; a[i];</span><br><span class="line">            mp[a[i]]++;</span><br><span class="line">            <span class="keyword">if</span> (mp[a[i]] == <span class="number">1</span>)ans++;</span><br><span class="line">        &#125;</span><br><span class="line">        sort(a + <span class="number">1</span>, a + <span class="number">1</span> + n);</span><br><span class="line">        <span class="keyword">int</span> mex = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">1000000</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!mp[i]) &#123;</span><br><span class="line">                mex = i;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (ans - <span class="number">1</span> == a[n]) &#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; k + n &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">int</span> nxt = (mex + a[n]) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> ((mex + a[n]) % <span class="number">2</span>)nxt++;</span><br><span class="line">            <span class="keyword">if</span> (!mp[nxt] &amp;&amp; k)ans++;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h4 id="E-AND-0-Sum-Big（Codeforces-1514B）"><a href="#E-AND-0-Sum-Big（Codeforces-1514B）" class="headerlink" title="E. AND 0, Sum Big（Codeforces - 1514B）"></a>E. AND 0, Sum Big（Codeforces - 1514B）</h4><h5 id="考察对位运算的理解，沾点高中数学"><a href="#考察对位运算的理解，沾点高中数学" class="headerlink" title="考察对位运算的理解，沾点高中数学"></a>考察对位运算的理解，沾点高中数学</h5><ul>
-<li>由于 $and$ 运算对于每一个二进制位都是独立的，所以我们每一位都分开考虑。注意这是大部分位运算题目的解题思想</li>
-<li>$and$ 为 $0$，说明这 $n$ 个数对于单独的一个二进制位来说，至少有一个是 $0$</li>
-<li>要求和最大，说明对于一个二进制位，只有一个数是$0$</li>
-<li>利用乘法原理，容易得出答案</li>
-</ul>
-<p>参考代码：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> mod = <span class="number">1e9</span> + <span class="number">7</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> T;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; T;</span><br><span class="line">	<span class="keyword">while</span> (T--) &#123;</span><br><span class="line">		<span class="keyword">int</span> n, k;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; n &gt;&gt; k;</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= k; i++)ans = ans * n % mod;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h4 id="F-Constanze’s-Machine（Codeforces-1195C）"><a href="#F-Constanze’s-Machine（Codeforces-1195C）" class="headerlink" title="F. Constanze’s Machine（Codeforces - 1195C）"></a>F. Constanze’s Machine（Codeforces - 1195C）</h4><h5 id="听说有同学不喜欢读题也不喜欢DP？"><a href="#听说有同学不喜欢读题也不喜欢DP？" class="headerlink" title="听说有同学不喜欢读题也不喜欢DP？"></a>听说有同学不喜欢读题也不喜欢DP？</h5><ul>
-<li>考虑动态规划：$f[i][0/1/2]$ 表示选取了编号在 $i$ 及以前的球员，所能得到的身高总和最大值</li>
-<li>其中，第二维的 $0$ 表示编号为 $i$ 的球员一个都不选；$1$ 表示只选上面一个；$2$ 表示只选下面一个。（显然没有上下都选的情况）</li>
-<li>状态转移方程：<ul>
-<li>$f[i][0]=max(f[i−1][0],f[i−1][1],f[i−1][2])$</li>
-<li>$f[i][1]=max(f[i−1][0],f[i−1][2])+h[i][1]$</li>
-<li>$f[i][2]=max(f[i−1][0],f[i−1][1])+h[i][2]$</li>
-</ul>
-</li>
-</ul>
-<p>参考代码：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> h[<span class="number">100005</span>][<span class="number">3</span>];</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> f[<span class="number">100005</span>][<span class="number">3</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) <span class="built_in">cin</span> &gt;&gt; h[i][<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) <span class="built_in">cin</span> &gt;&gt; h[i][<span class="number">2</span>];</span><br><span class="line">    f[<span class="number">1</span>][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    f[<span class="number">1</span>][<span class="number">1</span>] = h[<span class="number">1</span>][<span class="number">1</span>];</span><br><span class="line">    f[<span class="number">1</span>][<span class="number">2</span>] = h[<span class="number">1</span>][<span class="number">2</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        f[i][<span class="number">0</span>] = <span class="built_in">max</span>(f[i - <span class="number">1</span>][<span class="number">0</span>], <span class="built_in">max</span>(f[i - <span class="number">1</span>][<span class="number">1</span>], f[i - <span class="number">1</span>][<span class="number">2</span>]));</span><br><span class="line">        f[i][<span class="number">1</span>] = <span class="built_in">max</span>(f[i - <span class="number">1</span>][<span class="number">0</span>], f[i - <span class="number">1</span>][<span class="number">2</span>]) + h[i][<span class="number">1</span>];</span><br><span class="line">        f[i][<span class="number">2</span>] = <span class="built_in">max</span>(f[i - <span class="number">1</span>][<span class="number">0</span>], f[i - <span class="number">1</span>][<span class="number">1</span>]) + h[i][<span class="number">2</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">max</span>(f[n][<span class="number">0</span>], <span class="built_in">max</span>(f[n][<span class="number">1</span>], f[n][<span class="number">2</span>]));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h4 id="G-Pair-of-Topics（Codeforces-1324D）"><a href="#G-Pair-of-Topics（Codeforces-1324D）" class="headerlink" title="G. Pair of Topics（Codeforces - 1324D）"></a>G. Pair of Topics（Codeforces - 1324D）</h4><h5 id="解法不唯一，给出二分解法"><a href="#解法不唯一，给出二分解法" class="headerlink" title="解法不唯一，给出二分解法"></a>解法不唯一，给出二分解法</h5><ul>
-<li>设 $c[i]=a[i]-b[i]$，并将其按照从小到大排序</li>
-<li>对于每个 $i$，二分寻找满足条件最小的 $j$，统计答案</li>
-<li>答案要开 $long long$</li>
-</ul>
-<p>参考代码：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> a[<span class="number">200010</span>], b[<span class="number">200010</span>];</span><br><span class="line"><span class="keyword">int</span> c[<span class="number">200010</span>];</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) <span class="built_in">cin</span> &gt;&gt; a[i];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) <span class="built_in">cin</span> &gt;&gt; b[i];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) c[i] = a[i] - b[i];</span><br><span class="line">	sort(c + <span class="number">1</span>, c + <span class="number">1</span> + n);</span><br><span class="line">	c[n + <span class="number">1</span>] = <span class="number">2e9</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="keyword">int</span> need = -c[i] + <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">int</span> l = i + <span class="number">1</span>, r = n + <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">while</span> (l &lt; r) &#123;</span><br><span class="line">			<span class="keyword">int</span> mid = (l + r) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">if</span> (c[mid] &gt;= need)r = mid;</span><br><span class="line">			<span class="keyword">else</span> l = mid + <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		ans += (n + <span class="number">1</span> - l);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h4 id="H-Fox-And-Two-Dots（Codeforces-510B）"><a href="#H-Fox-And-Two-Dots（Codeforces-510B）" class="headerlink" title="H. Fox And Two Dots（Codeforces - 510B）"></a>H. Fox And Two Dots（Codeforces - 510B）</h4><h5 id="题目中的手机游戏链接：https-www-taptap-com-app-2221-hreflang-zh-CN"><a href="#题目中的手机游戏链接：https-www-taptap-com-app-2221-hreflang-zh-CN" class="headerlink" title="题目中的手机游戏链接：https://www.taptap.com/app/2221?hreflang=zh_CN"></a>题目中的手机游戏链接：<a href="https://www.taptap.com/app/2221?hreflang=zh_CN" target="_blank" rel="noopener">https://www.taptap.com/app/2221?hreflang=zh_CN</a></h5><ul>
-<li>题意很简单，连通块找环，注意细节即可</li>
-<li>$DFS$ 或 $BFS$ 均可，这里给出 $DFS$ 写法</li>
-</ul>
-<p>参考代码：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="keyword">char</span> s[<span class="number">60</span>][<span class="number">60</span>];</span><br><span class="line"><span class="keyword">int</span> check[<span class="number">60</span>][<span class="number">60</span>];</span><br><span class="line"><span class="keyword">char</span> X[] = &#123; <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">-1</span> &#125;;</span><br><span class="line"><span class="keyword">char</span> Y[] = &#123; <span class="number">1</span>, <span class="number">-1</span>, <span class="number">0</span>, <span class="number">0</span> &#125;;</span><br><span class="line"><span class="keyword">bool</span> flag;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> lastx, <span class="keyword">int</span> lasty)</span> </span>&#123;</span><br><span class="line">	check[x][y] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">		<span class="keyword">int</span> nextx = x + X[i];</span><br><span class="line">		<span class="keyword">int</span> nexty = y + Y[i];</span><br><span class="line">		<span class="keyword">if</span> (nextx &lt; <span class="number">1</span> || nextx &gt; n || nexty &lt; <span class="number">1</span> || nexty &gt; m) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">if</span> (nextx == lastx &amp;&amp; nexty == lasty) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">if</span> (s[x][y] != s[nextx][nexty]) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">if</span> (check[nextx][nexty]) flag = <span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">else</span> dfs(nextx, nexty, x, y);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) <span class="built_in">cin</span> &gt;&gt; s[i] + <span class="number">1</span>;</span><br><span class="line">	flag = <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= m; j++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (flag) <span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">if</span> (check[i][j]) <span class="keyword">continue</span>;</span><br><span class="line">			dfs(i, j, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (flag) <span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (flag) <span class="built_in">cout</span> &lt;&lt; <span class="string">"Yes"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">cout</span> &lt;&lt; <span class="string">"No"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/04/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/Kaptcha%E7%94%9F%E6%88%90%E9%AA%8C%E8%AF%81%E7%A0%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/04/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/Kaptcha%E7%94%9F%E6%88%90%E9%AA%8C%E8%AF%81%E7%A0%81/" class="post-title-link" itemprop="url">Kaptcha生成验证码</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-04 20:27:17" itemprop="dateCreated datePublished" datetime="2022-03-04T20:27:17+08:00">2022-03-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-08 19:10:28" itemprop="dateModified" datetime="2022-03-08T19:10:28+08:00">2022-03-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">牛客讨论区项目</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h4><ul>
-<li><p>导入jar包</p>
-</li>
-<li><p>编写Kaptcha配置类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">KaptchaConfig</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Producer <span class="title">kaptchaProducer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Properties properties = <span class="keyword">new</span> Properties();</span><br><span class="line">        properties.setProperty(<span class="string">"kaptcha.image.width"</span>, <span class="string">"100"</span>);</span><br><span class="line">        properties.setProperty(<span class="string">"kaptcha.image.height"</span>, <span class="string">"40"</span>);</span><br><span class="line">        properties.setProperty(<span class="string">"kaptcha.textproducer.font.size"</span>, <span class="string">"32"</span>);</span><br><span class="line">        properties.setProperty(<span class="string">"kaptcha.textproducer.char.string"</span>, <span class="string">"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"</span>);</span><br><span class="line">        properties.setProperty(<span class="string">"kaptcha.textproducer.char.length"</span>, <span class="string">"4"</span>);</span><br><span class="line">        properties.setProperty(<span class="string">"kaptcha.noise.impl"</span>, <span class="string">"com.google.code.kaptcha.impl.NoNoise"</span>);</span><br><span class="line"></span><br><span class="line">        DefaultKaptcha kaptcha = <span class="keyword">new</span> DefaultKaptcha();</span><br><span class="line">        Config config = <span class="keyword">new</span> Config(properties);</span><br><span class="line">        kaptcha.setConfig(config);</span><br><span class="line">        <span class="keyword">return</span> kaptcha;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
+          <p>微服务是一种经过良好架构设计的分布式架构方案，微服务架构特征：</p>
 <ul>
-<li><p>引入bean，生成随机字符，生成图片</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(path=<span class="string">"/kaptcha"</span>, method = RequestMethod.GET)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getKaptcha</span><span class="params">(HttpServletResponse response, HttpSession session)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//生成验证码</span></span><br><span class="line">    String text = kaptchaProducer.createText();</span><br><span class="line">    BufferedImage image = kaptchaProducer.createImage(text);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//存入session</span></span><br><span class="line">    session.setAttribute(<span class="string">"kaptcha"</span>, image);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//将图片输出给浏览器</span></span><br><span class="line">    response.setContentType(<span class="string">"image/png"</span>);</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        OutputStream os = response.getOutputStream();</span><br><span class="line">        ImageIO.write(image, <span class="string">"png"</span>, os);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        logger.error(<span class="string">"响应验证码失败"</span> + e.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<li>单一职责：微服务拆分粒度更小，每一个服务都对应唯一的业务能力，做到单一职责，避免重复业务开发</li>
+<li>面向服务：微服务对外暴露业务接口</li>
+<li>自治：团队独立、技术独立、数据独立、部署独立</li>
+<li>隔离性强：服务调用做好隔离、容错、降级，避免出现级联问题</li>
 </ul>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/03/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E6%B3%A8%E5%86%8C%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/03/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E6%B3%A8%E5%86%8C%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/" class="post-title-link" itemprop="url">注册模块开发</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-03 19:34:35" itemprop="dateCreated datePublished" datetime="2022-03-03T19:34:35+08:00">2022-03-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-04 19:34:33" itemprop="dateModified" datetime="2022-03-04T19:34:33+08:00">2022-03-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">牛客讨论区项目</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><h5 id="配置域名"><a href="#配置域名" class="headerlink" title="配置域名"></a>配置域名</h5><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#community</span></span><br><span class="line"><span class="meta">community.path.domain</span>=<span class="string">http://localhost:8080</span></span><br></pre></td></tr></table></figure>
-<h5 id="封装生成随机字符串工具类（UUID），拼接随机字符串后MD5加密"><a href="#封装生成随机字符串工具类（UUID），拼接随机字符串后MD5加密" class="headerlink" title="封装生成随机字符串工具类（UUID），拼接随机字符串后MD5加密"></a>封装生成随机字符串工具类（UUID），拼接随机字符串后MD5加密</h5><h4 id="注册整体逻辑"><a href="#注册整体逻辑" class="headerlink" title="注册整体逻辑"></a>注册整体逻辑</h4><h5 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h5><ul>
-<li>主要目标：接收Controller传递来的User对象，判断是否合法，合法则添加进User表，发送激活邮件。返回给Controller错误信息。</li>
-<li>不合法类型<ul>
-<li>填写值为空</li>
-<li>账号已存在</li>
-<li>邮箱已注册</li>
-<li>密码格式不合法（还未实现）</li>
-</ul>
-</li>
-<li>使用map记录不合法信息</li>
-<li>若合法则发送激活邮件</li>
-</ul>
-<h5 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h5><ul>
-<li>主要目标：接受用户注册的POST请求，将User对象传递给Service。向用户显示注册成功与否的信息</li>
-<li>若无错误信息，跳转到operate-result界面，显示注册成功信息</li>
-<li>若有错误，返回register界面，渲染html界面，显示错误信息并保留用户上次填写的信息</li>
-</ul>
-<h4 id="激活邮件设置"><a href="#激活邮件设置" class="headerlink" title="激活邮件设置"></a>激活邮件设置</h4><ul>
-<li>创建激活结果的工具接口</li>
-<li>Service：接收激活url中的userId和激活码，到数据库中查询，返回激活工具接口中的结果</li>
-<li>Controller：形参使用@PathVariable注解提取@RequestMapping中path的变量，判断激活结果，渲染html</li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/02/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/Spring%20Boot%20Starter%20Mail%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/02/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/Spring%20Boot%20Starter%20Mail%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Spring Boot Starter Mail使用</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-02 22:56:30" itemprop="dateCreated datePublished" datetime="2022-03-02T22:56:30+08:00">2022-03-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-03 20:34:46" itemprop="dateModified" datetime="2022-03-03T20:34:46+08:00">2022-03-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">牛客讨论区项目</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li><p>导入jar包</p>
-</li>
-<li><p>邮箱参数配置</p>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Spring Boot Starter Mail</span></span><br><span class="line"><span class="meta">spring.mail.host</span>=<span class="string">smtp.qq.com</span></span><br><span class="line"><span class="meta">spring.mail.port</span>=<span class="string">465</span></span><br><span class="line"><span class="meta">spring.mail.username</span>=<span class="string">邮箱</span></span><br><span class="line"><span class="meta">spring.mail.password</span>=<span class="string">授权码</span></span><br><span class="line"><span class="meta">spring.mail.protocol</span>=<span class="string">smtps</span></span><br><span class="line"><span class="meta">spring.mail.properties.mail.smtp.ssl.enable</span>=<span class="string">true</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用JavaMailSender发送邮件</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger logger = LoggerFactory.getLogger(MailClient<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> JavaMailSender mailSender;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Value</span>(<span class="string">"$&#123;spring.mail.username&#125;"</span>)</span><br><span class="line"><span class="keyword">private</span> String from;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sendMail</span><span class="params">(String to, String subject, String content)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        MimeMessage message = mailSender.createMimeMessage();</span><br><span class="line">        MimeMessageHelper helper = <span class="keyword">new</span> MimeMessageHelper(message);</span><br><span class="line">        helper.setFrom(from);</span><br><span class="line">        helper.setTo(to);</span><br><span class="line">        helper.setSubject(subject);</span><br><span class="line">        helper.setText(content, <span class="keyword">true</span>);</span><br><span class="line">        mailSender.send(helper.getMimeMessage());</span><br><span class="line">    &#125; <span class="keyword">catch</span> (MessagingException e) &#123;</span><br><span class="line">        logger.error(<span class="string">"发送邮件失败："</span> + e.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="使用Thymeleaf发送HTML文件"><a href="#使用Thymeleaf发送HTML文件" class="headerlink" title="使用Thymeleaf发送HTML文件"></a>使用Thymeleaf发送HTML文件</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> MailClient mailClient;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> TemplateEngine templateEngine;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testHtmlMail</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Context context = <span class="keyword">new</span> Context();</span><br><span class="line">    context.setVariable(<span class="string">"username"</span>, <span class="string">"sunday"</span>);</span><br><span class="line"></span><br><span class="line">    String content = templateEngine.process(<span class="string">"/mail/activation"</span>, context);</span><br><span class="line">    mailClient.sendMail(<span class="string">"abc@qq.com"</span>, <span class="string">"测试邮件"</span>, content);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/01/Web/Cookie/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/01/Web/Cookie/" class="post-title-link" itemprop="url">Cookie</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-01 15:19:18" itemprop="dateCreated datePublished" datetime="2022-03-01T15:19:18+08:00">2022-03-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-06 09:02:10" itemprop="dateModified" datetime="2022-03-06T09:02:10+08:00">2022-03-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="Cookie基本使用"><a href="#Cookie基本使用" class="headerlink" title="Cookie基本使用"></a>Cookie基本使用</h4><ul>
-<li><p>Cookie：客户会话技术，将数据保存到客户端，以后每次请求都携带Cookie数据进行访问</p>
-</li>
-<li><p>发送Cookie</p>
-<ul>
-<li><p>创建Cookie对象，设置数据</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cookie cookie = <span class="keyword">new</span> Cookie(<span class="string">"key"</span>, <span class="string">"value"</span>);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>设置Cookie生效范围</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cookie.setPath(&quot;路径&quot;);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>发送Cookie到客户端：使用response对象</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.addCookie(cookie);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>获取Cookie</p>
-<ul>
-<li><p>获取客户端携带的所有Cookie，使用request对象</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cookiep[] cookies = request.getCookies();</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用Cookie对象方法获取数据</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cookie.getName();</span><br><span class="line">cookie.getValue();</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用@CookieValue注解获取指定Cookie</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getCookie</span><span class="params">(@CookieValue(<span class="string">"code"</span>)</span> String code) </span>&#123;</span><br><span class="line">	 System.out.println(code);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="Cookie原理"><a href="#Cookie原理" class="headerlink" title="Cookie原理"></a>Cookie原理</h4><ul>
-<li>Cookie的实现基于HTTP协议<ul>
-<li>响应头：set-cookie</li>
-<li>请求头：cookie</li>
-</ul>
-</li>
-</ul>
-<h4 id="Cookie使用细节"><a href="#Cookie使用细节" class="headerlink" title="Cookie使用细节"></a>Cookie使用细节</h4><ul>
-<li>Cookie存活时间<ul>
-<li><strong>存储在浏览器内存中</strong>，<strong>默认</strong>当浏览器关闭，内存释放，Cookie被销毁</li>
-<li>setMaxAge(int seconds)：设置Cookie存活时间<ul>
-<li>正数：将Cookie写入浏览器所在<strong>电脑硬盘</strong>，持久化存储，到时间自动删除</li>
-<li>负数：默认值</li>
-<li>零：删除对应Cookie</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Cookie不能直接存储中文，需要转码：URL编码（String URLEncoder.encode(String, “utf-8”)）</li>
-</ul>
-<h4 id="Cookie与Session的区别"><a href="#Cookie与Session的区别" class="headerlink" title="Cookie与Session的区别"></a>Cookie与Session的区别</h4><ul>
-<li>存储位置：Cookie是将数据存储在客户端，Session存储在服务器端</li>
-<li>安全性：Cookie不安全，Session安全</li>
-<li>数据大小：Cookie 3kb，Session无限制</li>
-<li>存储时间：Cookie可长期存储，Session默认30分钟</li>
-<li>服务器性能：Cookie不占用服务器资源，Session占用</li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/28/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/Thymeleaf/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/28/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/Thymeleaf/" class="post-title-link" itemprop="url">Thymeleaf</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-28 23:00:00" itemprop="dateCreated datePublished" datetime="2022-02-28T23:00:00+08:00">2022-02-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-03 16:12:11" itemprop="dateModified" datetime="2022-03-03T16:12:11+08:00">2022-03-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">牛客讨论区项目</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li>模板引擎<ul>
-<li>生成动态HTML</li>
-</ul>
-</li>
-<li>Thymeleaf<ul>
-<li>倡导自然模板，即以HTML文件为模板</li>
-</ul>
-</li>
-<li>常用语法<ul>
-<li>标准表达式，判断与循环，模板与布局</li>
-</ul>
-</li>
-</ul>
-<p>基本语法：<a href="https://www.jianshu.com/p/d1370aeb0881" target="_blank" rel="noopener">https://www.jianshu.com/p/d1370aeb0881</a></p>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/28/%E6%A1%86%E6%9E%B6/Spring/SpringMVC%E5%85%A5%E9%97%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/28/%E6%A1%86%E6%9E%B6/Spring/SpringMVC%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">SpringMVC入门</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-28 22:24:36" itemprop="dateCreated datePublished" datetime="2022-02-28T22:24:36+08:00">2022-02-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-01 22:21:52" itemprop="dateModified" datetime="2022-03-01T22:21:52+08:00">2022-03-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">框架</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%A1%86%E6%9E%B6/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li>三层架构<ul>
-<li>表现层，业务层，数据访问层</li>
-</ul>
-</li>
-<li>MVC<ul>
-<li>Model：模型层</li>
-<li>View：视图层</li>
-<li>Controller：控制层</li>
-</ul>
-</li>
-<li>核心组件<ul>
-<li>前端控制器：DispatcherServlet</li>
-</ul>
-</li>
-</ul>
-<h4 id="接受HTTPget请求传参的两种方式"><a href="#接受HTTPget请求传参的两种方式" class="headerlink" title="接受HTTPget请求传参的两种方式"></a>接受HTTPget请求传参的两种方式</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/alpha"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AlphaController</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">	<span class="comment">//方式1</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(path = <span class="string">"/students"</span>, method = RequestMethod.GET)</span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getStudents</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">            @RequestParam(name=<span class="string">"current"</span>, required = <span class="keyword">false</span>, defaultValue = <span class="string">"1"</span>)</span> <span class="keyword">int</span> current,</span></span><br><span class="line"><span class="function">            @<span class="title">RequestParam</span><span class="params">(name=<span class="string">"limit"</span>, required = <span class="keyword">false</span>, defaultValue = <span class="string">"10"</span>)</span> <span class="keyword">int</span> limit)</span>&#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(current);</span><br><span class="line">        System.out.println(limit);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"some students"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">    <span class="comment">//方式2</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(path = <span class="string">"/student/&#123;id&#125;"</span>, method = RequestMethod.GET)</span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getStudent</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> <span class="keyword">int</span> id)</span>&#123;</span><br><span class="line">        System.out.println(id);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"a student"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="接受HTTPpost请求提交数据"><a href="#接受HTTPpost请求提交数据" class="headerlink" title="接受HTTPpost请求提交数据"></a>接受HTTPpost请求提交数据</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(path = <span class="string">"/student"</span>, method = RequestMethod.POST)</span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">saveStudent</span><span class="params">(String name, <span class="keyword">int</span> age)</span></span>&#123;</span><br><span class="line">    System.out.println(name);</span><br><span class="line">    System.out.println(age);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="利用thymeleaf向浏览器显示动态数据"><a href="#利用thymeleaf向浏览器显示动态数据" class="headerlink" title="利用thymeleaf向浏览器显示动态数据"></a>利用thymeleaf向浏览器显示动态数据</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span> <span class="attr">xmlns:th</span>=<span class="string">"http://www.thymeleaf.org"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Teacher<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">th:text</span>=<span class="string">"$&#123;name&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">th:text</span>=<span class="string">"$&#123;age&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">方式<span class="number">1</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(path = <span class="string">"/teacher"</span>, method = RequestMethod.GET)</span><br><span class="line"><span class="function"><span class="keyword">public</span> ModelAndView <span class="title">getTeacher</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">    modelAndView.addObject(<span class="string">"name"</span>, <span class="string">"张三"</span>);</span><br><span class="line">    modelAndView.addObject(<span class="string">"age"</span>, <span class="number">30</span>);</span><br><span class="line">    modelAndView.setViewName(<span class="string">"/demo/view"</span>);</span><br><span class="line">    <span class="keyword">return</span> modelAndView;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">方式<span class="number">2</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(path = <span class="string">"/school"</span>, method = RequestMethod.GET)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getSchool</span><span class="params">(Model model)</span></span>&#123;</span><br><span class="line">    model.addAttribute(<span class="string">"name"</span>, <span class="string">"寄大学"</span>);</span><br><span class="line">    model.addAttribute(<span class="string">"age"</span>, <span class="number">7</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"/demo/view"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="向浏览器返回Json格式数据举例"><a href="#向浏览器返回Json格式数据举例" class="headerlink" title="向浏览器返回Json格式数据举例"></a>向浏览器返回Json格式数据举例</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(path = <span class="string">"/emp"</span>, method = RequestMethod.GET)</span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Map&lt;String, Object&gt; <span class="title">getEmp</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Map&lt;String, Object&gt; emp = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    emp.put(<span class="string">"name"</span>, <span class="string">"张三"</span>);</span><br><span class="line">    emp.put(<span class="string">"age"</span>, <span class="number">30</span>);</span><br><span class="line">    emp.put(<span class="string">"salary"</span>, <span class="number">9000</span>);</span><br><span class="line">    <span class="keyword">return</span> emp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/28/%E6%A1%86%E6%9E%B6/Spring/Spring%E5%85%A5%E9%97%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/28/%E6%A1%86%E6%9E%B6/Spring/Spring%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">Spring入门</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-02-28 20:10:13 / 修改时间：22:23:51" itemprop="dateCreated datePublished" datetime="2022-02-28T20:10:13+08:00">2022-02-28</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">框架</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%A1%86%E6%9E%B6/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="Spring全家桶"><a href="#Spring全家桶" class="headerlink" title="Spring全家桶"></a>Spring全家桶</h4><ul>
-<li><strong>Spring Framework</strong></li>
-<li><strong>Spring Boot</strong></li>
-<li>Spring Cloud</li>
-<li>Spring Cloud Data Flow</li>
-</ul>
-<h4 id="Spring-Framework"><a href="#Spring-Framework" class="headerlink" title="Spring Framework"></a>Spring Framework</h4><ul>
-<li>Spring Core<ul>
-<li>IOC, AOP</li>
-</ul>
-</li>
-<li>Spring Data Access<ul>
-<li>Transactions, Spring MyBatis</li>
-</ul>
-</li>
-<li>Web Servlet<ul>
-<li>Spring MVC</li>
-</ul>
-</li>
-<li>Integration<ul>
-<li>Emain, Scheduling, AMQP, Security</li>
-</ul>
-</li>
-</ul>
-<h4 id="Spring-IoC"><a href="#Spring-IoC" class="headerlink" title="Spring IoC"></a>Spring IoC</h4><ul>
-<li>Inversion of Control<ul>
-<li>控制反转，是一种面向对象编程的设计思想</li>
-</ul>
-</li>
-<li>Dependency Injection<ul>
-<li>依赖注入，是IoC思想的实现方式</li>
-</ul>
-</li>
-<li>IoC Container<ul>
-<li>IoC容器，是实现依赖注入的关键，本质上是一个工厂</li>
-</ul>
-</li>
-</ul>
-<h4 id="四种类型注解"><a href="#四种类型注解" class="headerlink" title="四种类型注解"></a>四种类型注解</h4><div class="table-container">
+<h4 id="微服务技术对比"><a href="#微服务技术对比" class="headerlink" title="微服务技术对比"></a>微服务技术对比</h4><div class="table-container">
 <table>
 <thead>
 <tr>
-<th><strong>注解</strong></th>
-<th><strong>说明</strong></th>
+<th></th>
+<th>Dubbo</th>
+<th>SpringCloud</th>
+<th>SpingCloudAlibaba</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>@Component</td>
-<td>组件注解，通用注解，被该注解描述的类将被IoC容器管理并实例化</td>
+<td>注册中心</td>
+<td>zookeeper，Redis</td>
+<td>Eureka，Consul</td>
+<td>Nacos，Eureka</td>
 </tr>
 <tr>
-<td>@Controller</td>
-<td>语义注解，说明当前类是mvc应用中的控制器，用于接收用户的输入，调用Service的方法以及向客户端返回结果</td>
+<td>服务远程调用</td>
+<td>Dubbo协议</td>
+<td>Feign（http协议）</td>
+<td>Dubbo，Feign</td>
 </tr>
 <tr>
-<td>@Service</td>
-<td>语义注解，说明当前类是Service业务服务类，用于实现功能的最核心代码，通常这种类都是以xxxservice结尾</td>
+<td>配置中心</td>
+<td>无</td>
+<td>SpringCloudConfig</td>
+<td>SpringCloudConfig，Nacos</td>
 </tr>
 <tr>
-<td>@Repository</td>
-<td>语义注解，说明当前类用于业务持久层，通常描述对应的Dao类，负责与数据库实现增删改查的Dao类</td>
+<td>服务网关</td>
+<td>无</td>
+<td>SpringCloudGateway，Zuul</td>
+<td>SpringCloudGateway，Zuul</td>
+</tr>
+<tr>
+<td>服务监控和保护</td>
+<td>dubbo-admin，功能弱</td>
+<td>Hystrix</td>
+<td>Sentinel</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p><strong>Controller -&gt; Service -&gt; Dao</strong></p>
-<h4 id="从Srping容器获取bean"><a href="#从Srping容器获取bean" class="headerlink" title="从Srping容器获取bean"></a>从Srping容器获取bean</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="meta">@ContextConfiguration</span>(classes = CommunityApplication<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">CommunityApplicationTests</span> <span class="keyword">implements</span> <span class="title">ApplicationContextAware</span> </span>&#123;</span><br><span class="line">   <span class="keyword">private</span> ApplicationContext applicationContext;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setApplicationContext</span><span class="params">(ApplicationContext applicationContext)</span> <span class="keyword">throws</span> BeansException </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.applicationContext = applicationContext;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Test</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testApplicationContext</span><span class="params">()</span></span>&#123;</span><br><span class="line">      AlphaDao alphaDao = applicationContext.getBean(<span class="string">"AlphaHibernate"</span>, AlphaDao<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">      System.out.println(alphaDao.select());</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="Bean注入"><a href="#Bean注入" class="headerlink" title="Bean注入"></a>Bean注入</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> AlphaDao alphaDao;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -1056,7 +301,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/28/%E6%A1%86%E6%9E%B6/SpringBoot/SpringBoot%E7%AE%80%E4%BB%8B/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/10/Linux/Linux%E4%B8%89%E7%A7%8D%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1070,7 +315,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/02/28/%E6%A1%86%E6%9E%B6/SpringBoot/SpringBoot%E7%AE%80%E4%BB%8B/" class="post-title-link" itemprop="url">SpringBoot简介</a>
+            <a href="/2022/05/10/Linux/Linux%E4%B8%89%E7%A7%8D%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/" class="post-title-link" itemprop="url">Linux三种网络连接</a>
         </h2>
 
         <div class="post-meta">
@@ -1083,7 +328,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-02-28 20:05:10 / 修改时间：20:05:36" itemprop="dateCreated datePublished" datetime="2022-02-28T20:05:10+08:00">2022-02-28</time>
+              <time title="创建时间：2022-05-10 15:50:00 / 修改时间：15:52:37" itemprop="dateCreated datePublished" datetime="2022-05-10T15:50:00+08:00">2022-05-10</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1091,11 +336,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">框架</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%A1%86%E6%9E%B6/SpringBoot/" itemprop="url" rel="index"><span itemprop="name">SpringBoot</span></a>
+                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
                 </span>
             </span>
 
@@ -1111,16 +352,12 @@
 
       
           <ul>
-<li>核心作用<ul>
-<li>起步依赖</li>
-<li>自动配置</li>
-<li>端点监控</li>
-</ul>
+<li>桥接模式：直接分配物理网络，可以和其它系统通讯，但容易造成IP地址冲突</li>
+<li>NAT模式：网络地址转换方式，Linux可以访问外网，不会造成IP冲突</li>
+<li><p>仅主极模式：IP地址独立，Linux是独立的主机，不能访问外网</p>
+<p> <strong>一般建议使用NAT模式</strong></p>
 </li>
 </ul>
-<h4 id="使用spring-initializer快速生成SringBoot项目"><a href="#使用spring-initializer快速生成SringBoot项目" class="headerlink" title="使用spring initializer快速生成SringBoot项目"></a>使用spring initializer快速生成SringBoot项目</h4><h4 id="Hello，SpringBoot"><a href="#Hello，SpringBoot" class="headerlink" title="Hello，SpringBoot"></a>Hello，SpringBoot</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.nowcoder.community.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ResponseBody;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/alpha"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AlphaController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/hello"</span>)</span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">sayHello</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hello, SpringBoot"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="修改SpringBoot的Tomcat服务器端口"><a href="#修改SpringBoot的Tomcat服务器端口" class="headerlink" title="修改SpringBoot的Tomcat服务器端口"></a>修改SpringBoot的Tomcat服务器端口</h4><p>在application.properties中写入：server.port=[端口号]</p>
-<h4 id="修改项目访问路径（默认为空）"><a href="#修改项目访问路径（默认为空）" class="headerlink" title="修改项目访问路径（默认为空）"></a>修改项目访问路径（默认为空）</h4><p>在application.properties中写入：server.servlet.context-path=[路径]</p>
 
       
     </div>
@@ -1141,7 +378,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/27/%E6%A1%86%E6%9E%B6/MVC%E6%A8%A1%E5%BC%8F%E5%92%8C%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/06/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%A4%BE%E5%8C%BA%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1155,7 +392,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/02/27/%E6%A1%86%E6%9E%B6/MVC%E6%A8%A1%E5%BC%8F%E5%92%8C%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84/" class="post-title-link" itemprop="url">MVC模式和三层架构</a>
+            <a href="/2022/05/06/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%A4%BE%E5%8C%BA%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/" class="post-title-link" itemprop="url">社区搜索功能</a>
         </h2>
 
         <div class="post-meta">
@@ -1166,23 +403,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2022-02-27 22:58:33" itemprop="dateCreated datePublished" datetime="2022-02-27T22:58:33+08:00">2022-02-27</time>
+              <time title="创建时间：2022-05-06 14:36:32 / 修改时间：14:42:50" itemprop="dateCreated datePublished" datetime="2022-05-06T14:36:32+08:00">2022-05-06</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-28 12:41:34" itemprop="dateModified" datetime="2022-02-28T12:41:34+08:00">2022-02-28</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">框架</span></a>
+                  <a href="/categories/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">牛客讨论区项目</span></a>
                 </span>
             </span>
 
@@ -1198,22 +429,764 @@
 
       
           <ul>
-<li>MVC是一种分层开发的模式，其中：<ul>
-<li>M：Model，业务模型，处理业务</li>
-<li>V：View，视图，页面展示</li>
-<li>C：Controller，控制器，处理请求，调用模型和视图</li>
+<li>搜索服务<ul>
+<li>将帖子保存至Elasticsearch服务器</li>
+<li>从Elasticsearch服务器删除帖子</li>
+<li>从Elasticsearch服务器搜索帖子</li>
+</ul>
+</li>
+<li>发布事件<ul>
+<li>发布帖子时，将帖子异步的提交到Elasiticsearch服务器</li>
+<li>增加评论时，将帖子异步的提交到Elasticsearch服务器</li>
+<li>在消费组件中增加一个方法，消费贴子发布事件</li>
+</ul>
+</li>
+<li>显示结果<ul>
+<li>在控制器中处理搜索请求，在HTML上显示搜索结果</li>
 </ul>
 </li>
 </ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/05/%E6%A1%86%E6%9E%B6/Spring/Spring%E6%95%B4%E5%90%88Elasticsearch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/05/%E6%A1%86%E6%9E%B6/Spring/Spring%E6%95%B4%E5%90%88Elasticsearch/" class="post-title-link" itemprop="url">Spring整合Elasticsearch</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-05 20:02:23" itemprop="dateCreated datePublished" datetime="2022-05-05T20:02:23+08:00">2022-05-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-06 14:35:14" itemprop="dateModified" datetime="2022-05-06T14:35:14+08:00">2022-05-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>引入依赖<ul>
+<li>spring-boot-starter-data-elasticsearch</li>
+</ul>
+</li>
+<li>配置Elasticsearch<ul>
+<li>cluster-name，cluster-nodes</li>
+</ul>
+</li>
+<li>Spring Data Elasticsearch<ul>
+<li>ElasticsearchTemplate</li>
+<li>ElasticsearchRepository</li>
+</ul>
+</li>
+</ul>
+<h4 id="定义Repository接口"><a href="#定义Repository接口" class="headerlink" title="定义Repository接口"></a>定义Repository接口</h4><ul>
+<li>DAO层实现实体类对应的Repository接口，继承于ElasiticsearchRepository，泛型为实体和id类型</li>
+<li>父接口中已经定义好了对es服务器的增删改查方法，不需要自己实现</li>
+</ul>
+<h4 id="测试增删改查方法"><a href="#测试增删改查方法" class="headerlink" title="测试增删改查方法"></a>测试增删改查方法</h4><h5 id="增"><a href="#增" class="headerlink" title="增"></a>增</h5><ul>
+<li>save方法，保存一条</li>
+<li>saveAll，保存多条</li>
+</ul>
+<h5 id="改"><a href="#改" class="headerlink" title="改"></a>改</h5><ul>
+<li>save覆盖即可</li>
+</ul>
+<h5 id="删"><a href="#删" class="headerlink" title="删"></a>删</h5><ul>
+<li>deleteById</li>
+</ul>
+<h5 id="查"><a href="#查" class="headerlink" title="查"></a>查</h5><ul>
+<li>首先构造搜索请求对象SearchRequest，传入索引名</li>
+<li>构造搜索条件SearchSourceBuilder</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//构建搜索条件</span></span><br><span class="line">SearchSourceBuilder searchSourceBuilder = <span class="keyword">new</span> SearchSourceBuilder()</span><br><span class="line">        <span class="comment">//在discusspost索引的title和content字段中都查询“互联网寒冬”</span></span><br><span class="line">        .query(QueryBuilders.multiMatchQuery(<span class="string">"互联网寒冬"</span>, <span class="string">"title"</span>, <span class="string">"content"</span>))</span><br><span class="line">        <span class="comment">// matchQuery是模糊查询，会对key进行分词：searchSourceBuilder.query(QueryBuilders.matchQuery(key,value));</span></span><br><span class="line">        <span class="comment">// termQuery是精准查询：searchSourceBuilder.query(QueryBuilders.termQuery(key,value));</span></span><br><span class="line">        .sort(SortBuilders.fieldSort(<span class="string">"type"</span>).order(SortOrder.DESC))</span><br><span class="line">        .sort(SortBuilders.fieldSort(<span class="string">"score"</span>).order(SortOrder.DESC))</span><br><span class="line">        .sort(SortBuilders.fieldSort(<span class="string">"createTime"</span>).order(SortOrder.DESC))</span><br><span class="line">        <span class="comment">//一个可选项，用于控制允许搜索的时间：searchSourceBuilder.timeout(new TimeValue(60, TimeUnit.SECONDS));</span></span><br><span class="line">        .from(<span class="number">0</span>)<span class="comment">// 指定从哪条开始查询</span></span><br><span class="line">        .size(<span class="number">10</span>);<span class="comment">// 需要查出的总记录条数</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li><h5 id="三层架构"><a href="#三层架构" class="headerlink" title="三层架构"></a>三层架构</h5><ul>
-<li>表现层：接受请求，封装数据，调用业务逻辑层，响应数据（.web/controller）,框架如<strong>SpringMVC</strong></li>
-<li>业务逻辑层：对业务逻辑进行封装，组合数据访问层中基本功能，形成复杂逻辑功能（.service）,框架如<strong>Spring</strong></li>
-<li>数据访问层（持久层）：对数据库进行CRUD操作（.dao/mapper）,框架如<strong>MyBatis</strong></li>
+<li>调用searchRequest的source方法，将搜索条件传入请求体</li>
+<li>创建应答对象</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SearchResponse searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>转换为json格式输出</p>
+</li>
+<li><p>添加高亮</p>
+<ul>
+<li>声明高亮对象</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//高亮</span></span><br><span class="line">HighlightBuilder highlightBuilder = <span class="keyword">new</span> HighlightBuilder();</span><br><span class="line">highlightBuilder.field(<span class="string">"title"</span>);</span><br><span class="line">highlightBuilder.field(<span class="string">"content"</span>);</span><br><span class="line">highlightBuilder.requireFieldMatch(<span class="keyword">false</span>);</span><br><span class="line">highlightBuilder.preTags(<span class="string">"&lt;span style='color:red'&gt;"</span>);</span><br><span class="line">highlightBuilder.postTags(<span class="string">"&lt;/span&gt;"</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>遍历时处理高亮</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 处理高亮显示的结果，获取高亮数据进行进行替换</span></span><br><span class="line"><span class="comment">// 可能有多段匹配，取第一段即可</span></span><br><span class="line">HighlightField titleField = hit.getHighlightFields().get(<span class="string">"title"</span>);</span><br><span class="line"><span class="keyword">if</span> (titleField != <span class="keyword">null</span>) &#123;</span><br><span class="line">    discussPost.setTitle(titleField.getFragments()[<span class="number">0</span>].toString());</span><br><span class="line">&#125;</span><br><span class="line">HighlightField contentField = hit.getHighlightFields().get(<span class="string">"content"</span>);</span><br><span class="line"><span class="keyword">if</span> (contentField != <span class="keyword">null</span>) &#123;</span><br><span class="line">    discussPost.setContent(contentField.getFragments()[<span class="number">0</span>].toString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/05/%E4%B8%AD%E9%97%B4%E4%BB%B6/Elasticsearch%E5%85%A5%E9%97%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/05/%E4%B8%AD%E9%97%B4%E4%BB%B6/Elasticsearch%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">Elasticsearch入门</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-05-05 15:40:10 / 修改时间：20:01:02" itemprop="dateCreated datePublished" datetime="2022-05-05T15:40:10+08:00">2022-05-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">中间件</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>Elasticsearch简介<ul>
+<li>一个分布式的，Restful风格的搜索引擎</li>
+<li>支持对各种类型的数据的检索</li>
+<li>搜索速度快，可以提供实时的搜索服务</li>
+<li>便于水平扩展，每秒可以处理PB级海量数据</li>
+</ul>
+</li>
+<li>Elasticsearch术语<ul>
+<li>索引，类型，文档，字段（6.0前对应数据库中：数据库，表，行，列）</li>
+<li>集群，节点，分片，副本</li>
+<li>6.0后废弃类型，索引对应数据库中的表</li>
+<li>集群中每一台服务器称为节点</li>
+<li>一个索引可以拆分为多个分片存储，提高并发能力</li>
+<li>副本是对分片的备份，一个分片可以包含多个副本，提高可用性</li>
 </ul>
 </li>
 </ul>
-<p><strong>JavaBean：业务逻辑层 + 数据访问层</strong></p>
+<h4 id="Elasticsearch配置（elasticsearch-yml文件）"><a href="#Elasticsearch配置（elasticsearch-yml文件）" class="headerlink" title="Elasticsearch配置（elasticsearch.yml文件）"></a>Elasticsearch配置（elasticsearch.yml文件）</h4><ul>
+<li>集群名：cluster.name</li>
+<li>数据存放路径：path.data</li>
+<li>日志存放路径：path.logs</li>
+</ul>
+<h4 id="安装中文分词插件ik"><a href="#安装中文分词插件ik" class="headerlink" title="安装中文分词插件ik"></a>安装中文分词插件ik</h4><p><a href="https://github.com/medcl/elasticsearch-analysis-ik" target="_blank" rel="noopener">https://github.com/medcl/elasticsearch-analysis-ik</a></p>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><ul>
+<li>启动elasticserach</li>
+<li>查看健康状况 curl -X GET “localhost:9200/_cat/health?v”</li>
+<li>查看节点 curl -X GET “localhost:9200/_cat/nodes?v”</li>
+<li>查看索引 curl -X GET “localhost:9200/_cat/indices?v”</li>
+<li>创建索引 curl -X PUT “localhost:9200/{索引名}”，返回json格式</li>
+<li>删除索引 curl -X DELETE “localhost:9200/{索引名}”</li>
+<li>插入数据PUT请求  localhost:9200/{索引名}/{类型}/{id}，提交json格式数据</li>
+<li>查询数据GET请求</li>
+<li>删除数据DELETE请求</li>
+<li>搜索数据GET请求<ul>
+<li>不加条件 localhost:9200/{索引名}/_search</li>
+<li>加条件 localhost:9200/{索引名}/_search?q=xxx:yyy</li>
+<li>会进行分词</li>
+</ul>
+</li>
+<li>搜索条件复杂，通过json提交请求数据</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"query"</span>:&#123;</span><br><span class="line">        <span class="attr">"multi_match"</span>:&#123;</span><br><span class="line">            <span class="attr">"query"</span>:<span class="string">"互联网"</span>, <span class="comment">//搜什么</span></span><br><span class="line">            <span class="attr">"fields"</span>:[<span class="string">"title"</span>,<span class="string">"content"</span>]  <span class="comment">//从哪匹配</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/04/29/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%B3%BB%E7%BB%9F%E9%80%9A%E7%9F%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/29/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%B3%BB%E7%BB%9F%E9%80%9A%E7%9F%A5/" class="post-title-link" itemprop="url">系统通知</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-04-29 17:03:11" itemprop="dateCreated datePublished" datetime="2022-04-29T17:03:11+08:00">2022-04-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-04 16:48:30" itemprop="dateModified" datetime="2022-05-04T16:48:30+08:00">2022-05-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">牛客讨论区项目</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>通知列表<ul>
+<li>显示评论、点赞、关注三种类型的通知</li>
+</ul>
+</li>
+<li>通知详情<ul>
+<li>分页显示某一类主题所包含的通知</li>
+</ul>
+</li>
+<li>未读消息<ul>
+<li>在页面头部显示所有的消息数量</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/04/22/%E6%A1%86%E6%9E%B6/%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97&Kafka/Spring%E6%95%B4%E5%90%88Kafka/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/22/%E6%A1%86%E6%9E%B6/%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97&Kafka/Spring%E6%95%B4%E5%90%88Kafka/" class="post-title-link" itemprop="url">Spring整合Kafka</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-04-22 22:05:17 / 修改时间：23:30:47" itemprop="dateCreated datePublished" datetime="2022-04-22T22:05:17+08:00">2022-04-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97-Kafka/" itemprop="url" rel="index"><span itemprop="name">阻塞队列&Kafka</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li><p>引入依赖</p>
+<ul>
+<li>spring-kafka</li>
+</ul>
+</li>
+<li><p>配置Kafka</p>
+<ul>
+<li>配置server，consumer</li>
+</ul>
+</li>
+<li><p>访问Kafka</p>
+<ul>
+<li>生产者：kafkaTemplate.send(topic, data);</li>
+<li>消费者：</li>
+</ul>
+<p>​       @KafkaListener(topics = {“test”})</p>
+<p>​        public void handleMessage(ConsumerRecord record)  {}</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/04/22/%E6%A1%86%E6%9E%B6/%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97&Kafka/Kafka%E5%85%A5%E9%97%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/22/%E6%A1%86%E6%9E%B6/%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97&Kafka/Kafka%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">Kafka入门</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-04-22 20:36:33 / 修改时间：22:05:01" itemprop="dateCreated datePublished" datetime="2022-04-22T20:36:33+08:00">2022-04-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97-Kafka/" itemprop="url" rel="index"><span itemprop="name">阻塞队列&Kafka</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>Kafka简介<ul>
+<li>Kafka是一个分布式的流媒体平台</li>
+<li>应用：消息系统，日志收集，用户行为追踪，流式处理</li>
+</ul>
+</li>
+<li>Kafka特点<ul>
+<li>高吞吐量，消息持久化，高可用性，高扩展性</li>
+</ul>
+</li>
+<li>Kafka术语<ul>
+<li>Broker，Zookeeper</li>
+<li>Topic，Partition，Offset</li>
+<li>Leader Replica，Follower Replica</li>
+</ul>
+</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Broker</td>
+<td>Kafka的服务器，一个服务器称为一个Broker</td>
+</tr>
+<tr>
+<td>Zookeeper</td>
+<td>管理集群工具</td>
+</tr>
+<tr>
+<td>Topic</td>
+<td>主题，用来存放消息的位置</td>
+</tr>
+<tr>
+<td>Partition</td>
+<td>分区，对主题位置的分区</td>
+</tr>
+<tr>
+<td>Offset</td>
+<td>消息在分区内存放的索引序列</td>
+</tr>
+<tr>
+<td>Replica</td>
+<td>副本</td>
+</tr>
+<tr>
+<td>Leader Replica</td>
+<td>主副本，获取数据时处理请求</td>
+</tr>
+<tr>
+<td>Follower Replica</td>
+<td>从副本，只负责备份，不负责响应，主副本失效时会从中随机选择一个替代</td>
+</tr>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="Kafka官方网址"><a href="#Kafka官方网址" class="headerlink" title="Kafka官方网址"></a>Kafka官方网址</h4><p><a href="https://kafka.apache.org/" target="_blank" rel="noopener">https://kafka.apache.org/</a></p>
+<h4 id="配置Kafka"><a href="#配置Kafka" class="headerlink" title="配置Kafka"></a>配置Kafka</h4><ul>
+<li>配置文件zookeeper.properties<ul>
+<li>dataDir：数据存放路径，默认为Linux系统路径</li>
+</ul>
+</li>
+<li>配置文件server.properties<ul>
+<li>log.dirs：日志文件存放路径，默认为Linux系统路径</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/04/22/%E6%A1%86%E6%9E%B6/%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97&Kafka/%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/22/%E6%A1%86%E6%9E%B6/%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97&Kafka/%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97/" class="post-title-link" itemprop="url">阻塞队列</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-04-22 18:32:12 / 修改时间：22:05:10" itemprop="dateCreated datePublished" datetime="2022-04-22T18:32:12+08:00">2022-04-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97-Kafka/" itemprop="url" rel="index"><span itemprop="name">阻塞队列&Kafka</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>BlockingQueue<ul>
+<li>解决线程通信的问题</li>
+<li>阻塞方法：put，take</li>
+</ul>
+</li>
+<li>生产者消费者模式<ul>
+<li>生产者：产生数据的线程</li>
+<li>消费者：使用数据的线程</li>
+</ul>
+</li>
+<li>实现类<ul>
+<li>ArrayBlockingQueue</li>
+<li>LinkedBlockingQueue</li>
+<li>PriorityBlockingQueue，SynchronousQueue，DelayQueue等</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/04/22/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%99%BB%E5%BD%95%E6%A8%A1%E5%9D%97%E4%BC%98%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/22/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%99%BB%E5%BD%95%E6%A8%A1%E5%9D%97%E4%BC%98%E5%8C%96/" class="post-title-link" itemprop="url">登录模块优化</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-04-22 15:28:31 / 修改时间：15:32:32" itemprop="dateCreated datePublished" datetime="2022-04-22T15:28:31+08:00">2022-04-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">牛客讨论区项目</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>使用Redis存储验证码<ul>
+<li>验证码需要频繁的访问与刷新，对性能要求较高</li>
+<li>验证码不需永久保存，通常在很短时间后失效</li>
+<li>分布式部署时，存在Session共享的问题</li>
+</ul>
+</li>
+<li>使用Redis存储登陆凭证<ul>
+<li>处理每次请求时，都要查询用户的登陆凭证，访问的频率非常高</li>
+</ul>
+</li>
+<li>使用Redis缓存登录用户信息<ul>
+<li>处理每次请求时，都要根据凭证查询用户信息，访问的频率非常高</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -1233,7 +1206,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1301,20 +1274,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">104</span>
+          <span class="site-state-item-count">127</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1397,7 +1370,7 @@ $(document).ready(function() {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共30.5k字</span>
+  <span class="post-count">博客全站共38.7k字</span>
 </div>
         
 <div class="busuanzi-count">
@@ -1499,59 +1472,6 @@ $(document).ready(function() {
   
 
   
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
-    
 
   
 
