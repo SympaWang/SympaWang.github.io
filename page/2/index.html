@@ -180,7 +180,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/06/05/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Gateway%E7%BD%91%E5%85%B3/%E8%B7%AF%E7%94%B1%E6%96%AD%E8%A8%80%E5%B7%A5%E5%8E%82/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/06/20/%E4%B8%AD%E9%97%B4%E4%BB%B6/MQ/RabbitMQ%E7%9A%84%E5%AE%89%E8%A3%85/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -194,7 +194,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/06/05/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Gateway%E7%BD%91%E5%85%B3/%E8%B7%AF%E7%94%B1%E6%96%AD%E8%A8%80%E5%B7%A5%E5%8E%82/" class="post-title-link" itemprop="url">路由断言工厂</a>
+            <a href="/2022/06/20/%E4%B8%AD%E9%97%B4%E4%BB%B6/MQ/RabbitMQ%E7%9A%84%E5%AE%89%E8%A3%85/" class="post-title-link" itemprop="url">RabbitMQ的安装与基本概念</a>
         </h2>
 
         <div class="post-meta">
@@ -207,7 +207,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-06-05 10:47:12 / 修改时间：11:46:55" itemprop="dateCreated datePublished" datetime="2022-06-05T10:47:12+08:00">2022-06-05</time>
+              <time title="创建时间：2022-06-20 10:37:13 / 修改时间：11:20:57" itemprop="dateCreated datePublished" datetime="2022-06-20T10:37:13+08:00">2022-06-20</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -215,7 +215,84 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="name">微服务</span></a>
+                  <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">中间件</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line">-e RABBITMQ_DEFAULT_USER=用户名 \</span><br><span class="line">-e RABBITMQ_DEFAULT_PASS=密码\</span><br><span class="line">--name mq \</span><br><span class="line">--hostname mq1 \</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">p 15672:15672 \</span></span><br><span class="line">-p 5672:5672 \</span><br><span class="line">-d \</span><br><span class="line">rabbitmq:3-management</span><br></pre></td></tr></table></figure>
+<h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><ul>
+<li>channel：操作MQ的工具</li>
+<li>exchange：路由消息到队列中</li>
+<li>queue：缓存消息</li>
+<li>virtual host：虚拟主机，是对queue、exchange等资源的逻辑分组</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/06/16/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%BD%91%E7%AB%99%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/06/16/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%BD%91%E7%AB%99%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1/" class="post-title-link" itemprop="url">网站数据统计</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-06-16 10:39:11 / 修改时间：18:41:14" itemprop="dateCreated datePublished" datetime="2022-06-16T10:39:11+08:00">2022-06-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">牛客讨论区项目</span></a>
                 </span>
             </span>
 
@@ -231,271 +308,17 @@
 
       
           <ul>
-<li>在配置文件中写的断言规则只是字符串，会被Predicate Factory读取并处理，转变为路由判断条件</li>
-<li>Spring提供了11种基本的Predicate工厂</li>
-</ul>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>说明</th>
-<th>实例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>After</td>
-<td>某个时间点后的请求</td>
-<td>- After=2022-06-05T17:42:244-07:00[America/Denver]</td>
-</tr>
-<tr>
-<td>Before</td>
-<td>某个时间点之前的请求</td>
-<td>- Before=2023-06-05T17:42:244+08:00[Asia/Shanghai]</td>
-</tr>
-<tr>
-<td>Between</td>
-<td>某两个时间点之间的请求</td>
-<td>- Between=2022-06-05T17:42:244-07:00[America/Denver],2023-06-05T17:42:244+08:00[Asia/Shanghai]</td>
-</tr>
-<tr>
-<td>Cookie</td>
-<td>请求必须包含某些Cookie</td>
-<td>- Cookie=chocolate, ch.p</td>
-</tr>
-<tr>
-<td>Header</td>
-<td>请求必须包含某些Header</td>
-<td>- Header=X-Request-Id, \d+</td>
-</tr>
-<tr>
-<td>Method</td>
-<td>请求必须是指定方式</td>
-<td>- Method=GET, POST</td>
-</tr>
-<tr>
-<td><strong>Path</strong></td>
-<td><strong>请求必须是指定路径规则</strong></td>
-<td><strong>- Path=/red/{segment},/blue/**</strong></td>
-</tr>
-<tr>
-<td>Query</td>
-<td>请求必须包含指定参数</td>
-<td>- Query=name,jack或者- Query=name</td>
-</tr>
-<tr>
-<td>RemoteAddr</td>
-<td>请求的ip必须是指定范围</td>
-<td>-RemoteAddr=192.168.1.1/24</td>
-</tr>
-<tr>
-<td>Weight</td>
-<td>权重处理</td>
-</tr>
-</tbody>
-</table>
-</div>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/19/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Gateway%E7%BD%91%E5%85%B3/%E7%BB%9F%E4%B8%80%E7%BD%91%E5%85%B3Gateway/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/19/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Gateway%E7%BD%91%E5%85%B3/%E7%BB%9F%E4%B8%80%E7%BD%91%E5%85%B3Gateway/" class="post-title-link" itemprop="url">统一网关Gateway</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-05-19 16:54:23 / 修改时间：18:29:24" itemprop="dateCreated datePublished" datetime="2022-05-19T16:54:23+08:00">2022-05-19</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="name">微服务</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="为什么需要网关"><a href="#为什么需要网关" class="headerlink" title="为什么需要网关"></a>为什么需要网关</h4><ul>
-<li>身份认证和权限校验</li>
-<li>服务路由，负载均衡</li>
-<li>请求限流</li>
-</ul>
-<h4 id="网关技术的实现"><a href="#网关技术的实现" class="headerlink" title="网关技术的实现"></a>网关技术的实现</h4><ul>
-<li>gateway：基于Spring5中提供的WebFlux，属于响应式编程的实现，具有更好的性能<ul>
-<li>zuul：基于Servlet的实现，属于阻塞式编程    </li>
+<li>UV(Unique Visitor)<ul>
+<li>独立访客，需通过用户IP排重统计数据</li>
+<li>每次访问都要进行统计</li>
+<li>HyperLogLog，性能好，存储空间小</li>
 </ul>
 </li>
+<li>DAU(Daily Active User)<ul>
+<li>日活跃用户，需通过用户ID排重统计数据</li>
+<li>访问过一次，则认为其活跃</li>
+<li>Bitmap，性能好、且可以精确统计结果</li>
 </ul>
-<h4 id="搭建网关服务"><a href="#搭建网关服务" class="headerlink" title="搭建网关服务"></a>搭建网关服务</h4><ul>
-<li>创建新的module，引入SpringCloudGateway的依赖和naocs的服务发现依赖</li>
-<li>创建启动类</li>
-<li>编写路由配置及nacos地址</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">10010</span> <span class="comment"># 网关端口</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">gateway</span> <span class="comment"># 服务名称</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">server-addr:</span> <span class="string">localhost:80</span> <span class="comment"># nacos地址</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">      <span class="attr">routes:</span> <span class="comment"># 网关路由配置</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">user-service</span> <span class="comment"># 路由id 自定义 只要唯一即可</span></span><br><span class="line">          <span class="comment"># uri: http://localhost:8081 固定目标地址</span></span><br><span class="line">          <span class="attr">uri:</span> <span class="string">lb://userservice</span> <span class="comment">#路由的目标地址 lb就是负载均衡 后面是服务名称</span></span><br><span class="line">          <span class="attr">predicates:</span> <span class="comment"># 路由断言 也就是判断请求是否符合路由规则条件</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">Path=/user/**</span> <span class="comment"># 按照路径匹配 只要以/user/开头就符合要求</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/19/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Feign%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/Feign%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B8%8E%E5%AE%9E%E8%B7%B5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/19/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Feign%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/Feign%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%B8%8E%E5%AE%9E%E8%B7%B5/" class="post-title-link" itemprop="url">Feign性能优化与实践</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-05-19 14:29:11 / 修改时间：16:51:11" itemprop="dateCreated datePublished" datetime="2022-05-19T14:29:11+08:00">2022-05-19</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="name">微服务</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="Feign底层客户端实现"><a href="#Feign底层客户端实现" class="headerlink" title="Feign底层客户端实现"></a>Feign底层客户端实现</h4><ul>
-<li>URLConnection：默认实现，不支持连接池</li>
-<li>Apache HttpClient：支持连接池</li>
-<li>OKHttp：支持连接池</li>
-</ul>
-<h4 id="优化Feign的性能主要包括"><a href="#优化Feign的性能主要包括" class="headerlink" title="优化Feign的性能主要包括"></a>优化Feign的性能主要包括</h4><ul>
-<li>使用连接池代替默认的URLConnection</li>
-<li>日志级别，最好用basic或者none</li>
-</ul>
-<h4 id="Feign添加HttpClient支持"><a href="#Feign添加HttpClient支持" class="headerlink" title="Feign添加HttpClient支持"></a>Feign添加HttpClient支持</h4><ul>
-<li>引入依赖</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--引入HttpClient依赖--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.github.openfeign<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>feign-httpclient<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>配置连接池</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">feign:</span><br><span class="line">  httpclient:</span><br><span class="line">    enabled: true # 支持httpClient开关</span><br><span class="line">    max-connections: 200 # 最大连接数</span><br><span class="line">    max-connections-per-route: 50 # 单个请求路径最大连接</span><br></pre></td></tr></table></figure>
-<h4 id="Feign的最佳实践"><a href="#Feign的最佳实践" class="headerlink" title="Feign的最佳实践"></a>Feign的最佳实践</h4><ul>
-<li>方式一（继承）：给消费者的FeignClient和提供者的controller定义统一的父接口作为标准<ul>
-<li>客户端和服务端共享接口，紧耦合</li>
-<li>对Spring MVC 无效</li>
-</ul>
-</li>
-<li>方式二（抽取）：将FeignClient抽取为独立模块，并且把接口有关的POJO、默认的Feign配置都放到该模块中，提供给消费者调用<ul>
-<li>消费者需要方法不同，单独对于一个消费者来说，有的方法较为多余</li>
-</ul>
-</li>
-</ul>
-<h4 id="抽取FeignClient"><a href="#抽取FeignClient" class="headerlink" title="抽取FeignClient"></a>抽取FeignClient</h4><ul>
-<li>首先创建一个module，命名为feign-api，然后引入feign的starter依赖</li>
-<li>将order-service中编写的UserClient，User，DefaultFeignConfiguration都复制到项目中</li>
-<li>在order-service中引入feign-api的依赖</li>
-<li>修改order-service中与上述三个组件有关的import部分，改成导入feign-api中的包</li>
-<li>重启测试</li>
-<li><p>当定义的Client不在Spring扫描范围时，Client无法使用。两种方案：</p>
-<ul>
-<li>指定FeignClient所在包</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EnableFeignClients</span>(basePackages = <span class="string">"cn.itcast.feign.clients"</span>)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>指定FeignClient字节码</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EnableFeignClients</span>(clients = &#123;UserClient<span class="class">.<span class="keyword">class</span>&#125;)</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 
@@ -518,7 +341,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/18/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Feign%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/Feign/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/06/15/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%BD%AE%E9%A1%B6%E3%80%81%E5%8A%A0%E7%B2%BE%E3%80%81%E5%88%A0%E9%99%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -532,7 +355,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/18/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Feign%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/Feign/" class="post-title-link" itemprop="url">Feign</a>
+            <a href="/2022/06/15/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%BD%AE%E9%A1%B6%E3%80%81%E5%8A%A0%E7%B2%BE%E3%80%81%E5%88%A0%E9%99%A4/" class="post-title-link" itemprop="url">置顶、加精、删除</a>
         </h2>
 
         <div class="post-meta">
@@ -544,14 +367,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-18 16:14:26" itemprop="dateCreated datePublished" datetime="2022-05-18T16:14:26+08:00">2022-05-18</time>
+              <time title="创建时间：2022-06-15 16:52:11" itemprop="dateCreated datePublished" datetime="2022-06-15T16:52:11+08:00">2022-06-15</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-19 14:28:39" itemprop="dateModified" datetime="2022-05-19T14:28:39+08:00">2022-05-19</time>
+                <time title="修改时间：2022-06-16 10:38:06" itemprop="dateModified" datetime="2022-06-16T10:38:06+08:00">2022-06-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -559,753 +382,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="name">微服务</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="RestTemplate方式调用存在的问题"><a href="#RestTemplate方式调用存在的问题" class="headerlink" title="RestTemplate方式调用存在的问题"></a>RestTemplate方式调用存在的问题</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//2.1 url路径</span></span><br><span class="line">String url = <span class="string">"http://userservice/user/"</span> + order.getUserId();</span><br><span class="line"><span class="comment">//2.2 发送http请求，实现远程调用</span></span><br><span class="line">User user = restTemplate.getForObject(url, User<span class="class">.<span class="keyword">class</span>)</span>;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>代码可读性差，编程体验不统一</li>
-<li>参数复杂URL难以维护</li>
-</ul>
-<h4 id="Feign是什么？"><a href="#Feign是什么？" class="headerlink" title="Feign是什么？"></a>Feign是什么？</h4><p>Feign是一个声明式的http客户端，其作用就是帮助我们优雅的实现http请求的发送</p>
-<p><a href="https://github.com/OpenFeign/feign" target="_blank" rel="noopener">https://github.com/OpenFeign/feign</a></p>
-<h4 id="定义和使用Feign客户端"><a href="#定义和使用Feign客户端" class="headerlink" title="定义和使用Feign客户端"></a>定义和使用Feign客户端</h4><ul>
-<li>引入依赖</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-openfeign<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>启动类添加@EnableFeignClients注解</li>
-<li>实现client接口</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FeignClient</span>(<span class="string">"userservice"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserClient</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/user/&#123;id&#125;"</span>)</span><br><span class="line">    <span class="function">User <span class="title">findById</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> Long id)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>调用接口发送http请求</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrderService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> OrderMapper orderMapper;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserClient userClient;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Order <span class="title">queryOrderById</span><span class="params">(Long orderId)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 1.查询订单</span></span><br><span class="line">        Order order = orderMapper.findById(orderId);</span><br><span class="line">        <span class="comment">//2.利用Feign发起远程调用</span></span><br><span class="line">        User user = userClient.findById(order.getUserId());</span><br><span class="line">        <span class="comment">//2.1 封装User对象到Order</span></span><br><span class="line">        order.setUser(user);</span><br><span class="line">        <span class="comment">// 4.返回</span></span><br><span class="line">        <span class="keyword">return</span> order;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="自定义Feign配置"><a href="#自定义Feign配置" class="headerlink" title="自定义Feign配置"></a>自定义Feign配置</h4><p>Feign运行自定义配置来覆盖默认配置，可以修改的配置如下</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>作用</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>feign.Logger.Level</td>
-<td>修改日志级别</td>
-<td>四种级别：NONE，BASIC，HEADERS，FULL</td>
-</tr>
-<tr>
-<td>feign.codec.Decoder</td>
-<td>响应结果的解析器</td>
-<td>http远程调用的结果做解析</td>
-</tr>
-<tr>
-<td>feign.codec.Encoder</td>
-<td>请求参数编码</td>
-<td>将请求参数编码，便于通过http请求发送</td>
-</tr>
-<tr>
-<td>feign.Contract</td>
-<td>支持的注解格式</td>
-<td>默认是SpringMVC的注解</td>
-</tr>
-<tr>
-<td>feign.Retryer</td>
-<td>失败重试机制</td>
-<td>请求失败的重试机制，默认没有，会使用Ribbon的</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>一般需要配置的是日志级别</p>
-<h5 id="Feign日志配置"><a href="#Feign日志配置" class="headerlink" title="Feign日志配置"></a>Feign日志配置</h5><ul>
-<li><p>配置文件方式</p>
-<ul>
-<li>全局生效</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">feign:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">default:</span> <span class="comment">#全局配置</span></span><br><span class="line">      <span class="attr">loggerLevel:</span> <span class="string">FULL</span> <span class="comment">#日志级别</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>局部生效</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">feign:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">userservice:</span> <span class="string">服务名称</span></span><br><span class="line">      <span class="attr">loggerLevel:</span> <span class="string">FULL</span> <span class="comment">#日志级别</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Java代码方式，需要声明Bean</p>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FeignClientConfiguration</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> Logger.Level.feignLogLevel() &#123;</span><br><span class="line">        <span class="keyword">return</span> Logger.Level.BASIC;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>全局配置，放在@EnableFeignClients注解中</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EnableFeignClients</span>(defaultConfiguration = FeignClientConfiguration<span class="class">.<span class="keyword">class</span>)</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>局部配置，放到@FeignClent注解中</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FeignClient</span>(value = <span class="string">"userservice"</span>, configuration = FeignClientConfiguration<span class="class">.<span class="keyword">class</span>)</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/16/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Nacos%E9%9B%86%E7%BE%A4/Nacos%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/16/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Nacos%E9%9B%86%E7%BE%A4/Nacos%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" class="post-title-link" itemprop="url">Nacos集群搭建</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-05-16 15:34:32" itemprop="dateCreated datePublished" datetime="2022-05-16T15:34:32+08:00">2022-05-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-18 15:49:40" itemprop="dateModified" datetime="2022-05-18T15:49:40+08:00">2022-05-18</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="name">微服务</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="搭建集群的基本步骤"><a href="#搭建集群的基本步骤" class="headerlink" title="搭建集群的基本步骤"></a>搭建集群的基本步骤</h4><ul>
-<li>搭建数据库，初始化数据库表结构</li>
-<li>下载nacos安装包</li>
-<li>配置nacos</li>
-<li>启动nacos集群</li>
-<li>nginx反向代理</li>
-</ul>
-<h4 id="配置Nacos"><a href="#配置Nacos" class="headerlink" title="配置Nacos"></a>配置Nacos</h4><ul>
-<li>进入nacos的conf目录，修改配置文件cluster.conf.example，重命名为cluster.conf</li>
-<li>加入集群ip地址</li>
-<li>修改application.properties配置文件，修改mysql配置</li>
-</ul>
-<h4 id="启动nacos集群"><a href="#启动nacos集群" class="headerlink" title="启动nacos集群"></a>启动nacos集群</h4><ul>
-<li>将nacos文件夹复制三份，分别命名为：nacos1，nacos2，nacos3</li>
-<li>分别修改application.properties端口号</li>
-<li>修改nginx配置</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">upstream nacos-cluster &#123;</span><br><span class="line">    server 127.0.0.1:8845;</span><br><span class="line">	server 127.0.0.1:8846;</span><br><span class="line">	server 127.0.0.1:8847;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    server_name  localhost;</span><br><span class="line"></span><br><span class="line">    location /nacos &#123;</span><br><span class="line">        proxy_pass http://nacos-cluster;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>而后在浏览器访问：<a href="http://localhost/nacos即可" target="_blank" rel="noopener">http://localhost/nacos即可</a></li>
-<li>修改配置文件naocs端口号（80）</li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/15/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Nacos%E9%9B%86%E7%BE%A4/Nacos%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/15/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Nacos%E9%9B%86%E7%BE%A4/Nacos%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">Nacos配置管理</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-05-15 16:13:32" itemprop="dateCreated datePublished" datetime="2022-05-15T16:13:32+08:00">2022-05-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-17 15:34:07" itemprop="dateModified" datetime="2022-05-17T15:34:07+08:00">2022-05-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="name">微服务</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="统一配置管理"><a href="#统一配置管理" class="headerlink" title="统一配置管理"></a>统一配置管理</h4><ul>
-<li>在工作台创建配置，将需要热更新的配置（将来会变化的配置）</li>
-<li>配置获取步骤：<ol>
-<li>项目启动</li>
-<li>读取nacos中配置文件（bootstrap.yml引导文件）</li>
-<li>读取本地配置文件</li>
-<li>创建spring容器</li>
-<li>加载bean</li>
-</ol>
-</li>
-</ul>
-<h4 id="配置bootstrap-yml"><a href="#配置bootstrap-yml" class="headerlink" title="配置bootstrap.yml"></a>配置bootstrap.yml</h4><ul>
-<li>在客户端pom文件引入nacos配置管理依赖</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--nacos配置管理依赖--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-config<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>创建bootstrap.yml配置文件</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">userservice</span></span><br><span class="line">  <span class="attr">profiles:</span></span><br><span class="line">    <span class="attr">active:</span> <span class="string">dev</span> <span class="comment"># 环境</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">server-addr:</span> <span class="string">localhost:8848</span> <span class="comment"># nacos地址</span></span><br><span class="line">      <span class="attr">config:</span></span><br><span class="line">        <span class="attr">file-extension:</span> <span class="string">yaml</span> <span class="comment"># 文件后缀名</span></span><br><span class="line">        <span class="attr">namespace:</span> <span class="string">7550979b-3a00-4833-b82f-19f2d9e22b2e</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>删除application.yml文件中重复配置</li>
-</ul>
-<h4 id="配置热更新"><a href="#配置热更新" class="headerlink" title="配置热更新"></a>配置热更新</h4><ul>
-<li>方式一：使用@Value注入，在所在类上添加@RefreshScope注解</li>
-<li>方式二：使用@ConfigurationProperties注解，注入后自动刷新</li>
-</ul>
-<h4 id="多环境配置共享"><a href="#多环境配置共享" class="headerlink" title="多环境配置共享"></a>多环境配置共享</h4><p>微服务启动时会从nacos读取多个配置文件</p>
-<ul>
-<li>[spring.application.name]-[spring.profiles.active].yaml，例如：userservice-dev.yaml</li>
-<li>[spring.application.name].yaml，例如：userservice.yaml</li>
-</ul>
-<p>无论profile如何变化，[spring.application.name].yaml一定会加载，因此共享配置写入这个文件</p>
-<h4 id="配置文件优先级"><a href="#配置文件优先级" class="headerlink" title="配置文件优先级"></a>配置文件优先级</h4><ol>
-<li>[spring.application.name]-[spring.profiles.active].yaml</li>
-<li>[spring.application.name].yaml</li>
-<li>本地配置</li>
-</ol>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/14/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Nacos%E9%9B%86%E7%BE%A4/Nacos/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/14/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Nacos%E9%9B%86%E7%BE%A4/Nacos/" class="post-title-link" itemprop="url">Nacos</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-05-14 23:36:32" itemprop="dateCreated datePublished" datetime="2022-05-14T23:36:32+08:00">2022-05-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-17 12:08:44" itemprop="dateModified" datetime="2022-05-17T12:08:44+08:00">2022-05-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="name">微服务</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="windows命令"><a href="#windows命令" class="headerlink" title="windows命令"></a>windows命令</h4><p>startup.cmd -m standalone</p>
-<h4 id="服务注册到Nacos"><a href="#服务注册到Nacos" class="headerlink" title="服务注册到Nacos"></a>服务注册到Nacos</h4><ul>
-<li>在cloud-demo父工程中添加spring-cloud-alibaba的管理依赖</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-alibaba-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.5.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>添加nacos的客户端依赖</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- nacos客户端依赖包 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-discovery<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>修改客户端配置</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">server-addr:</span> <span class="string">localhost:8848</span> <span class="comment">#nacos服务地址</span></span><br></pre></td></tr></table></figure>
-<h4 id="Nacos服务分级存储模型"><a href="#Nacos服务分级存储模型" class="headerlink" title="Nacos服务分级存储模型"></a>Nacos服务分级存储模型</h4><ul>
-<li>一个<strong>服务</strong>分为多个<strong>集群</strong></li>
-<li>一个<strong>集群</strong>有多个<strong>实例</strong></li>
-<li>服务跨集群调用问题<ul>
-<li>服务调用尽可能选择本地集群的服务，跨集群调用较迟较高</li>
-<li>本地集群不可访问时，再去访问其它集群</li>
-</ul>
-</li>
-</ul>
-<h4 id="修改指定实例集群"><a href="#修改指定实例集群" class="headerlink" title="修改指定实例集群"></a>修改指定实例集群</h4><p>逐个修改，逐个启动</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">discovery:</span></span><br><span class="line">        <span class="attr">cluster-name:</span> <span class="string">HZ</span> <span class="comment">#集群名称</span></span><br></pre></td></tr></table></figure>
-<h4 id="NacosRule负载均衡"><a href="#NacosRule负载均衡" class="headerlink" title="NacosRule负载均衡"></a>NacosRule负载均衡</h4><ul>
-<li>默认使用轮询规则</li>
-<li>在服务端中设置负载均衡的IRule为NacosRule，这个规则优先会寻找与自己同集群的服务</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">userservice:</span></span><br><span class="line">  <span class="attr">ribbon:</span></span><br><span class="line">    <span class="attr">NFLoadBalancerRuleClassName:</span> <span class="string">com.alibaba.cloud.nacos.ribbon.NacosRule</span> <span class="comment">#负载均衡规则</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>注意将客户端权重都设置为1</li>
-<li>NacosRule优先选择本地集群，在本地多个集群进行随机负载均衡</li>
-<li>跨集群访问服务端会发出警告</li>
-</ul>
-<h5 id="权重负载均衡"><a href="#权重负载均衡" class="headerlink" title="权重负载均衡"></a>权重负载均衡</h5><ul>
-<li>服务器设备性能有差异，部分实例所在机器性能差别，我们希望好的机器承担更多用户请求</li>
-<li>Nacos提供了权重配置来控制访问频率，权重越大访问频率越高</li>
-<li>在控制台编辑页面修改，范围0-1，0不会访问</li>
-</ul>
-<h4 id="环境隔离"><a href="#环境隔离" class="headerlink" title="环境隔离"></a>环境隔离</h4><ul>
-<li>Nacos中服务存储和数据存储的最外层都是namespace，用来做最外层空间隔离</li>
-<li>从外到内：Namespace → Group → Service/Data</li>
-<li>在控制台新建命名空间</li>
-<li>在配置文件添加namespace</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">        <span class="attr">discovery:</span></span><br><span class="line">          <span class="attr">namespace:</span> <span class="string">7550979b-3a00-4833-b82f-19f2d9e22b2e</span> <span class="comment">#命名空间ID</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>不同命名空间的服务互相不可见</li>
-</ul>
-<h4 id="Nacos注册中心细节"><a href="#Nacos注册中心细节" class="headerlink" title="Nacos注册中心细节"></a>Nacos注册中心细节</h4><ul>
-<li>消费者定时拉取服务，存储在服务列表缓存，直接使用</li>
-<li>健康检测与Eureka区别<ul>
-<li>实例分为临时实例与非临时实例</li>
-<li>默认是临时实例，采用心跳检测，实例给注册中心提供信息</li>
-<li>非临时实例不会做心跳检测，由nacos主动询问</li>
-<li>nacos不会剔除非临时实例，会等待恢复</li>
-<li>有服务变更，会主动推送消息给消费者，更新缓存</li>
-</ul>
-</li>
-</ul>
-<h4 id="临时实例和非临时实例"><a href="#临时实例和非临时实例" class="headerlink" title="临时实例和非临时实例"></a>临时实例和非临时实例</h4><p>修改配置文件</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">        <span class="attr">discovery:</span></span><br><span class="line">          <span class="attr">ephemeral:</span> <span class="literal">false</span> <span class="comment">#是否是临时实例</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/14/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Ribbon%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/Ribbon%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/14/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Ribbon%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/Ribbon%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" class="post-title-link" itemprop="url">Ribbon负载均衡</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-05-14 16:34:35 / 修改时间：22:32:58" itemprop="dateCreated datePublished" datetime="2022-05-14T16:34:35+08:00">2022-05-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="name">微服务</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="负载均衡流程"><a href="#负载均衡流程" class="headerlink" title="负载均衡流程"></a>负载均衡流程</h4><ul>
-<li>order-service发起请求到Ribbon<ul>
-<li>发送请求到RibbonLoadBanlancerClient</li>
-<li>获取id后，发送给DynamicServerListLoadBalancer</li>
-</ul>
-</li>
-<li>Ribbon要求eureka-server拉取userservice，返回服务器列表</li>
-<li>Ribbon通过IRule接口进行负载均衡</li>
-</ul>
-<h4 id="负载均衡策略"><a href="#负载均衡策略" class="headerlink" title="负载均衡策略"></a>负载均衡策略</h4><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>内置负载均衡规则类</th>
-<th>规则描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>RoundRobinRule</td>
-<td>简单轮询</td>
-</tr>
-<tr>
-<td>AvailabilityFilteringRule</td>
-<td>对以下两种服务器进行忽略：(1)默认情况下3次连接失败，会设置为短路状态，持续30秒。如果再次失败，短路时间几何级增加。(2)并发数过高的服务器。并发数上限，可由客户端设置。</td>
-</tr>
-<tr>
-<td>WeightedResponseTimeRule</td>
-<td>为每一个服务器赋予一个权重。服务器响应时间越长，权重越小。此规则会按权重值随机选择服务器</td>
-</tr>
-<tr>
-<td>ZoneAvoidanceRule</td>
-<td>以区域可用的服务器为基础进行服务器选择。使用Zone对服务器进行分类，这个Zone可以理解为一个机房、机架等。而后再对Zone内多个服务器轮询</td>
-</tr>
-<tr>
-<td>BestAvailableRule</td>
-<td>忽略短路服务器，选择并发数低的</td>
-</tr>
-<tr>
-<td>RandomRule</td>
-<td>随机选择</td>
-</tr>
-<tr>
-<td>RetryRule</td>
-<td>重试机制的选择逻辑</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h5 id="通过定义IRule实现可以修改负载均衡规则，有两种方式"><a href="#通过定义IRule实现可以修改负载均衡规则，有两种方式" class="headerlink" title="通过定义IRule实现可以修改负载均衡规则，有两种方式"></a>通过定义IRule实现可以修改负载均衡规则，有两种方式</h5><ul>
-<li>代码方式：在order-service中定义一个新的IRule（阵对全局）</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> IRule <span class="title">randomRole</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> RandomRule();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>配置文件方式：在配置文件中，添加新的配置（阵对某个微服务）</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">userservice:</span></span><br><span class="line">  <span class="attr">ribbon:</span></span><br><span class="line">    <span class="attr">NFLoadBalancerRuleClassName:</span> <span class="string">com.netflix.loadbalancer.RandomRule</span> <span class="comment">#负载均衡规则</span></span><br></pre></td></tr></table></figure>
-<h4 id="饥饿加载"><a href="#饥饿加载" class="headerlink" title="饥饿加载"></a>饥饿加载</h4><p>Ribbon默认是采用懒加载，即第一次访问时才会去创建LoadBalanceClient，请求时间会很长。</p>
-<p>而饥饿加载则会在项目启动时创建，降低第一次访问耗时，通过配置开启饥饿加载</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">ribbon:</span></span><br><span class="line">  <span class="attr">eager-load:</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="literal">true</span> <span class="comment">#开启饥饿加载</span></span><br><span class="line">    <span class="attr">clients:</span> <span class="string">userservice</span> <span class="comment">#指定饥饿加载的服务名称</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/14/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Eureka%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/Eureka/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/14/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Eureka%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/Eureka/" class="post-title-link" itemprop="url">Eureka</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-05-14 14:11:13 / 修改时间：16:18:28" itemprop="dateCreated datePublished" datetime="2022-05-14T14:11:13+08:00">2022-05-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="name">微服务</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="服务调用出现的问题"><a href="#服务调用出现的问题" class="headerlink" title="服务调用出现的问题"></a>服务调用出现的问题</h4><ul>
-<li>url硬编码问题，不用硬编码如何获取服务提供者地址信息</li>
-<li>如果有多个服务提供者（集群），消费者如何选择</li>
-<li>消费者如何得知服务提供者的健康状态</li>
-</ul>
-<h4 id="Eureka的作用"><a href="#Eureka的作用" class="headerlink" title="Eureka的作用"></a>Eureka的作用</h4><ul>
-<li>eureka-server：注册中心，管理微服务</li>
-<li>eureka-client：客户端，分为提供者和消费者</li>
-<li>每一个客户端启动时，会把自己信息注册，每30s一次心跳续约，确认状态</li>
-<li>消费者需要时，注册中心拉取服务，负载均衡选取一个微服务，提供给远程调用</li>
-</ul>
-<h4 id="创建eureka-server服务"><a href="#创建eureka-server服务" class="headerlink" title="创建eureka-server服务"></a>创建eureka-server服务</h4><ul>
-<li>引入eureka依赖</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-server<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>编写启动类</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.itcast.eureka;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableEurekaServer</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EurekaApplication</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(EurekaApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>编写配置文件</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">10086</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">eureka-server</span></span><br><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">service-url:</span> </span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">http://127.0.0.1:10086/eureka</span></span><br></pre></td></tr></table></figure>
-<h4 id="服务注册"><a href="#服务注册" class="headerlink" title="服务注册"></a>服务注册</h4><ul>
-<li>引入依赖</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>配置文件</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">userservice</span></span><br><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">service-url:</span></span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">http://127.0.0.1:10086/eureka</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>启动多个user-service实例</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//配置VM options，防止端口冲突</span></span><br><span class="line">-Dserver.port=&#123;端口号&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="服务拉取"><a href="#服务拉取" class="headerlink" title="服务拉取"></a>服务拉取</h4><p>服务拉取是基于服务名称获取服务列表，然后再对服务列表做负载均衡</p>
-<ul>
-<li>修改OrderService的代码，修改访问的url路径，用服务名代替ip，端口</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String url = <span class="string">"http://userservice/user/"</span> + order.getUserId();</span><br></pre></td></tr></table></figure>
-<ul>
-<li>在order-service项目的启动类中的RestTemplate添加负载均衡注解</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="meta">@LoadBalanced</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> RestTemplate <span class="title">restTemplate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> RestTemplate();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/14/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Feign%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/%E6%9C%8D%E5%8A%A1%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/14/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Feign%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/%E6%9C%8D%E5%8A%A1%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" class="post-title-link" itemprop="url">服务远程调用</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-05-14 13:40:23 / 修改时间：14:11:28" itemprop="dateCreated datePublished" datetime="2022-05-14T13:40:23+08:00">2022-05-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="name">微服务</span></a>
+                  <a href="/categories/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">牛客讨论区项目</span></a>
                 </span>
             </span>
 
@@ -1321,17 +398,950 @@
 
       
           <ul>
-<li>注册RestTemplate</li>
+<li>功能实现<ul>
+<li>点击置顶，修改帖子类型</li>
+<li>点击加精、删除，修改帖子状态</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@MapperScan</span>(<span class="string">"cn.itcast.order.mapper"</span>)</span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrderApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(OrderApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RestTemplate <span class="title">restTemplate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> RestTemplate();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>权限管理<ul>
+<li>版主可以执行置顶、加精操作</li>
+<li>管理员可以执行删除操作</li>
+</ul>
+</li>
+<li>按钮显示<ul>
+<li>版主可以看到置顶、加精按钮</li>
+<li>管理员可以看到删除按钮</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/06/13/%E6%A1%86%E6%9E%B6/SpringSecurity/SpringSecurity%E5%85%A5%E9%97%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/06/13/%E6%A1%86%E6%9E%B6/SpringSecurity/SpringSecurity%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">SpringSecurity入门</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-13 16:57:30" itemprop="dateCreated datePublished" datetime="2022-06-13T16:57:30+08:00">2022-06-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-01 11:04:28" itemprop="dateModified" datetime="2022-07-01T11:04:28+08:00">2022-07-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">框架</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%A1%86%E6%9E%B6/SpringSecurity/" itemprop="url" rel="index"><span itemprop="name">SpringSecurity</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>SpringSecurity是一个专注于为Java应用程序提供身份认证和授权的框架，它的强大之处在于它可以轻松扩展以满足自定义的需求</p>
+<h4 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h4><ul>
+<li>对身份的认证和授权提供全面的、可扩展的支持</li>
+<li>防止各种攻击，如会话固定攻击、点击劫持、csrf攻击等</li>
+<li>支持与Servlet API、Spring MVC等Web技术集成</li>
+</ul>
+<h4 id="用户权限管理"><a href="#用户权限管理" class="headerlink" title="用户权限管理"></a>用户权限管理</h4><ul>
+<li><p>User实体类实现UserDetails接口</p>
 <ul>
-<li>修改order-service中的OrderService的queryOrderById方法</li>
+<li>isAccountNonExpired()方法：返回true，账号未过期</li>
+<li>isAccountNonLocked()方法：返回true，账号未锁定</li>
+<li>isCredentialsNonExpired()方法：返回true，凭证未过期</li>
+<li>isEnabled()方法：返回true，账号可用</li>
+<li>getAuthorities()方法：返回用户的权限集合，权限实现GrantedAuthority接口</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrderService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> OrderMapper orderMapper;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RestTemplate restTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Order <span class="title">queryOrderById</span><span class="params">(Long orderId)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 1.查询订单</span></span><br><span class="line">        Order order = orderMapper.findById(orderId);</span><br><span class="line">        <span class="comment">//2.利用RestTemplate发起http请求</span></span><br><span class="line">        <span class="comment">//2.1 url路径</span></span><br><span class="line">        String url = <span class="string">"http://localhost:8081/user/"</span> + order.getUserId();</span><br><span class="line">        <span class="comment">//2.2 发送http请求，实现远程调用</span></span><br><span class="line">        User user = restTemplate.getForObject(url, User<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        <span class="comment">//2.3 封装User对象到Order</span></span><br><span class="line">        order.setUser(user);</span><br><span class="line">        <span class="comment">// 4.返回</span></span><br><span class="line">        <span class="keyword">return</span> order;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="提供者与消费者"><a href="#提供者与消费者" class="headerlink" title="提供者与消费者"></a>提供者与消费者</h4><ul>
-<li>服务提供者：一次业务中，被其它微服务调用的服务</li>
-<li>服务消费者：一次业务中，调用其它微服务的服务</li>
-<li>同一个服务既可以是提供者也可以是消费者</li>
+</li>
+<li><p>UserService实现UserDetailsService接口</p>
+<ul>
+<li>loudUserByUsername()方法：通过用户名查找用户</li>
+</ul>
+</li>
+<li><p>SecurityConfig配置类，要求继承于WebSecurityConfigurerAdapter类</p>
+<ul>
+<li><p>configure(WebSecurity web)方法</p>
+<ul>
+<li>web.ignoring(),antMatchers(“资源路径”)：忽略静态资源访问</li>
+</ul>
+</li>
+<li><p>configure(AuthenticationManagerBuilder auth)方法</p>
+<ul>
+<li>AuthenticationManager：认证核心接口</li>
+<li>AuthenticationManagerBuilder：用于构建AuthenticationManager实例</li>
+<li>ProviderManager：AuthenticationManager接口的默认实现类</li>
+<li>AuthenticationProvider：每个ProviderManager持有一组AuthenticationProvider，每个AuthenticationProvider负责一种认证（委托模式）</li>
+<li>Aythentication：用于封装认证信息的接口，不同实现类代表不同认证信息</li>
+<li>内置认证规则：auth.userDetailsService(xxxService).passwordEncoder(内置密码加密方式);</li>
+<li><strong>自定义认证规则：auth.authenticationProvider(new AuthenticationProvider())，实现 AuthenticationProvider的接口</strong><ul>
+<li>authenticate()方法：实现认证逻辑，reutrn UsernamePasswordAuthenticationToken(user, user.getPassword(), user.getAuthorities())，信息、证书、权限</li>
+<li>supports()方法：返回当前接口支持哪种认证类型，例如return UsernamePasswordAuthenticationToken.class.equals(aClass)。UsernamePasswordAuthenticationToken：Aythentication常用实现类，代表账号密码认证</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>configure(HttpSecurity http)方法，登陆相关配置</p>
+<ul>
+<li><p>http.formLogin().loginPage()</p>
+<p>.loginProcessingUrl()</p>
+<p>.successHandler(new AuthenticationSuccessHandler())</p>
+<p>.failureHandler(new AuthenticationFailureHandler())</p>
+</li>
+<li><p>退出相关配置：</p>
+</li>
+</ul>
+<p>​     http.logout().logoutUrl().logoutSuccessHandler()</p>
+<ul>
+<li>授权配置</li>
+</ul>
+<p>​     http.authorizeRequests()</p>
+<p>​     .antMatchers(“路径”).hasAnyAuthority(权限，权限)</p>
+<p>​     .and().exceptionHandling().accessDeniedPage(“权限不足页面”)</p>
+<ul>
+<li>增加Filter，处理验证码</li>
+</ul>
+<p>​     http.addFilterBefore(new Filter())</p>
+<ul>
+<li>记住我功能</li>
+</ul>
+<p>​     http.rememberMe()</p>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/06/12/%E4%B8%AD%E9%97%B4%E4%BB%B6/MQ/%E5%B8%B8%E8%A7%81MQ/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/06/12/%E4%B8%AD%E9%97%B4%E4%BB%B6/MQ/%E5%B8%B8%E8%A7%81MQ/" class="post-title-link" itemprop="url">常见MQ</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-06-12 14:03:13 / 修改时间：14:09:15" itemprop="dateCreated datePublished" datetime="2022-06-12T14:03:13+08:00">2022-06-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">中间件</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>RabbitMQ</th>
+<th>ActiveMQ</th>
+<th>RocketMQ</th>
+<th>Kafka</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>公司/社区</td>
+<td>Rabbit</td>
+<td>Apache</td>
+<td>阿里/Apache</td>
+<td>Apache</td>
+</tr>
+<tr>
+<td>开发语言</td>
+<td>Erlang</td>
+<td>Java</td>
+<td>Java</td>
+<td>Scala&amp;Java</td>
+</tr>
+<tr>
+<td>协议支持</td>
+<td>AMQP,XMPP,SMTP,STOMP</td>
+<td>OpenWire,STOMP,REST,XMPP,AMQP</td>
+<td>自定义协议</td>
+<td>自定义协议</td>
+</tr>
+<tr>
+<td>可用性</td>
+<td>高</td>
+<td>一般</td>
+<td>高</td>
+<td>高</td>
+</tr>
+<tr>
+<td>单机吞吐量</td>
+<td>一般</td>
+<td>差</td>
+<td>高</td>
+<td>非常高</td>
+</tr>
+<tr>
+<td>消息延迟</td>
+<td>微秒级</td>
+<td>毫秒级</td>
+<td>毫秒级</td>
+<td>毫秒以内</td>
+</tr>
+<tr>
+<td>消息可靠性</td>
+<td>高</td>
+<td>一般</td>
+<td>高</td>
+<td>一般</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/06/12/%E4%B8%AD%E9%97%B4%E4%BB%B6/MQ/%E5%90%8C%E6%AD%A5%E8%B0%83%E7%94%A8%E4%B8%8E%E5%BC%82%E6%AD%A5%E8%B0%83%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/06/12/%E4%B8%AD%E9%97%B4%E4%BB%B6/MQ/%E5%90%8C%E6%AD%A5%E8%B0%83%E7%94%A8%E4%B8%8E%E5%BC%82%E6%AD%A5%E8%B0%83%E7%94%A8/" class="post-title-link" itemprop="url">同步调用与异步调用</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-06-12 13:47:13 / 修改时间：14:01:56" itemprop="dateCreated datePublished" datetime="2022-06-12T13:47:13+08:00">2022-06-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">中间件</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="同步调用存在的问题"><a href="#同步调用存在的问题" class="headerlink" title="同步调用存在的问题"></a>同步调用存在的问题</h4><ul>
+<li>耦合度高</li>
+<li>性能下降</li>
+<li>资源浪费</li>
+<li>级联失败</li>
+</ul>
+<h4 id="异步调用"><a href="#异步调用" class="headerlink" title="异步调用"></a>异步调用</h4><ul>
+<li>异步调用常见实现是事件驱动模式</li>
+<li>优势<ul>
+<li>服务解耦</li>
+<li>性能提升，吞吐量提高</li>
+<li>服务没有强依赖，不担心级联失败问题，故障隔离</li>
+<li>流量削峰（缓冲）</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>依赖于Broker的可靠性、安全性、吞吐能力</li>
+<li>架构复杂，业务没有明显的流程线，不好追踪管理</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/06/11/%E5%B7%A5%E5%85%B7/Docker/Docker%E9%95%9C%E5%83%8F%E4%BB%93%E5%BA%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/06/11/%E5%B7%A5%E5%85%B7/Docker/Docker%E9%95%9C%E5%83%8F%E4%BB%93%E5%BA%93/" class="post-title-link" itemprop="url">Docker镜像仓库</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-11 22:10:42" itemprop="dateCreated datePublished" datetime="2022-06-11T22:10:42+08:00">2022-06-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-06-12 13:39:20" itemprop="dateModified" datetime="2022-06-12T13:39:20+08:00">2022-06-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="常见镜像仓库服务"><a href="#常见镜像仓库服务" class="headerlink" title="常见镜像仓库服务"></a>常见镜像仓库服务</h4><p>镜像仓库有公有和私有的两种形式</p>
+<ul>
+<li>公共仓库：官方的Docker Hub，网易云镜像，DaoCloud镜像，阿里云镜像等。</li>
+<li>本地搭建私有Docker Registry</li>
+</ul>
+<h4 id="创建私有镜像仓库（可视化界面）"><a href="#创建私有镜像仓库（可视化界面）" class="headerlink" title="创建私有镜像仓库（可视化界面）"></a>创建私有镜像仓库（可视化界面）</h4><h5 id="配置Docker信任地址"><a href="#配置Docker信任地址" class="headerlink" title="配置Docker信任地址"></a>配置Docker信任地址</h5><p>我们的私服采用的是http协议，默认不被Docker信任，所以需要做一个配置：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打开要修改的文件</span></span><br><span class="line">vi /etc/docker/daemon.json</span><br><span class="line"><span class="comment"># 添加内容：</span></span><br><span class="line"><span class="string">"insecure-registries"</span>:[<span class="string">"http://&#123;ip地址&#125;:8080"</span>]</span><br><span class="line"><span class="comment"># 重加载</span></span><br><span class="line">systemctl daemon-reload</span><br><span class="line"><span class="comment"># 重启docker</span></span><br><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
+<h5 id="使用DockerCompose部署带有图象界面的DockerRegistry"><a href="#使用DockerCompose部署带有图象界面的DockerRegistry" class="headerlink" title="使用DockerCompose部署带有图象界面的DockerRegistry"></a>使用DockerCompose部署带有图象界面的DockerRegistry</h5><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.0'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">registry:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">registry</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./registry-data:/var/lib/registry</span></span><br><span class="line">  <span class="attr">ui:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">joxit/docker-registry-ui:static</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8080</span><span class="string">:80</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">REGISTRY_TITLE=私有仓库1</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">REGISTRY_URL=http://registry:5000</span></span><br><span class="line">    <span class="attr">depends_on:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">registry</span></span><br></pre></td></tr></table></figure>
+<h5 id="在私有镜像仓库推送或拉取镜像"><a href="#在私有镜像仓库推送或拉取镜像" class="headerlink" title="在私有镜像仓库推送或拉取镜像"></a>在私有镜像仓库推送或拉取镜像</h5><ul>
+<li>重新tag本地镜像，名称前缀为私有仓库地址</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker tag nginx:latest 116.62.168.80:8081/nginx:1.0</span><br></pre></td></tr></table></figure>
+<ul>
+<li>推送镜像</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker push 116.62.168.80:8081/nginx:1.0</span><br></pre></td></tr></table></figure>
+<ul>
+<li>拉取镜像</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull 116.62.168.80:8081/nginx:1.0</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/06/11/%E5%B7%A5%E5%85%B7/Docker/DockerCompose/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/06/11/%E5%B7%A5%E5%85%B7/Docker/DockerCompose/" class="post-title-link" itemprop="url">DockerCompose</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-06-11 18:18:42 / 修改时间：22:10:19" itemprop="dateCreated datePublished" datetime="2022-06-11T18:18:42+08:00">2022-06-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="什么是DockerCompose"><a href="#什么是DockerCompose" class="headerlink" title="什么是DockerCompose"></a>什么是DockerCompose</h4><ul>
+<li>DockerCompose可以基于Compose文件帮用户快速部署分布式应用，而无需手动一个个创建和运行容器</li>
+<li>Compose文件是一个文本文件，通过指令定义集群中每个容器如何运行</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">"3.2"</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">nacos:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">nacos/nacos-server</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">MODE:</span> <span class="string">standalone</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">"8848:8848"</span></span><br><span class="line">  <span class="attr">mysql:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">mysql:5.7.25</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">MYSQL_ROOT_PASSWORD:</span> <span class="number">123456</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">"$PWD/mysql/data:/var/lib/mysql"</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">"$PWD/mysql/conf:/etc/mysql/conf.d/"</span></span><br><span class="line">  <span class="attr">userservice:</span></span><br><span class="line">    <span class="attr">build:</span> <span class="string">./user-service</span></span><br><span class="line">  <span class="attr">orderservice:</span></span><br><span class="line">    <span class="attr">build:</span> <span class="string">./order-service</span></span><br><span class="line">  <span class="attr">gateway:</span></span><br><span class="line">    <span class="attr">build:</span> <span class="string">./gateway</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">"10010:10010"</span></span><br></pre></td></tr></table></figure>
+<h4 id="可以看到，其中包含5个service服务："><a href="#可以看到，其中包含5个service服务：" class="headerlink" title="可以看到，其中包含5个service服务："></a>可以看到，其中包含5个service服务：</h4><ul>
+<li><code>nacos</code>：作为注册中心和配置中心<ul>
+<li><code>image: nacos/nacos-server</code>： 基于nacos/nacos-server镜像构建</li>
+<li><code>environment</code>：环境变量<ul>
+<li><code>MODE: standalone</code>：单点模式启动</li>
+</ul>
+</li>
+<li><code>ports</code>：端口映射，这里暴露了8848端口</li>
+</ul>
+</li>
+<li><code>mysql</code>：数据库<ul>
+<li><code>image: mysql:5.7.25</code>：镜像版本是mysql:5.7.25</li>
+<li><code>environment</code>：环境变量<ul>
+<li><code>MYSQL_ROOT_PASSWORD: 123456</code>：设置数据库root账户的密码</li>
+</ul>
+</li>
+<li><code>volumes</code>：数据卷挂载，这里挂载了mysql的data、conf目录，其中有我提前准备好的数据</li>
+</ul>
+</li>
+<li><code>userservice</code>、<code>orderservice</code>、<code>gateway</code>：都是基于Dockerfile临时构建的</li>
+</ul>
+<ul>
+<li>修改cloud-demo项目，将数据库、nacos地址都命名为docker-compose中的服务名</li>
+<li>使用maven打包工具，将项目中的每个微服务都打包为app.jar</li>
+<li>将打包好的app.jar拷贝到cloud-demo中的每一个对应子目录中</li>
+<li>将cloud-demo上传至虚拟机，利用docker-compose up -d来部署</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/06/11/%E5%B7%A5%E5%85%B7/Docker/%E5%9F%BA%E4%BA%8EDockerfile%E8%87%AA%E5%AE%9A%E4%B9%89%E9%95%9C%E5%83%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/06/11/%E5%B7%A5%E5%85%B7/Docker/%E5%9F%BA%E4%BA%8EDockerfile%E8%87%AA%E5%AE%9A%E4%B9%89%E9%95%9C%E5%83%8F/" class="post-title-link" itemprop="url">基于Dockerfile自定义镜像</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-06-11 16:58:32 / 修改时间：18:17:16" itemprop="dateCreated datePublished" datetime="2022-06-11T16:58:32+08:00">2022-06-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="镜像结构"><a href="#镜像结构" class="headerlink" title="镜像结构"></a>镜像结构</h4><ul>
+<li>镜像是将应用程序及其需要的系统函数库、环境、配置、依赖打包而成</li>
+<li>结构：<ul>
+<li>入口：镜像运行入口，一般是程序启动的脚本和参数</li>
+<li>层：在BaseImage基础上添加安装包、依赖、配置等，每次操作都形成新的一层</li>
+<li>基础镜像：应用依赖的系统函数库、环境、配置、文件等</li>
+</ul>
+</li>
+</ul>
+<h4 id="什么是Dockerfile"><a href="#什么是Dockerfile" class="headerlink" title="什么是Dockerfile"></a>什么是Dockerfile</h4><p>Dockerfile是一个文本文件，其中包含一个个的指令，用指令来说明要执行什么操作来构建镜像，每一个指令都会形成一层Layer</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FROM</td>
+<td>指定基础镜像</td>
+<td>FROM centos:6</td>
+</tr>
+<tr>
+<td>ENV</td>
+<td>设置环境变量，可在后面指令使用</td>
+<td>ENV key value</td>
+</tr>
+<tr>
+<td>COPY</td>
+<td>拷贝本地文件到镜像的指定目录</td>
+<td>COPY ./mysql-5.7.rpm /tmp</td>
+</tr>
+<tr>
+<td>RUN</td>
+<td>执行Linux的shell命令，一般是安装过程的命令</td>
+<td>RUN yum install gcc</td>
+</tr>
+<tr>
+<td>EXPOSE</td>
+<td>指定容器运行时监听的端口，是给镜像使用者看的</td>
+<td>EXPOSE 8080</td>
+</tr>
+<tr>
+<td>ENTRYPOINT</td>
+<td>镜像中应用的启动命令，容器运行时调用</td>
+<td>ENTRYPOINT java -jar xx.jar</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="案例1：基于Ubuntu镜像构建一个新镜像，运行一个java项目"><a href="#案例1：基于Ubuntu镜像构建一个新镜像，运行一个java项目" class="headerlink" title="案例1：基于Ubuntu镜像构建一个新镜像，运行一个java项目"></a>案例1：基于Ubuntu镜像构建一个新镜像，运行一个java项目</h4><ul>
+<li>新建空文件夹docker-demo</li>
+<li>拷贝项目jar包、jdk、Dockerfile到该目录</li>
+<li><p>进入decker-demo</p>
+</li>
+<li><p>运行命令</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t javaweb:1.0 .</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建镜像</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name web -p 8090:8090 -d javaweb:1.0</span><br></pre></td></tr></table></figure>
+<h4 id="案例2：基于java-8-alpine镜像，将一个Java项目构建为镜像"><a href="#案例2：基于java-8-alpine镜像，将一个Java项目构建为镜像" class="headerlink" title="案例2：基于java:8-alpine镜像，将一个Java项目构建为镜像"></a>案例2：基于java:8-alpine镜像，将一个Java项目构建为镜像</h4><p>思路如下：</p>
+<ul>
+<li>新建空目录，新建Dockerfile文件</li>
+<li>拷贝项目jar包到该目录</li>
+<li>编写Dockerfile文件<ul>
+<li>基于java:8-alpine作为基础镜像</li>
+<li>将app.jar拷贝到镜像中</li>
+<li>暴露端口</li>
+<li>编写入口ENTRYPOINT</li>
+</ul>
+</li>
+<li>使用build命令创建镜像，run命令创建容器并运行</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/06/09/%E5%B7%A5%E5%85%B7/Docker/Docker%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/06/09/%E5%B7%A5%E5%85%B7/Docker/Docker%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">Docker基本操作</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-09 15:59:11" itemprop="dateCreated datePublished" datetime="2022-06-09T15:59:11+08:00">2022-06-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-06-13 01:06:42" itemprop="dateModified" datetime="2022-06-13T01:06:42+08:00">2022-06-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="镜像相关命令"><a href="#镜像相关命令" class="headerlink" title="镜像相关命令"></a>镜像相关命令</h3><ul>
+<li>镜像名称一般分两部分组成：[repository]:[tag]，例如：mysql:5.7。</li>
+<li>创建镜像<ul>
+<li>从本地：从Dockerfile文件，利用docker build命令构建镜像</li>
+<li>从镜像服务器：docker pull命令</li>
+</ul>
+</li>
+<li>查看镜像：docker images命令</li>
+<li>删除镜像：docker rmi命令</li>
+<li>推送镜像<ul>
+<li>docker push命令，推送到服务</li>
+<li>docker save命令，保存为一个压缩包，可以用docker load命令加载</li>
+</ul>
+</li>
+</ul>
+<h4 id="案例1"><a href="#案例1" class="headerlink" title="案例1"></a>案例1</h4><ul>
+<li>前往doker hub</li>
+<li>查找Nginx镜像pull命令</li>
+<li>使用docker images查看镜像</li>
+</ul>
+<h4 id="案例2"><a href="#案例2" class="headerlink" title="案例2"></a>案例2</h4><ul>
+<li>利用docker xx —help命令查看docker save和docker load语法</li>
+<li>使用docker tag 创建新镜像mynginx1.0</li>
+<li>使用docker save导出镜像到磁盘</li>
+<li>导出：docker save -o nginx.tar nginx:latest，使用ll命令查看</li>
+<li>删除当前镜像：docker rmi nginx:latest</li>
+<li>导入： docker load -i nginx.tar</li>
+</ul>
+<h3 id="容器相关命令"><a href="#容器相关命令" class="headerlink" title="容器相关命令"></a>容器相关命令</h3><ul>
+<li>查看所有运行的容器及状态：docker ps</li>
+<li>查看容器运行日志：docker logs</li>
+<li>进入容器执行命令：docker exec</li>
+<li>状态切换<ul>
+<li>运行 → 暂停：docker pause</li>
+<li>暂停 → 运行： docker unpause</li>
+<li>运行 → 停止：docker stop</li>
+<li>停止 → 运行： docker start</li>
+</ul>
+</li>
+<li>删除指定容器：docker rm</li>
+</ul>
+<h4 id="案例1：运行一个Nginx容器"><a href="#案例1：运行一个Nginx容器" class="headerlink" title="案例1：运行一个Nginx容器"></a>案例1：运行一个Nginx容器</h4><ul>
+<li>在docker hub查看Nginx的容器运行命令</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name containerName -p 80:80 -d nginx</span><br></pre></td></tr></table></figure>
+<ul>
+<li>命令解读：<ul>
+<li>docker run：创建并运行一个容器</li>
+<li>—name：给容器起一个名字，必须唯一</li>
+<li>-p：将宿主机端口与容器端口映射，左边是宿主机端口，右边是容器端口</li>
+<li>-d：后台运行容器</li>
+<li>nginx：镜像名称</li>
+</ul>
+</li>
+<li>查看日志：docker logs mn</li>
+</ul>
+<h4 id="案例2：进入Nginx容器，修改HTML文件内容（不推荐使用）"><a href="#案例2：进入Nginx容器，修改HTML文件内容（不推荐使用）" class="headerlink" title="案例2：进入Nginx容器，修改HTML文件内容（不推荐使用）"></a>案例2：进入Nginx容器，修改HTML文件内容（不推荐使用）</h4><ul>
+<li>进入容器</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it mn &#x2F;bin&#x2F;bash</span><br></pre></td></tr></table></figure>
+<ul>
+<li>命令解读<ul>
+<li>docker exec：进入容器内部，执行一个命令</li>
+<li>-it：给当前进入的容器创建一个标准输入输出终端，允许交互</li>
+<li>mn：容器名称</li>
+<li>/bin/bash：进入后执行的命令，bash是一个linux终端交互命令</li>
+</ul>
+</li>
+<li>进入指定路径：cd /usr/share/nginx/html</li>
+<li>替换内容</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i &#39;s#Welcome to nginx#Hello world!#g&#39; index.html</span><br></pre></td></tr></table></figure>
+<h3 id="数据卷操作"><a href="#数据卷操作" class="headerlink" title="数据卷操作"></a>数据卷操作</h3><h4 id="容器与数据耦合的问题"><a href="#容器与数据耦合的问题" class="headerlink" title="容器与数据耦合的问题"></a>容器与数据耦合的问题</h4><ul>
+<li>不便于修改</li>
+<li>数据不可复用</li>
+</ul>
+<h4 id="数据卷-volume"><a href="#数据卷-volume" class="headerlink" title="数据卷(volume)"></a>数据卷(volume)</h4><p>是一个虚拟目录，指向宿主机文件系统中的某个目录。</p>
+<h4 id="操作数据卷"><a href="#操作数据卷" class="headerlink" title="操作数据卷"></a>操作数据卷</h4><ul>
+<li>数据卷操作的基本语法如下：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker volume [COMMAND]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>docker volume命令是数据卷操作，根据命令后跟随的command来确定下一步操作：<ul>
+<li>create：创建一个volume</li>
+<li>inspect：显示一个或多个volume信息</li>
+<li>ls：列出所有volume</li>
+<li>prune：删除未使用的volume</li>
+<li>rm：删除一个或多个volume</li>
+</ul>
+</li>
+</ul>
+<h4 id="挂载数据卷"><a href="#挂载数据卷" class="headerlink" title="挂载数据卷"></a>挂载数据卷</h4><p>我们在创建容器时，可以通过-v参数来挂载一个数据卷到某个容器目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line"> --name mn \ </span><br><span class="line"> -v hrml:&#x2F;root&#x2F;html \   把html数据卷挂载到容器内部的&#x2F;root&#x2F;html目录中</span><br><span class="line"> -p 8080:80</span><br><span class="line"> nginx \</span><br></pre></td></tr></table></figure>
+<h4 id="案例1：创建一个nginx容器，修改容器内的html目录内index-html内容"><a href="#案例1：创建一个nginx容器，修改容器内的html目录内index-html内容" class="headerlink" title="案例1：创建一个nginx容器，修改容器内的html目录内index.html内容"></a>案例1：创建一个nginx容器，修改容器内的html目录内index.html内容</h4><ul>
+<li><p>需求说明：把目录挂载到html数据卷上，方便操作其中内容</p>
+</li>
+<li><p>步骤：</p>
+<ul>
+<li>创建容器并挂载数据卷到容器内的HTML目录</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name mn -p 81:80 -v html:&#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html -d nginx</span><br></pre></td></tr></table></figure>
+<ul>
+<li>进入html数据卷所在位置，并修改HTML内容</li>
+</ul>
+</li>
+<li><p>若数据卷不存在，docker会自动创建</p>
+</li>
+</ul>
+<h4 id="案例2：创建并运行一个MySQL容器，将宿主机目录直接挂载到容器"><a href="#案例2：创建并运行一个MySQL容器，将宿主机目录直接挂载到容器" class="headerlink" title="案例2：创建并运行一个MySQL容器，将宿主机目录直接挂载到容器"></a>案例2：创建并运行一个MySQL容器，将宿主机目录直接挂载到容器</h4><ul>
+<li>目录挂载语法<ul>
+<li>-v[宿主机目录]:[容器内目录]</li>
+<li>-v[宿主机文件]:[容器内文件]</li>
+</ul>
+</li>
+<li>上传压缩包，加载MySQL镜像</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker load -i &#x2F;mysql.tar</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建目录/tmp/myql/data</li>
+<li>创建目录/tmp/myql/conf，将配置文件上传</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line"> --name mysql \</span><br><span class="line"> -e MYSQL_ROOT_PASSWORD&#x3D;123456 \</span><br><span class="line"> -p 3306:3306 \</span><br><span class="line"> -v &#x2F;tmp&#x2F;mysql&#x2F;conf&#x2F;hmy.conf:&#x2F;etc&#x2F;mysql&#x2F;conf.d&#x2F;hmy.cnf \</span><br><span class="line"> -v &#x2F;tmp&#x2F;mysql&#x2F;data:&#x2F;var&#x2F;lib&#x2F;mysql \</span><br><span class="line"> -d \</span><br><span class="line"> mysql:5.7.25</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>挂载/tmp/myql/data到mysql容器内数据存储目录</p>
+</li>
+<li><p>挂载/tmp/myql/conf/hmy.cnf到mysql容器配置文件</p>
+</li>
+<li>设置MySQL密码</li>
 </ul>
 
       
@@ -1352,7 +1362,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1420,20 +1430,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">127</span>
+          <span class="site-state-item-count">141</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-count">29</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1516,7 +1526,7 @@ $(document).ready(function() {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共38.7k字</span>
+  <span class="post-count">博客全站共45.1k字</span>
 </div>
         
 <div class="busuanzi-count">

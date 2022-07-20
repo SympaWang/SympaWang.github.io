@@ -180,7 +180,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/17/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/21/Java/%E5%8F%8D%E5%B0%84/%E8%B0%83%E7%94%A8%E8%BF%90%E8%A1%8C%E6%97%B6%E7%B1%BB%E7%BB%93%E6%9E%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -194,7 +194,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/02/17/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E6%B1%A0/" class="post-title-link" itemprop="url">多线程——线程池</a>
+            <a href="/2022/02/21/Java/%E5%8F%8D%E5%B0%84/%E8%B0%83%E7%94%A8%E8%BF%90%E8%A1%8C%E6%97%B6%E7%B1%BB%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">调用运行时类结构</a>
         </h2>
 
         <div class="post-meta">
@@ -205,16 +205,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2022-02-17 17:25:10" itemprop="dateCreated datePublished" datetime="2022-02-17T17:25:10+08:00">2022-02-17</time>
+              <time title="创建时间：2022-02-21 19:46:59 / 修改时间：21:05:43" itemprop="dateCreated datePublished" datetime="2022-02-21T19:46:59+08:00">2022-02-21</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-18 00:58:46" itemprop="dateModified" datetime="2022-02-18T00:58:46+08:00">2022-02-18</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -225,7 +219,339 @@
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">多线程</span></a>
+                  <a href="/categories/Java/%E5%8F%8D%E5%B0%84/" itemprop="url" rel="index"><span itemprop="name">反射</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationTargetException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReflectionTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchMethodException, NoSuchFieldException, InvocationTargetException, InstantiationException, IllegalAccessException </span>&#123;</span><br><span class="line"></span><br><span class="line">        Class&lt;Person&gt; clazz = Person<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">        Person person = clazz.getDeclaredConstructor().newInstance();</span><br><span class="line">        <span class="comment">//操作运行时类的指定属性</span></span><br><span class="line">        Field age = clazz.getDeclaredField(<span class="string">"age"</span>);</span><br><span class="line">        <span class="comment">//设置当前对象指定属性值</span></span><br><span class="line">        age.set(person, <span class="number">10</span>); <span class="comment">//(操作对象, 设置值)</span></span><br><span class="line">        <span class="comment">//获取当前对象指定属性值</span></span><br><span class="line">        <span class="keyword">int</span> ans = (<span class="keyword">int</span>)age.get(person);</span><br><span class="line">        System.out.println(ans);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//操作运行时类的指定方法</span></span><br><span class="line">        <span class="comment">//获取指定方法</span></span><br><span class="line">        Method show = clazz.getDeclaredMethod(<span class="string">"show"</span>, <span class="keyword">int</span><span class="class">.<span class="keyword">class</span>)</span>; <span class="comment">//(方法名, 形参列表)</span></span><br><span class="line">        <span class="comment">//保证当前方法可访问</span></span><br><span class="line">        show.setAccessible(<span class="keyword">true</span>);</span><br><span class="line">        <span class="comment">//执行方法</span></span><br><span class="line">        show.invoke(person, <span class="number">2</span>); <span class="comment">//(方法名, 实参列表)</span></span><br><span class="line">        <span class="comment">//invoke返回值即为方法返回值</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/21/Java/%E5%8F%8D%E5%B0%84/%E8%8E%B7%E5%8F%96%E8%BF%90%E8%A1%8C%E6%97%B6%E7%B1%BB%E7%BB%93%E6%9E%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/21/Java/%E5%8F%8D%E5%B0%84/%E8%8E%B7%E5%8F%96%E8%BF%90%E8%A1%8C%E6%97%B6%E7%B1%BB%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">获取运行时类结构</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-21 19:46:09 / 修改时间：19:47:26" itemprop="dateCreated datePublished" datetime="2022-02-21T19:46:09+08:00">2022-02-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/%E5%8F%8D%E5%B0%84/" itemprop="url" rel="index"><span itemprop="name">反射</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationTargetException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReflectionTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException </span>&#123;</span><br><span class="line"></span><br><span class="line">        Class&lt;Person&gt; clazz = Person<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//newInstance：创建对应运行时类对象</span></span><br><span class="line">        Person person = clazz.getDeclaredConstructor().newInstance();</span><br><span class="line">        System.out.println(person);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//获取运行时类的属性结构</span></span><br><span class="line">        Field[] fields = clazz.getDeclaredFields();</span><br><span class="line">        <span class="keyword">for</span>(Field f : fields)&#123;</span><br><span class="line">            System.out.println(f);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//获取运行时类的方法结构</span></span><br><span class="line">        Method[] methods = clazz.getDeclaredMethods();</span><br><span class="line">        <span class="keyword">for</span>(Method m : methods)&#123;</span><br><span class="line">            System.out.println(m);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Method show = clazz.getMethod(<span class="string">"show"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//…………………………</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/21/Java/%E5%8F%8D%E5%B0%84/Class%E7%B1%BB%E7%9B%B8%E5%85%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/21/Java/%E5%8F%8D%E5%B0%84/Class%E7%B1%BB%E7%9B%B8%E5%85%B3/" class="post-title-link" itemprop="url">Class类相关</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-21 15:57:18 / 修改时间：16:51:21" itemprop="dateCreated datePublished" datetime="2022-02-21T15:57:18+08:00">2022-02-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/%E5%8F%8D%E5%B0%84/" itemprop="url" rel="index"><span itemprop="name">反射</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="关于java-Lang-Class类的理解"><a href="#关于java-Lang-Class类的理解" class="headerlink" title="关于java.Lang.Class类的理解"></a>关于java.Lang.Class类的理解</h4><h5 id="类的加载过程"><a href="#类的加载过程" class="headerlink" title="类的加载过程"></a>类的加载过程</h5><ul>
+<li>程序经过javac,exe命令后，会生成一个或多个字节码文件（.class结尾）。</li>
+<li>接着使用java.exe命令对某个字节码文件进行解释运行，相当于将某个字节码文件加载到内存中，此过程就称为类的加载</li>
+<li>加载到内存中的类，我们就称为运行时类，此运行时类，就称为Class类的一个实例</li>
+<li>换句话说，Class的实例对应着一个运行时类</li>
+<li>加载到内存中的运行时类，会缓存一定时间，可以通过不同方式来获取此运行时类</li>
+</ul>
+<h4 id="获取Class实例的四种方式"><a href="#获取Class实例的四种方式" class="headerlink" title="获取Class实例的四种方式"></a>获取Class实例的四种方式</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Constructor;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationTargetException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReflectionTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//方式1：调用运行时类的属性</span></span><br><span class="line">        Class clazz = Person<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//方式2：通过运行时类的对象，调用getClass()</span></span><br><span class="line">        Person person = <span class="keyword">new</span> Person();</span><br><span class="line">        Class clazz1 = person.getClass();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//方式3：调用Class的静态方法：forName(String, classPath)</span></span><br><span class="line">        Class clazz2 = Class.forName(<span class="string">"com.sympa.lesson01.Person"</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(clazz == clazz1); <span class="comment">//true</span></span><br><span class="line">        System.out.println(clazz == clazz2); <span class="comment">//true</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//方式4：使用类的加载器：ClassLoader</span></span><br><span class="line">        ClassLoader classLoader = ReflectionTest<span class="class">.<span class="keyword">class</span>.<span class="title">getClassLoader</span>()</span>;</span><br><span class="line">        Class clazz3 = classLoader.loadClass(<span class="string">"com.sympa.lesson01.Person"</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="哪些类型可以有Class对象"><a href="#哪些类型可以有Class对象" class="headerlink" title="哪些类型可以有Class对象"></a>哪些类型可以有Class对象</h4><ul>
+<li>class：外部类，成员（成员内部类，静态内部类），局部内部类，匿名内部类</li>
+<li>interface：接口</li>
+<li>[]：数组（元素类型和维度一样，就是同一个Class）</li>
+<li>enum：枚举类</li>
+<li>annotation：注解</li>
+<li>primitive type：基本数据类型</li>
+<li>void</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/21/Java/%E5%8F%8D%E5%B0%84/%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6%E6%A6%82%E8%BF%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/21/Java/%E5%8F%8D%E5%B0%84/%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6%E6%A6%82%E8%BF%B0/" class="post-title-link" itemprop="url">反射机制概述</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-21 00:24:48 / 修改时间：15:51:39" itemprop="dateCreated datePublished" datetime="2022-02-21T00:24:48+08:00">2022-02-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/%E5%8F%8D%E5%B0%84/" itemprop="url" rel="index"><span itemprop="name">反射</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="Java反射机制提供的功能"><a href="#Java反射机制提供的功能" class="headerlink" title="Java反射机制提供的功能"></a>Java反射机制提供的功能</h4><ul>
+<li>在运行时判断任意一个对象所属的类</li>
+<li>在运行时构造任意一个类的对象</li>
+<li>在运行时判断任意一个类所具有的成员变量和方法</li>
+<li>在运行时获取泛型信息</li>
+<li>在运行时调用任意一个对象的成员变量和方法</li>
+<li>在运行时处理注解</li>
+<li>生成动态代理</li>
+</ul>
+<h4 id="反射相关的主要API"><a href="#反射相关的主要API" class="headerlink" title="反射相关的主要API"></a>反射相关的主要API</h4><ul>
+<li>java.lang.Class：代表一个类</li>
+<li>java.lang.reflect.Method：代表类的方法</li>
+<li>java.lang.reflect.Field：代表类的成员变量</li>
+<li>java.lang.reflect.Constructor：代表类的构造器</li>
+<li>……</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Constructor;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Field;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationTargetException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReflectionTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchFieldException </span>&#123;</span><br><span class="line"></span><br><span class="line">        Class clazz = Person<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">        <span class="comment">//1.通过反射，创建Person对象</span></span><br><span class="line">        Constructor cons = clazz.getConstructor(String<span class="class">.<span class="keyword">class</span>, <span class="title">int</span>.<span class="title">class</span>)</span>;</span><br><span class="line">        Object obj = cons.newInstance(<span class="string">"Tom"</span>, <span class="number">12</span>);</span><br><span class="line">        Person p = (Person) obj;</span><br><span class="line">        System.out.println(p.toString());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//2.通过反射调用对象属性</span></span><br><span class="line">        Field age = clazz.getField(<span class="string">"age"</span>);</span><br><span class="line">        age.set(p, <span class="number">10</span>);</span><br><span class="line">        System.out.println(p.toString());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//3.通过反射调用对象方法</span></span><br><span class="line">        Method show = clazz.getDeclaredMethod(<span class="string">"show"</span>);</span><br><span class="line">        show.invoke(p);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(name + age);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="反射与封装性不矛盾"><a href="#反射与封装性不矛盾" class="headerlink" title="反射与封装性不矛盾"></a>反射与封装性不矛盾</h4>
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/20/Java/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/URL%E7%BC%96%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/20/Java/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/URL%E7%BC%96%E7%A8%8B/" class="post-title-link" itemprop="url">URL网络编程</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-20 23:19:12 / 修改时间：23:53:42" itemprop="dateCreated datePublished" datetime="2022-02-20T23:19:12+08:00">2022-02-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">网络编程</span></a>
                 </span>
             </span>
 
@@ -241,31 +567,18 @@
 
       
           <ul>
-<li>背景：经常创建和销毁、使用量特别大的资源，比如并发情况下的线程，对性能影响很大。</li>
-<li>思路：提前创建好多个线程，放入线程池中，使用时直接获取，使用完放回池中。可以避免频繁创建销毁、实现重复利用。类似生活中的公共交通工具</li>
-<li>好处：<ul>
-<li>提高响应速度（减少创建线程时间）</li>
-<li>降低资源消耗（重复利用线程池中的线程，不需要每次都创建）</li>
-<li>便于线程管理<ul>
-<li>corePoolSize：核心池大小</li>
-<li>maximumPoolSize：最大线程数</li>
-<li>keepAliveTime：线程没有任务时最多保持多长时间后会终止</li>
-</ul>
+<li><p>URL：统一资源定位符，标识Internet上某一资源地址</p>
+</li>
+<li><p>是一种具体的URI，即URL可以用来标识一个资源，而且还指明了如何locate这个资源</p>
+</li>
+<li><p>URL基本结构由5部分组成：</p>
+<p>&lt;传输协议&gt;://&lt;主机名&gt;:&lt;端口号&gt;/&lt;文件名&gt;#片段名?参数列表</p>
+</li>
+<li><h1 id="片段名：即锚点，例如看小说，直接定位到章节"><a href="#片段名：即锚点，例如看小说，直接定位到章节" class="headerlink" title="片段名：即锚点，例如看小说，直接定位到章节"></a>片段名：即锚点，例如看小说，直接定位到章节</h1></li>
+<li><p>参数列表格式：参数名=参数值&amp;参数名=参数值……</p>
 </li>
 </ul>
-</li>
-</ul>
-<h4 id="使用线程池"><a href="#使用线程池" class="headerlink" title="使用线程池"></a>使用线程池</h4><ul>
-<li>JDK5.0起提供了线程池相关API：ExecutorServise和Executors</li>
-<li>ExecutorService：真正的线程池接口。常见子类ThreadPoolExecutor<ul>
-<li>void execute(Runnable command)：执行任务/命令，没有返回值，一般用来执行Runnable</li>
-<li><T>Future<T>submit(Callable<T>task)：执行任务，有返回值，一般用来执行Callable</T></T></T></li>
-<li>void shutdown()：关闭连接池</li>
-</ul>
-</li>
-<li>Executors：工具类，线程池的工厂类，用于创建并返回不同类型的线程池</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ExecutorService;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Executors;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestPool</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//1.创建服务，创建线程池</span></span><br><span class="line">        <span class="comment">//newFixedThreadPool 参数为：线程池大小</span></span><br><span class="line"></span><br><span class="line">        ExecutorService service = Executors.newFixedThreadPool(<span class="number">10</span>);</span><br><span class="line">        service.execute(<span class="keyword">new</span> MyThread());</span><br><span class="line">        service.execute(<span class="keyword">new</span> MyThread());</span><br><span class="line">        service.execute(<span class="keyword">new</span> MyThread());</span><br><span class="line">        service.execute(<span class="keyword">new</span> MyThread());</span><br><span class="line"></span><br><span class="line">        service.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(Thread.currentThread().getName());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.net.URL;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">URLTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            URL url = <span class="keyword">new</span> URL(<span class="string">"file:///F:/jdbc/02.jpg"</span>);</span><br><span class="line">            System.out.println(url.getProtocol()); <span class="comment">//获取URL的协议名</span></span><br><span class="line">            System.out.println(url.getHost()); <span class="comment">//获取URL的主机名</span></span><br><span class="line">            System.out.println(url.getPort()); <span class="comment">//获取URL的端口号</span></span><br><span class="line">            System.out.println(url.getPath()); <span class="comment">//获取URL的文件路径</span></span><br><span class="line">            System.out.println(url.getFile()); <span class="comment">//获取URL的文件名</span></span><br><span class="line">            System.out.println(url.getQuery()); <span class="comment">//获取URL的查询名</span></span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -286,7 +599,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/17/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/20/Java/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/UDP%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -300,7 +613,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/02/17/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1/" class="post-title-link" itemprop="url">多线程——线程通信</a>
+            <a href="/2022/02/20/Java/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/UDP%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="post-title-link" itemprop="url">TCP网络编程</a>
         </h2>
 
         <div class="post-meta">
@@ -313,7 +626,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-02-17 17:25:10 / 修改时间：23:04:38" itemprop="dateCreated datePublished" datetime="2022-02-17T17:25:10+08:00">2022-02-17</time>
+              <time title="创建时间：2022-02-20 21:10:44 / 修改时间：23:19:40" itemprop="dateCreated datePublished" datetime="2022-02-20T21:10:44+08:00">2022-02-20</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -325,119 +638,7 @@
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">多线程</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="Java提供了几个方法解决线程之间的通信问题"><a href="#Java提供了几个方法解决线程之间的通信问题" class="headerlink" title="Java提供了几个方法解决线程之间的通信问题"></a>Java提供了几个方法解决线程之间的通信问题</h4><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>方法名</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>wait()</td>
-<td>表示线程一直等待，直到其他线程通知，与sleep不同，会释放锁</td>
-</tr>
-<tr>
-<td>wait(long timeout)</td>
-<td>指定等待的毫秒数</td>
-</tr>
-<tr>
-<td>notify()</td>
-<td>唤醒一个处于等待状态的线程</td>
-</tr>
-<tr>
-<td>notifyAll()</td>
-<td>唤醒同一个对象上所有调用wait()方法的线程，优先级别高的线程优先调度</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p><strong>注意：均是Object类方法，都只能在同步方法或者同步代码块中使用，否则会抛出异常IllegalMonitorStateExption</strong></p>
-<h3 id="并发协作模型“生产者-消费者模式”"><a href="#并发协作模型“生产者-消费者模式”" class="headerlink" title="并发协作模型“生产者/消费者模式”"></a>并发协作模型“生产者/消费者模式”</h3><h4 id="解决方式1：管程法"><a href="#解决方式1：管程法" class="headerlink" title="解决方式1：管程法"></a>解决方式1：管程法</h4><ul>
-<li>生产者：负责生产数据的模块（可能是方法，对象，线程，进程）</li>
-<li>消费者：负责处理数据的模块（可能是方法，对象，线程，进程）</li>
-<li>缓冲区：消费者不能直接使用生产者的数据，他们之间有个“缓冲区”</li>
-<li><strong>生产者将生产好的数据放入缓冲区，消费者从缓冲区拿出数据</strong></li>
-</ul>
-<h4 id="解决方式2：信号灯法"><a href="#解决方式2：信号灯法" class="headerlink" title="解决方式2：信号灯法"></a>解决方式2：信号灯法</h4><ul>
-<li>设置标志位</li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/17/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94Lock%E9%94%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/17/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94Lock%E9%94%81/" class="post-title-link" itemprop="url">多线程——Lock锁</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-02-17 13:16:30 / 修改时间：16:48:41" itemprop="dateCreated datePublished" datetime="2022-02-17T13:16:30+08:00">2022-02-17</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">多线程</span></a>
+                  <a href="/categories/Java/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">网络编程</span></a>
                 </span>
             </span>
 
@@ -453,20 +654,12 @@
 
       
           <ul>
-<li>从JDK 5.0开始，Java提供了更强大的线程同步机制——通过显式定义同步锁对象来实现同步。同步锁使用Lock对象充当</li>
-<li>java.util.concurrent.locks.Lock接口是控制多个线程对共享资源进行访问的工具。锁提供了对共享资源的独占访问，每次只能有一个线程对Lock对象加锁，线程开始访问共享资源之前应先获得Lock对象</li>
-<li>ReentrantLock(可重入锁)类实现了Lock，它拥有与synchronized相同的并发性和内存语义，在实现线程安全的控制中，比较常用的是ReentrantLock，可以显式加锁、释放锁。</li>
+<li>类DatagramSocket 和 DatagramPacket 实现了基于UDP协议网络程序</li>
+<li>UDP数据报通过数据报套接字DatagramSocket发送和接收，系统不保证UDP数据报一定能够安全送到目的地，也不能确定什么时候可以抵达</li>
+<li>DatagramPacket对象封装了UDP数据报，在数据报中包含了发送端的IP地址和端口号以及接收端的IP地址和端口号</li>
+<li>UDP协议中每个数据报都给出了完整的地址信息，因此无需建立发送方和接收方的连接</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.locks.ReentrantLock;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Tickets01</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Tickets tickets = <span class="keyword">new</span> Tickets();</span><br><span class="line">        <span class="keyword">new</span> Thread(tickets, <span class="string">"黄牛1号"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(tickets, <span class="string">"黄牛2号"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(tickets, <span class="string">"黄牛3号"</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tickets</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> ticket = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> ReentrantLock lock = <span class="keyword">new</span> ReentrantLock();</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(flag) &#123;</span><br><span class="line">            buy();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">buy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            lock.lock();</span><br><span class="line">            <span class="keyword">if</span>(ticket == <span class="number">0</span>) &#123;</span><br><span class="line">                flag = <span class="keyword">false</span>;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(Thread.currentThread().getName() + <span class="string">"拿到了第"</span> + ticket-- + <span class="string">"张票"</span>);</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">100</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            lock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="synchronized与lock的对比"><a href="#synchronized与lock的对比" class="headerlink" title="synchronized与lock的对比"></a>synchronized与lock的对比</h4><ul>
-<li>Lock是显示锁（手动开启和关闭锁，别忘记关闭锁）synchronized是隐式锁，出了作用域自动释放</li>
-<li>Lock只有代码块锁，synchronized有代码块锁和方法锁</li>
-<li>使用Lock锁，JVM将花费较少时间来调度线程，性能更好。并且具有更好的扩展性（提供更多的子类）</li>
-<li>优先使用顺序：<ul>
-<li>Lock &gt; 同步代码块（已经进入了方法体，分配了相应资源） &gt; 同步方法（在方法体外）</li>
-</ul>
-</li>
-</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.net.*;</span><br><span class="line"><span class="keyword">import</span> java.nio.charset.StandardCharsets;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UDPTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sender</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            DatagramSocket socket = <span class="keyword">new</span> DatagramSocket();</span><br><span class="line">            String str = <span class="string">"UDP消息发送"</span>;</span><br><span class="line">            <span class="keyword">byte</span>[] data = str.getBytes(StandardCharsets.UTF_8);</span><br><span class="line">            DatagramPacket packet = <span class="keyword">new</span> DatagramPacket(data, <span class="number">0</span>, data.length, InetAddress.getLocalHost(), <span class="number">8888</span>);</span><br><span class="line"></span><br><span class="line">            socket.send(packet);</span><br><span class="line">            socket.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">receiver</span><span class="params">()</span></span>&#123;</span><br><span class="line">        DatagramSocket socket = <span class="keyword">null</span>;</span><br><span class="line">        DatagramPacket packet = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            socket = <span class="keyword">new</span> DatagramSocket(<span class="number">8888</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">byte</span>[] data = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">100</span>];</span><br><span class="line">            packet = <span class="keyword">new</span> DatagramPacket(data, <span class="number">0</span>, data.length);</span><br><span class="line">            socket.receive(packet);</span><br><span class="line">            System.out.println(<span class="keyword">new</span> String(packet.getData(), <span class="number">0</span>, packet.getLength()));</span><br><span class="line">            socket.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -487,7 +680,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/14/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E6%AD%BB%E9%94%81/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/20/Java/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/TCP%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -501,279 +694,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/02/14/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E6%AD%BB%E9%94%81/" class="post-title-link" itemprop="url">多线程——死锁</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-14 22:31:40" itemprop="dateCreated datePublished" datetime="2022-02-14T22:31:40+08:00">2022-02-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-16 21:36:07" itemprop="dateModified" datetime="2022-02-16T21:36:07+08:00">2022-02-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">多线程</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="“死锁”的形成"><a href="#“死锁”的形成" class="headerlink" title="“死锁”的形成"></a>“死锁”的形成</h4><p>多个线程各自占有一些公共资源，并且互相等待其它线程占有的资源才能运行，而导致两个或者多个线程都在等待对方释放资源，都停止执行的情形。某一个同步块同时拥有“两个以上对象的锁”时，就可能会发生“死锁”的问题。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="comment">//死锁：多个线程互相抱着对方需要的资源，然后形成僵持</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DeadLock</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Play boy = <span class="keyword">new</span> Play();</span><br><span class="line">        <span class="keyword">new</span> Thread(boy, <span class="string">"Bob"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(boy, <span class="string">"Alice"</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Toy</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Play</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    Toy toy1 = <span class="keyword">new</span> Toy();</span><br><span class="line">    Toy toy2 = <span class="keyword">new</span> Toy();</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        gg();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gg</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(Thread.currentThread().getName().equals(<span class="string">"Bob"</span>))&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (toy1)&#123;</span><br><span class="line">                System.out.println(<span class="string">"Bob的toy1"</span>);</span><br><span class="line">                <span class="keyword">try</span>&#123;</span><br><span class="line">                    Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e)&#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">synchronized</span> (toy2)&#123;</span><br><span class="line">                    System.out.println(<span class="string">"Bob的toy2"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (toy2)&#123;</span><br><span class="line">                System.out.println(<span class="string">"Alice的toy2"</span>);</span><br><span class="line">                <span class="keyword">try</span>&#123;</span><br><span class="line">                    Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e)&#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">synchronized</span> (toy1)&#123;</span><br><span class="line">                    System.out.println(<span class="string">"Alice的toy1"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/13/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E4%B8%8D%E5%AE%89%E5%85%A8%E6%A1%88%E4%BE%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/13/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E4%B8%8D%E5%AE%89%E5%85%A8%E6%A1%88%E4%BE%8B/" class="post-title-link" itemprop="url">多线程——不安全案例</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-13 22:13:30" itemprop="dateCreated datePublished" datetime="2022-02-13T22:13:30+08:00">2022-02-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-14 00:24:46" itemprop="dateModified" datetime="2022-02-14T00:24:46+08:00">2022-02-14</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">多线程</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="不安全的买票"><a href="#不安全的买票" class="headerlink" title="不安全的买票"></a>不安全的买票</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="comment">//线程不安全，有负数</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Tickets01</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> ticket = <span class="number">10</span>;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (ticket &lt;= <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">100</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//Thread.currentThread() 获得当前线程对象的引用</span></span><br><span class="line">            System.out.println(Thread.currentThread().getName() + <span class="string">"拿到了第"</span> + ticket-- + <span class="string">"张票"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Tickets01 tickets01 = <span class="keyword">new</span> Tickets01();</span><br><span class="line">        <span class="keyword">new</span> Thread(tickets01, <span class="string">"黄牛1号"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(tickets01, <span class="string">"黄牛2号"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(tickets01, <span class="string">"黄牛3号"</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/13/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5%E6%9C%BA%E5%88%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/13/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5%E6%9C%BA%E5%88%B6/" class="post-title-link" itemprop="url">多线程——线程同步机制</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-13 18:36:16" itemprop="dateCreated datePublished" datetime="2022-02-13T18:36:16+08:00">2022-02-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-14 22:30:39" itemprop="dateModified" datetime="2022-02-14T22:30:39+08:00">2022-02-14</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">多线程</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="并发：多个线程访问同个对象"><a href="#并发：多个线程访问同个对象" class="headerlink" title="并发：多个线程访问同个对象"></a>并发：多个线程访问同个对象</h3><h3 id="线程同步：队列-锁"><a href="#线程同步：队列-锁" class="headerlink" title="线程同步：队列 + 锁"></a>线程同步：队列 + 锁</h3><ul>
-<li>由于同一进程的多个线程共享同一块存储空间，在带来方便的同时，也带来了访问冲突问题，为了保证数据在方法中被访问时的正确性，在访问时加入<strong>锁机制synchronized</strong>，当一个线程获得对象的排它锁，独占资源，其他线程必须等待，使用后释放锁即可，存在以下问题：<ul>
-<li>一个线程持有锁会导致其他所有需要此锁的线程挂起</li>
-<li>在多线程竞争下，加锁，释放锁会导致比较多的上下文切换和调度延时，引起性能问题</li>
-<li>如果一个优先级高的线程等待一个优先级低的线程释放锁，会导致优先级倒置，引起性能问题</li>
-</ul>
-</li>
-</ul>
-<h3 id="同步方法及同步块"><a href="#同步方法及同步块" class="headerlink" title="同步方法及同步块"></a>同步方法及同步块</h3><ul>
-<li>由于我们可以通过private关键字来保证数据对象只能被方法访问，所以我们只需要针对方法提出一套机制，这套机制就是synchronized关键字，它包括两种用法：synchronized方法和synchronized块。</li>
-<li><strong>同步方法：public synchronized void method(int args){}</strong></li>
-<li>synchronized方法控制对“对象”的访问，每个对象对应一把锁，每个synchronized方法都必须获得调用该方法的对象的锁才能执行，否则线程会阻塞，方法一旦执行，就独占该锁，直到该方法返回才释放锁，后面被阻塞的线程才能获得这个锁，继续执行。</li>
-<li><strong>缺陷：若将一个大的方法声明为synchronized，将会影响效率</strong></li>
-<li><strong>方法里需要修改的内容才需要锁，锁的太多，浪费资源</strong></li>
-<li>同步块：<strong>synchronized(Obj){}</strong></li>
-<li>Obj称之为<strong>同步监视器</strong><ul>
-<li>Obj可以是任何对象，但是推荐使用共享资源作为同步监视器</li>
-<li>同步方法中无需指定同步监视器，因为同步方法的同步监视器就是this，就是这个对象本身，</li>
-<li>或者是class[反射中讲解]</li>
-</ul>
-</li>
-<li>同步监视器执行过程</li>
-</ul>
-<ol>
-<li>第一个线程访问，锁定同步监视器，执行其中代码</li>
-<li>第二个线程访问，发现同步监视器被锁定，无法访问</li>
-<li>第一个线程访问完毕，解锁同步监视器</li>
-<li>第二个线程访问，发现同步监视器没锁，然后锁定并访问</li>
-</ol>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/13/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/13/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81/" class="post-title-link" itemprop="url">多线程——线程状态</a>
+            <a href="/2022/02/20/Java/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/TCP%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="post-title-link" itemprop="url">TCP网络编程</a>
         </h2>
 
         <div class="post-meta">
@@ -786,7 +707,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-02-13 14:21:33 / 修改时间：23:12:33" itemprop="dateCreated datePublished" datetime="2022-02-13T14:21:33+08:00">2022-02-13</time>
+              <time title="创建时间：2022-02-20 15:13:24 / 修改时间：23:19:46" itemprop="dateCreated datePublished" datetime="2022-02-20T15:13:24+08:00">2022-02-20</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -798,7 +719,7 @@
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">多线程</span></a>
+                  <a href="/categories/Java/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">网络编程</span></a>
                 </span>
             </span>
 
@@ -813,337 +734,336 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><img src="/images/线程状态.png"></p>
+          <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.junit.jupiter.api.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.net.InetAddress;</span><br><span class="line"><span class="keyword">import</span> java.net.ServerSocket;</span><br><span class="line"><span class="keyword">import</span> java.net.Socket;</span><br><span class="line"><span class="keyword">import</span> java.nio.charset.StandardCharsets;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InetAddressTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">client</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Socket socket = <span class="keyword">null</span>;</span><br><span class="line">        OutputStream os = <span class="keyword">null</span>;</span><br><span class="line">        FileInputStream fis = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="comment">//1. 创建Socket对象，指明服务器端IP和端口号</span></span><br><span class="line">            InetAddress inet = InetAddress.getByName(<span class="string">"127.0.0.1"</span>);</span><br><span class="line">            socket = <span class="keyword">new</span> Socket(inet, <span class="number">8888</span>);</span><br><span class="line">            <span class="comment">//2.获取输出流，用于输出数据</span></span><br><span class="line">            os = socket.getOutputStream();</span><br><span class="line">            fis = <span class="keyword">new</span> FileInputStream(<span class="keyword">new</span> File(<span class="string">"F:\\jdbc\\src\\com\\sympa\\lesson01\\01.jpg"</span>));</span><br><span class="line">            <span class="keyword">byte</span>[] car = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">            <span class="keyword">int</span> len = <span class="number">0</span>;</span><br><span class="line">            <span class="comment">//3.写出数据</span></span><br><span class="line">            <span class="keyword">while</span>((len = fis.read(car)) != -<span class="number">1</span>)&#123;</span><br><span class="line">                os.write(car, <span class="number">0</span>, len);</span><br><span class="line">            &#125;</span><br><span class="line">            socket.shutdownOutput();</span><br><span class="line"></span><br><span class="line">            InputStream is = socket.getInputStream();</span><br><span class="line">            ByteArrayOutputStream baos = <span class="keyword">new</span> ByteArrayOutputStream();</span><br><span class="line">            <span class="keyword">byte</span>[] car1 = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">20</span>];</span><br><span class="line">            <span class="keyword">while</span>((len = is.read(car1)) != -<span class="number">1</span>)&#123;</span><br><span class="line">                baos.write(car1, <span class="number">0</span>, len);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(baos.toString());</span><br><span class="line">        &#125; <span class="keyword">catch</span>(IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">try</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(socket != <span class="keyword">null</span>) socket.close();</span><br><span class="line">                <span class="keyword">if</span>(os != <span class="keyword">null</span>) os.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e)&#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">server</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ServerSocket ss = <span class="keyword">null</span>;</span><br><span class="line">        Socket socket = <span class="keyword">null</span>;</span><br><span class="line">        InputStream is = <span class="keyword">null</span>;</span><br><span class="line">        FileOutputStream fos = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="comment">//1.创建服务器端socket对象，指明自己端口号</span></span><br><span class="line">            ss = <span class="keyword">new</span> ServerSocket(<span class="number">8888</span>);</span><br><span class="line">            <span class="comment">//2.表明可以接受来自于客户端的socket</span></span><br><span class="line">            socket = ss.accept();</span><br><span class="line">            <span class="comment">//3.获取输入流</span></span><br><span class="line">            is = socket.getInputStream();</span><br><span class="line">            fos = <span class="keyword">new</span> FileOutputStream(<span class="string">"04.jpg"</span>);</span><br><span class="line">            <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">            <span class="keyword">int</span> len;</span><br><span class="line">            <span class="comment">//4.读取输入流数据</span></span><br><span class="line">            <span class="keyword">while</span>((len = is.read(buffer)) != -<span class="number">1</span>)&#123;</span><br><span class="line">                fos.write(buffer, <span class="number">0</span>, len);</span><br><span class="line">            &#125;</span><br><span class="line">            socket.shutdownInput();</span><br><span class="line">            System.out.println(<span class="string">"收到了来自于"</span> + socket.getInetAddress().getHostAddress() + <span class="string">"的消息"</span>);</span><br><span class="line"></span><br><span class="line">            OutputStream os = socket.getOutputStream();</span><br><span class="line">            os.write(<span class="string">"收到"</span>.getBytes(StandardCharsets.UTF_8));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">try</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(fos != <span class="keyword">null</span>) fos.close();</span><br><span class="line">                <span class="keyword">if</span>(is != <span class="keyword">null</span>) is.close();</span><br><span class="line">                <span class="keyword">if</span>(socket != <span class="keyword">null</span>) socket.close();</span><br><span class="line">                <span class="keyword">if</span>(ss != <span class="keyword">null</span>) ss.close();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e)&#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/20/Java/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/InetAddress%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/20/Java/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/InetAddress%E7%B1%BB/" class="post-title-link" itemprop="url">InetAddress类</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-20 14:33:30 / 修改时间：23:19:51" itemprop="dateCreated datePublished" datetime="2022-02-20T14:33:30+08:00">2022-02-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">网络编程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="实例化InetAddress类的方法"><a href="#实例化InetAddress类的方法" class="headerlink" title="实例化InetAddress类的方法"></a>实例化InetAddress类的方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.net.InetAddress;</span><br><span class="line"><span class="keyword">import</span> java.net.UnknownHostException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InetAddressTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//获取本机IP</span></span><br><span class="line">            InetAddress inet1 = InetAddress.getLocalHost();</span><br><span class="line">            System.out.println(inet1);</span><br><span class="line">            </span><br><span class="line">			<span class="comment">//获取指定域名IP</span></span><br><span class="line">            InetAddress inet2 = InetAddress.getByName(<span class="string">"baidu.com"</span>);</span><br><span class="line">            System.out.println(inet2.getHostAddress());</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span>(UnknownHostException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/20/Java/%E6%B3%9B%E5%9E%8B/%E6%B3%9B%E5%9E%8B%E6%A6%82%E8%BF%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/20/Java/%E6%B3%9B%E5%9E%8B/%E6%B3%9B%E5%9E%8B%E6%A6%82%E8%BF%B0/" class="post-title-link" itemprop="url">泛型概述</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-20 12:36:10 / 修改时间：14:08:07" itemprop="dateCreated datePublished" datetime="2022-02-20T12:36:10+08:00">2022-02-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/%E6%B3%9B%E5%9E%8B/" itemprop="url" rel="index"><span itemprop="name">泛型</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>所谓泛型，就是允许在定义类、接口时通过一个标识表示类中某个属性的类型或者是某个方法的返回值及参数类型。这个类型参数将在使用时（例如，继承或实现这个接口，用这个类型声明变量、创建对象时）确定（即传入实际的类型参数，也称为类型实参）</li>
+<li>从JDK1.5以后，Java引入了“参数化类型（Parameterized type）”的概念，允许我们在创建集合时再指定集合元素的类型，正如：List<String>，这表明该List只能保存字符串类型的对象</String></li>
+<li>JDK1.5改写了集合框架中的全部接口和类，为这些接口、类增加了泛型支持，从而可以在声明集合变量、创建集合对象时传入类型实参</li>
+<li><strong>泛型类型不能是基本数据类型</strong></li>
+<li>静态方法不能使用类的泛型，因为静态方法早于类的创建</li>
+<li>异常类不能是泛型的</li>
+<li>不可以T[] arr = new T[]，可以T[] arr = (T[]) new Object[]，因为T不是实际的类</li>
+</ul>
+<h4 id="自定义泛型结构"><a href="#自定义泛型结构" class="headerlink" title="自定义泛型结构"></a>自定义泛型结构</h4><p>泛型类，泛型接口，泛型方法</p>
+<ul>
+<li>如果定义了类是带泛型，建议在实例化时要指明泛型类型</li>
+<li>泛型方法：在方法中出现了泛型的结构，泛型参数与类的泛型参数没有任何关系</li>
+<li>泛型方法在返回值前加<E>，否则会被误认为是确定的类</E></li>
+</ul>
+<h4 id="通过通配符定义泛型对象公共父类"><a href="#通过通配符定义泛型对象公共父类" class="headerlink" title="通过通配符定义泛型对象公共父类"></a>通过通配符定义泛型对象公共父类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; list1 = <span class="keyword">null</span>;</span><br><span class="line">List&lt;String&gt; list2 = <span class="keyword">null</span>;</span><br><span class="line">List&lt;?&gt; list = <span class="keyword">null</span>;</span><br><span class="line">list = list1;</span><br><span class="line">list = list2;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>对于List&lt;?&gt;，不能向其内部添加数据，除了添加null</li>
+<li>可以使用Object类型读取</li>
+</ul>
+<h5 id="有限制条件的通配符"><a href="#有限制条件的通配符" class="headerlink" title="有限制条件的通配符"></a>有限制条件的通配符</h5><ul>
+<li><p>通配符指定上限</p>
+<p>上限extends：使用时指定的类型必须是继承某个类，或者实现某个接口</p>
+</li>
+<li><p>通配符指定下限</p>
+<p>下限super：使用时指定的类型不能小于操作的类</p>
+</li>
+<li><p>举例</p>
+<ul>
+<li><p>&lt;? extends Number&gt;  (无穷小, Number]</p>
+<p>只允许泛型为Number及Number子类的引用调用</p>
+</li>
+<li><p>&lt;? super Number&gt; [Number, 无穷大)</p>
+<p>只允许泛型为Number及Number父类的引用调用</p>
+</li>
+<li><p>&lt;? extends Comparable&gt;</p>
+<p>只允许泛型为实现Comparable接口的实现类引用调用</p>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/18/Java/%E6%B3%A8%E8%A7%A3/%E5%85%83%E6%B3%A8%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/18/Java/%E6%B3%A8%E8%A7%A3/%E5%85%83%E6%B3%A8%E8%A7%A3/" class="post-title-link" itemprop="url">元注解</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-18 17:50:20 / 修改时间：18:19:49" itemprop="dateCreated datePublished" datetime="2022-02-18T17:50:20+08:00">2022-02-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/%E6%B3%A8%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">注解</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>JDK的元Annotation用于修饰其他Annotation定义</li>
+<li>JDK5.0提供了4个标准的meta-annotation类型，分别是：<ul>
+<li>Retention</li>
+<li>Target</li>
+<li>Documented</li>
+<li>Inherited</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>@Retention</strong>：只能用于修饰一个Annotation定义，用于指定该Annotation的生命周期，@Rentention包含一个RetentionPolicy类型的成员变量，使用@Rentention时必须为该value成员变量指定值：<ul>
+<li>RetentionPolicy.SOURCE：在源文件中有效</li>
+<li>RetentionPolicy.CLASS：在class文件中有效（默认）</li>
+<li>RetentionPolicy.RUNTIME：在运行时有效，能通过反射获取</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>@Target</strong>：用于修饰Annotation定义，用于指定被修饰的Annotation能用于修饰哪些元素，@Target也包含一个名为value的成员变量</li>
+</ul>
 <div class="table-container">
 <table>
 <thead>
 <tr>
-<th>方法</th>
-<th>说明</th>
+<th>取值</th>
+<th></th>
+<th>取值</th>
+<th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>setPriority(int newPriority)</td>
-<td>更改线程的优先级</td>
+<td>CONSTRUCTOR</td>
+<td>用于描述构造器</td>
+<td>PACKAGE</td>
+<td>用于描述包</td>
 </tr>
 <tr>
-<td>static void sleep(long millis)</td>
-<td>在指定的毫秒数内让当前正在执行的线程休眠</td>
+<td>FIELD</td>
+<td>用于描述域</td>
+<td>PARAMETER</td>
+<td>用于描述参数</td>
 </tr>
 <tr>
-<td>void join()</td>
-<td>等待该线程终止</td>
+<td>LOCAL_VARIABLE</td>
+<td>用于描述局部变量</td>
+<td>TYPE</td>
+<td>用于描述类，接口或enum声明</td>
 </tr>
 <tr>
-<td>static void yield()</td>
-<td>暂停当前正在执行的线程对象，并执行其他线程</td>
-</tr>
-<tr>
-<td>void interrupt()</td>
-<td>中断线程，别用这个方式</td>
-</tr>
-<tr>
-<td>boolean isAlive()</td>
-<td>测试线程是否处于活动状态</td>
+<td>METHOD</td>
+<td>用于描述方法</td>
+<td></td>
 </tr>
 </tbody>
 </table>
 </div>
-<h4 id="停止线程"><a href="#停止线程" class="headerlink" title="停止线程"></a>停止线程</h4><ul>
-<li>不推荐使用JDK提供的stop(), destroy()方法</li>
-<li>推荐线程自己停止</li>
-<li>建议使用标志位flag，flag=false时，终止线程运行</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestThread03</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//run方法线程体</span></span><br><span class="line">        <span class="keyword">while</span>(!flag)&#123;</span><br><span class="line">            System.out.println(<span class="string">"我在看片"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.flag = <span class="keyword">true</span>;</span><br><span class="line">        System.out.println(<span class="string">"不看了"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="comment">//创建runnable接口的实现类对象</span></span><br><span class="line">        TestThread03 testThread3 = <span class="keyword">new</span> TestThread03();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//创建线程对象，通过线程对象来开启我们的线程，代理</span></span><br><span class="line">        <span class="keyword">new</span> Thread(testThread3).start();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">200</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(i == <span class="number">100</span>) testThread3.stop();</span><br><span class="line">            System.out.println(<span class="string">"我在学习"</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="线程休眠"><a href="#线程休眠" class="headerlink" title="线程休眠"></a>线程休眠</h4><ul>
-<li>sleep(时间)指定当前线程阻塞的毫秒数</li>
-<li>sleep存在异常InterruptedException</li>
-<li>sleep时间达到后线程进入就绪状态</li>
-<li>sleep可以模拟网络延时，倒计时等</li>
-<li>每一个对象都有一个锁，sleep不会释放锁</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="comment">//模拟网络延时：放大问题的发生性</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Tickets01</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> ticket = <span class="number">10</span>;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (ticket &lt;= <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">100</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//Thread.currentThread() 获得当前线程对象的引用</span></span><br><span class="line">            System.out.println(Thread.currentThread().getName() + <span class="string">"拿到了第"</span> + ticket-- + <span class="string">"张票"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Tickets01 tickets01 = <span class="keyword">new</span> Tickets01();</span><br><span class="line">        <span class="keyword">new</span> Thread(tickets01, <span class="string">"黄牛1号"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(tickets01, <span class="string">"黄牛2号"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(tickets01, <span class="string">"黄牛3号"</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="线程礼让"><a href="#线程礼让" class="headerlink" title="线程礼让"></a>线程礼让</h4><ul>
-<li>礼让线程，让当前正在执行的线程暂停，但不阻塞</li>
-<li>让线程由运行状态转为就绪状态</li>
-<li>让CPU重新调度，礼让不一定成功，看CPU心情</li>
-</ul>
-<h4 id="线程强制执行Join"><a href="#线程强制执行Join" class="headerlink" title="线程强制执行Join"></a>线程强制执行Join</h4><ul>
-<li>Join合并线程，待此线程执行完成后，再执行其它线程，其它线程阻塞</li>
-<li>可以想象成插队</li>
-</ul>
-<h4 id="观测线程状态"><a href="#观测线程状态" class="headerlink" title="观测线程状态"></a>观测线程状态</h4><h5 id="Thread-State"><a href="#Thread-State" class="headerlink" title="Thread.State"></a>Thread.State</h5><p>线程状态，线程可以处于以下状态之一：</p>
 <ul>
-<li>NEW：尚未启动的线程处于此状态</li>
-<li>RUNNABLE：在Java虚拟机中执行的线程处于此状态</li>
-<li>BLOCKED：被阻塞等待监视器锁定的线程处于此状态</li>
-<li>WAITING：正在等待另一个线程执行特定动作的线程处于此状态</li>
-<li>TIMED_WAITING：正在等待另一个线程执行动作达到指定等待时间的线程处于此状态</li>
-<li>TERMINATED：已退出的线程处于此状态</li>
+<li>@Documented：用于指定被该元Annotation修饰的Annotation类将被javadoc工具提取成文档。默认情况下，javadoc是不包括注解的</li>
+<li>定义为Documented的注解必须设置Retention值为RUNTIME</li>
 </ul>
-<p>一个线程可以在给定时间点处于一个状态，这些状态是不反映任何操作系统线程状态的虚拟机状态</p>
-<h4 id="线程优先级"><a href="#线程优先级" class="headerlink" title="线程优先级"></a>线程优先级</h4><ul>
-<li>Java提供一个线程调度器来监控程序中启动后进入就绪状态的所有课程，线程调度器按照优先级决定应该调度哪个线程来执行</li>
-<li>线程的优先级用数字表示，范围从1~10<ul>
-<li>Thread.MIN_PRIORITY = 1;</li>
-<li>Thread.MAX_PRIORITY = 10;</li>
-<li>Thread.NORM_PRIORITY = 5;</li>
-</ul>
-</li>
-<li>使用getPriority().setPriority(int xxx)来改变或获取优先级</li>
-<li>优先级的设定建议在start()调度前</li>
-<li><strong>优先级低只是意味着获得调度的概率低，并不是优先级低就不会被调用，都是看CPU的调度（性能倒置）</strong></li>
-</ul>
-<h4 id="守护-daemon-线程"><a href="#守护-daemon-线程" class="headerlink" title="守护(daemon)线程"></a>守护(daemon)线程</h4><ul>
-<li>线程分为用户线程和守护线程</li>
-<li>虚拟机必须确保用户线程执行完毕</li>
-<li>虚拟机不用等待守护线程执行完毕</li>
-<li>如，后台记录操作日志，监控内存，垃圾回收等</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Thread thread = <span class="keyword">new</span> Thread();</span><br><span class="line">thread.setDaemon(<span class="keyword">true</span>); <span class="comment">//默认是false代表用户线程，正常线程都是用户线程</span></span><br><span class="line">thread.start(); <span class="comment">//守护线程启动</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/11/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3%E5%92%8Clambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/11/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3%E5%92%8Clambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="post-title-link" itemprop="url">函数式接口和lambda表达式</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-02-11 20:10:51 / 修改时间：22:09:57" itemprop="dateCreated datePublished" datetime="2022-02-11T20:10:51+08:00">2022-02-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="Lambda表达式的推导过程"><a href="#Lambda表达式的推导过程" class="headerlink" title="Lambda表达式的推导过程"></a>Lambda表达式的推导过程</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">lambda01</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//3.静态内部类</span></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Lambda2</span> <span class="keyword">implements</span> <span class="title">Love</span></span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"lambda2"</span>);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        Love lam = <span class="keyword">new</span> Lambda1();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//4.局部内部类</span></span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">Lambda3</span> <span class="keyword">implements</span> <span class="title">Love</span></span>&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"lambda3"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//5.匿名内部类，没有类的名称，只能借助接口和父类</span></span><br><span class="line">        lam = <span class="keyword">new</span> Love()&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"lambda4"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//lambda表达式</span></span><br><span class="line">        lam = () -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">"lambda5"</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//1.定义一个函数式接口</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Love</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//2.实现类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Lambda1</span> <span class="keyword">implements</span> <span class="title">Love</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lambda</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"lambda1"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/09/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E5%AE%9E%E7%8E%B0Runnable%E6%8E%A5%E5%8F%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/09/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E5%AE%9E%E7%8E%B0Runnable%E6%8E%A5%E5%8F%A3/" class="post-title-link" itemprop="url">多线程——实现Runnable接口</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-02-09 22:11:12 / 修改时间：22:14:56" itemprop="dateCreated datePublished" datetime="2022-02-09T22:11:12+08:00">2022-02-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">多线程</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="实现runnable接口。重写run方法，执行线程需要丢入runnable接口实现类，调用start方法"><a href="#实现runnable接口。重写run方法，执行线程需要丢入runnable接口实现类，调用start方法" class="headerlink" title="实现runnable接口。重写run方法，执行线程需要丢入runnable接口实现类，调用start方法"></a>实现runnable接口。重写run方法，执行线程需要丢入runnable接口实现类，调用start方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建线程方式2：实现runnable接口。重写run方法，执行线程需要丢入runnable接口实现类，调用start方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestThread03</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//run方法线程体</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">200</span>; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">"我在看片\n"</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="comment">//创建runnable接口的实现类对象</span></span><br><span class="line">        TestThread1 testThread3 = <span class="keyword">new</span> TestThread1();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//创建线程对象，通过线程对象来开启我们的线程，代理</span></span><br><span class="line">        <span class="keyword">new</span> Thread(testThread3).start();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">200</span>; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">"我在学习\n"</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li><h4 id="继承Thread类"><a href="#继承Thread类" class="headerlink" title="继承Thread类"></a>继承Thread类</h4><ul>
-<li>子类继承Thread类具备多线程能力</li>
-<li>启动线程：子类对象.start()</li>
-<li><strong>不建议使用：OPP单继承局限性</strong></li>
+<li>@Inherited：被它修饰的Annotation将具有继承性，子类将自动具有该注解</li>
 </ul>
-</li>
-<li><h4 id="实现Runnable接口"><a href="#实现Runnable接口" class="headerlink" title="实现Runnable接口"></a>实现Runnable接口</h4><ul>
-<li>实现接口Runnable具有多线程能力</li>
-<li>启动线程：传入目标对象+Thread对象.start()</li>
-<li><strong>推荐使用：避免单继承局限性，灵活方便，方便同一个对象被多个线程使用</strong></li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/07/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BFThread%E7%B1%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/07/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BB%A7%E6%89%BFThread%E7%B1%BB/" class="post-title-link" itemprop="url">多线程——继承Thread类</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-07 14:35:32" itemprop="dateCreated datePublished" datetime="2022-02-07T14:35:32+08:00">2022-02-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-09 14:08:31" itemprop="dateModified" datetime="2022-02-09T14:08:31+08:00">2022-02-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">多线程</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="继承Thread类，重写run-方法，调用start并开启线程"><a href="#继承Thread类，重写run-方法，调用start并开启线程" class="headerlink" title="继承Thread类，重写run()方法，调用start并开启线程"></a>继承Thread类，重写run()方法，调用start并开启线程</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建线程方式一：继承Thread类，重写run()方法，调用start并开启线程</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestThread1</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//run方法线程体</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">200</span>; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">"我在看片\n"</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="comment">//main线程，主线程</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//创建一个线程对象</span></span><br><span class="line">        TestThread1 testThread1 = <span class="keyword">new</span> TestThread1();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//调用start()方法开启线程</span></span><br><span class="line">        testThread1.start();</span><br><span class="line">        <span class="comment">//线程开启不一定立即执行，由CPU调度执行</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">200</span>; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">"我在学习\n"</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="练习Thread，实现多线程下载图片"><a href="#练习Thread，实现多线程下载图片" class="headerlink" title="练习Thread，实现多线程下载图片"></a>练习Thread，实现多线程下载图片</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.commons.io.FileUtils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.net.URL;</span><br><span class="line"></span><br><span class="line"><span class="comment">//练习Thread，实现多线程下载图片</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestThread02</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String url;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TestThread02</span><span class="params">(String url, String name)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.url = url;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        WebDownloader webDownloader = <span class="keyword">new</span> WebDownloader();</span><br><span class="line">        webDownloader.downloader(url, name);</span><br><span class="line">        System.out.println(<span class="string">"下载了文件名为："</span> + name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        TestThread02 t1 = <span class="keyword">new</span> TestThread02(<span class="string">"https://sympawang.com/images/7%E7%A7%8Djoin.png"</span>, <span class="string">"01.jpg"</span>);</span><br><span class="line">        TestThread02 t2 = <span class="keyword">new</span> TestThread02(<span class="string">"https://sympawang.com/images/7%E7%A7%8Djoin.png"</span>, <span class="string">"02.jpg"</span>);</span><br><span class="line">        TestThread02 t3 = <span class="keyword">new</span> TestThread02(<span class="string">"https://sympawang.com/images/7%E7%A7%8Djoin.png"</span>, <span class="string">"03.jpg"</span>);</span><br><span class="line">        t1.start();</span><br><span class="line">        t2.start();</span><br><span class="line">        t3.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//下载器</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WebDownloader</span></span>&#123;</span><br><span class="line">    <span class="comment">//下载方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">downloader</span><span class="params">(String url, String name)</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            FileUtils.copyURLToFile(<span class="keyword">new</span> URL(url), <span class="keyword">new</span> File(name));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            System.out.println(<span class="string">"IO异常\n"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -1163,7 +1083,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1231,20 +1151,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">127</span>
+          <span class="site-state-item-count">141</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-count">29</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1327,7 +1247,7 @@ $(document).ready(function() {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共38.7k字</span>
+  <span class="post-count">博客全站共45.1k字</span>
 </div>
         
 <div class="busuanzi-count">

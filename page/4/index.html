@@ -180,7 +180,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/04/21/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E5%85%B3%E6%B3%A8%E4%B8%8E%E7%B2%89%E4%B8%9D/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/14/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Ribbon%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/Ribbon%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -194,7 +194,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/04/21/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E5%85%B3%E6%B3%A8%E4%B8%8E%E7%B2%89%E4%B8%9D/" class="post-title-link" itemprop="url">关注与粉丝</a>
+            <a href="/2022/05/14/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Ribbon%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/Ribbon%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" class="post-title-link" itemprop="url">Ribbon负载均衡</a>
         </h2>
 
         <div class="post-meta">
@@ -207,7 +207,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-04-21 18:47:13 / 修改时间：18:54:50" itemprop="dateCreated datePublished" datetime="2022-04-21T18:47:13+08:00">2022-04-21</time>
+              <time title="创建时间：2022-05-14 16:34:35 / 修改时间：22:32:58" itemprop="dateCreated datePublished" datetime="2022-05-14T16:34:35+08:00">2022-05-14</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -215,7 +215,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">牛客讨论区项目</span></a>
+                  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="name">微服务</span></a>
                 </span>
             </span>
 
@@ -230,7 +230,67 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <h4 id="负载均衡流程"><a href="#负载均衡流程" class="headerlink" title="负载均衡流程"></a>负载均衡流程</h4><ul>
+<li>order-service发起请求到Ribbon<ul>
+<li>发送请求到RibbonLoadBanlancerClient</li>
+<li>获取id后，发送给DynamicServerListLoadBalancer</li>
+</ul>
+</li>
+<li>Ribbon要求eureka-server拉取userservice，返回服务器列表</li>
+<li>Ribbon通过IRule接口进行负载均衡</li>
+</ul>
+<h4 id="负载均衡策略"><a href="#负载均衡策略" class="headerlink" title="负载均衡策略"></a>负载均衡策略</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>内置负载均衡规则类</th>
+<th>规则描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RoundRobinRule</td>
+<td>简单轮询</td>
+</tr>
+<tr>
+<td>AvailabilityFilteringRule</td>
+<td>对以下两种服务器进行忽略：(1)默认情况下3次连接失败，会设置为短路状态，持续30秒。如果再次失败，短路时间几何级增加。(2)并发数过高的服务器。并发数上限，可由客户端设置。</td>
+</tr>
+<tr>
+<td>WeightedResponseTimeRule</td>
+<td>为每一个服务器赋予一个权重。服务器响应时间越长，权重越小。此规则会按权重值随机选择服务器</td>
+</tr>
+<tr>
+<td>ZoneAvoidanceRule</td>
+<td>以区域可用的服务器为基础进行服务器选择。使用Zone对服务器进行分类，这个Zone可以理解为一个机房、机架等。而后再对Zone内多个服务器轮询</td>
+</tr>
+<tr>
+<td>BestAvailableRule</td>
+<td>忽略短路服务器，选择并发数低的</td>
+</tr>
+<tr>
+<td>RandomRule</td>
+<td>随机选择</td>
+</tr>
+<tr>
+<td>RetryRule</td>
+<td>重试机制的选择逻辑</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h5 id="通过定义IRule实现可以修改负载均衡规则，有两种方式"><a href="#通过定义IRule实现可以修改负载均衡规则，有两种方式" class="headerlink" title="通过定义IRule实现可以修改负载均衡规则，有两种方式"></a>通过定义IRule实现可以修改负载均衡规则，有两种方式</h5><ul>
+<li>代码方式：在order-service中定义一个新的IRule（阵对全局）</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> IRule <span class="title">randomRole</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> RandomRule();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>配置文件方式：在配置文件中，添加新的配置（阵对某个微服务）</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">userservice:</span></span><br><span class="line">  <span class="attr">ribbon:</span></span><br><span class="line">    <span class="attr">NFLoadBalancerRuleClassName:</span> <span class="string">com.netflix.loadbalancer.RandomRule</span> <span class="comment">#负载均衡规则</span></span><br></pre></td></tr></table></figure>
+<h4 id="饥饿加载"><a href="#饥饿加载" class="headerlink" title="饥饿加载"></a>饥饿加载</h4><p>Ribbon默认是采用懒加载，即第一次访问时才会去创建LoadBalanceClient，请求时间会很长。</p>
+<p>而饥饿加载则会在项目启动时创建，降低第一次访问耗时，通过配置开启饥饿加载</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">ribbon:</span></span><br><span class="line">  <span class="attr">eager-load:</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="literal">true</span> <span class="comment">#开启饥饿加载</span></span><br><span class="line">    <span class="attr">clients:</span> <span class="string">userservice</span> <span class="comment">#指定饥饿加载的服务名称</span></span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -250,7 +310,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/04/16/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%82%B9%E8%B5%9E%E5%8A%9F%E8%83%BD/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/14/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Eureka%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/Eureka/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -264,7 +324,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/04/16/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%82%B9%E8%B5%9E%E5%8A%9F%E8%83%BD/" class="post-title-link" itemprop="url">点赞功能</a>
+            <a href="/2022/05/14/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Eureka%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/Eureka/" class="post-title-link" itemprop="url">Eureka</a>
         </h2>
 
         <div class="post-meta">
@@ -275,16 +335,405 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2022-04-16 13:06:11" itemprop="dateCreated datePublished" datetime="2022-04-16T13:06:11+08:00">2022-04-16</time>
+              <time title="创建时间：2022-05-14 14:11:13 / 修改时间：16:18:28" itemprop="dateCreated datePublished" datetime="2022-05-14T14:11:13+08:00">2022-05-14</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-18 13:06:12" itemprop="dateModified" datetime="2022-04-18T13:06:12+08:00">2022-04-18</time>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
               </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="name">微服务</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="服务调用出现的问题"><a href="#服务调用出现的问题" class="headerlink" title="服务调用出现的问题"></a>服务调用出现的问题</h4><ul>
+<li>url硬编码问题，不用硬编码如何获取服务提供者地址信息</li>
+<li>如果有多个服务提供者（集群），消费者如何选择</li>
+<li>消费者如何得知服务提供者的健康状态</li>
+</ul>
+<h4 id="Eureka的作用"><a href="#Eureka的作用" class="headerlink" title="Eureka的作用"></a>Eureka的作用</h4><ul>
+<li>eureka-server：注册中心，管理微服务</li>
+<li>eureka-client：客户端，分为提供者和消费者</li>
+<li>每一个客户端启动时，会把自己信息注册，每30s一次心跳续约，确认状态</li>
+<li>消费者需要时，注册中心拉取服务，负载均衡选取一个微服务，提供给远程调用</li>
+</ul>
+<h4 id="创建eureka-server服务"><a href="#创建eureka-server服务" class="headerlink" title="创建eureka-server服务"></a>创建eureka-server服务</h4><ul>
+<li>引入eureka依赖</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-server<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>编写启动类</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.itcast.eureka;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableEurekaServer</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EurekaApplication</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(EurekaApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>编写配置文件</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">10086</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">eureka-server</span></span><br><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">service-url:</span> </span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">http://127.0.0.1:10086/eureka</span></span><br></pre></td></tr></table></figure>
+<h4 id="服务注册"><a href="#服务注册" class="headerlink" title="服务注册"></a>服务注册</h4><ul>
+<li>引入依赖</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>配置文件</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">userservice</span></span><br><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">service-url:</span></span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">http://127.0.0.1:10086/eureka</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>启动多个user-service实例</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//配置VM options，防止端口冲突</span></span><br><span class="line">-Dserver.port=&#123;端口号&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="服务拉取"><a href="#服务拉取" class="headerlink" title="服务拉取"></a>服务拉取</h4><p>服务拉取是基于服务名称获取服务列表，然后再对服务列表做负载均衡</p>
+<ul>
+<li>修改OrderService的代码，修改访问的url路径，用服务名代替ip，端口</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String url = <span class="string">"http://userservice/user/"</span> + order.getUserId();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在order-service项目的启动类中的RestTemplate添加负载均衡注解</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="meta">@LoadBalanced</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> RestTemplate <span class="title">restTemplate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> RestTemplate();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/14/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Feign%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/%E6%9C%8D%E5%8A%A1%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/14/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Feign%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/%E6%9C%8D%E5%8A%A1%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/" class="post-title-link" itemprop="url">服务远程调用</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-05-14 13:40:23 / 修改时间：14:11:28" itemprop="dateCreated datePublished" datetime="2022-05-14T13:40:23+08:00">2022-05-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="name">微服务</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>注册RestTemplate</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@MapperScan</span>(<span class="string">"cn.itcast.order.mapper"</span>)</span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrderApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(OrderApplication<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RestTemplate <span class="title">restTemplate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> RestTemplate();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改order-service中的OrderService的queryOrderById方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OrderService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> OrderMapper orderMapper;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RestTemplate restTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Order <span class="title">queryOrderById</span><span class="params">(Long orderId)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 1.查询订单</span></span><br><span class="line">        Order order = orderMapper.findById(orderId);</span><br><span class="line">        <span class="comment">//2.利用RestTemplate发起http请求</span></span><br><span class="line">        <span class="comment">//2.1 url路径</span></span><br><span class="line">        String url = <span class="string">"http://localhost:8081/user/"</span> + order.getUserId();</span><br><span class="line">        <span class="comment">//2.2 发送http请求，实现远程调用</span></span><br><span class="line">        User user = restTemplate.getForObject(url, User<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        <span class="comment">//2.3 封装User对象到Order</span></span><br><span class="line">        order.setUser(user);</span><br><span class="line">        <span class="comment">// 4.返回</span></span><br><span class="line">        <span class="keyword">return</span> order;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="提供者与消费者"><a href="#提供者与消费者" class="headerlink" title="提供者与消费者"></a>提供者与消费者</h4><ul>
+<li>服务提供者：一次业务中，被其它微服务调用的服务</li>
+<li>服务消费者：一次业务中，调用其它微服务的服务</li>
+<li>同一个服务既可以是提供者也可以是消费者</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E8%AE%A4%E8%AF%86%E5%BE%AE%E6%9C%8D%E5%8A%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/13/%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E8%AE%A4%E8%AF%86%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="post-title-link" itemprop="url">认识微服务</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-05-13 16:15:23 / 修改时间：17:22:08" itemprop="dateCreated datePublished" datetime="2022-05-13T16:15:23+08:00">2022-05-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="name">微服务</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>微服务是一种经过良好架构设计的分布式架构方案，微服务架构特征：</p>
+<ul>
+<li>单一职责：微服务拆分粒度更小，每一个服务都对应唯一的业务能力，做到单一职责，避免重复业务开发</li>
+<li>面向服务：微服务对外暴露业务接口</li>
+<li>自治：团队独立、技术独立、数据独立、部署独立</li>
+<li>隔离性强：服务调用做好隔离、容错、降级，避免出现级联问题</li>
+</ul>
+<h4 id="微服务技术对比"><a href="#微服务技术对比" class="headerlink" title="微服务技术对比"></a>微服务技术对比</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Dubbo</th>
+<th>SpringCloud</th>
+<th>SpingCloudAlibaba</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>注册中心</td>
+<td>zookeeper，Redis</td>
+<td>Eureka，Consul</td>
+<td>Nacos，Eureka</td>
+</tr>
+<tr>
+<td>服务远程调用</td>
+<td>Dubbo协议</td>
+<td>Feign（http协议）</td>
+<td>Dubbo，Feign</td>
+</tr>
+<tr>
+<td>配置中心</td>
+<td>无</td>
+<td>SpringCloudConfig</td>
+<td>SpringCloudConfig，Nacos</td>
+</tr>
+<tr>
+<td>服务网关</td>
+<td>无</td>
+<td>SpringCloudGateway，Zuul</td>
+<td>SpringCloudGateway，Zuul</td>
+</tr>
+<tr>
+<td>服务监控和保护</td>
+<td>dubbo-admin，功能弱</td>
+<td>Hystrix</td>
+<td>Sentinel</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/10/Linux/Linux%E4%B8%89%E7%A7%8D%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/10/Linux/Linux%E4%B8%89%E7%A7%8D%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/" class="post-title-link" itemprop="url">Linux三种网络连接</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-05-10 15:50:00 / 修改时间：15:52:37" itemprop="dateCreated datePublished" datetime="2022-05-10T15:50:00+08:00">2022-05-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>桥接模式：直接分配物理网络，可以和其它系统通讯，但容易造成IP地址冲突</li>
+<li>NAT模式：网络地址转换方式，Linux可以访问外网，不会造成IP冲突</li>
+<li><p>仅主极模式：IP地址独立，Linux是独立的主机，不能访问外网</p>
+<p> <strong>一般建议使用NAT模式</strong></p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/06/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%A4%BE%E5%8C%BA%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/06/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%A4%BE%E5%8C%BA%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/" class="post-title-link" itemprop="url">社区搜索功能</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-05-06 14:36:32 / 修改时间：14:42:50" itemprop="dateCreated datePublished" datetime="2022-05-06T14:36:32+08:00">2022-05-06</time>
+            </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -307,39 +756,22 @@
 
       
           <ul>
-<li>点赞<ul>
-<li>支持对帖子、评论点赞</li>
-<li>第1次点赞，第2次取消点赞</li>
+<li>搜索服务<ul>
+<li>将帖子保存至Elasticsearch服务器</li>
+<li>从Elasticsearch服务器删除帖子</li>
+<li>从Elasticsearch服务器搜索帖子</li>
 </ul>
 </li>
-<li>首页点赞数量<ul>
-<li>统计帖子点赞数量</li>
+<li>发布事件<ul>
+<li>发布帖子时，将帖子异步的提交到Elasiticsearch服务器</li>
+<li>增加评论时，将帖子异步的提交到Elasticsearch服务器</li>
+<li>在消费组件中增加一个方法，消费贴子发布事件</li>
 </ul>
 </li>
-<li>详情页点赞数量<ul>
-<li>统计点赞数量</li>
-<li>显示点赞状态</li>
+<li>显示结果<ul>
+<li>在控制器中处理搜索请求，在HTML上显示搜索结果</li>
 </ul>
 </li>
-</ul>
-<h4 id="Service层"><a href="#Service层" class="headerlink" title="Service层"></a>Service层</h4><ul>
-<li>点赞功能<ul>
-<li>使用Redis在SpringBoot中的事务管理</li>
-<li>对某实体与用户的赞的增加与删除</li>
-</ul>
-</li>
-<li>查询实体点赞数量</li>
-<li>查询某人对某实体的点赞状态</li>
-<li>查询某个用户获得的赞数量</li>
-</ul>
-<h4 id="Controller层"><a href="#Controller层" class="headerlink" title="Controller层"></a>Controller层</h4><ul>
-<li>HomeController中帖子列表增加点赞数显示</li>
-<li>DiscussPostController中帖子与评论的点赞数显示</li>
-<li>LikeController，使用AJAX异步，实现点赞数的动态修改</li>
-</ul>
-<h4 id="我收到的赞"><a href="#我收到的赞" class="headerlink" title="我收到的赞"></a>我收到的赞</h4><ul>
-<li>个人信息页面显示</li>
-<li>到redis查询用户收到的赞的数量</li>
 </ul>
 
       
@@ -361,7 +793,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/04/12/%E6%A1%86%E6%9E%B6/Spring/Spring%E6%95%B4%E5%90%88Redis/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/05/%E6%A1%86%E6%9E%B6/Spring/Spring%E6%95%B4%E5%90%88Elasticsearch/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -375,7 +807,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/04/12/%E6%A1%86%E6%9E%B6/Spring/Spring%E6%95%B4%E5%90%88Redis/" class="post-title-link" itemprop="url">Spring整合Redis</a>
+            <a href="/2022/05/05/%E6%A1%86%E6%9E%B6/Spring/Spring%E6%95%B4%E5%90%88Elasticsearch/" class="post-title-link" itemprop="url">Spring整合Elasticsearch</a>
         </h2>
 
         <div class="post-meta">
@@ -387,14 +819,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-04-12 15:46:32" itemprop="dateCreated datePublished" datetime="2022-04-12T15:46:32+08:00">2022-04-12</time>
+              <time title="创建时间：2022-05-05 20:02:23" itemprop="dateCreated datePublished" datetime="2022-05-05T20:02:23+08:00">2022-05-05</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-05 20:06:58" itemprop="dateModified" datetime="2022-05-05T20:06:58+08:00">2022-05-05</time>
+                <time title="修改时间：2022-05-06 14:35:14" itemprop="dateModified" datetime="2022-05-06T14:35:14+08:00">2022-05-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -419,641 +851,57 @@
       
           <ul>
 <li>引入依赖<ul>
-<li>spring-boot-starter-data-redis</li>
+<li>spring-boot-starter-data-elasticsearch</li>
 </ul>
 </li>
-<li>配置Redis<ul>
-<li>配置数据库参数</li>
-<li>编写配置类，构造RedisTemplate</li>
+<li>配置Elasticsearch<ul>
+<li>cluster-name，cluster-nodes</li>
 </ul>
 </li>
-<li>访问Redis</li>
-</ul>
-<h4 id="配置redisTemplate"><a href="#配置redisTemplate" class="headerlink" title="配置redisTemplate"></a>配置redisTemplate</h4><ul>
-<li>为什么要配置<ul>
-<li>默认是<Object, object>键值对，重新设置序列化方式</Object,></li>
+<li>Spring Data Elasticsearch<ul>
+<li>ElasticsearchTemplate</li>
+<li>ElasticsearchRepository</li>
 </ul>
 </li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RedisTemplate&lt;String, Object&gt; <span class="title">redisTemplate</span><span class="params">(RedisConnectionFactory factory)</span> </span>&#123;</span><br><span class="line">        RedisTemplate&lt;String, Object&gt; template = <span class="keyword">new</span> RedisTemplate&lt;&gt;();</span><br><span class="line">        template.setConnectionFactory(factory);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//设置key的序列化方式</span></span><br><span class="line">        template.setKeySerializer(RedisSerializer.string());</span><br><span class="line">        <span class="comment">//设置普通value序列化方式</span></span><br><span class="line">        template.setValueSerializer(RedisSerializer.json());</span><br><span class="line">        <span class="comment">//设置hash的key的序列化方式</span></span><br><span class="line">        template.setHashKeySerializer(RedisSerializer.string());</span><br><span class="line">        <span class="comment">//设置hash的value的序列化方式</span></span><br><span class="line">        template.setHashValueSerializer(RedisSerializer.json());</span><br><span class="line"></span><br><span class="line">        template.afterPropertiesSet();</span><br><span class="line">        <span class="keyword">return</span> template;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h4 id="访问Redis"><a href="#访问Redis" class="headerlink" title="访问Redis"></a>访问Redis</h4><ul>
-<li>访问不同key<ul>
-<li>redisTemplate.opsForValue()</li>
-<li>redisTemplate.opsForHash()</li>
-<li>redisTemplate.opsForList()</li>
-<li>redisTemplate.opsForSet()</li>
-<li>redisTemplate.opsForZSet()</li>
+<h4 id="定义Repository接口"><a href="#定义Repository接口" class="headerlink" title="定义Repository接口"></a>定义Repository接口</h4><ul>
+<li>DAO层实现实体类对应的Repository接口，继承于ElasiticsearchRepository，泛型为实体和id类型</li>
+<li>父接口中已经定义好了对es服务器的增删改查方法，不需要自己实现</li>
 </ul>
-</li>
-<li>处理key<ul>
-<li>删除：redisTemplate.delete()</li>
-<li>查询是否存在：redisTemplate.hasKey()</li>
-<li>设置有效时间：redisTemplate.expire(key, time, 时间单位(TimeUnit.SECONDS))</li>
+<h4 id="测试增删改查方法"><a href="#测试增删改查方法" class="headerlink" title="测试增删改查方法"></a>测试增删改查方法</h4><h5 id="增"><a href="#增" class="headerlink" title="增"></a>增</h5><ul>
+<li>save方法，保存一条</li>
+<li>saveAll，保存多条</li>
 </ul>
-</li>
-<li>多次访问同一个key，绑定key<ul>
-<li>BoundValueOperations operations = redisTemplate.boundValueOps(redisKey)</li>
+<h5 id="改"><a href="#改" class="headerlink" title="改"></a>改</h5><ul>
+<li>save覆盖即可</li>
 </ul>
-</li>
+<h5 id="删"><a href="#删" class="headerlink" title="删"></a>删</h5><ul>
+<li>deleteById</li>
 </ul>
-<h4 id="Redis事务管理"><a href="#Redis事务管理" class="headerlink" title="Redis事务管理"></a>Redis事务管理</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//编程式事务</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testTransactional</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Object obj = redisTemplate.execute(<span class="keyword">new</span> SessionCallback() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Object <span class="title">execute</span><span class="params">(RedisOperations operations)</span> <span class="keyword">throws</span> DataAccessException </span>&#123;</span><br><span class="line">            String redisKey = <span class="string">"test:tx"</span>;</span><br><span class="line"></span><br><span class="line">            operations.multi(); <span class="comment">//开启事务</span></span><br><span class="line"></span><br><span class="line">            operations.opsForSet().add(redisKey, <span class="string">"zhangsan"</span>);</span><br><span class="line">            operations.opsForSet().add(redisKey, <span class="string">"lisi"</span>);</span><br><span class="line">            operations.opsForSet().add(redisKey, <span class="string">"wangwu"</span>);</span><br><span class="line"></span><br><span class="line">            System.out.println(operations.opsForSet().members(redisKey));</span><br><span class="line">            <span class="keyword">return</span> operations.exec(); <span class="comment">//提交事务</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    System.out.println(obj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/04/10/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%BB%9F%E4%B8%80%E8%AE%B0%E5%BD%95%E6%97%A5%E5%BF%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/10/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%BB%9F%E4%B8%80%E8%AE%B0%E5%BD%95%E6%97%A5%E5%BF%97/" class="post-title-link" itemprop="url">统一记录日志</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-04-10 16:38:32" itemprop="dateCreated datePublished" datetime="2022-04-10T16:38:32+08:00">2022-04-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-11 19:52:38" itemprop="dateModified" datetime="2022-04-11T19:52:38+08:00">2022-04-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">牛客讨论区项目</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="AOP的实现"><a href="#AOP的实现" class="headerlink" title="AOP的实现"></a>AOP的实现</h3><ul>
-<li>AspectJ<ul>
-<li>语言级的实现，扩展了Java语言，定义了AOP语法</li>
-<li>在编译期织入代码，它有一个专门的编译器，用来生成遵守Java字节码规范的class文件</li>
+<h5 id="查"><a href="#查" class="headerlink" title="查"></a>查</h5><ul>
+<li>首先构造搜索请求对象SearchRequest，传入索引名</li>
+<li>构造搜索条件SearchSourceBuilder</li>
 </ul>
-</li>
-<li>Spring AOP<ul>
-<li>Spring AOP使用Java实现，不需要专门的编译过程，也不需要特殊的类加载器</li>
-<li>Spring AOP在运行时通过代理的方式织入代码，只支持方法类型的连接点</li>
-<li>支持对AspectJ的集成</li>
-</ul>
-</li>
-</ul>
-<h4 id="Spring-AOP"><a href="#Spring-AOP" class="headerlink" title="Spring AOP"></a>Spring AOP</h4><ul>
-<li>JDK动态代理<ul>
-<li>Java提供的动态代理技术，可以在运行时创建接口的代理实例</li>
-<li>Spring AOP默认采用此种方式，在接口的代理实例中织入代码</li>
-</ul>
-</li>
-<li>CGLib动态代理<ul>
-<li>采用底层的字节码技术，在运行时创建子类代理实例</li>
-<li>当目标对象不存在接口时，Spring AOP会采用此种方式，在子类中织入代码</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/04/10/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%BB%9F%E4%B8%80%E5%A4%84%E7%90%86%E5%BC%82%E5%B8%B8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/10/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%BB%9F%E4%B8%80%E5%A4%84%E7%90%86%E5%BC%82%E5%B8%B8/" class="post-title-link" itemprop="url">统一处理异常</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-04-10 12:20:32 / 修改时间：16:24:10" itemprop="dateCreated datePublished" datetime="2022-04-10T12:20:32+08:00">2022-04-10</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">牛客讨论区项目</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li>@ControllerAdvice<ul>
-<li>用于修饰类，表示该类是Controller的全局配置类</li>
-<li>在此类中，可以对Controller进行如下三种全局配置：<ul>
-<li>异常处理方案</li>
-<li>绑定数据方案</li>
-<li>绑定参数方案</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>@ExceptionHandler<ul>
-<li>用于修饰方法，该方法会在Controller出现异常后被调用，用于处理捕获到的异常</li>
-</ul>
-</li>
-<li>@ModelAttribute<ul>
-<li>用于修饰方法，该方法会在Controller方法执行前被调用，用于为Model对象绑定参数</li>
-</ul>
-</li>
-<li>@DataBinder<ul>
-<li>用于修饰方法，该方法会在Controller方法执行前被调用，用于绑定参数的转换器</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/04/03/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%A7%81%E4%BF%A1%E5%88%97%E8%A1%A8%E7%9B%B8%E5%85%B3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/03/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%A7%81%E4%BF%A1%E5%88%97%E8%A1%A8%E7%9B%B8%E5%85%B3/" class="post-title-link" itemprop="url">私信列表相关</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-04-03 10:52:00 / 修改时间：13:46:44" itemprop="dateCreated datePublished" datetime="2022-04-03T10:52:00+08:00">2022-04-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">牛客讨论区项目</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li>私信列表<ul>
-<li>查询当前用户会话列表，每个会话只显示最新私信</li>
-<li>支持分页</li>
-</ul>
-</li>
-<li>私信详情<ul>
-<li>查询某个会话所包含的私信</li>
-<li>支持分页</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/04/01/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E8%AF%84%E8%AE%BA%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9D%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/01/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E8%AF%84%E8%AE%BA%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9D%97/" class="post-title-link" itemprop="url">评论相关模块</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-04-01 14:37:23" itemprop="dateCreated datePublished" datetime="2022-04-01T14:37:23+08:00">2022-04-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-03 10:28:17" itemprop="dateModified" datetime="2022-04-03T10:28:17+08:00">2022-04-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">牛客讨论区项目</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="显示评论"><a href="#显示评论" class="headerlink" title="显示评论"></a>显示评论</h4><ul>
-<li>数据层<ul>
-<li>根据实体查询一页评论数据</li>
-<li>根据实体查询评论的数量</li>
-</ul>
-</li>
-<li>业务层<ul>
-<li>处理查询评论的业务</li>
-<li>处理查询评论数量的业务</li>
-</ul>
-</li>
-<li>表现层<ul>
-<li>显示帖子详情数据时，同时显示该帖子所有评论数据</li>
-</ul>
-</li>
-</ul>
-<h5 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h5><ul>
-<li>由于评论也有回复，所以Controller层返回的List是两层嵌套的</li>
-<li>注意判断回复的性质，是给帖子的还是给评论的</li>
-<li>前端渲染方面：<ul>
-<li>rvo，cvo遍历链表</li>
-<li>cvoStat.count，获取当前遍历的下表</li>
-<li>分页可以复用主页的</li>
-</ul>
-</li>
-</ul>
-<h4 id="增加评论"><a href="#增加评论" class="headerlink" title="增加评论"></a>增加评论</h4><ul>
-<li>数据层<ul>
-<li>增加评论数据</li>
-<li>修改帖子评论数量</li>
-</ul>
-</li>
-<li>业务层<ul>
-<li>处理添加评论业务<ul>
-<li>增加评论</li>
-<li>更新评论数量</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>表现层<ul>
-<li>处理添加评论数据的请求</li>
-<li>设置添加评论的表单</li>
-</ul>
-</li>
-</ul>
-<h5 id="业务层需要事务管理"><a href="#业务层需要事务管理" class="headerlink" title="业务层需要事务管理"></a>业务层需要事务管理</h5><ul>
-<li>因为增加评论和更新评论数量这两步是原子的</li>
-<li>隔离级别与传播机制分别为READ_COMMITTED与REQUIRED</li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/31/%E6%A1%86%E6%9E%B6/Spring/Spring%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/31/%E6%A1%86%E6%9E%B6/Spring/Spring%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">Spring事务管理</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-31 21:09:13" itemprop="dateCreated datePublished" datetime="2022-03-31T21:09:13+08:00">2022-03-31</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-01 13:01:56" itemprop="dateModified" datetime="2022-04-01T13:01:56+08:00">2022-04-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">框架</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%A1%86%E6%9E%B6/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li>声明式事务<ul>
-<li>通过XML配置，声明某方法的事务特征</li>
-<li>通过注解，声明某方法的事务特征</li>
-</ul>
-</li>
-<li>编程式事务<ul>
-<li>通过TransactionTemplate管理事务，并通过它执行数据库操作</li>
-</ul>
-</li>
-</ul>
-<h4 id="Transactional注解"><a href="#Transactional注解" class="headerlink" title="@Transactional注解"></a>@Transactional注解</h4><ul>
-<li>isolation：事务隔离级别</li>
-<li>propagation：事务传播机制<ul>
-<li>REQUIRED：支持当前事务（外部事务），如果不存在则创建新事物</li>
-<li>REQUIRES_NEW：创建一个新事务，并且暂停当前事务</li>
-<li>NESTED：如果当前存在事务，则嵌套在该事务中执行，否则同REQUIRED</li>
-</ul>
-</li>
-</ul>
-<h4 id="TransactionTemplate类"><a href="#TransactionTemplate类" class="headerlink" title="TransactionTemplate类"></a>TransactionTemplate类</h4><ul>
-<li>.setIsolationLevel(TransactionDefinition.)：设置隔离级别</li>
-<li>.setPropagationBehavior(TransactionDefinition.)：设置传播机制</li>
-<li>.execute(new TransactionCallback<Object>())：提交事务，实现接口的doInTransaction方法</Object></li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/29/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E6%95%8F%E6%84%9F%E8%AF%8D%E8%BF%87%E6%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/29/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E6%95%8F%E6%84%9F%E8%AF%8D%E8%BF%87%E6%BB%A4/" class="post-title-link" itemprop="url">敏感词过滤</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-29 14:55:12" itemprop="dateCreated datePublished" datetime="2022-03-29T14:55:12+08:00">2022-03-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-30 19:42:29" itemprop="dateModified" datetime="2022-03-30T19:42:29+08:00">2022-03-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">牛客讨论区项目</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="简单的敏感词过滤器"><a href="#简单的敏感词过滤器" class="headerlink" title="简单的敏感词过滤器"></a>简单的敏感词过滤器</h4><ul>
-<li>定义字典树</li>
-<li>根据敏感词文件初始化字典树</li>
-<li>编写敏感词过滤的方法</li>
-</ul>
-<h4 id="一些技巧"><a href="#一些技巧" class="headerlink" title="一些技巧"></a>一些技巧</h4><ul>
-<li>判断特殊符号</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isSymbol</span><span class="params">(Character c)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> !CharUtils.isAsciiAlphanumeric(c) &amp;&amp; (c &lt; <span class="number">0x2E80</span> || c &gt; <span class="number">0x9FFF</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//构建搜索条件</span></span><br><span class="line">SearchSourceBuilder searchSourceBuilder = <span class="keyword">new</span> SearchSourceBuilder()</span><br><span class="line">        <span class="comment">//在discusspost索引的title和content字段中都查询“互联网寒冬”</span></span><br><span class="line">        .query(QueryBuilders.multiMatchQuery(<span class="string">"互联网寒冬"</span>, <span class="string">"title"</span>, <span class="string">"content"</span>))</span><br><span class="line">        <span class="comment">// matchQuery是模糊查询，会对key进行分词：searchSourceBuilder.query(QueryBuilders.matchQuery(key,value));</span></span><br><span class="line">        <span class="comment">// termQuery是精准查询：searchSourceBuilder.query(QueryBuilders.termQuery(key,value));</span></span><br><span class="line">        .sort(SortBuilders.fieldSort(<span class="string">"type"</span>).order(SortOrder.DESC))</span><br><span class="line">        .sort(SortBuilders.fieldSort(<span class="string">"score"</span>).order(SortOrder.DESC))</span><br><span class="line">        .sort(SortBuilders.fieldSort(<span class="string">"createTime"</span>).order(SortOrder.DESC))</span><br><span class="line">        <span class="comment">//一个可选项，用于控制允许搜索的时间：searchSourceBuilder.timeout(new TimeValue(60, TimeUnit.SECONDS));</span></span><br><span class="line">        .from(<span class="number">0</span>)<span class="comment">// 指定从哪条开始查询</span></span><br><span class="line">        .size(<span class="number">10</span>);<span class="comment">// 需要查出的总记录条数</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li>获取文件缓冲流</li>
+<li>调用searchRequest的source方法，将搜索条件传入请求体</li>
+<li>创建应答对象</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">InputStream is = <span class="keyword">this</span>.getClass().getClassLoader().getResourceAsStream(<span class="string">"sensitive-words.txt"</span>);</span><br><span class="line">BufferedReader reader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(is));</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SearchResponse searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>转换为json格式输出</p>
+</li>
+<li><p>添加高亮</p>
+<ul>
+<li>声明高亮对象</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//高亮</span></span><br><span class="line">HighlightBuilder highlightBuilder = <span class="keyword">new</span> HighlightBuilder();</span><br><span class="line">highlightBuilder.field(<span class="string">"title"</span>);</span><br><span class="line">highlightBuilder.field(<span class="string">"content"</span>);</span><br><span class="line">highlightBuilder.requireFieldMatch(<span class="keyword">false</span>);</span><br><span class="line">highlightBuilder.preTags(<span class="string">"&lt;span style='color:red'&gt;"</span>);</span><br><span class="line">highlightBuilder.postTags(<span class="string">"&lt;/span&gt;"</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>遍历时处理高亮</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 处理高亮显示的结果，获取高亮数据进行进行替换</span></span><br><span class="line"><span class="comment">// 可能有多段匹配，取第一段即可</span></span><br><span class="line">HighlightField titleField = hit.getHighlightFields().get(<span class="string">"title"</span>);</span><br><span class="line"><span class="keyword">if</span> (titleField != <span class="keyword">null</span>) &#123;</span><br><span class="line">    discussPost.setTitle(titleField.getFragments()[<span class="number">0</span>].toString());</span><br><span class="line">&#125;</span><br><span class="line">HighlightField contentField = hit.getHighlightFields().get(<span class="string">"content"</span>);</span><br><span class="line"><span class="keyword">if</span> (contentField != <span class="keyword">null</span>) &#123;</span><br><span class="line">    discussPost.setContent(contentField.getFragments()[<span class="number">0</span>].toString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 
       
     </div>
@@ -1074,7 +922,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/03/26/%E6%A1%86%E6%9E%B6/Spring/Interceptor%E6%8B%A6%E6%88%AA%E5%99%A8/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/05/%E4%B8%AD%E9%97%B4%E4%BB%B6/Elasticsearch%E5%85%A5%E9%97%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1088,7 +936,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/03/26/%E6%A1%86%E6%9E%B6/Spring/Interceptor%E6%8B%A6%E6%88%AA%E5%99%A8/" class="post-title-link" itemprop="url">Interceptor拦截器</a>
+            <a href="/2022/05/05/%E4%B8%AD%E9%97%B4%E4%BB%B6/Elasticsearch%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">Elasticsearch入门</a>
         </h2>
 
         <div class="post-meta">
@@ -1099,23 +947,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2022-03-26 20:36:09" itemprop="dateCreated datePublished" datetime="2022-03-26T20:36:09+08:00">2022-03-26</time>
+              <time title="创建时间：2022-05-05 15:40:10 / 修改时间：20:01:02" itemprop="dateCreated datePublished" datetime="2022-05-05T15:40:10+08:00">2022-05-05</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-27 13:03:20" itemprop="dateModified" datetime="2022-03-27T13:03:20+08:00">2022-03-27</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
+                  <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">中间件</span></a>
                 </span>
             </span>
 
@@ -1130,19 +972,229 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="如何创建拦截器？"><a href="#如何创建拦截器？" class="headerlink" title="如何创建拦截器？"></a>如何创建拦截器？</h4><ul>
-<li>在Controller层实现HandlerInterceptor接口</li>
-<li>有三个可实现的方法<ul>
-<li>preHandle方法，在Controller之前执行</li>
-<li>postHandle方法，在调用Controller之后执行</li>
-<li>afterCompletion方法，在模板引擎TemplateEngine之后执行</li>
+          <ul>
+<li>Elasticsearch简介<ul>
+<li>一个分布式的，Restful风格的搜索引擎</li>
+<li>支持对各种类型的数据的检索</li>
+<li>搜索速度快，可以提供实时的搜索服务</li>
+<li>便于水平扩展，每秒可以处理PB级海量数据</li>
+</ul>
+</li>
+<li>Elasticsearch术语<ul>
+<li>索引，类型，文档，字段（6.0前对应数据库中：数据库，表，行，列）</li>
+<li>集群，节点，分片，副本</li>
+<li>6.0后废弃类型，索引对应数据库中的表</li>
+<li>集群中每一台服务器称为节点</li>
+<li>一个索引可以拆分为多个分片存储，提高并发能力</li>
+<li>副本是对分片的备份，一个分片可以包含多个副本，提高可用性</li>
 </ul>
 </li>
 </ul>
-<h4 id="如何使用拦截器？"><a href="#如何使用拦截器？" class="headerlink" title="如何使用拦截器？"></a>如何使用拦截器？</h4><ul>
-<li>继承WebMvcConfigurer类，实现addInterceptors方法</li>
+<h4 id="Elasticsearch配置（elasticsearch-yml文件）"><a href="#Elasticsearch配置（elasticsearch-yml文件）" class="headerlink" title="Elasticsearch配置（elasticsearch.yml文件）"></a>Elasticsearch配置（elasticsearch.yml文件）</h4><ul>
+<li>集群名：cluster.name</li>
+<li>数据存放路径：path.data</li>
+<li>日志存放路径：path.logs</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebMvcConfig</span> <span class="keyword">implements</span> <span class="title">WebMvcConfigurer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> AlphaInterceptor alphaInterceptor;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addInterceptors</span><span class="params">(InterceptorRegistry registry)</span> </span>&#123;</span><br><span class="line">        registry.addInterceptor(alphaInterceptor)</span><br><span class="line">                .excludePathPatterns(<span class="string">"/**/*.css"</span>, <span class="string">"/**/*.js"</span>, <span class="string">"/**/*.jpg"</span>, <span class="string">"/**/*.png"</span>, <span class="string">"/**/*.jpeg"</span>)</span><br><span class="line">                .addPathPatterns(<span class="string">"/register"</span>, <span class="string">"login"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="安装中文分词插件ik"><a href="#安装中文分词插件ik" class="headerlink" title="安装中文分词插件ik"></a>安装中文分词插件ik</h4><p><a href="https://github.com/medcl/elasticsearch-analysis-ik" target="_blank" rel="noopener">https://github.com/medcl/elasticsearch-analysis-ik</a></p>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><ul>
+<li>启动elasticserach</li>
+<li>查看健康状况 curl -X GET “localhost:9200/_cat/health?v”</li>
+<li>查看节点 curl -X GET “localhost:9200/_cat/nodes?v”</li>
+<li>查看索引 curl -X GET “localhost:9200/_cat/indices?v”</li>
+<li>创建索引 curl -X PUT “localhost:9200/{索引名}”，返回json格式</li>
+<li>删除索引 curl -X DELETE “localhost:9200/{索引名}”</li>
+<li>插入数据PUT请求  localhost:9200/{索引名}/{类型}/{id}，提交json格式数据</li>
+<li>查询数据GET请求</li>
+<li>删除数据DELETE请求</li>
+<li>搜索数据GET请求<ul>
+<li>不加条件 localhost:9200/{索引名}/_search</li>
+<li>加条件 localhost:9200/{索引名}/_search?q=xxx:yyy</li>
+<li>会进行分词</li>
+</ul>
+</li>
+<li>搜索条件复杂，通过json提交请求数据</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"query"</span>:&#123;</span><br><span class="line">        <span class="attr">"multi_match"</span>:&#123;</span><br><span class="line">            <span class="attr">"query"</span>:<span class="string">"互联网"</span>, <span class="comment">//搜什么</span></span><br><span class="line">            <span class="attr">"fields"</span>:[<span class="string">"title"</span>,<span class="string">"content"</span>]  <span class="comment">//从哪匹配</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/04/29/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%B3%BB%E7%BB%9F%E9%80%9A%E7%9F%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/29/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%B3%BB%E7%BB%9F%E9%80%9A%E7%9F%A5/" class="post-title-link" itemprop="url">系统通知</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-04-29 17:03:11" itemprop="dateCreated datePublished" datetime="2022-04-29T17:03:11+08:00">2022-04-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-04 16:48:30" itemprop="dateModified" datetime="2022-05-04T16:48:30+08:00">2022-05-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">牛客讨论区项目</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>通知列表<ul>
+<li>显示评论、点赞、关注三种类型的通知</li>
+</ul>
+</li>
+<li>通知详情<ul>
+<li>分页显示某一类主题所包含的通知</li>
+</ul>
+</li>
+<li>未读消息<ul>
+<li>在页面头部显示所有的消息数量</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/04/22/%E6%A1%86%E6%9E%B6/%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97&Kafka/Spring%E6%95%B4%E5%90%88Kafka/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/22/%E6%A1%86%E6%9E%B6/%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97&Kafka/Spring%E6%95%B4%E5%90%88Kafka/" class="post-title-link" itemprop="url">Spring整合Kafka</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-04-22 22:05:17 / 修改时间：23:30:47" itemprop="dateCreated datePublished" datetime="2022-04-22T22:05:17+08:00">2022-04-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97-Kafka/" itemprop="url" rel="index"><span itemprop="name">阻塞队列&Kafka</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li><p>引入依赖</p>
+<ul>
+<li>spring-kafka</li>
+</ul>
+</li>
+<li><p>配置Kafka</p>
+<ul>
+<li>配置server，consumer</li>
+</ul>
+</li>
+<li><p>访问Kafka</p>
+<ul>
+<li>生产者：kafkaTemplate.send(topic, data);</li>
+<li>消费者：</li>
+</ul>
+<p>​       @KafkaListener(topics = {“test”})</p>
+<p>​        public void handleMessage(ConsumerRecord record)  {}</p>
+</li>
+</ul>
 
       
     </div>
@@ -1162,7 +1214,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1230,20 +1282,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">127</span>
+          <span class="site-state-item-count">141</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-count">29</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1326,7 +1378,7 @@ $(document).ready(function() {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共38.7k字</span>
+  <span class="post-count">博客全站共45.1k字</span>
 </div>
         
 <div class="busuanzi-count">
