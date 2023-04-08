@@ -180,6 +180,299 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/05/%E4%B8%AD%E9%97%B4%E4%BB%B6/Elasticsearch%E5%85%A5%E9%97%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/05/%E4%B8%AD%E9%97%B4%E4%BB%B6/Elasticsearch%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">Elasticsearch入门</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-05-05 15:40:10 / 修改时间：20:01:02" itemprop="dateCreated datePublished" datetime="2022-05-05T15:40:10+08:00">2022-05-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">中间件</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>Elasticsearch简介<ul>
+<li>一个分布式的，Restful风格的搜索引擎</li>
+<li>支持对各种类型的数据的检索</li>
+<li>搜索速度快，可以提供实时的搜索服务</li>
+<li>便于水平扩展，每秒可以处理PB级海量数据</li>
+</ul>
+</li>
+<li>Elasticsearch术语<ul>
+<li>索引，类型，文档，字段（6.0前对应数据库中：数据库，表，行，列）</li>
+<li>集群，节点，分片，副本</li>
+<li>6.0后废弃类型，索引对应数据库中的表</li>
+<li>集群中每一台服务器称为节点</li>
+<li>一个索引可以拆分为多个分片存储，提高并发能力</li>
+<li>副本是对分片的备份，一个分片可以包含多个副本，提高可用性</li>
+</ul>
+</li>
+</ul>
+<h4 id="Elasticsearch配置（elasticsearch-yml文件）"><a href="#Elasticsearch配置（elasticsearch-yml文件）" class="headerlink" title="Elasticsearch配置（elasticsearch.yml文件）"></a>Elasticsearch配置（elasticsearch.yml文件）</h4><ul>
+<li>集群名：cluster.name</li>
+<li>数据存放路径：path.data</li>
+<li>日志存放路径：path.logs</li>
+</ul>
+<h4 id="安装中文分词插件ik"><a href="#安装中文分词插件ik" class="headerlink" title="安装中文分词插件ik"></a>安装中文分词插件ik</h4><p><a href="https://github.com/medcl/elasticsearch-analysis-ik" target="_blank" rel="noopener">https://github.com/medcl/elasticsearch-analysis-ik</a></p>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><ul>
+<li>启动elasticserach</li>
+<li>查看健康状况 curl -X GET “localhost:9200/_cat/health?v”</li>
+<li>查看节点 curl -X GET “localhost:9200/_cat/nodes?v”</li>
+<li>查看索引 curl -X GET “localhost:9200/_cat/indices?v”</li>
+<li>创建索引 curl -X PUT “localhost:9200/{索引名}”，返回json格式</li>
+<li>删除索引 curl -X DELETE “localhost:9200/{索引名}”</li>
+<li>插入数据PUT请求  localhost:9200/{索引名}/{类型}/{id}，提交json格式数据</li>
+<li>查询数据GET请求</li>
+<li>删除数据DELETE请求</li>
+<li>搜索数据GET请求<ul>
+<li>不加条件 localhost:9200/{索引名}/_search</li>
+<li>加条件 localhost:9200/{索引名}/_search?q=xxx:yyy</li>
+<li>会进行分词</li>
+</ul>
+</li>
+<li>搜索条件复杂，通过json提交请求数据</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"query"</span>:&#123;</span><br><span class="line">        <span class="attr">"multi_match"</span>:&#123;</span><br><span class="line">            <span class="attr">"query"</span>:<span class="string">"互联网"</span>, <span class="comment">//搜什么</span></span><br><span class="line">            <span class="attr">"fields"</span>:[<span class="string">"title"</span>,<span class="string">"content"</span>]  <span class="comment">//从哪匹配</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/04/29/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%B3%BB%E7%BB%9F%E9%80%9A%E7%9F%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/29/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%B3%BB%E7%BB%9F%E9%80%9A%E7%9F%A5/" class="post-title-link" itemprop="url">系统通知</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-04-29 17:03:11" itemprop="dateCreated datePublished" datetime="2022-04-29T17:03:11+08:00">2022-04-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-04 16:48:30" itemprop="dateModified" datetime="2022-05-04T16:48:30+08:00">2022-05-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">牛客讨论区项目</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>通知列表<ul>
+<li>显示评论、点赞、关注三种类型的通知</li>
+</ul>
+</li>
+<li>通知详情<ul>
+<li>分页显示某一类主题所包含的通知</li>
+</ul>
+</li>
+<li>未读消息<ul>
+<li>在页面头部显示所有的消息数量</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/04/22/%E6%A1%86%E6%9E%B6/%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97&Kafka/Spring%E6%95%B4%E5%90%88Kafka/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/22/%E6%A1%86%E6%9E%B6/%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97&Kafka/Spring%E6%95%B4%E5%90%88Kafka/" class="post-title-link" itemprop="url">Spring整合Kafka</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-04-22 22:05:17 / 修改时间：23:30:47" itemprop="dateCreated datePublished" datetime="2022-04-22T22:05:17+08:00">2022-04-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97-Kafka/" itemprop="url" rel="index"><span itemprop="name">阻塞队列&Kafka</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li><p>引入依赖</p>
+<ul>
+<li>spring-kafka</li>
+</ul>
+</li>
+<li><p>配置Kafka</p>
+<ul>
+<li>配置server，consumer</li>
+</ul>
+</li>
+<li><p>访问Kafka</p>
+<ul>
+<li>生产者：kafkaTemplate.send(topic, data);</li>
+<li>消费者：</li>
+</ul>
+<p>​       @KafkaListener(topics = {“test”})</p>
+<p>​        public void handleMessage(ConsumerRecord record)  {}</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/04/22/%E6%A1%86%E6%9E%B6/%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97&Kafka/Kafka%E5%85%A5%E9%97%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -893,308 +1186,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/04/10/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%BB%9F%E4%B8%80%E5%A4%84%E7%90%86%E5%BC%82%E5%B8%B8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/10/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%BB%9F%E4%B8%80%E5%A4%84%E7%90%86%E5%BC%82%E5%B8%B8/" class="post-title-link" itemprop="url">统一处理异常</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-04-10 12:20:32 / 修改时间：16:24:10" itemprop="dateCreated datePublished" datetime="2022-04-10T12:20:32+08:00">2022-04-10</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">牛客讨论区项目</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li>@ControllerAdvice<ul>
-<li>用于修饰类，表示该类是Controller的全局配置类</li>
-<li>在此类中，可以对Controller进行如下三种全局配置：<ul>
-<li>异常处理方案</li>
-<li>绑定数据方案</li>
-<li>绑定参数方案</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>@ExceptionHandler<ul>
-<li>用于修饰方法，该方法会在Controller出现异常后被调用，用于处理捕获到的异常</li>
-</ul>
-</li>
-<li>@ModelAttribute<ul>
-<li>用于修饰方法，该方法会在Controller方法执行前被调用，用于为Model对象绑定参数</li>
-</ul>
-</li>
-<li>@DataBinder<ul>
-<li>用于修饰方法，该方法会在Controller方法执行前被调用，用于绑定参数的转换器</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/04/03/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%A7%81%E4%BF%A1%E5%88%97%E8%A1%A8%E7%9B%B8%E5%85%B3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/03/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%A7%81%E4%BF%A1%E5%88%97%E8%A1%A8%E7%9B%B8%E5%85%B3/" class="post-title-link" itemprop="url">私信列表相关</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-04-03 10:52:00 / 修改时间：13:46:44" itemprop="dateCreated datePublished" datetime="2022-04-03T10:52:00+08:00">2022-04-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">牛客讨论区项目</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li>私信列表<ul>
-<li>查询当前用户会话列表，每个会话只显示最新私信</li>
-<li>支持分页</li>
-</ul>
-</li>
-<li>私信详情<ul>
-<li>查询某个会话所包含的私信</li>
-<li>支持分页</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/04/01/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E8%AF%84%E8%AE%BA%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9D%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/01/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E8%AF%84%E8%AE%BA%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9D%97/" class="post-title-link" itemprop="url">评论相关模块</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-04-01 14:37:23" itemprop="dateCreated datePublished" datetime="2022-04-01T14:37:23+08:00">2022-04-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-03 10:28:17" itemprop="dateModified" datetime="2022-04-03T10:28:17+08:00">2022-04-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">牛客讨论区项目</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="显示评论"><a href="#显示评论" class="headerlink" title="显示评论"></a>显示评论</h4><ul>
-<li>数据层<ul>
-<li>根据实体查询一页评论数据</li>
-<li>根据实体查询评论的数量</li>
-</ul>
-</li>
-<li>业务层<ul>
-<li>处理查询评论的业务</li>
-<li>处理查询评论数量的业务</li>
-</ul>
-</li>
-<li>表现层<ul>
-<li>显示帖子详情数据时，同时显示该帖子所有评论数据</li>
-</ul>
-</li>
-</ul>
-<h5 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h5><ul>
-<li>由于评论也有回复，所以Controller层返回的List是两层嵌套的</li>
-<li>注意判断回复的性质，是给帖子的还是给评论的</li>
-<li>前端渲染方面：<ul>
-<li>rvo，cvo遍历链表</li>
-<li>cvoStat.count，获取当前遍历的下表</li>
-<li>分页可以复用主页的</li>
-</ul>
-</li>
-</ul>
-<h4 id="增加评论"><a href="#增加评论" class="headerlink" title="增加评论"></a>增加评论</h4><ul>
-<li>数据层<ul>
-<li>增加评论数据</li>
-<li>修改帖子评论数量</li>
-</ul>
-</li>
-<li>业务层<ul>
-<li>处理添加评论业务<ul>
-<li>增加评论</li>
-<li>更新评论数量</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>表现层<ul>
-<li>处理添加评论数据的请求</li>
-<li>设置添加评论的表单</li>
-</ul>
-</li>
-</ul>
-<h5 id="业务层需要事务管理"><a href="#业务层需要事务管理" class="headerlink" title="业务层需要事务管理"></a>业务层需要事务管理</h5><ul>
-<li>因为增加评论和更新评论数量这两步是原子的</li>
-<li>隔离级别与传播机制分别为READ_COMMITTED与REQUIRED</li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1266,14 +1257,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">141</span>
+          <span class="site-state-item-count">144</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1320,7 +1311,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1362,7 +1353,7 @@ $(document).ready(function() {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共45.1k字</span>
+  <span class="post-count">博客全站共48.2k字</span>
 </div>
         
 <div class="busuanzi-count">

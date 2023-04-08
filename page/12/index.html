@@ -180,6 +180,265 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/24/SQL%E8%BF%9B%E9%98%B6/SQL_%E7%B4%A2%E5%BC%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/24/SQL%E8%BF%9B%E9%98%B6/SQL_%E7%B4%A2%E5%BC%95/" class="post-title-link" itemprop="url">SQL索引</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-24 17:40:50" itemprop="dateCreated datePublished" datetime="2022-01-24T17:40:50+08:00">2022-01-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-01-25 20:07:24" itemprop="dateModified" datetime="2022-01-25T20:07:24+08:00">2022-01-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="什么是索引？"><a href="#什么是索引？" class="headerlink" title="什么是索引？"></a>什么是索引？</h3><h4 id="索引（Index）是帮助MySQL高效获取数据的数据结构"><a href="#索引（Index）是帮助MySQL高效获取数据的数据结构" class="headerlink" title="索引（Index）是帮助MySQL高效获取数据的数据结构"></a>索引（Index）是帮助MySQL高效获取数据的数据结构</h4><h4 id="索引的分类"><a href="#索引的分类" class="headerlink" title="索引的分类"></a>索引的分类</h4><ul>
+<li>主键索引（primary key）<ul>
+<li>唯一的标识，主键不可重复，只能有一个列作为主键</li>
+</ul>
+</li>
+<li>唯一索引（unique key）<ul>
+<li>避免重复的列出现，唯一索引可以重复，多个列都可标识唯一索引</li>
+</ul>
+</li>
+<li>常规索引（key/index）<ul>
+<li>默认的，index。key关键字设置</li>
+</ul>
+</li>
+<li>全文索引（fulltext）<ul>
+<li>在特定数据库引擎下，MyISAM</li>
+<li>快速定位数据</li>
+</ul>
+</li>
+</ul>
+<h3 id="索引原则"><a href="#索引原则" class="headerlink" title="索引原则"></a>索引原则</h3><ul>
+<li>索引不是越多越好</li>
+<li>不要对进程变动数据加索引</li>
+<li>小数据量的表不需要加索引</li>
+<li>索引一般加在常用来查询的字段上</li>
+</ul>
+<h3 id="索引的数据结构"><a href="#索引的数据结构" class="headerlink" title="索引的数据结构"></a>索引的数据结构</h3><ul>
+<li>Btree：<a href="https://blog.csdn.net/wufuhuai/article/details/79631466" target="_blank" rel="noopener">InnoDB默认数据结构</a></li>
+<li>Hash类型</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/23/SQL%E8%BF%9B%E9%98%B6/SQL_%E4%BA%8B%E5%8A%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/23/SQL%E8%BF%9B%E9%98%B6/SQL_%E4%BA%8B%E5%8A%A1/" class="post-title-link" itemprop="url">SQL事务</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-01-23 20:44:30 / 修改时间：22:32:55" itemprop="dateCreated datePublished" datetime="2022-01-23T20:44:30+08:00">2022-01-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="什么是事务？"><a href="#什么是事务？" class="headerlink" title="什么是事务？"></a>什么是事务？</h3><p>要么都成功，要么都失败</p>
+<p>将一组SQL放在一个批次执行</p>
+<h4 id="事务原则：ACID原则"><a href="#事务原则：ACID原则" class="headerlink" title="事务原则：ACID原则"></a>事务原则：ACID原则</h4><h5 id="原子性，一致性，隔离性，持久性"><a href="#原子性，一致性，隔离性，持久性" class="headerlink" title="原子性，一致性，隔离性，持久性"></a>原子性，一致性，隔离性，持久性</h5><h4 id="原子性（Atomicity）"><a href="#原子性（Atomicity）" class="headerlink" title="原子性（Atomicity）"></a>原子性（Atomicity）</h4><p>原子性是指事务是一个不可分割的工作单位，事务中的操作要么都发生，要么都不发生。</p>
+<h4 id="一致性（Consistency）"><a href="#一致性（Consistency）" class="headerlink" title="一致性（Consistency）"></a>一致性（Consistency）</h4><p>事务前后数据的完整性必须保持一致。</p>
+<h4 id="隔离性（Isolation）"><a href="#隔离性（Isolation）" class="headerlink" title="隔离性（Isolation）"></a>隔离性（Isolation）</h4><p>事务的隔离性是多个用户并发访问数据库时，数据库为每一个用户开启的事务，不能被其他事务的操作数据所干扰，多个并发事务之间要相互隔离。</p>
+<h4 id="持久性（Durability）"><a href="#持久性（Durability）" class="headerlink" title="持久性（Durability）"></a>持久性（Durability）</h4><p><strong>事务提交不可逆</strong></p>
+<p>持久性是指一个事务一旦被提交，它对数据库中数据的改变就是永久性的，接下来即使数据库发生故障也不应该对其有任何影响</p>
+<h4 id="事务的隔离级别"><a href="#事务的隔离级别" class="headerlink" title="事务的隔离级别"></a>事务的隔离级别</h4><h4 id="脏读："><a href="#脏读：" class="headerlink" title="脏读："></a>脏读：</h4><p>指一个事务读取了另外一个事务未提交的数据</p>
+<h4 id="不可重复读："><a href="#不可重复读：" class="headerlink" title="不可重复读："></a>不可重复读：</h4><p>在一个事务内读取表中的某一行数据，多次读取结果不同。（这个不一定是错误，只是某些场合不对）</p>
+<h4 id="虚读-幻读-："><a href="#虚读-幻读-：" class="headerlink" title="虚读(幻读)："></a>虚读(幻读)：</h4><p>是指在一个事务内读取到了别的事务插入的数据，导致前后读取数量总量不一致。<br>（一般是行影响）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- mysql 是默认开启事务自动提交的</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">0</span> <span class="comment">-- 关闭</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">1</span> <span class="comment">-- 开启</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 手动处理事务</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">0</span> <span class="comment">-- 第一步 关闭自动提交</span></span><br><span class="line"><span class="comment">-- 事务开启</span></span><br><span class="line"><span class="keyword">start</span> <span class="keyword">transaction</span> <span class="comment">-- 标记一个事务开始，从这之后的sql都在一个事务内</span></span><br><span class="line"><span class="comment">-- 两种情况</span></span><br><span class="line"><span class="comment">-- 提交： 持久化（成功）</span></span><br><span class="line"><span class="keyword">commit</span></span><br><span class="line"><span class="comment">-- 回滚： 回到原来的样子（失败）</span></span><br><span class="line"><span class="keyword">rollback</span></span><br><span class="line"><span class="comment">-- 事务结束</span></span><br><span class="line"><span class="keyword">set</span> autocommit = <span class="number">1</span> <span class="comment">-- 开启自动提交</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">savepoint</span> 名称 <span class="comment">-- 设置事务保存点</span></span><br><span class="line"><span class="keyword">rollback</span> <span class="keyword">to</span> <span class="keyword">savepoint</span> 名称 <span class="comment">-- 回滚到保存点</span></span><br><span class="line"><span class="keyword">release</span> <span class="keyword">savepoint</span> 名称 <span class="comment">-- 撤销保存点</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/21/SQL%E5%9F%BA%E7%A1%80/SQL%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E4%B8%8E%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/21/SQL%E5%9F%BA%E7%A1%80/SQL%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E4%B8%8E%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">SQL常用函数与聚合函数,分组</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-01-21 20:57:20 / 修改时间：22:10:02" itemprop="dateCreated datePublished" datetime="2022-01-21T20:57:20+08:00">2022-01-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index"><span itemprop="name">MySQL</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 时间日期函数</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">current_date</span>() <span class="comment">-- 获取当前日期</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">curdate</span>() <span class="comment">-- 获取当前日期</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">now</span>() <span class="comment">-- 获取当前日期时间</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">localtime</span>() <span class="comment">-- 获取本地时间</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">sysdate</span>() <span class="comment">-- 系统时间</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">year</span>(<span class="keyword">now</span>())</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">month</span>(<span class="keyword">now</span>())</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">day</span>(<span class="keyword">now</span>())</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">hour</span>(<span class="keyword">now</span>())</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">minute</span>(<span class="keyword">now</span>())</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">second</span>(<span class="keyword">now</span>())</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 聚合函数</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>([]) <span class="keyword">from</span> [] <span class="comment">-- 会忽略null</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">sum</span>() <span class="keyword">avg</span>() <span class="keyword">max</span>() <span class="keyword">min</span>()</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 分组</span></span><br><span class="line">group by [] <span class="comment">-- 通过什么字段分组</span></span><br><span class="line"><span class="comment">-- 过滤</span></span><br><span class="line">having <span class="comment">-- 分组后过滤</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/21/SQL%E5%9F%BA%E7%A1%80/SQL%E5%88%86%E9%A1%B5%E6%8E%92%E5%BA%8F%EF%BC%8C%E5%AD%90%E6%9F%A5%E8%AF%A2%E5%B5%8C%E5%A5%97%E6%9F%A5%E8%AF%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -692,144 +951,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/19/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/%E9%98%85%E8%AF%BBArrayList%E6%BA%90%E7%A0%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/19/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/%E9%98%85%E8%AF%BBArrayList%E6%BA%90%E7%A0%81/" class="post-title-link" itemprop="url">阅读ArrayList源码</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-01-19 11:33:51" itemprop="dateCreated datePublished" datetime="2022-01-19T11:33:51+08:00">2022-01-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-08 16:13:58" itemprop="dateModified" datetime="2022-05-08T16:13:58+08:00">2022-05-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">集合框架</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li><p>创建</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">有参构造</span></span><br><span class="line"><span class="comment">参数大于0，创建初始容量等于参数</span></span><br><span class="line"><span class="comment">等于0，创建空</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">(<span class="keyword">int</span> initialCapacity)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (initialCapacity &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">this</span>.elementData = <span class="keyword">new</span> Object[initialCapacity];</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (initialCapacity == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">this</span>.elementData = EMPTY_ELEMENTDATA;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Illegal Capacity: "</span>+</span><br><span class="line">                                               initialCapacity);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">无参构造</span></span><br><span class="line"><span class="comment">创建空，这里常量空数组定义与有参空数组不同</span></span><br><span class="line"><span class="comment">为了扩容时区分</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">参数是集合子类</span></span><br><span class="line"><span class="comment">size不为0时，若传入集合本身就是ArrayList，直接指向</span></span><br><span class="line"><span class="comment">否则，复制一遍</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">(Collection&lt;? extends E&gt; c)</span> </span>&#123;</span><br><span class="line">        Object[] a = c.toArray();</span><br><span class="line">        <span class="keyword">if</span> ((size = a.length) != <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (c.getClass() == ArrayList<span class="class">.<span class="keyword">class</span>) </span>&#123;</span><br><span class="line">                elementData = a;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                elementData = Arrays.copyOf(a, size, Object[]<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// replace with empty array.</span></span><br><span class="line">            elementData = EMPTY_ELEMENTDATA;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><pre><code class="lang-java">/*
-将当前列表容量最小化，为了最小化存储
-*/
-public void trimToSize() {
-    modCount++;
-    if (size &lt; elementData.length) {
-        elementData = (size == 0)
-          ? EMPTY_ELEMENTDATA
-          : Arrays.copyOf(elementData, size);
-    }
-}
-
-/*
-将当前列表容量扩容到能包含指定参数的大小
-注意通过无参构造的“空”不会扩容，另外若需要大小小于等于10，也不会扩容
-*/
-public void ensureCapacity(int minCapacity) {
-        if (minCapacity &gt; elementData.length
-            &amp;&amp; !(elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA
-                 &amp;&amp; minCapacity &lt;= DEFAULT_CAPACITY)) {
-            modCount++;
-            grow(minCapacity);
-        }
-    }
-
- private Object[] grow(int minCapacity) {
-        return elementData = Arrays.copyOf(elementData,
-                                           newCapacity(minCapacity));
-    }
-
-/*
-重点
-新大小等于原来大小+原来大小的一半（向下取整）
-如果还不够，
-如果本来就是无参构造的空数组，扩容到10和新大小的最大值
-*/
-private int newCapacity(int minCapacity) {
-        // overflow-conscious code
-        int oldCapacity = elementData.length;
-        int newCapacity = oldCapacity + (oldCapacity &gt;&gt; 1);
-        if (newCapacity - minCapacity &lt;= 0) {
-            if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA)
-                return Math.max(DEFAULT_CAPACITY, minCapacity);
-            if (minCapacity &lt; 0) // overflow
-                throw new OutOfMemoryError();
-            return minCapacity;
-        }
-        return (newCapacity - MAX_ARRAY_SIZE &lt;= 0)
-            ? newCapacity
-            : hugeCapacity(minCapacity);
-    }
-</code></pre>
-</li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/19/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/%E9%98%85%E8%AF%BBHashMap%E6%BA%90%E7%A0%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -980,199 +1101,6 @@ final Node&lt;K,V&gt; getNode(int hash, Object key) {
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/01/18/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E6%A6%82%E8%BF%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/18/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E6%A6%82%E8%BF%B0/" class="post-title-link" itemprop="url">集合框架概述</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-01-18 21:45:38" itemprop="dateCreated datePublished" datetime="2022-01-18T21:45:38+08:00">2022-01-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-20 01:31:32" itemprop="dateModified" datetime="2022-02-20T01:31:32+08:00">2022-02-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">集合框架</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li><strong>Collection接口</strong><ul>
-<li><strong>List接口</strong>：存储有序的，可重复的数据<ul>
-<li>ArrayList：作为List接口的主要实现类，线程不安全，效率高，底层使用Object[]</li>
-<li>LinkedList：底层使用双向链表，频繁插入删除</li>
-<li>Vector：作为List古老实现类，线程安全，效率低</li>
-</ul>
-</li>
-<li><strong>Set接口</strong><ul>
-<li>HashSet：作为Set接口主要实现类，线程不安全，可以存null值</li>
-<li>LinkedHashSet：HashSet的子类，遍历按添加顺序，用于频繁遍历</li>
-<li>TreeSet：红黑树实现，数据要是同一个类，可以按指定属性排序</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>Map接口</strong><ul>
-<li>HashMap：Map的主要实现类，线程不安全，效率高，可以存null的key和value</li>
-<li>LinkedHashMap：HashMap的子类，遍历按添加顺序，用于频繁遍历</li>
-<li>TreeMap：按照添加的key-value排序，实现排序遍历，此时考虑key的排序，底层使用红黑树</li>
-<li>Hashtable：古老实现类，线程安全，效率低，不能存null</li>
-<li>Properties：Hashtable子类，key和value都是String，常用来处理配置文件</li>
-</ul>
-</li>
-</ul>
-<h4 id="使用Iterator接口遍历Collection"><a href="#使用Iterator接口遍历Collection" class="headerlink" title="使用Iterator接口遍历Collection"></a>使用Iterator接口遍历Collection</h4>
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/12/30/%E5%B7%A5%E5%85%B7/Git/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/30/%E5%B7%A5%E5%85%B7/Git/" class="post-title-link" itemprop="url">Git</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-12-30 22:15:20" itemprop="dateCreated datePublished" datetime="2021-12-30T22:15:20+08:00">2021-12-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-02 22:47:05" itemprop="dateModified" datetime="2022-03-02T22:47:05+08:00">2022-03-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="创建本地仓库与添加文件"><a href="#创建本地仓库与添加文件" class="headerlink" title="创建本地仓库与添加文件"></a>创建本地仓库与添加文件</h4><ul>
-<li>转到需要创建仓库的目录下</li>
-<li>git init创建.git隐藏目录</li>
-<li>git status查看文件管理状态</li>
-<li>git add * 添加目录下所有文件到本地仓库，还未提交</li>
-<li>git commit -m ‘备注’  提交到仓库</li>
-</ul>
-<h4 id="上传远程仓库"><a href="#上传远程仓库" class="headerlink" title="上传远程仓库"></a>上传远程仓库</h4><ul>
-<li>ssh-keygen -t rsa -C “邮箱” 创建密钥(若有可忽略)</li>
-<li>git remote add origin xxxx.git</li>
-<li>git push -u origin master</li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1244,14 +1172,14 @@ final Node&lt;K,V&gt; getNode(int hash, Object key) {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">141</span>
+          <span class="site-state-item-count">144</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1298,7 +1226,7 @@ final Node&lt;K,V&gt; getNode(int hash, Object key) {
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1340,7 +1268,7 @@ $(document).ready(function() {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共45.1k字</span>
+  <span class="post-count">博客全站共48.2k字</span>
 </div>
         
 <div class="busuanzi-count">

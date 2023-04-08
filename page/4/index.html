@@ -180,6 +180,355 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/16/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Nacos%E9%9B%86%E7%BE%A4/Nacos%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/16/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Nacos%E9%9B%86%E7%BE%A4/Nacos%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" class="post-title-link" itemprop="url">Nacos集群搭建</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-16 15:34:32" itemprop="dateCreated datePublished" datetime="2022-05-16T15:34:32+08:00">2022-05-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-18 15:49:40" itemprop="dateModified" datetime="2022-05-18T15:49:40+08:00">2022-05-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="name">微服务</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="搭建集群的基本步骤"><a href="#搭建集群的基本步骤" class="headerlink" title="搭建集群的基本步骤"></a>搭建集群的基本步骤</h4><ul>
+<li>搭建数据库，初始化数据库表结构</li>
+<li>下载nacos安装包</li>
+<li>配置nacos</li>
+<li>启动nacos集群</li>
+<li>nginx反向代理</li>
+</ul>
+<h4 id="配置Nacos"><a href="#配置Nacos" class="headerlink" title="配置Nacos"></a>配置Nacos</h4><ul>
+<li>进入nacos的conf目录，修改配置文件cluster.conf.example，重命名为cluster.conf</li>
+<li>加入集群ip地址</li>
+<li>修改application.properties配置文件，修改mysql配置</li>
+</ul>
+<h4 id="启动nacos集群"><a href="#启动nacos集群" class="headerlink" title="启动nacos集群"></a>启动nacos集群</h4><ul>
+<li>将nacos文件夹复制三份，分别命名为：nacos1，nacos2，nacos3</li>
+<li>分别修改application.properties端口号</li>
+<li>修改nginx配置</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">upstream nacos-cluster &#123;</span><br><span class="line">    server 127.0.0.1:8845;</span><br><span class="line">	server 127.0.0.1:8846;</span><br><span class="line">	server 127.0.0.1:8847;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen       80;</span><br><span class="line">    server_name  localhost;</span><br><span class="line"></span><br><span class="line">    location /nacos &#123;</span><br><span class="line">        proxy_pass http://nacos-cluster;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>而后在浏览器访问：<a href="http://localhost/nacos即可" target="_blank" rel="noopener">http://localhost/nacos即可</a></li>
+<li>修改配置文件naocs端口号（80）</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/15/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Nacos%E9%9B%86%E7%BE%A4/Nacos%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/15/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Nacos%E9%9B%86%E7%BE%A4/Nacos%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">Nacos配置管理</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-15 16:13:32" itemprop="dateCreated datePublished" datetime="2022-05-15T16:13:32+08:00">2022-05-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-17 15:34:07" itemprop="dateModified" datetime="2022-05-17T15:34:07+08:00">2022-05-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="name">微服务</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="统一配置管理"><a href="#统一配置管理" class="headerlink" title="统一配置管理"></a>统一配置管理</h4><ul>
+<li>在工作台创建配置，将需要热更新的配置（将来会变化的配置）</li>
+<li>配置获取步骤：<ol>
+<li>项目启动</li>
+<li>读取nacos中配置文件（bootstrap.yml引导文件）</li>
+<li>读取本地配置文件</li>
+<li>创建spring容器</li>
+<li>加载bean</li>
+</ol>
+</li>
+</ul>
+<h4 id="配置bootstrap-yml"><a href="#配置bootstrap-yml" class="headerlink" title="配置bootstrap.yml"></a>配置bootstrap.yml</h4><ul>
+<li>在客户端pom文件引入nacos配置管理依赖</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--nacos配置管理依赖--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-config<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建bootstrap.yml配置文件</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">userservice</span></span><br><span class="line">  <span class="attr">profiles:</span></span><br><span class="line">    <span class="attr">active:</span> <span class="string">dev</span> <span class="comment"># 环境</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">server-addr:</span> <span class="string">localhost:8848</span> <span class="comment"># nacos地址</span></span><br><span class="line">      <span class="attr">config:</span></span><br><span class="line">        <span class="attr">file-extension:</span> <span class="string">yaml</span> <span class="comment"># 文件后缀名</span></span><br><span class="line">        <span class="attr">namespace:</span> <span class="string">7550979b-3a00-4833-b82f-19f2d9e22b2e</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>删除application.yml文件中重复配置</li>
+</ul>
+<h4 id="配置热更新"><a href="#配置热更新" class="headerlink" title="配置热更新"></a>配置热更新</h4><ul>
+<li>方式一：使用@Value注入，在所在类上添加@RefreshScope注解</li>
+<li>方式二：使用@ConfigurationProperties注解，注入后自动刷新</li>
+</ul>
+<h4 id="多环境配置共享"><a href="#多环境配置共享" class="headerlink" title="多环境配置共享"></a>多环境配置共享</h4><p>微服务启动时会从nacos读取多个配置文件</p>
+<ul>
+<li>[spring.application.name]-[spring.profiles.active].yaml，例如：userservice-dev.yaml</li>
+<li>[spring.application.name].yaml，例如：userservice.yaml</li>
+</ul>
+<p>无论profile如何变化，[spring.application.name].yaml一定会加载，因此共享配置写入这个文件</p>
+<h4 id="配置文件优先级"><a href="#配置文件优先级" class="headerlink" title="配置文件优先级"></a>配置文件优先级</h4><ol>
+<li>[spring.application.name]-[spring.profiles.active].yaml</li>
+<li>[spring.application.name].yaml</li>
+<li>本地配置</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/14/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Nacos%E9%9B%86%E7%BE%A4/Nacos/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/14/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Nacos%E9%9B%86%E7%BE%A4/Nacos/" class="post-title-link" itemprop="url">Nacos</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-14 23:36:32" itemprop="dateCreated datePublished" datetime="2022-05-14T23:36:32+08:00">2022-05-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-17 12:08:44" itemprop="dateModified" datetime="2022-05-17T12:08:44+08:00">2022-05-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="name">微服务</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="windows命令"><a href="#windows命令" class="headerlink" title="windows命令"></a>windows命令</h4><p>startup.cmd -m standalone</p>
+<h4 id="服务注册到Nacos"><a href="#服务注册到Nacos" class="headerlink" title="服务注册到Nacos"></a>服务注册到Nacos</h4><ul>
+<li>在cloud-demo父工程中添加spring-cloud-alibaba的管理依赖</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-alibaba-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.5.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>添加nacos的客户端依赖</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- nacos客户端依赖包 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-discovery<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改客户端配置</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">server-addr:</span> <span class="string">localhost:8848</span> <span class="comment">#nacos服务地址</span></span><br></pre></td></tr></table></figure>
+<h4 id="Nacos服务分级存储模型"><a href="#Nacos服务分级存储模型" class="headerlink" title="Nacos服务分级存储模型"></a>Nacos服务分级存储模型</h4><ul>
+<li>一个<strong>服务</strong>分为多个<strong>集群</strong></li>
+<li>一个<strong>集群</strong>有多个<strong>实例</strong></li>
+<li>服务跨集群调用问题<ul>
+<li>服务调用尽可能选择本地集群的服务，跨集群调用较迟较高</li>
+<li>本地集群不可访问时，再去访问其它集群</li>
+</ul>
+</li>
+</ul>
+<h4 id="修改指定实例集群"><a href="#修改指定实例集群" class="headerlink" title="修改指定实例集群"></a>修改指定实例集群</h4><p>逐个修改，逐个启动</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">discovery:</span></span><br><span class="line">        <span class="attr">cluster-name:</span> <span class="string">HZ</span> <span class="comment">#集群名称</span></span><br></pre></td></tr></table></figure>
+<h4 id="NacosRule负载均衡"><a href="#NacosRule负载均衡" class="headerlink" title="NacosRule负载均衡"></a>NacosRule负载均衡</h4><ul>
+<li>默认使用轮询规则</li>
+<li>在服务端中设置负载均衡的IRule为NacosRule，这个规则优先会寻找与自己同集群的服务</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">userservice:</span></span><br><span class="line">  <span class="attr">ribbon:</span></span><br><span class="line">    <span class="attr">NFLoadBalancerRuleClassName:</span> <span class="string">com.alibaba.cloud.nacos.ribbon.NacosRule</span> <span class="comment">#负载均衡规则</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>注意将客户端权重都设置为1</li>
+<li>NacosRule优先选择本地集群，在本地多个集群进行随机负载均衡</li>
+<li>跨集群访问服务端会发出警告</li>
+</ul>
+<h5 id="权重负载均衡"><a href="#权重负载均衡" class="headerlink" title="权重负载均衡"></a>权重负载均衡</h5><ul>
+<li>服务器设备性能有差异，部分实例所在机器性能差别，我们希望好的机器承担更多用户请求</li>
+<li>Nacos提供了权重配置来控制访问频率，权重越大访问频率越高</li>
+<li>在控制台编辑页面修改，范围0-1，0不会访问</li>
+</ul>
+<h4 id="环境隔离"><a href="#环境隔离" class="headerlink" title="环境隔离"></a>环境隔离</h4><ul>
+<li>Nacos中服务存储和数据存储的最外层都是namespace，用来做最外层空间隔离</li>
+<li>从外到内：Namespace → Group → Service/Data</li>
+<li>在控制台新建命名空间</li>
+<li>在配置文件添加namespace</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">        <span class="attr">discovery:</span></span><br><span class="line">          <span class="attr">namespace:</span> <span class="string">7550979b-3a00-4833-b82f-19f2d9e22b2e</span> <span class="comment">#命名空间ID</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>不同命名空间的服务互相不可见</li>
+</ul>
+<h4 id="Nacos注册中心细节"><a href="#Nacos注册中心细节" class="headerlink" title="Nacos注册中心细节"></a>Nacos注册中心细节</h4><ul>
+<li>消费者定时拉取服务，存储在服务列表缓存，直接使用</li>
+<li>健康检测与Eureka区别<ul>
+<li>实例分为临时实例与非临时实例</li>
+<li>默认是临时实例，采用心跳检测，实例给注册中心提供信息</li>
+<li>非临时实例不会做心跳检测，由nacos主动询问</li>
+<li>nacos不会剔除非临时实例，会等待恢复</li>
+<li>有服务变更，会主动推送消息给消费者，更新缓存</li>
+</ul>
+</li>
+</ul>
+<h4 id="临时实例和非临时实例"><a href="#临时实例和非临时实例" class="headerlink" title="临时实例和非临时实例"></a>临时实例和非临时实例</h4><p>修改配置文件</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">        <span class="attr">discovery:</span></span><br><span class="line">          <span class="attr">ephemeral:</span> <span class="literal">false</span> <span class="comment">#是否是临时实例</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/14/%E5%BE%AE%E6%9C%8D%E5%8A%A1/Ribbon%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/Ribbon%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -918,299 +1267,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/05/%E4%B8%AD%E9%97%B4%E4%BB%B6/Elasticsearch%E5%85%A5%E9%97%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/05/%E4%B8%AD%E9%97%B4%E4%BB%B6/Elasticsearch%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">Elasticsearch入门</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-05-05 15:40:10 / 修改时间：20:01:02" itemprop="dateCreated datePublished" datetime="2022-05-05T15:40:10+08:00">2022-05-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">中间件</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li>Elasticsearch简介<ul>
-<li>一个分布式的，Restful风格的搜索引擎</li>
-<li>支持对各种类型的数据的检索</li>
-<li>搜索速度快，可以提供实时的搜索服务</li>
-<li>便于水平扩展，每秒可以处理PB级海量数据</li>
-</ul>
-</li>
-<li>Elasticsearch术语<ul>
-<li>索引，类型，文档，字段（6.0前对应数据库中：数据库，表，行，列）</li>
-<li>集群，节点，分片，副本</li>
-<li>6.0后废弃类型，索引对应数据库中的表</li>
-<li>集群中每一台服务器称为节点</li>
-<li>一个索引可以拆分为多个分片存储，提高并发能力</li>
-<li>副本是对分片的备份，一个分片可以包含多个副本，提高可用性</li>
-</ul>
-</li>
-</ul>
-<h4 id="Elasticsearch配置（elasticsearch-yml文件）"><a href="#Elasticsearch配置（elasticsearch-yml文件）" class="headerlink" title="Elasticsearch配置（elasticsearch.yml文件）"></a>Elasticsearch配置（elasticsearch.yml文件）</h4><ul>
-<li>集群名：cluster.name</li>
-<li>数据存放路径：path.data</li>
-<li>日志存放路径：path.logs</li>
-</ul>
-<h4 id="安装中文分词插件ik"><a href="#安装中文分词插件ik" class="headerlink" title="安装中文分词插件ik"></a>安装中文分词插件ik</h4><p><a href="https://github.com/medcl/elasticsearch-analysis-ik" target="_blank" rel="noopener">https://github.com/medcl/elasticsearch-analysis-ik</a></p>
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><ul>
-<li>启动elasticserach</li>
-<li>查看健康状况 curl -X GET “localhost:9200/_cat/health?v”</li>
-<li>查看节点 curl -X GET “localhost:9200/_cat/nodes?v”</li>
-<li>查看索引 curl -X GET “localhost:9200/_cat/indices?v”</li>
-<li>创建索引 curl -X PUT “localhost:9200/{索引名}”，返回json格式</li>
-<li>删除索引 curl -X DELETE “localhost:9200/{索引名}”</li>
-<li>插入数据PUT请求  localhost:9200/{索引名}/{类型}/{id}，提交json格式数据</li>
-<li>查询数据GET请求</li>
-<li>删除数据DELETE请求</li>
-<li>搜索数据GET请求<ul>
-<li>不加条件 localhost:9200/{索引名}/_search</li>
-<li>加条件 localhost:9200/{索引名}/_search?q=xxx:yyy</li>
-<li>会进行分词</li>
-</ul>
-</li>
-<li>搜索条件复杂，通过json提交请求数据</li>
-</ul>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"query"</span>:&#123;</span><br><span class="line">        <span class="attr">"multi_match"</span>:&#123;</span><br><span class="line">            <span class="attr">"query"</span>:<span class="string">"互联网"</span>, <span class="comment">//搜什么</span></span><br><span class="line">            <span class="attr">"fields"</span>:[<span class="string">"title"</span>,<span class="string">"content"</span>]  <span class="comment">//从哪匹配</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/04/29/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%B3%BB%E7%BB%9F%E9%80%9A%E7%9F%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/29/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%B3%BB%E7%BB%9F%E9%80%9A%E7%9F%A5/" class="post-title-link" itemprop="url">系统通知</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-04-29 17:03:11" itemprop="dateCreated datePublished" datetime="2022-04-29T17:03:11+08:00">2022-04-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-04 16:48:30" itemprop="dateModified" datetime="2022-05-04T16:48:30+08:00">2022-05-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%89%9B%E5%AE%A2%E8%AE%A8%E8%AE%BA%E5%8C%BA%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">牛客讨论区项目</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li>通知列表<ul>
-<li>显示评论、点赞、关注三种类型的通知</li>
-</ul>
-</li>
-<li>通知详情<ul>
-<li>分页显示某一类主题所包含的通知</li>
-</ul>
-</li>
-<li>未读消息<ul>
-<li>在页面头部显示所有的消息数量</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/04/22/%E6%A1%86%E6%9E%B6/%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97&Kafka/Spring%E6%95%B4%E5%90%88Kafka/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/22/%E6%A1%86%E6%9E%B6/%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97&Kafka/Spring%E6%95%B4%E5%90%88Kafka/" class="post-title-link" itemprop="url">Spring整合Kafka</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-04-22 22:05:17 / 修改时间：23:30:47" itemprop="dateCreated datePublished" datetime="2022-04-22T22:05:17+08:00">2022-04-22</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97-Kafka/" itemprop="url" rel="index"><span itemprop="name">阻塞队列&Kafka</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li><p>引入依赖</p>
-<ul>
-<li>spring-kafka</li>
-</ul>
-</li>
-<li><p>配置Kafka</p>
-<ul>
-<li>配置server，consumer</li>
-</ul>
-</li>
-<li><p>访问Kafka</p>
-<ul>
-<li>生产者：kafkaTemplate.send(topic, data);</li>
-<li>消费者：</li>
-</ul>
-<p>​       @KafkaListener(topics = {“test”})</p>
-<p>​        public void handleMessage(ConsumerRecord record)  {}</p>
-</li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1282,14 +1338,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">141</span>
+          <span class="site-state-item-count">144</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1336,7 +1392,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1378,7 +1434,7 @@ $(document).ready(function() {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共45.1k字</span>
+  <span class="post-count">博客全站共48.2k字</span>
 </div>
         
 <div class="busuanzi-count">

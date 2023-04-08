@@ -180,6 +180,335 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/20/Java/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/InetAddress%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/20/Java/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/InetAddress%E7%B1%BB/" class="post-title-link" itemprop="url">InetAddress类</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-20 14:33:30 / 修改时间：23:19:51" itemprop="dateCreated datePublished" datetime="2022-02-20T14:33:30+08:00">2022-02-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">网络编程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="实例化InetAddress类的方法"><a href="#实例化InetAddress类的方法" class="headerlink" title="实例化InetAddress类的方法"></a>实例化InetAddress类的方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.net.InetAddress;</span><br><span class="line"><span class="keyword">import</span> java.net.UnknownHostException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InetAddressTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//获取本机IP</span></span><br><span class="line">            InetAddress inet1 = InetAddress.getLocalHost();</span><br><span class="line">            System.out.println(inet1);</span><br><span class="line">            </span><br><span class="line">			<span class="comment">//获取指定域名IP</span></span><br><span class="line">            InetAddress inet2 = InetAddress.getByName(<span class="string">"baidu.com"</span>);</span><br><span class="line">            System.out.println(inet2.getHostAddress());</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span>(UnknownHostException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/20/Java/%E6%B3%9B%E5%9E%8B/%E6%B3%9B%E5%9E%8B%E6%A6%82%E8%BF%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/20/Java/%E6%B3%9B%E5%9E%8B/%E6%B3%9B%E5%9E%8B%E6%A6%82%E8%BF%B0/" class="post-title-link" itemprop="url">泛型概述</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-20 12:36:10 / 修改时间：14:08:07" itemprop="dateCreated datePublished" datetime="2022-02-20T12:36:10+08:00">2022-02-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/%E6%B3%9B%E5%9E%8B/" itemprop="url" rel="index"><span itemprop="name">泛型</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>所谓泛型，就是允许在定义类、接口时通过一个标识表示类中某个属性的类型或者是某个方法的返回值及参数类型。这个类型参数将在使用时（例如，继承或实现这个接口，用这个类型声明变量、创建对象时）确定（即传入实际的类型参数，也称为类型实参）</li>
+<li>从JDK1.5以后，Java引入了“参数化类型（Parameterized type）”的概念，允许我们在创建集合时再指定集合元素的类型，正如：List<String>，这表明该List只能保存字符串类型的对象</String></li>
+<li>JDK1.5改写了集合框架中的全部接口和类，为这些接口、类增加了泛型支持，从而可以在声明集合变量、创建集合对象时传入类型实参</li>
+<li><strong>泛型类型不能是基本数据类型</strong></li>
+<li>静态方法不能使用类的泛型，因为静态方法早于类的创建</li>
+<li>异常类不能是泛型的</li>
+<li>不可以T[] arr = new T[]，可以T[] arr = (T[]) new Object[]，因为T不是实际的类</li>
+</ul>
+<h4 id="自定义泛型结构"><a href="#自定义泛型结构" class="headerlink" title="自定义泛型结构"></a>自定义泛型结构</h4><p>泛型类，泛型接口，泛型方法</p>
+<ul>
+<li>如果定义了类是带泛型，建议在实例化时要指明泛型类型</li>
+<li>泛型方法：在方法中出现了泛型的结构，泛型参数与类的泛型参数没有任何关系</li>
+<li>泛型方法在返回值前加<E>，否则会被误认为是确定的类</E></li>
+</ul>
+<h4 id="通过通配符定义泛型对象公共父类"><a href="#通过通配符定义泛型对象公共父类" class="headerlink" title="通过通配符定义泛型对象公共父类"></a>通过通配符定义泛型对象公共父类</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; list1 = <span class="keyword">null</span>;</span><br><span class="line">List&lt;String&gt; list2 = <span class="keyword">null</span>;</span><br><span class="line">List&lt;?&gt; list = <span class="keyword">null</span>;</span><br><span class="line">list = list1;</span><br><span class="line">list = list2;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>对于List&lt;?&gt;，不能向其内部添加数据，除了添加null</li>
+<li>可以使用Object类型读取</li>
+</ul>
+<h5 id="有限制条件的通配符"><a href="#有限制条件的通配符" class="headerlink" title="有限制条件的通配符"></a>有限制条件的通配符</h5><ul>
+<li><p>通配符指定上限</p>
+<p>上限extends：使用时指定的类型必须是继承某个类，或者实现某个接口</p>
+</li>
+<li><p>通配符指定下限</p>
+<p>下限super：使用时指定的类型不能小于操作的类</p>
+</li>
+<li><p>举例</p>
+<ul>
+<li><p>&lt;? extends Number&gt;  (无穷小, Number]</p>
+<p>只允许泛型为Number及Number子类的引用调用</p>
+</li>
+<li><p>&lt;? super Number&gt; [Number, 无穷大)</p>
+<p>只允许泛型为Number及Number父类的引用调用</p>
+</li>
+<li><p>&lt;? extends Comparable&gt;</p>
+<p>只允许泛型为实现Comparable接口的实现类引用调用</p>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/18/Java/%E6%B3%A8%E8%A7%A3/%E5%85%83%E6%B3%A8%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/18/Java/%E6%B3%A8%E8%A7%A3/%E5%85%83%E6%B3%A8%E8%A7%A3/" class="post-title-link" itemprop="url">元注解</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-18 17:50:20 / 修改时间：18:19:49" itemprop="dateCreated datePublished" datetime="2022-02-18T17:50:20+08:00">2022-02-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/%E6%B3%A8%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">注解</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>JDK的元Annotation用于修饰其他Annotation定义</li>
+<li>JDK5.0提供了4个标准的meta-annotation类型，分别是：<ul>
+<li>Retention</li>
+<li>Target</li>
+<li>Documented</li>
+<li>Inherited</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>@Retention</strong>：只能用于修饰一个Annotation定义，用于指定该Annotation的生命周期，@Rentention包含一个RetentionPolicy类型的成员变量，使用@Rentention时必须为该value成员变量指定值：<ul>
+<li>RetentionPolicy.SOURCE：在源文件中有效</li>
+<li>RetentionPolicy.CLASS：在class文件中有效（默认）</li>
+<li>RetentionPolicy.RUNTIME：在运行时有效，能通过反射获取</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>@Target</strong>：用于修饰Annotation定义，用于指定被修饰的Annotation能用于修饰哪些元素，@Target也包含一个名为value的成员变量</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>取值</th>
+<th></th>
+<th>取值</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CONSTRUCTOR</td>
+<td>用于描述构造器</td>
+<td>PACKAGE</td>
+<td>用于描述包</td>
+</tr>
+<tr>
+<td>FIELD</td>
+<td>用于描述域</td>
+<td>PARAMETER</td>
+<td>用于描述参数</td>
+</tr>
+<tr>
+<td>LOCAL_VARIABLE</td>
+<td>用于描述局部变量</td>
+<td>TYPE</td>
+<td>用于描述类，接口或enum声明</td>
+</tr>
+<tr>
+<td>METHOD</td>
+<td>用于描述方法</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>@Documented：用于指定被该元Annotation修饰的Annotation类将被javadoc工具提取成文档。默认情况下，javadoc是不包括注解的</li>
+<li>定义为Documented的注解必须设置Retention值为RUNTIME</li>
+</ul>
+<ul>
+<li>@Inherited：被它修饰的Annotation将具有继承性，子类将自动具有该注解</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/18/Java/%E6%B3%A8%E8%A7%A3/%E6%B3%A8%E8%A7%A3%EF%BC%88Annotation%EF%BC%89%E7%AE%80%E4%BB%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -837,278 +1166,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/14/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E6%AD%BB%E9%94%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/14/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E6%AD%BB%E9%94%81/" class="post-title-link" itemprop="url">多线程——死锁</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-14 22:31:40" itemprop="dateCreated datePublished" datetime="2022-02-14T22:31:40+08:00">2022-02-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-16 21:36:07" itemprop="dateModified" datetime="2022-02-16T21:36:07+08:00">2022-02-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">多线程</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="“死锁”的形成"><a href="#“死锁”的形成" class="headerlink" title="“死锁”的形成"></a>“死锁”的形成</h4><p>多个线程各自占有一些公共资源，并且互相等待其它线程占有的资源才能运行，而导致两个或者多个线程都在等待对方释放资源，都停止执行的情形。某一个同步块同时拥有“两个以上对象的锁”时，就可能会发生“死锁”的问题。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="comment">//死锁：多个线程互相抱着对方需要的资源，然后形成僵持</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DeadLock</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Play boy = <span class="keyword">new</span> Play();</span><br><span class="line">        <span class="keyword">new</span> Thread(boy, <span class="string">"Bob"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(boy, <span class="string">"Alice"</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Toy</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Play</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    Toy toy1 = <span class="keyword">new</span> Toy();</span><br><span class="line">    Toy toy2 = <span class="keyword">new</span> Toy();</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        gg();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gg</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(Thread.currentThread().getName().equals(<span class="string">"Bob"</span>))&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (toy1)&#123;</span><br><span class="line">                System.out.println(<span class="string">"Bob的toy1"</span>);</span><br><span class="line">                <span class="keyword">try</span>&#123;</span><br><span class="line">                    Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e)&#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">synchronized</span> (toy2)&#123;</span><br><span class="line">                    System.out.println(<span class="string">"Bob的toy2"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (toy2)&#123;</span><br><span class="line">                System.out.println(<span class="string">"Alice的toy2"</span>);</span><br><span class="line">                <span class="keyword">try</span>&#123;</span><br><span class="line">                    Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e)&#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">synchronized</span> (toy1)&#123;</span><br><span class="line">                    System.out.println(<span class="string">"Alice的toy1"</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/13/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E4%B8%8D%E5%AE%89%E5%85%A8%E6%A1%88%E4%BE%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/13/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E4%B8%8D%E5%AE%89%E5%85%A8%E6%A1%88%E4%BE%8B/" class="post-title-link" itemprop="url">多线程——不安全案例</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-13 22:13:30" itemprop="dateCreated datePublished" datetime="2022-02-13T22:13:30+08:00">2022-02-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-14 00:24:46" itemprop="dateModified" datetime="2022-02-14T00:24:46+08:00">2022-02-14</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">多线程</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="不安全的买票"><a href="#不安全的买票" class="headerlink" title="不安全的买票"></a>不安全的买票</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.sympa.lesson01;</span><br><span class="line"></span><br><span class="line"><span class="comment">//线程不安全，有负数</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Tickets01</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> ticket = <span class="number">10</span>;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (ticket &lt;= <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">100</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//Thread.currentThread() 获得当前线程对象的引用</span></span><br><span class="line">            System.out.println(Thread.currentThread().getName() + <span class="string">"拿到了第"</span> + ticket-- + <span class="string">"张票"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        Tickets01 tickets01 = <span class="keyword">new</span> Tickets01();</span><br><span class="line">        <span class="keyword">new</span> Thread(tickets01, <span class="string">"黄牛1号"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(tickets01, <span class="string">"黄牛2号"</span>).start();</span><br><span class="line">        <span class="keyword">new</span> Thread(tickets01, <span class="string">"黄牛3号"</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/02/13/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5%E6%9C%BA%E5%88%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/13/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E2%80%94%E2%80%94%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5%E6%9C%BA%E5%88%B6/" class="post-title-link" itemprop="url">多线程——线程同步机制</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-13 18:36:16" itemprop="dateCreated datePublished" datetime="2022-02-13T18:36:16+08:00">2022-02-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-14 22:30:39" itemprop="dateModified" datetime="2022-02-14T22:30:39+08:00">2022-02-14</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">多线程</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="并发：多个线程访问同个对象"><a href="#并发：多个线程访问同个对象" class="headerlink" title="并发：多个线程访问同个对象"></a>并发：多个线程访问同个对象</h3><h3 id="线程同步：队列-锁"><a href="#线程同步：队列-锁" class="headerlink" title="线程同步：队列 + 锁"></a>线程同步：队列 + 锁</h3><ul>
-<li>由于同一进程的多个线程共享同一块存储空间，在带来方便的同时，也带来了访问冲突问题，为了保证数据在方法中被访问时的正确性，在访问时加入<strong>锁机制synchronized</strong>，当一个线程获得对象的排它锁，独占资源，其他线程必须等待，使用后释放锁即可，存在以下问题：<ul>
-<li>一个线程持有锁会导致其他所有需要此锁的线程挂起</li>
-<li>在多线程竞争下，加锁，释放锁会导致比较多的上下文切换和调度延时，引起性能问题</li>
-<li>如果一个优先级高的线程等待一个优先级低的线程释放锁，会导致优先级倒置，引起性能问题</li>
-</ul>
-</li>
-</ul>
-<h3 id="同步方法及同步块"><a href="#同步方法及同步块" class="headerlink" title="同步方法及同步块"></a>同步方法及同步块</h3><ul>
-<li>由于我们可以通过private关键字来保证数据对象只能被方法访问，所以我们只需要针对方法提出一套机制，这套机制就是synchronized关键字，它包括两种用法：synchronized方法和synchronized块。</li>
-<li><strong>同步方法：public synchronized void method(int args){}</strong></li>
-<li>synchronized方法控制对“对象”的访问，每个对象对应一把锁，每个synchronized方法都必须获得调用该方法的对象的锁才能执行，否则线程会阻塞，方法一旦执行，就独占该锁，直到该方法返回才释放锁，后面被阻塞的线程才能获得这个锁，继续执行。</li>
-<li><strong>缺陷：若将一个大的方法声明为synchronized，将会影响效率</strong></li>
-<li><strong>方法里需要修改的内容才需要锁，锁的太多，浪费资源</strong></li>
-<li>同步块：<strong>synchronized(Obj){}</strong></li>
-<li>Obj称之为<strong>同步监视器</strong><ul>
-<li>Obj可以是任何对象，但是推荐使用共享资源作为同步监视器</li>
-<li>同步方法中无需指定同步监视器，因为同步方法的同步监视器就是this，就是这个对象本身，</li>
-<li>或者是class[反射中讲解]</li>
-</ul>
-</li>
-<li>同步监视器执行过程</li>
-</ul>
-<ol>
-<li>第一个线程访问，锁定同步监视器，执行其中代码</li>
-<li>第二个线程访问，发现同步监视器被锁定，无法访问</li>
-<li>第一个线程访问完毕，解锁同步监视器</li>
-<li>第二个线程访问，发现同步监视器没锁，然后锁定并访问</li>
-</ol>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1180,14 +1237,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">141</span>
+          <span class="site-state-item-count">144</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1234,7 +1291,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1276,7 +1333,7 @@ $(document).ready(function() {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共45.1k字</span>
+  <span class="post-count">博客全站共48.2k字</span>
 </div>
         
 <div class="busuanzi-count">

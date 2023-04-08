@@ -180,6 +180,352 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/06/24/%E5%B7%A5%E5%85%B7/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1Spring%20Quartz/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/06/24/%E5%B7%A5%E5%85%B7/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1Spring%20Quartz/" class="post-title-link" itemprop="url">分布式定时任务Spring Quartz</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-06-24 14:23:45 / 修改时间：21:17:00" itemprop="dateCreated datePublished" datetime="2022-06-24T14:23:45+08:00">2022-06-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>服务器之间通过数据库进行数据共享</li>
+<li>用加锁的方式抢夺资源</li>
+</ul>
+<h4 id="核心组件"><a href="#核心组件" class="headerlink" title="核心组件"></a>核心组件</h4><ul>
+<li>核心调度工具类：Scheduler</li>
+<li>定义任务接口：Job</li>
+<li>配置Job的接口：JobDetail(Job信息)、Trigger(触发器)</li>
+</ul>
+<h4 id="核心数据库表"><a href="#核心数据库表" class="headerlink" title="核心数据库表"></a>核心数据库表</h4><ul>
+<li>qrtz_job_details表：job相关信息</li>
+<li>qrtz_simple_triggers表：trigger简单内容</li>
+<li>qrtz_triggers表：trigger详细内容</li>
+<li>qrtz_scheduler_state表：定时器的信息状态</li>
+<li>qrtz_locks表：锁信息</li>
+</ul>
+<h4 id="定时任务创建基本步骤"><a href="#定时任务创建基本步骤" class="headerlink" title="定时任务创建基本步骤"></a>定时任务创建基本步骤</h4><ul>
+<li><p>创建工具类，用于将创建的jobDetail和trigger存储到数据库，实现二者FactoryBean</p>
+<ul>
+<li>FactoryBean作用：简化Bean的实例化过程<ul>
+<li>Spring通过FactoryBean封装Bean实例化过程</li>
+<li>将FactoryBean装配到Spring容器里</li>
+<li>将FactoryBean注入给其它Bean</li>
+<li>该Bean就得到了FactoryBean所管理对象的实例</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>创建Job实体类，实现Job接口的execute方法</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/06/21/%E4%B8%AD%E9%97%B4%E4%BB%B6/MQ/AMQP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/06/21/%E4%B8%AD%E9%97%B4%E4%BB%B6/MQ/AMQP/" class="post-title-link" itemprop="url">SpringAMQP</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-21 10:50:13" itemprop="dateCreated datePublished" datetime="2022-06-21T10:50:13+08:00">2022-06-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-17 17:41:15" itemprop="dateModified" datetime="2022-07-17T17:41:15+08:00">2022-07-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">中间件</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="什么是SpringAMQP"><a href="#什么是SpringAMQP" class="headerlink" title="什么是SpringAMQP"></a>什么是SpringAMQP</h4><h5 id="AMQP（高级消息队列协议）"><a href="#AMQP（高级消息队列协议）" class="headerlink" title="AMQP（高级消息队列协议）"></a>AMQP（高级消息队列协议）</h5><p>是用于在应用程序或之间传递业务消息的开放标准。该协议与语言和平台无关，更符合微服务中独立性的要求</p>
+<h5 id="Spirng-AMQP"><a href="#Spirng-AMQP" class="headerlink" title="Spirng AMQP"></a>Spirng AMQP</h5><p>基于AMQP协议定义的一套API规范，提供了模板来发送和接收消息。包含两部分，其中spring-amqp是基础抽象，spring-rabbit是底层的默认实现</p>
+<h4 id="利用SpringAMQP实现基础消息队列功能"><a href="#利用SpringAMQP实现基础消息队列功能" class="headerlink" title="利用SpringAMQP实现基础消息队列功能"></a>利用SpringAMQP实现基础消息队列功能</h4><h5 id="发送消息"><a href="#发送消息" class="headerlink" title="发送消息"></a>发送消息</h5><ul>
+<li>在父工程中引入spring-amqp依赖</li>
+<li>在publisher服务中利用RabbitTemplate发送消息到simple.queue这个队列</li>
+</ul>
+<h5 id="接受消息"><a href="#接受消息" class="headerlink" title="接受消息"></a>接受消息</h5><ul>
+<li>引入amqp的starter依赖</li>
+<li>配置RabbitMQ地址</li>
+<li>定义类，添加@Component注解</li>
+<li>类中声明方法，添加@RabbitListener注解，方法参数就是消息</li>
+</ul>
+<h4 id="Work-Queue-工作队列"><a href="#Work-Queue-工作队列" class="headerlink" title="Work Queue 工作队列"></a>Work Queue 工作队列</h4><p>与基础消息队列区别：多个消费者，可以提高消息处理速度，避免队列消息堆积</p>
+<h5 id="消费预取限制"><a href="#消费预取限制" class="headerlink" title="消费预取限制"></a>消费预取限制</h5><p>配置文件设置preFetch值，可以控制预取消息上限</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="attr">listener:</span></span><br><span class="line">      <span class="attr">simple:</span></span><br><span class="line">        <span class="attr">prefetch:</span> <span class="number">1</span> <span class="comment">#每次只能获取一条消息，处理完才能获取下一条,默认无限</span></span><br></pre></td></tr></table></figure>
+<h4 id="发布、订阅模型（Publish-amp-Subscribe）"><a href="#发布、订阅模型（Publish-amp-Subscribe）" class="headerlink" title="发布、订阅模型（Publish&amp;Subscribe）"></a>发布、订阅模型（Publish&amp;Subscribe）</h4><p>允许将同一消息发送给多个消费者，实现方式是加入了交换机（exchange）</p>
+<p>实现方式：通过交换机发送给多个队列</p>
+<p>常见交换机类型：</p>
+<ul>
+<li>Fanout：广播</li>
+<li>Direct：路由</li>
+<li>Topic：话题</li>
+</ul>
+<p>注意：exchange负责消息路由，只负责转发消息，路由失败则消息丢失</p>
+<h5 id="发布订阅-FanoutExchange"><a href="#发布订阅-FanoutExchange" class="headerlink" title="发布订阅-FanoutExchange"></a>发布订阅-FanoutExchange</h5><p>会将接收到的消息路由到每一个与其绑定的queue</p>
+<p>实现思路如下：</p>
+<ul>
+<li>在cunsumer服务中，声明队列、交换机，并将两者绑定</li>
+<li>在consumer服务中，编写消费者方法，分别监听各个队列</li>
+<li>在publisher中编写测试方法，发送消息</li>
+</ul>
+<h5 id="发布订阅-DirectExchange"><a href="#发布订阅-DirectExchange" class="headerlink" title="发布订阅-DirectExchange"></a>发布订阅-DirectExchange</h5><p>会将接收到的消息<strong>根据规则</strong>路由到指定的Queue，因此称为路由模式</p>
+<ul>
+<li>每一个Queue都与Exchange设置一个BindingKey，可以绑定多个</li>
+<li>发布者发送消息时，指定<strong>消息</strong>的RoutingKey</li>
+<li>Exchange将消息路由到BindingKey宇RoutingKey一致的队列</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RabbitListener</span>(bindings = <span class="meta">@QueueBinding</span>(</span><br><span class="line">        value = <span class="meta">@Queue</span>(name = <span class="string">"direct.queue1"</span>),</span><br><span class="line">        exchange = <span class="meta">@Exchange</span>(name = <span class="string">"itcast.direct"</span>, type = ExchangeTypes.DIRECT),</span><br><span class="line">        key = &#123;<span class="string">"red"</span>, <span class="string">"blue"</span>&#125;</span><br><span class="line">))</span><br></pre></td></tr></table></figure>
+<h5 id="发布订阅-TopicExchange"><a href="#发布订阅-TopicExchange" class="headerlink" title="发布订阅-TopicExchange"></a>发布订阅-TopicExchange</h5><p>与DirectExchange类似，区别在于routingKey必须是多个单词的列表，并且以.分割</p>
+<p>Queue与Exchange指定BindingKey时可以使用通配符：</p>
+<ul>
+<li><h1 id="：代指0个或多个单词"><a href="#：代指0个或多个单词" class="headerlink" title="：代指0个或多个单词"></a>：代指0个或多个单词</h1></li>
+<li>*：代指一个单词</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RabbitListener</span>(bindings = <span class="meta">@QueueBinding</span>(</span><br><span class="line">        value = <span class="meta">@Queue</span>(name = <span class="string">"topic.queue2"</span>),</span><br><span class="line">        exchange = <span class="meta">@Exchange</span>(name = <span class="string">"itcast.topic"</span>, type = ExchangeTypes.TOPIC),</span><br><span class="line">        key = <span class="string">"#.news"</span></span><br><span class="line">))</span><br></pre></td></tr></table></figure>
+<h4 id="消息转换器"><a href="#消息转换器" class="headerlink" title="消息转换器"></a>消息转换器</h4><p>消息发送Java对象时，SpringAMQP会帮我们序列化为字节后发送，基于JDK的ObjectOutputStream完成序列化</p>
+<p>如果要修改只需要定义一个MessageConverter的Bean即可。推荐使用JSON方式序列化，步骤如下：</p>
+<h5 id="发送消息-1"><a href="#发送消息-1" class="headerlink" title="发送消息"></a>发送消息</h5><ul>
+<li>在publisher服务引入依赖</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fasterxml.jackson.dataformat<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-dataformat-xml<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>在publisher服务声明MessageConverter</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> MessageConverter <span class="title">jsonMessageConverter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Jackson2JsonMessageConverter();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>发送消息即可</li>
+</ul>
+<h5 id="接收消息"><a href="#接收消息" class="headerlink" title="接收消息"></a>接收消息</h5><ul>
+<li>在consumer服务引入Jackson依赖</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fasterxml.jackson.dataformat<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-dataformat-xml<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.9.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>在consumer服务定义MessageConverter：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> MessageConverter <span class="title">jsonMessageConverter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Jackson2JsonMessageConverter();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>接收消息即可</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/06/20/%E4%B8%AD%E9%97%B4%E4%BB%B6/MQ/RabbitMQ%E6%B6%88%E6%81%AF%E6%A8%A1%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sympa">
+      <meta itemprop="description" content="Get busy living,or get busy dying.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="避风港">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/06/20/%E4%B8%AD%E9%97%B4%E4%BB%B6/MQ/RabbitMQ%E6%B6%88%E6%81%AF%E6%A8%A1%E5%9E%8B/" class="post-title-link" itemprop="url">RabbitMQ消息模型</a>
+        </h2>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-20 11:24:13" itemprop="dateCreated datePublished" datetime="2022-06-20T11:24:13+08:00">2022-06-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-06-21 10:49:48" itemprop="dateModified" datetime="2022-06-21T10:49:48+08:00">2022-06-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">中间件</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="常见消息模型"><a href="#常见消息模型" class="headerlink" title="常见消息模型"></a>常见消息模型</h4><p>MQ的官方文档中给出了5个MQ的Demo示例，对应了几种不同的用法：</p>
+<ul>
+<li>基本消息队列（BasicQueue）</li>
+<li>工作消息队列（WorkQueue）</li>
+<li>发布订阅（Publish、Subscribe），又根据交换机类型不同分为三种：<ul>
+<li>Fanout Exchange：广播</li>
+<li>Direct Exchange：路由</li>
+<li>Topic Exchange：主题</li>
+</ul>
+</li>
+</ul>
+<h4 id="基本消息队列（官方提供API）"><a href="#基本消息队列（官方提供API）" class="headerlink" title="基本消息队列（官方提供API）"></a>基本消息队列（官方提供API）</h4><h5 id="消息发送流程"><a href="#消息发送流程" class="headerlink" title="消息发送流程"></a>消息发送流程</h5><ul>
+<li>建立connection</li>
+<li>创建channel</li>
+<li>利用channel声明队列</li>
+<li>利用channel向队列发送消息</li>
+</ul>
+<h5 id="基本消息队列的消息接收流程"><a href="#基本消息队列的消息接收流程" class="headerlink" title="基本消息队列的消息接收流程"></a>基本消息队列的消息接收流程</h5><ul>
+<li>建立connection</li>
+<li>创建channel</li>
+<li>利用channel声明队列</li>
+<li>定义consumer的消费行为handleDelivery()</li>
+<li>利用channel将消费者与队列绑定</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+ 
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/06/20/%E4%B8%AD%E9%97%B4%E4%BB%B6/MQ/RabbitMQ%E7%9A%84%E5%AE%89%E8%A3%85/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -903,462 +1249,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/06/11/%E5%B7%A5%E5%85%B7/Docker/DockerCompose/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/06/11/%E5%B7%A5%E5%85%B7/Docker/DockerCompose/" class="post-title-link" itemprop="url">DockerCompose</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-06-11 18:18:42 / 修改时间：22:10:19" itemprop="dateCreated datePublished" datetime="2022-06-11T18:18:42+08:00">2022-06-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="什么是DockerCompose"><a href="#什么是DockerCompose" class="headerlink" title="什么是DockerCompose"></a>什么是DockerCompose</h4><ul>
-<li>DockerCompose可以基于Compose文件帮用户快速部署分布式应用，而无需手动一个个创建和运行容器</li>
-<li>Compose文件是一个文本文件，通过指令定义集群中每个容器如何运行</li>
-</ul>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">"3.2"</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">nacos:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">nacos/nacos-server</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">MODE:</span> <span class="string">standalone</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">"8848:8848"</span></span><br><span class="line">  <span class="attr">mysql:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">mysql:5.7.25</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">MYSQL_ROOT_PASSWORD:</span> <span class="number">123456</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">"$PWD/mysql/data:/var/lib/mysql"</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">"$PWD/mysql/conf:/etc/mysql/conf.d/"</span></span><br><span class="line">  <span class="attr">userservice:</span></span><br><span class="line">    <span class="attr">build:</span> <span class="string">./user-service</span></span><br><span class="line">  <span class="attr">orderservice:</span></span><br><span class="line">    <span class="attr">build:</span> <span class="string">./order-service</span></span><br><span class="line">  <span class="attr">gateway:</span></span><br><span class="line">    <span class="attr">build:</span> <span class="string">./gateway</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">"10010:10010"</span></span><br></pre></td></tr></table></figure>
-<h4 id="可以看到，其中包含5个service服务："><a href="#可以看到，其中包含5个service服务：" class="headerlink" title="可以看到，其中包含5个service服务："></a>可以看到，其中包含5个service服务：</h4><ul>
-<li><code>nacos</code>：作为注册中心和配置中心<ul>
-<li><code>image: nacos/nacos-server</code>： 基于nacos/nacos-server镜像构建</li>
-<li><code>environment</code>：环境变量<ul>
-<li><code>MODE: standalone</code>：单点模式启动</li>
-</ul>
-</li>
-<li><code>ports</code>：端口映射，这里暴露了8848端口</li>
-</ul>
-</li>
-<li><code>mysql</code>：数据库<ul>
-<li><code>image: mysql:5.7.25</code>：镜像版本是mysql:5.7.25</li>
-<li><code>environment</code>：环境变量<ul>
-<li><code>MYSQL_ROOT_PASSWORD: 123456</code>：设置数据库root账户的密码</li>
-</ul>
-</li>
-<li><code>volumes</code>：数据卷挂载，这里挂载了mysql的data、conf目录，其中有我提前准备好的数据</li>
-</ul>
-</li>
-<li><code>userservice</code>、<code>orderservice</code>、<code>gateway</code>：都是基于Dockerfile临时构建的</li>
-</ul>
-<ul>
-<li>修改cloud-demo项目，将数据库、nacos地址都命名为docker-compose中的服务名</li>
-<li>使用maven打包工具，将项目中的每个微服务都打包为app.jar</li>
-<li>将打包好的app.jar拷贝到cloud-demo中的每一个对应子目录中</li>
-<li>将cloud-demo上传至虚拟机，利用docker-compose up -d来部署</li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/06/11/%E5%B7%A5%E5%85%B7/Docker/%E5%9F%BA%E4%BA%8EDockerfile%E8%87%AA%E5%AE%9A%E4%B9%89%E9%95%9C%E5%83%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/06/11/%E5%B7%A5%E5%85%B7/Docker/%E5%9F%BA%E4%BA%8EDockerfile%E8%87%AA%E5%AE%9A%E4%B9%89%E9%95%9C%E5%83%8F/" class="post-title-link" itemprop="url">基于Dockerfile自定义镜像</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2022-06-11 16:58:32 / 修改时间：18:17:16" itemprop="dateCreated datePublished" datetime="2022-06-11T16:58:32+08:00">2022-06-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="镜像结构"><a href="#镜像结构" class="headerlink" title="镜像结构"></a>镜像结构</h4><ul>
-<li>镜像是将应用程序及其需要的系统函数库、环境、配置、依赖打包而成</li>
-<li>结构：<ul>
-<li>入口：镜像运行入口，一般是程序启动的脚本和参数</li>
-<li>层：在BaseImage基础上添加安装包、依赖、配置等，每次操作都形成新的一层</li>
-<li>基础镜像：应用依赖的系统函数库、环境、配置、文件等</li>
-</ul>
-</li>
-</ul>
-<h4 id="什么是Dockerfile"><a href="#什么是Dockerfile" class="headerlink" title="什么是Dockerfile"></a>什么是Dockerfile</h4><p>Dockerfile是一个文本文件，其中包含一个个的指令，用指令来说明要执行什么操作来构建镜像，每一个指令都会形成一层Layer</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>指令</th>
-<th>说明</th>
-<th>示例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>FROM</td>
-<td>指定基础镜像</td>
-<td>FROM centos:6</td>
-</tr>
-<tr>
-<td>ENV</td>
-<td>设置环境变量，可在后面指令使用</td>
-<td>ENV key value</td>
-</tr>
-<tr>
-<td>COPY</td>
-<td>拷贝本地文件到镜像的指定目录</td>
-<td>COPY ./mysql-5.7.rpm /tmp</td>
-</tr>
-<tr>
-<td>RUN</td>
-<td>执行Linux的shell命令，一般是安装过程的命令</td>
-<td>RUN yum install gcc</td>
-</tr>
-<tr>
-<td>EXPOSE</td>
-<td>指定容器运行时监听的端口，是给镜像使用者看的</td>
-<td>EXPOSE 8080</td>
-</tr>
-<tr>
-<td>ENTRYPOINT</td>
-<td>镜像中应用的启动命令，容器运行时调用</td>
-<td>ENTRYPOINT java -jar xx.jar</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h4 id="案例1：基于Ubuntu镜像构建一个新镜像，运行一个java项目"><a href="#案例1：基于Ubuntu镜像构建一个新镜像，运行一个java项目" class="headerlink" title="案例1：基于Ubuntu镜像构建一个新镜像，运行一个java项目"></a>案例1：基于Ubuntu镜像构建一个新镜像，运行一个java项目</h4><ul>
-<li>新建空文件夹docker-demo</li>
-<li>拷贝项目jar包、jdk、Dockerfile到该目录</li>
-<li><p>进入decker-demo</p>
-</li>
-<li><p>运行命令</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t javaweb:1.0 .</span><br></pre></td></tr></table></figure>
-<ul>
-<li>创建镜像</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name web -p 8090:8090 -d javaweb:1.0</span><br></pre></td></tr></table></figure>
-<h4 id="案例2：基于java-8-alpine镜像，将一个Java项目构建为镜像"><a href="#案例2：基于java-8-alpine镜像，将一个Java项目构建为镜像" class="headerlink" title="案例2：基于java:8-alpine镜像，将一个Java项目构建为镜像"></a>案例2：基于java:8-alpine镜像，将一个Java项目构建为镜像</h4><p>思路如下：</p>
-<ul>
-<li>新建空目录，新建Dockerfile文件</li>
-<li>拷贝项目jar包到该目录</li>
-<li>编写Dockerfile文件<ul>
-<li>基于java:8-alpine作为基础镜像</li>
-<li>将app.jar拷贝到镜像中</li>
-<li>暴露端口</li>
-<li>编写入口ENTRYPOINT</li>
-</ul>
-</li>
-<li>使用build命令创建镜像，run命令创建容器并运行</li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/06/09/%E5%B7%A5%E5%85%B7/Docker/Docker%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sympa">
-      <meta itemprop="description" content="Get busy living,or get busy dying.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="避风港">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/06/09/%E5%B7%A5%E5%85%B7/Docker/Docker%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">Docker基本操作</a>
-        </h2>
-
-        <div class="post-meta">
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-06-09 15:59:11" itemprop="dateCreated datePublished" datetime="2022-06-09T15:59:11+08:00">2022-06-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-06-13 01:06:42" itemprop="dateModified" datetime="2022-06-13T01:06:42+08:00">2022-06-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="镜像相关命令"><a href="#镜像相关命令" class="headerlink" title="镜像相关命令"></a>镜像相关命令</h3><ul>
-<li>镜像名称一般分两部分组成：[repository]:[tag]，例如：mysql:5.7。</li>
-<li>创建镜像<ul>
-<li>从本地：从Dockerfile文件，利用docker build命令构建镜像</li>
-<li>从镜像服务器：docker pull命令</li>
-</ul>
-</li>
-<li>查看镜像：docker images命令</li>
-<li>删除镜像：docker rmi命令</li>
-<li>推送镜像<ul>
-<li>docker push命令，推送到服务</li>
-<li>docker save命令，保存为一个压缩包，可以用docker load命令加载</li>
-</ul>
-</li>
-</ul>
-<h4 id="案例1"><a href="#案例1" class="headerlink" title="案例1"></a>案例1</h4><ul>
-<li>前往doker hub</li>
-<li>查找Nginx镜像pull命令</li>
-<li>使用docker images查看镜像</li>
-</ul>
-<h4 id="案例2"><a href="#案例2" class="headerlink" title="案例2"></a>案例2</h4><ul>
-<li>利用docker xx —help命令查看docker save和docker load语法</li>
-<li>使用docker tag 创建新镜像mynginx1.0</li>
-<li>使用docker save导出镜像到磁盘</li>
-<li>导出：docker save -o nginx.tar nginx:latest，使用ll命令查看</li>
-<li>删除当前镜像：docker rmi nginx:latest</li>
-<li>导入： docker load -i nginx.tar</li>
-</ul>
-<h3 id="容器相关命令"><a href="#容器相关命令" class="headerlink" title="容器相关命令"></a>容器相关命令</h3><ul>
-<li>查看所有运行的容器及状态：docker ps</li>
-<li>查看容器运行日志：docker logs</li>
-<li>进入容器执行命令：docker exec</li>
-<li>状态切换<ul>
-<li>运行 → 暂停：docker pause</li>
-<li>暂停 → 运行： docker unpause</li>
-<li>运行 → 停止：docker stop</li>
-<li>停止 → 运行： docker start</li>
-</ul>
-</li>
-<li>删除指定容器：docker rm</li>
-</ul>
-<h4 id="案例1：运行一个Nginx容器"><a href="#案例1：运行一个Nginx容器" class="headerlink" title="案例1：运行一个Nginx容器"></a>案例1：运行一个Nginx容器</h4><ul>
-<li>在docker hub查看Nginx的容器运行命令</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name containerName -p 80:80 -d nginx</span><br></pre></td></tr></table></figure>
-<ul>
-<li>命令解读：<ul>
-<li>docker run：创建并运行一个容器</li>
-<li>—name：给容器起一个名字，必须唯一</li>
-<li>-p：将宿主机端口与容器端口映射，左边是宿主机端口，右边是容器端口</li>
-<li>-d：后台运行容器</li>
-<li>nginx：镜像名称</li>
-</ul>
-</li>
-<li>查看日志：docker logs mn</li>
-</ul>
-<h4 id="案例2：进入Nginx容器，修改HTML文件内容（不推荐使用）"><a href="#案例2：进入Nginx容器，修改HTML文件内容（不推荐使用）" class="headerlink" title="案例2：进入Nginx容器，修改HTML文件内容（不推荐使用）"></a>案例2：进入Nginx容器，修改HTML文件内容（不推荐使用）</h4><ul>
-<li>进入容器</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it mn &#x2F;bin&#x2F;bash</span><br></pre></td></tr></table></figure>
-<ul>
-<li>命令解读<ul>
-<li>docker exec：进入容器内部，执行一个命令</li>
-<li>-it：给当前进入的容器创建一个标准输入输出终端，允许交互</li>
-<li>mn：容器名称</li>
-<li>/bin/bash：进入后执行的命令，bash是一个linux终端交互命令</li>
-</ul>
-</li>
-<li>进入指定路径：cd /usr/share/nginx/html</li>
-<li>替换内容</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i &#39;s#Welcome to nginx#Hello world!#g&#39; index.html</span><br></pre></td></tr></table></figure>
-<h3 id="数据卷操作"><a href="#数据卷操作" class="headerlink" title="数据卷操作"></a>数据卷操作</h3><h4 id="容器与数据耦合的问题"><a href="#容器与数据耦合的问题" class="headerlink" title="容器与数据耦合的问题"></a>容器与数据耦合的问题</h4><ul>
-<li>不便于修改</li>
-<li>数据不可复用</li>
-</ul>
-<h4 id="数据卷-volume"><a href="#数据卷-volume" class="headerlink" title="数据卷(volume)"></a>数据卷(volume)</h4><p>是一个虚拟目录，指向宿主机文件系统中的某个目录。</p>
-<h4 id="操作数据卷"><a href="#操作数据卷" class="headerlink" title="操作数据卷"></a>操作数据卷</h4><ul>
-<li>数据卷操作的基本语法如下：</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker volume [COMMAND]</span><br></pre></td></tr></table></figure>
-<ul>
-<li>docker volume命令是数据卷操作，根据命令后跟随的command来确定下一步操作：<ul>
-<li>create：创建一个volume</li>
-<li>inspect：显示一个或多个volume信息</li>
-<li>ls：列出所有volume</li>
-<li>prune：删除未使用的volume</li>
-<li>rm：删除一个或多个volume</li>
-</ul>
-</li>
-</ul>
-<h4 id="挂载数据卷"><a href="#挂载数据卷" class="headerlink" title="挂载数据卷"></a>挂载数据卷</h4><p>我们在创建容器时，可以通过-v参数来挂载一个数据卷到某个容器目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line"> --name mn \ </span><br><span class="line"> -v hrml:&#x2F;root&#x2F;html \   把html数据卷挂载到容器内部的&#x2F;root&#x2F;html目录中</span><br><span class="line"> -p 8080:80</span><br><span class="line"> nginx \</span><br></pre></td></tr></table></figure>
-<h4 id="案例1：创建一个nginx容器，修改容器内的html目录内index-html内容"><a href="#案例1：创建一个nginx容器，修改容器内的html目录内index-html内容" class="headerlink" title="案例1：创建一个nginx容器，修改容器内的html目录内index.html内容"></a>案例1：创建一个nginx容器，修改容器内的html目录内index.html内容</h4><ul>
-<li><p>需求说明：把目录挂载到html数据卷上，方便操作其中内容</p>
-</li>
-<li><p>步骤：</p>
-<ul>
-<li>创建容器并挂载数据卷到容器内的HTML目录</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name mn -p 81:80 -v html:&#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html -d nginx</span><br></pre></td></tr></table></figure>
-<ul>
-<li>进入html数据卷所在位置，并修改HTML内容</li>
-</ul>
-</li>
-<li><p>若数据卷不存在，docker会自动创建</p>
-</li>
-</ul>
-<h4 id="案例2：创建并运行一个MySQL容器，将宿主机目录直接挂载到容器"><a href="#案例2：创建并运行一个MySQL容器，将宿主机目录直接挂载到容器" class="headerlink" title="案例2：创建并运行一个MySQL容器，将宿主机目录直接挂载到容器"></a>案例2：创建并运行一个MySQL容器，将宿主机目录直接挂载到容器</h4><ul>
-<li>目录挂载语法<ul>
-<li>-v[宿主机目录]:[容器内目录]</li>
-<li>-v[宿主机文件]:[容器内文件]</li>
-</ul>
-</li>
-<li>上传压缩包，加载MySQL镜像</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker load -i &#x2F;mysql.tar</span><br></pre></td></tr></table></figure>
-<ul>
-<li>创建目录/tmp/myql/data</li>
-<li>创建目录/tmp/myql/conf，将配置文件上传</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line"> --name mysql \</span><br><span class="line"> -e MYSQL_ROOT_PASSWORD&#x3D;123456 \</span><br><span class="line"> -p 3306:3306 \</span><br><span class="line"> -v &#x2F;tmp&#x2F;mysql&#x2F;conf&#x2F;hmy.conf:&#x2F;etc&#x2F;mysql&#x2F;conf.d&#x2F;hmy.cnf \</span><br><span class="line"> -v &#x2F;tmp&#x2F;mysql&#x2F;data:&#x2F;var&#x2F;lib&#x2F;mysql \</span><br><span class="line"> -d \</span><br><span class="line"> mysql:5.7.25</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>挂载/tmp/myql/data到mysql容器内数据存储目录</p>
-</li>
-<li><p>挂载/tmp/myql/conf/hmy.cnf到mysql容器配置文件</p>
-</li>
-<li>设置MySQL密码</li>
-</ul>
-
-      
-    </div>
-    
-    
-    
-
- 
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1430,14 +1320,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">141</span>
+          <span class="site-state-item-count">144</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1484,7 +1374,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1526,7 +1416,7 @@ $(document).ready(function() {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共45.1k字</span>
+  <span class="post-count">博客全站共48.2k字</span>
 </div>
         
 <div class="busuanzi-count">
